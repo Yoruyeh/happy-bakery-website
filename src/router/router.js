@@ -7,7 +7,7 @@ import Register from '../pages/register/Register'
 import Contact from '../pages/contact/Contact'
 import Products from '../pages/products/Products'
 import Navbar from '../components/navbar/Navbar'
-import Footer from '../components/Footer'
+import Footer from '../components/footer/Footer'
 
 const Layout = () => {
   return (

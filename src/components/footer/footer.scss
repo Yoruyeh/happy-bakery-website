@@ -1,0 +1,151 @@
+@import "../../styles/variables.scss";
+
+.footer {
+  height: 700px;
+  margin: 80px 60px;
+  padding: 0 32px;
+
+  .upper-footer {
+    height: 440px;
+    background-color: $salmon-pink;
+    border-radius: 48px;
+    display: flex;
+    padding: 64px 0 0 72px;
+    
+    .subscribe {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      color: $white;
+
+      h3 {
+        font-family: 'Rubik', sans-serif;
+        font-weight: 600;
+        font-size: 48px;
+        margin-bottom: 16px;
+      }
+
+      p {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        font-size: 20px;
+        margin-bottom: 32px;
+      }
+
+      .subscribe-input {
+        display: flex;
+        align-items: center;
+          
+        input {
+          width: 342px;
+          height: 48px;
+          margin-right: 4px;
+          background-color: transparent;
+          box-shadow: 0 4 20 rgba(0,0,0,0.25);
+          border: 1px solid $FA-white;
+          border-radius: 8px;
+          font-family: 'Open Sans', sans-serif;
+          padding: 14px 16px;
+          
+
+          &::placeholder {
+            color: $white;
+            font-size: 16px;
+          }
+        }
+
+        button {
+          width: 102px;
+          height: 48px;
+          background-color:$baby-blue;
+          border: none;
+          border-radius: 8px;
+          color: $white;
+          font-family: 'Rubik', sans-serif;
+          font-weight: 500;
+          font-size: 14px;
+        }
+      }  
+    }
+
+    .logo {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      padding-top: 100px;
+    }
+  }
+
+  .lower-footer {
+    height: 360px;
+    background-color: $baby-blue;
+    border-radius: 48px;
+    position: relative;
+    top: -100px;
+    display: flex;
+    gap: 80px;
+    justify-content: space-between;
+    color: $white;
+    padding: 40px;
+
+    .about {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+      }
+    }
+
+    .categories {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .link-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .link-item {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 18px;
+        }
+      }   
+    }
+
+    .company {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .link-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .link-item {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 18px;
+        }
+      }   
+    }
+
+    .social-media {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+
+      .social-media-icons {
+        display: flex;
+        gap: 24px;
+      }
+    }
+  }
+}
