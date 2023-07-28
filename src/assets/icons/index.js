@@ -12,6 +12,8 @@ import { ReactComponent as Twitter } from './twitter.svg'
 import { ReactComponent as Tiktok } from './tiktok.svg'
 import { ReactComponent as RedioChecked } from './radio-button-checked.svg'
 import { ReactComponent as RedioUnchecked } from './radio-button-unchecked.svg'
+import { ReactComponent as ArrowForward } from './arrow_forward.svg'
+import { ReactComponent as FacebookColored } from './logos_facebook.svg'
 
 export {
   Logo,
@@ -27,5 +29,7 @@ export {
   Twitter,
   Tiktok,
   RedioChecked,
-  RedioUnchecked
+  RedioUnchecked,
+  ArrowForward,
+  FacebookColored
 }
