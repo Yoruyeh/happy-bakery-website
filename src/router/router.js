@@ -6,7 +6,7 @@ import Login from '../pages/login/Login'
 import Register from '../pages/register/Register'
 import Contact from '../pages/contact/Contact'
 import Products from '../pages/products/Products'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/Footer'
 
 const Layout = () => {
