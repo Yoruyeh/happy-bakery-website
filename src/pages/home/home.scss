@@ -64,15 +64,25 @@
         position: absolute;
         bottom: 10%;
         left: 50px;
-        width: 138px;
-        height: 48px;
-        font-family: 'Rubik', sans-serif;
-        font-size: 14px;
-        font-weight: 500;
-        background-color: $salmon-pink;
-        color: $white;
-        border: none;
-        border-radius: 8px;
+      }
+    }
+  }
+
+  .newdrops {
+    height: 658px;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      h2 {
+        font-size: 74px;
+        font-weight: 600;
+      }
+
+      button {
+        width: 189px;
       }
     }
   }

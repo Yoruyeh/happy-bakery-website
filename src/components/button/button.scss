@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+
+button {
+  width: 138px;
+  height: 48px;
+  font-family: 'Rubik', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  background-color: $salmon-pink;
+  color: $white;
+  border: none;
+  border-radius: 8px;
+}
