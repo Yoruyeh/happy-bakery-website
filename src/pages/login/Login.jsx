@@ -22,8 +22,9 @@ const Login = () => {
           <FacebookColored />
         </button>
         <p>
-          By clicking 'Log In' you agree to our website KicksClub Terms &
-          Conditions, Kicks Privacy Notice and Terms & Conditions.
+          By clicking 'Log In' you agree to our website Terms & Conditions,
+          <br />
+          Privacy Notice and Terms & Conditions.
         </p>
       </form>
       <div className="club-info">
