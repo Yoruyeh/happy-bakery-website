@@ -22,11 +22,11 @@ const Layout = () => {
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '/happy-bakery-website',
     element: <Layout />,
     children: [
       {
-        index: true,
+        default: true,
         element: <Home />
       },
       {
