@@ -37,11 +37,12 @@
         border: 1px solid $FA-white;
         background-color: $white;
         font-family: 'Rubik', sans-serif;
-        font-weight: 600;
+        font-weight: 400;
         font-size: 16px;
         position: absolute;
         top: 20px;
         left: 110px;
+        z-index: 3;
 
         .dropdown-menu-list {
           display: flex;
@@ -82,11 +83,12 @@
       border: 1px solid $FA-white;
       background-color: $white;
       font-family: 'Rubik', sans-serif;
-      font-weight: 600;
+      font-weight: 400;
       font-size: 16px;
       position: absolute;
       top: 20px;
       right: 20px;
+      z-index: 3;
 
       .dropdown-user-list {
         display: flex;
