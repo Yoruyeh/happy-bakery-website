@@ -17,12 +17,42 @@
       justify-content: flex-start;
       align-items: center;
       gap: 40px;
+      position: relative;
     }
 
     .nav-item {
       font-family: 'Rubik', sans-serif;
       font-weight: 600;
       font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      .dropdown-menu {
+        width: 160px;
+        margin-top: 10px;
+        padding: 16px 8px 8px 8px;
+        border-radius: 8px;
+        border: 1px solid $FA-white;
+        background-color: $white;
+        position: absolute;
+        top: 20px;
+        left: 110px;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+
+        .dropdown-menu-list {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+
+          .dropdown-menu-item {
+            border-bottom: 2px solid $FA-white;
+          }
+        }
+      }
     }
   }
 
