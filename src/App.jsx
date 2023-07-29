@@ -1,10 +1,12 @@
-import { RouterProvider } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom' 
 import router from './router/router'
 
-const basename = process.env.PUBLIC_URL
-
 function App() {
-  return <RouterProvider basename={basename} router={router} />
+  return (
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      {router}
+    </BrowserRouter>
+  )
 }
 
 export default App

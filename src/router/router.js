@@ -1,4 +1,3 @@
-import * as React from 'react'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
 import Home from '../pages/home/Home'
 import About from '../pages/about/About'
@@ -27,27 +26,27 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: '/',
+        index: true,
         element: <Home />
       },
       {
-        path: '/login',
+        path: 'login',
         element: <Login />
       },
       {
-        path: '/register',
+        path: 'register',
         element: <Register />
       },
       {
-        path: '/about',
+        path: 'about',
         element: <About />
       },
       {
-        path: '/contact',
+        path: 'contact',
         element: <Contact />
       },
       {
-        path: '/products',
+        path: 'products',
         element: <Products />
       }
     ]
