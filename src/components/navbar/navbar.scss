@@ -36,12 +36,12 @@
         border-radius: 8px;
         border: 1px solid $FA-white;
         background-color: $white;
-        position: absolute;
-        top: 20px;
-        left: 110px;
         font-family: 'Rubik', sans-serif;
         font-weight: 600;
         font-size: 16px;
+        position: absolute;
+        top: 20px;
+        left: 110px;
 
         .dropdown-menu-list {
           display: flex;
@@ -68,6 +68,36 @@
     align-items: center;
     justify-content: flex-end;
     gap: 42px;
+    position: relative;
+
+    .search-icon, .user-icon :hover {
+      cursor: pointer;
+    }
+
+    .dropdown-user {
+      width: 90px;
+      margin-top: 10px;
+      padding: 16px 8px 8px 8px;
+      border-radius: 8px;
+      border: 1px solid $FA-white;
+      background-color: $white;
+      font-family: 'Rubik', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+
+      .dropdown-user-list {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+
+        .dropdown-user-item {
+          border-bottom: 2px solid $FA-white;
+        }
+      } 
+    }
 
     .cart-count {
       width: 32px;
@@ -78,6 +108,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

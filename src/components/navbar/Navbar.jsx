@@ -4,20 +4,38 @@ import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 
 const Navbar = () => {
-  const [openDropdown, setOpenDropdown] = useState(false)
-  const dropdownRef= useRef(null)
+  const [openProductDropdown, setOpenProductDropdown] = useState(false)
+  const [openUserDropdown, setOpenUserDropdown] = useState(false)
+  const productDropdownRef= useRef(null)
+  const userDropdownRef = useRef(null)
 
-  const handleOpenDropdown = () => {
-    setOpenDropdown(!openDropdown)
+
+  const handleOpenProductDropdown = () => {
+    setOpenProductDropdown(!openProductDropdown)
+  }
+
+  const handleOpenUserDropdown = () => {
+    setOpenUserDropdown(!openUserDropdown)
   }
 
   useEffect(() => {
     const handleClickOutside = (e) => {
       //  dropdownRef不為空且點擊事件的目標元素不在 dropdown-menu 的範圍之內
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
-        setOpenDropdown(false)
+      if (
+        productDropdownRef.current &&
+        !productDropdownRef.current.contains(e.target)
+      ) {
+        setOpenProductDropdown(false)
+      }
+
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(e.target)
+      ) {
+        setOpenUserDropdown(false)
       }
     }
+
     document.addEventListener('mousedown', handleClickOutside)
     // 移除監聽
     return () => {
@@ -32,11 +50,15 @@ const Navbar = () => {
           <Link to="about">
             <li className="nav-item">Our Story</li>
           </Link>
-          <li className="nav-item dropdown" onClick={handleOpenDropdown}>
+          <li
+            className="nav-item dropdown"
+            ref={productDropdownRef}
+            onClick={handleOpenProductDropdown}
+          >
             Shop
             <CaretDown />
-            {openDropdown && (
-              <div className="dropdown-menu" ref={dropdownRef}>
+            {openProductDropdown && (
+              <div className="dropdown-menu">
                 <ul className="dropdown-menu-list">
                   <Link to="products">
                     <li className="dropdown-menu-item">Birthday Cakes</li>
@@ -63,8 +85,28 @@ const Navbar = () => {
         </div>
       </Link>
       <div className="nav-icons-wrapper">
-        <Search />
-        <User />
+        <div className="search-icon">
+          <Search />
+        </div>
+        <div
+          className="user-icon"
+          ref={userDropdownRef}
+          onClick={handleOpenUserDropdown}
+        >
+          <User />
+          {openUserDropdown && (
+            <div className="dropdown-user">
+              <ul className="dropdown-user-list">
+                <Link to="login">
+                  <li className="dropdown-user-item">Login</li>
+                </Link>
+                <Link to="register">
+                  <li className="dropdown-user-item">Register</li>
+                </Link>
+              </ul>
+            </div>
+          )}
+        </div>
         <div className="cart-count">2</div>
       </div>
     </div>
