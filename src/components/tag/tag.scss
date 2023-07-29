@@ -1,0 +1,18 @@
+@import "../../styles/variables.scss";
+
+.tag {
+  background-color: $salmon-pink;
+  width: 58px;
+  height: 38px;
+  border-top-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
