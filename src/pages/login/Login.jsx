@@ -1,6 +1,7 @@
 import styles from './login.module.scss'
 import { ArrowForward, FacebookColored } from "../../assets/icons"
 import ClubInfo from '../../components/clubInfo/ClubInfo'
+import Button from '../../components/button/Button'
 
 const Login = () => {
   return (
@@ -14,14 +15,8 @@ const Login = () => {
           <input type="checkbox" />
           Keep me logged in - applies to all log in options below.
         </label>
-        <button type="submit">
-          EMAIL LOGIN
-          <ArrowForward />
-        </button>
-        <button>
-          USE FACEBOOK TO LOGIN
-          <FacebookColored />
-        </button>
+        <Button text={'EMAIL LOGIN'} price={<ArrowForward />} />
+        <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
         <p>
           By clicking 'Log In' you agree to our website Terms & Conditions,
           <br />

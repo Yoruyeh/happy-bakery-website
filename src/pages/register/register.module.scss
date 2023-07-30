@@ -3,13 +3,13 @@
 .register {
   display: flex;
   gap: 47px;
-  padding: 8px 24px 8px 40px;
 
   .registerForm{
     display: flex;
     flex-direction: column;
     flex: 1;
     gap: 24px;
+    padding: 0 24px 0 40px;
 
     h5 {
       font-family: 'Rubik', sans-serif;
@@ -17,7 +17,7 @@
     }
 
     input {
-      width: 480px;
+      width: 100%;
       height: 48px;
       background-color: transparent;
       border: 1px solid $dark-gray;
@@ -50,19 +50,9 @@
     }
 
     button {
-      width: 480px;
-      height: 48px;
-      color: $white;
+      width: 100%;
       background-color: $dark-gray;
-      border: none;
-      border-radius: 8px;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 16px;
-      font-family: 'Rubik', sans-serif;
-      font-size: 14px;
-      font-weight: 500;
       letter-spacing: 0.25px;
     }
 

@@ -1,16 +1,14 @@
 import styles from './register.module.scss'
 import { ArrowForward, FacebookColored } from '../../assets/icons'
 import ClubInfo from '../../components/clubInfo/ClubInfo'
+import Button from '../../components/button/Button'
 
 const Register = () => {
   return (
     <div className={styles.register}>
       <form className={styles.registerForm}>
         <h2>Register</h2>
-        <button>
-          SIGN UP WITH FACEBOOK
-          <FacebookColored />
-        </button>
+        <Button text={'SIGN UP WITH FACEBOOK'} price={<FacebookColored />} />
 
         <p>OR</p>
 
@@ -46,10 +44,7 @@ const Register = () => {
           <input type="checkbox" />
           Keep me logged in - applies to all log in options below.
         </label>
-        <button type="submit">
-          REGISTER
-          <ArrowForward />
-        </button>
+        <Button text={'REGISTER'} price={<ArrowForward />} />
       </form>
       <ClubInfo />
     </div>
