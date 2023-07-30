@@ -72,13 +72,12 @@
     }
   }
 
-  .newdrops {
-    height: 658px;
-
+  .newdrops {   
     .title {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      margin-bottom: 32px;
 
       h2 {
         font-size: 74px;
@@ -89,5 +88,26 @@
         width: 189px;
       }
     }
+
+    .newdrops-cards {
+      display: flex;
+      gap: 16px;
+    }
+  }
+
+  .reviews {
+    height: 619px;
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+
+      h2 {
+        font-size: 74px;
+        font-weight: 600;
+      }
+    }   
   }
 }
