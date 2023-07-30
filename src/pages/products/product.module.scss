@@ -52,7 +52,7 @@
     margin-top: 32px;
 
     .navbar {
-      flex: 1;
+      flex: 0.5;
       margin-top: 97px;
 
       h3 {
@@ -74,7 +74,7 @@
     }
 
     .content {
-      flex: 3;
+      flex: 3.5;
       width: 986px;
       display: flex;
       flex-direction: column;
