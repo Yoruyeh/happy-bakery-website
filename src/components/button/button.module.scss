@@ -10,8 +10,14 @@ button {
   color: $white;
   border: none;
   border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   span {
+    display: flex;
+    align-items: center;
     color: $light-yellow;
   }
 }

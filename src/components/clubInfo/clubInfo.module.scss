@@ -1,0 +1,44 @@
+@import "../../styles/variables.scss";
+
+.clubInfo {
+  height: 516px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  flex: 1.2;
+  background-color: $FA-white;
+  border-radius: 16px;
+  padding: 24px;
+
+  .clubInfoText {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: $dark-gray;
+    gap: 24px;
+
+    h2 {
+      font-family: 'Rubik', sans-serif;
+      font-weight: 600;
+    }
+
+    p, ul {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      list-style: disc;
+    }
+  }
+
+  button {
+    width: 100%;
+    justify-content: space-between;
+    background-color: $dark-gray;
+  }
+}
