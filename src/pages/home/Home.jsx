@@ -2,6 +2,7 @@ import styles from './home.module.scss'
 import bannerImg from "../../assets/images/dough.jpeg"
 import ProductCard from '../../components/card/ProductCard'
 import Button from "../../components/button/Button"
+import ReviewCard from '../../components/card/ReviewCard'
 
 const Home = () => {
   return (
@@ -40,7 +41,11 @@ const Home = () => {
         <div className={styles.title}>
           <h2>Reviews</h2>
         </div>
-        <div className={styles.reviewCards}></div>
+        <div className={styles.reviewCards}>
+          <ReviewCard />
+          <ReviewCard />
+          <ReviewCard />
+        </div>
       </div>
     </div>
   )

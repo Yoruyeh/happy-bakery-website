@@ -14,6 +14,7 @@ import { ReactComponent as RedioChecked } from './radio-button-checked.svg'
 import { ReactComponent as RedioUnchecked } from './radio-button-unchecked.svg'
 import { ReactComponent as ArrowForward } from './arrow_forward.svg'
 import { ReactComponent as FacebookColored } from './logos_facebook.svg'
+import { ReactComponent as StarRate } from './star-rate.svg'
 
 export {
   Logo,
@@ -31,5 +32,6 @@ export {
   RedioChecked,
   RedioUnchecked,
   ArrowForward,
-  FacebookColored
+  FacebookColored,
+  StarRate
 }

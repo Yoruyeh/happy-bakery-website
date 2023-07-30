@@ -1,0 +1,67 @@
+@import "../../styles/variables.scss";
+
+.card {
+  width: 430px;
+  height: 501px;
+  border-radius: 32px;
+  background-color: $FA-white;
+  display: flex;
+  flex-direction: column;
+
+  .body {
+    width: 100%;
+    height: 176px;
+    display: flex;
+    padding: 32px;
+
+    .text {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      h6 {
+        font-size: 24px;
+      }
+
+      .description {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .rate {
+        display: flex;
+        align-items: flex-end;
+
+        span {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 16px;
+          font-weight: 600;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    .avatar {
+      img {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 325px;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-bottom-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+    }
+  }
+}

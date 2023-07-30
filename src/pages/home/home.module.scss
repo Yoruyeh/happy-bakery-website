@@ -108,6 +108,11 @@
         font-size: 74px;
         font-weight: 600;
       }
-    }   
+    }
+    
+    .reviewCards {
+      display: flex;
+      gap: 16px;
+    }
   }
 }
