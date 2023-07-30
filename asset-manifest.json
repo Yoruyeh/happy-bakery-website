@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/happy-bakery-website/static/css/main.e4157c3a.css",
-    "main.js": "/happy-bakery-website/static/js/main.95e5bc56.js",
+    "main.css": "/happy-bakery-website/static/css/main.b52124a1.css",
+    "main.js": "/happy-bakery-website/static/js/main.dc103971.js",
     "static/media/strawberry-cake.jpeg": "/happy-bakery-website/static/media/strawberry-cake.8a892a51d6a5c53cd200.jpeg",
     "static/media/dough.jpeg": "/happy-bakery-website/static/media/dough.356fa97138e3b5ffd2c6.jpeg",
     "static/media/icon.svg": "/happy-bakery-website/static/media/icon.fa1ece99f80eac84831f51359d59603b.svg",
@@ -21,11 +21,11 @@
     "static/media/arrow_forward.svg": "/happy-bakery-website/static/media/arrow_forward.5b81f74ba8a13664f7f9bfb9f78454d6.svg",
     "static/media/chevron_backward.svg": "/happy-bakery-website/static/media/chevron_backward.b1d1fd39c440c45fa24668675e33cf97.svg",
     "static/media/chevron_forward.svg": "/happy-bakery-website/static/media/chevron_forward.343d43ea5a981334fe70861e40eab296.svg",
-    "main.e4157c3a.css.map": "/happy-bakery-website/static/css/main.e4157c3a.css.map",
-    "main.95e5bc56.js.map": "/happy-bakery-website/static/js/main.95e5bc56.js.map"
+    "main.b52124a1.css.map": "/happy-bakery-website/static/css/main.b52124a1.css.map",
+    "main.dc103971.js.map": "/happy-bakery-website/static/js/main.dc103971.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4157c3a.css",
-    "static/js/main.95e5bc56.js"
+    "static/css/main.b52124a1.css",
+    "static/js/main.dc103971.js"
   ]
 }
