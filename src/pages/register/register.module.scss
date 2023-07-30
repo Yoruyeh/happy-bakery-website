@@ -5,7 +5,7 @@
   gap: 47px;
   padding: 8px 24px 8px 40px;
 
-  .register-form {
+  .registerForm{
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -31,7 +31,7 @@
       }
     }
 
-    .checkbox-wrapper {
+    .checkboxWrapper {
       display: flex;
       gap: 32px;
     }
@@ -72,7 +72,7 @@
     }
   }
 
-  .club-info {
+  .clubInfo {
     height: 516px;
     display: flex;
     justify-content: space-between;
@@ -82,7 +82,7 @@
     border-radius: 16px;
     padding: 24px;
 
-    .club-info-text {
+    .clubInfoText {
       display: flex;
       flex-direction: column;
       color: $dark-gray;

@@ -1,10 +1,10 @@
-import './register.scss'
+import styles from './register.module.scss'
 import { ArrowForward, FacebookColored } from '../../assets/icons'
 
 const Register = () => {
   return (
-    <div className="register">
-      <form className="register-form">
+    <div className={styles.register}>
+      <form className={styles.registerForm}>
         <h2>Register</h2>
         <button>
           SIGN UP WITH FACEBOOK
@@ -18,7 +18,7 @@ const Register = () => {
         <input type="text" placeholder="Last Name" />
 
         <h5>Gender</h5>
-        <div className="checkbox-wrapper">
+        <div className={styles.checkboxWrapper}>
           <label>
             <input type="checkbox" name="gender" value="male" /> Male
           </label>
@@ -36,7 +36,8 @@ const Register = () => {
 
         <label>
           <input type="checkbox" />
-          By clicking 'Log In' you agree to our website Terms & Conditions,<br />
+          By clicking 'Log In' you agree to our website Terms & Conditions,
+          <br />
           Privacy Notice and Terms & Conditions.
         </label>
 
@@ -49,8 +50,8 @@ const Register = () => {
           <ArrowForward />
         </button>
       </form>
-      <div className="club-info">
-        <div className="club-info-text">
+      <div className={styles.clubInfo}>
+        <div className={styles.clubInfoText}>
           <h2>Join Happy Bakery Club Get Rewarded Today.</h2>
           <p>
             As Happy Bakery club member you get rewarded with what you love for

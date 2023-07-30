@@ -1,8 +1,8 @@
-import "./button.scss"
+import styles from "./button.module.scss"
 
 const Button = ({ text, price }) => {
   return (
-    <button>
+    <button className={styles.button}>
       {text}
       <span>{price}</span>
     </button>

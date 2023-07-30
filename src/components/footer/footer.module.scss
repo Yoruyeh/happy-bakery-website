@@ -4,7 +4,7 @@
   height: 700px;
   margin-top: 55px;
 
-  .upper-footer {
+  .upperFooter {
     height: 440px;
     background-color: $salmon-pink;
     border-radius: 48px;
@@ -31,7 +31,7 @@
         margin-bottom: 32px;
       }
 
-      .subscribe-input {
+      .subscribeInput {
         display: flex;
         align-items: center;
           
@@ -55,14 +55,7 @@
 
         button {
           width: 102px;
-          height: 48px;
           background-color:$baby-blue;
-          border: none;
-          border-radius: 8px;
-          color: $white;
-          font-family: 'Rubik', sans-serif;
-          font-weight: 500;
-          font-size: 14px;
         }
       }  
     }
@@ -75,7 +68,7 @@
     }
   }
 
-  .lower-footer {
+  .lowerFooter {
     height: 360px;
     background-color: $baby-blue;
     border-radius: 48px;
@@ -105,12 +98,12 @@
       flex-direction: column;
       gap: 16px;
 
-      .link-list {
+      .linkList {
         display: flex;
         flex-direction: column;
         gap: 8px;
 
-        .link-item {
+        .linkItem {
           font-family: 'Open Sans', sans-serif;
           font-size: 18px;
         }
@@ -135,13 +128,13 @@
       }   
     }
 
-    .social-media {
+    .socialMedia {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 16px;
 
-      .social-media-icons {
+      .socialMediaIcons {
         display: flex;
         gap: 24px;
       }

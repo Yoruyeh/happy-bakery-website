@@ -1,54 +1,55 @@
+import styles from './footer.module.scss'
 import { Facebook, Instagram, Logo, Tiktok, Twitter } from '../../assets/icons'
-import './footer.scss'
+import Button from '../../components/button/Button'
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="upper-footer">
-        <div className="subscribe">
+    <div className={styles.footer}>
+      <div className={styles.upperFooter}>
+        <div className={styles.subscribe}>
           <h3>Join Happy Bakery Club & get 15% off</h3>
           <p>Sign up for free! Join the community.</p>
-          <div className="subscribe-input">
+          <div className={styles.subscribeInput}>
             <input type="email" placeholder="Email address" />
-            <button>Submit</button>
+            <Button text={'SUBMIT'}/>
           </div>
         </div>
-        <div className="logo">
+        <div className={styles.logo}>
           <Logo />
         </div>
       </div>
-      <div className="lower-footer">
-        <div className="about">
+      <div className={styles.lowerFooter}>
+        <div className={styles.about}>
           <h3>About Us</h3>
           <p>
             We are the biggest hyperstore in the universe. We got you all cover
             with our exclusive collections and latest drops.
           </p>
         </div>
-        <div className="categories">
+        <div className={styles.categories}>
           <h4>Categories</h4>
-          <ul className="link-list">
-            <li className="link-item">Birthday Cakes</li>
-            <li className="link-item">Cupcakes</li>
-            <li className="link-item">European Breads</li>
-            <li className="link-item">Toasts</li>
-            <li className="link-item">Biscuits</li>
-            <li className="link-item">Croissants</li>
-            <li className="link-item">Donuts</li>
-            <li className="link-item">Scones</li>
+          <ul className={styles.linkList}>
+            <li className={styles.linkItem}>Birthday Cakes</li>
+            <li className={styles.linkItem}>Cupcakes</li>
+            <li className={styles.linkItem}>European Breads</li>
+            <li className={styles.linkItem}>Toasts</li>
+            <li className={styles.linkItem}>Biscuits</li>
+            <li className={styles.linkItem}>Croissants</li>
+            <li className={styles.linkItem}>Donuts</li>
+            <li className={styles.linkItem}>Scones</li>
           </ul>
         </div>
-        <div className="company">
+        <div className={styles.company}>
           <h4>Company</h4>
-          <ul className="link-list">
-            <li className="link-item">About</li>
-            <li className="link-item">Contact</li>
-            <li className="link-item">Blog</li>
+          <ul className={styles.linkList}>
+            <li className={styles.linkItem}>About</li>
+            <li className={styles.linkItem}>Contact</li>
+            <li className={styles.linkItem}>Blog</li>
           </ul>
         </div>
-        <div className="social-media">
+        <div className={styles.socialMedia}>
           <h4>Follow Us</h4>
-          <div className="social-media-icons">
+          <div className={styles.socialMediaIcons}>
             <Facebook />
             <Twitter />
             <Instagram />

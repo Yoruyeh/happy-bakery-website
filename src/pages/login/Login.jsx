@@ -1,10 +1,10 @@
-import './login.scss'
+import styles from './login.module.scss'
 import { ArrowForward, FacebookColored } from "../../assets/icons"
 
 const Login = () => {
   return (
-    <div className="login">
-      <form className="login-form">
+    <div className={styles.login}>
+      <form className={styles.loginForm}>
         <h2>Login</h2>
         <a href="/">Forgot your password?</a>
         <input type="email" placeholder="Email" />
@@ -27,8 +27,8 @@ const Login = () => {
           Privacy Notice and Terms & Conditions.
         </p>
       </form>
-      <div className="club-info">
-        <div className="club-info-text">
+      <div className={styles.clubInfo}>
+        <div className={styles.clubInfoText}>
           <h2>Join Happy Bakery Club Get Rewarded Today.</h2>
           <p>
             As Happy Bakery club member you get rewarded with what you love for
@@ -43,7 +43,7 @@ const Login = () => {
           </ul>
           <p>
             Join now to start earning points, reach new levels and unlock more
-            rewards and benefits from adiClub.​
+            rewards and benefits from adiClub.
           </p>
         </div>
         <button>

@@ -1,4 +1,4 @@
-import './navbar.scss'
+import styles from './navbar.module.scss'
 import { CaretDown, Logo, Search, User } from "../../assets/icons"
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
@@ -44,70 +44,70 @@ const Navbar = () => {
   }, [])
 
   return (
-    <div className="navbar">
-      <div className="nav-list-wrapper">
-        <ul className="nav-list">
+    <div className={styles.navbar}>
+      <div className={styles.navListWrapper}>
+        <ul className={styles.navList}>
           <Link to="about">
-            <li className="nav-item">Our Story</li>
+            <li className={styles.navItem}>Our Story</li>
           </Link>
           <li
-            className="nav-item dropdown"
+            className={styles.navItem}
             ref={productDropdownRef}
             onClick={handleOpenProductDropdown}
           >
             Shop
             <CaretDown />
             {openProductDropdown && (
-              <div className="dropdown-menu">
-                <ul className="dropdown-menu-list">
+              <div className={styles.dropdownMenu}>
+                <ul className={styles.dropdownMenuList}>
                   <Link to="products">
-                    <li className="dropdown-menu-item">Birthday Cakes</li>
+                    <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
                   </Link>
-                  <li className="dropdown-menu-item">Cupcakes</li>
-                  <li className="dropdown-menu-item">European Breads</li>
-                  <li className="dropdown-menu-item">Toasts</li>
-                  <li className="dropdown-menu-item">Biscuits</li>
-                  <li className="dropdown-menu-item">Croissants</li>
-                  <li className="dropdown-menu-item">Donuts</li>
-                  <li className="dropdown-menu-item">Scones</li>
+                  <li className={styles.dropdownMenuItem}>Cupcakes</li>
+                  <li className={styles.dropdownMenuItem}>European Breads</li>
+                  <li className={styles.dropdownMenuItem}>Toasts</li>
+                  <li className={styles.dropdownMenuItem}>Biscuits</li>
+                  <li className={styles.dropdownMenuItem}>Croissants</li>
+                  <li className={styles.dropdownMenuItem}>Donuts</li>
+                  <li className={styles.dropdownMenuItem}>Scones</li>
                 </ul>
               </div>
             )}
           </li>
           <Link to="contact">
-            <li className="nav-item">Contact Us</li>
+            <li className={styles.navItem}>Contact Us</li>
           </Link>
         </ul>
       </div>
       <Link to="/happy-bakery-website">
-        <div className="logo-wrapper">
+        <div className={styles.logoWrapper}>
           <Logo />
         </div>
       </Link>
-      <div className="nav-icons-wrapper">
-        <div className="search-icon">
+      <div className={styles.navIconsWrapper}>
+        <div className={styles.searchIcon}>
           <Search />
         </div>
         <div
-          className="user-icon"
+          className={styles.userIcon}
           ref={userDropdownRef}
           onClick={handleOpenUserDropdown}
         >
           <User />
           {openUserDropdown && (
-            <div className="dropdown-user">
-              <ul className="dropdown-user-list">
+            <div className={styles.dropdownUser}>
+              <ul className={styles.dropdownUserList}>
                 <Link to="login">
-                  <li className="dropdown-user-item">Login</li>
+                  <li className={styles.dropdownUserItem}>Login</li>
                 </Link>
                 <Link to="register">
-                  <li className="dropdown-user-item">Register</li>
+                  <li className={styles.dropdownUserItem}>Register</li>
                 </Link>
               </ul>
             </div>
           )}
         </div>
-        <div className="cart-count">2</div>
+        <div className={styles.cartCount}>2</div>
       </div>
     </div>
   )

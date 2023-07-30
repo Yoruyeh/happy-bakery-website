@@ -33,7 +33,7 @@
       }
     }
 
-    .img {
+    .image {
       position: relative;
 
       img {
@@ -43,7 +43,7 @@
         box-shadow: 10px 10px 4px 0 rgba(0,0,0,0.25);
       }
 
-      .gradient-overlay {
+      .gradient {
         position: absolute;
         top: 0;
         left: 0;
@@ -89,7 +89,7 @@
       }
     }
 
-    .newdrops-cards {
+    .newdropsCards {
       display: flex;
       gap: 16px;
     }
