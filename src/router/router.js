@@ -7,6 +7,7 @@ import Contact from '../pages/contact/Contact'
 import Products from '../pages/products/Products'
 import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Footer'
+import Detail from '../pages/detail/Detail'
 
 const Layout = () => {
   return (
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
       {
         path: 'products',
         element: <Products />
+      },
+      {
+        path: 'products/:id',
+        element: <Detail />
       }
     ]
   }
