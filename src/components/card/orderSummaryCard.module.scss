@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.summary {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  padding: 50px 0;
+
+  h3 {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .summaryItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h6, p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    &:nth-last-child(2) {
+      h6, p {
+        font-size: 24px;
+      }
+    }
+  }
+
+  button {
+    margin-top: 8px;
+    width: 100%;
+    background-color: $dark-gray;
+  }
+}
