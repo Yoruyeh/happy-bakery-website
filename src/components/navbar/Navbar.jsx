@@ -107,7 +107,9 @@ const Navbar = () => {
             </div>
           )}
         </div>
-        <div className={styles.cartCount}>2</div>
+        <Link to="cart">
+          <div className={styles.cartCount}>2</div>
+        </Link>
       </div>
     </div>
   )
