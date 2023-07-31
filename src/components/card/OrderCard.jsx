@@ -9,7 +9,7 @@ const OrderCard = () => {
       </div>
       <div className={styles.orderContent}>
         <div className={styles.orderText}>
-          <h5>CROISSANT (4 flavors)</h5>
+          <h6>CROISSANT (4 flavors)</h6>
           <p>Cream Cheese</p>
         </div>
         <div className={styles.orderOption}>

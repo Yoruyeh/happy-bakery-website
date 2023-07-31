@@ -22,12 +22,12 @@ const Footer = () => {
         <div className={styles.about}>
           <h3>About Us</h3>
           <p>
-            We are the biggest hyperstore in the universe. We got you all cover
+            We are the biggest hyperstore in the universe. <br />We got you all cover
             with our exclusive collections and latest drops.
           </p>
         </div>
         <div className={styles.categories}>
-          <h4>Categories</h4>
+          <h5>Categories</h5>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>Birthday Cakes</li>
             <li className={styles.linkItem}>Cupcakes</li>
@@ -40,7 +40,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className={styles.company}>
-          <h4>Company</h4>
+          <h5>Company</h5>
           <ul className={styles.linkList}>
             <li className={styles.linkItem}>About</li>
             <li className={styles.linkItem}>Contact</li>
@@ -48,7 +48,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className={styles.socialMedia}>
-          <h4>Follow Us</h4>
+          <h5>Follow Us</h5>
           <div className={styles.socialMediaIcons}>
             <Facebook />
             <Twitter />

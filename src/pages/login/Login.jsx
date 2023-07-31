@@ -7,7 +7,7 @@ const Login = () => {
   return (
     <div className={styles.login}>
       <form className={styles.loginForm}>
-        <h2>Login</h2>
+        <h3>Login</h3>
         <a href="/">Forgot your password?</a>
         <input type="email" placeholder="Email" />
         <input type="password" placeholder="Password" />

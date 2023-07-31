@@ -12,7 +12,7 @@ const Products = () => {
       <div className={styles.banner}>
         <img src={BannerImg} alt="" />
         <div className={styles.text}>
-          <h3>Limited time only</h3>
+          <h5>Limited time only</h5>
           <h1>Get 30% off</h1>
           <p>
             Explore the delicious flavors of Summer with our seasonal desserts.
@@ -32,7 +32,7 @@ const Products = () => {
         <div className={styles.content}>
           <div className={styles.title}>
             <div className={styles.text}>
-              <h1>All Products</h1>
+              <h2>All Products</h2>
               <p>122 items</p>
             </div>
             <div className={styles.button}>

@@ -10,7 +10,9 @@ const ProductCard = () => {
         <img src={ProdcutImg} alt="" />
         <Tag text={'NEW'} />
       </div>
-      <div className={styles.cardTitle}>STRAWBERRY CAKE</div>
+      <div className={styles.cardTitle}>
+        <h5>STRAWBERRY CAKE</h5>
+      </div>
       <div className={styles.cardButton}>
         <Button text={'VIEW PRODCUT - '} price={'$ 125'} />
       </div>

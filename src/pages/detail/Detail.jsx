@@ -26,10 +26,10 @@ const Detail = () => {
             <div className={styles.title}>
               <div className={styles.tag}>New Release</div>
               <h3>CROISSANT (4 flavors)</h3>
-              <h4>$125.00</h4>
+              <h5>$125.00</h5>
             </div>
             <div className={styles.wrapper}>
-              <h5>FLAVOR</h5>
+              <h6>FLAVOR</h6>
               <div className={styles.types}>
                 <Button text={'ORIGINAL'} />
                 <Button text={'SEA SALT'} />
@@ -38,7 +38,7 @@ const Detail = () => {
               </div>
             </div>
             <div className={styles.wrapper}>
-              <h5>SIZE</h5>
+              <h6>SIZE</h6>
               <div className={styles.sizes}>
                 <Button text={'F'} />
               </div>
@@ -48,7 +48,7 @@ const Detail = () => {
               <Button text={'BUY IT NOW'} />
             </div>
             <div className={styles.description}>
-              <h5>ABOUT THE PRODUCT</h5>
+              <h6>ABOUT THE PRODUCT</h6>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
                 eget urna nulla. Praesent dapibus aliquet metus ac fringilla.

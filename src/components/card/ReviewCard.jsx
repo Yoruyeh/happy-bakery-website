@@ -7,8 +7,8 @@ const ReviewCard = () => {
     <div className={styles.card}>
       <div className={styles.body}>
         <div className={styles.text}>
-          <h6>Delicious!</h6>
-          <p className={styles.description}>
+          <h5>Delicious!</h5>
+          <p>
             I highly recommend shopping from Happy Bakery
           </p>
           <div className={styles.rate}>

@@ -6,7 +6,7 @@ const ClubInfo = () => {
   return (
     <div className={styles.clubInfo}>
       <div className={styles.clubInfoText}>
-        <h2>Join Happy Bakery Club Get Rewarded Today.</h2>
+        <h3>Join Happy Bakery Club Get Rewarded Today.</h3>
         <p>
           As Happy Bakery club member you get rewarded with what you love for
           doing what you love. Sign up today and receive immediate access to

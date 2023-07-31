@@ -7,7 +7,7 @@ const Register = () => {
   return (
     <div className={styles.register}>
       <form className={styles.registerForm}>
-        <h2>Register</h2>
+        <h3>Register</h3>
         <Button text={'SIGN UP WITH FACEBOOK'} price={<FacebookColored />} />
 
         <p>OR</p>

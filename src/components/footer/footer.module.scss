@@ -18,16 +18,11 @@
       color: $white;
 
       h3 {
-        font-family: 'Rubik', sans-serif;
-        font-weight: 600;
-        font-size: 48px;
+        font-size: 36px;
         margin-bottom: 16px;
       }
 
       p {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 600;
-        font-size: 20px;
         margin-bottom: 32px;
       }
 
@@ -85,11 +80,6 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-
-      p {
-        font-family: 'Open Sans', sans-serif;
-        font-size: 20px;
-      }
     }
 
     .categories {
