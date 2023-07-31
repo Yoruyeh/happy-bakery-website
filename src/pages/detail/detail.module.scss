@@ -3,11 +3,11 @@
 .detail {
   display: flex;
   flex-direction: column;
+  margin-bottom: 128px;
 
   .product {
     display: flex;
     gap: 16px;
-    margin-bottom: 128px;
 
     .images {
       flex: 2;

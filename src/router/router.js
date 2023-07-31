@@ -8,6 +8,7 @@ import Products from '../pages/products/Products'
 import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Footer'
 import Detail from '../pages/detail/Detail'
+import Cart from '../pages/cart/Cart'
 
 const Layout = () => {
   return (
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: 'products/:id',
         element: <Detail />
+      },
+      {
+        path: 'cart',
+        element: <Cart />
       }
     ]
   }

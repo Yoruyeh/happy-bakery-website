@@ -1,0 +1,176 @@
+@import "../../styles/variables.scss";
+
+.cart {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 0 16px;
+  margin-bottom: 40px;
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h3 {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 600;
+    }
+  }
+
+  .container {
+    display: flex;
+    gap: 47px;
+    justify-content: space-between;
+
+    .cartWrapper {
+      display: flex;
+      flex-direction: column;
+      flex: 1.5;
+      gap: 48px;
+      padding: 24px;
+      background-color: $FA-white;
+      border-radius: 16px;
+
+      .cartText {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        justify-content: center;
+
+        h3 {
+          font-size: 32px;
+          font-weight: 600;
+        }
+
+        p {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+
+      .cartCard {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 208px 1fr;
+        gap: 24px;
+
+        .cardImg {
+          height: 225px;
+          border-radius: 24px;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .cardContent{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+
+          .cardText {
+            display: flex;
+            justify-content: space-between;
+
+            .cardInfo {
+              h5 {
+                font-size: 24px;
+                font-weight: 600;
+              }
+
+              p {
+                font-size: 20px;
+                font-weight: 600;
+              }
+
+              .cardOptions {
+                display: flex;
+                margin-top: 20px;
+
+                .option {
+                  display: flex;
+                  align-items: center;
+                  margin-right: 40px;
+
+                  label {
+                    margin-right: 8px;
+                    font-size: 20px;
+                    font-weight: 600;
+                  }
+                }
+              }
+            }
+
+            .cardSubtotal {
+              font-size: 24px;
+              font-weight: 600;
+              color: $salmon-pink;
+            }
+          }
+
+          .cardIcon {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+
+            .icon {
+              width: 32px;
+              height: 32px;
+
+              &:hover {
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .summary {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+      padding: 50px 0;
+
+      h3 {
+        font-size: 32px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .summaryItem {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h6, p {
+          font-family: 'Open Sans', sans-serif;
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        &:nth-last-child(2) {
+          h6, p {
+            font-size: 24px;
+          }
+        }
+      }
+
+      button {
+        margin-top: 8px;
+        width: 100%;
+        background-color: $dark-gray;
+      }
+    }
+  }
+}
