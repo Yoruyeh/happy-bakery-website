@@ -2,7 +2,8 @@ import styles from './product.module.scss'
 import BannerImg from '../../assets/images/cupcakes.jpeg'
 import Button from '../../components/button/Button'
 import ProductCard from '../../components/card/ProductCard'
-import { Down, Forward, Backward } from '../../assets/icons'
+import { Down } from '../../assets/icons'
+import Pagination from '../../components/pagination/Pagination'
 
 
 const Products = () => {
@@ -49,13 +50,7 @@ const Products = () => {
             <ProductCard />
             <ProductCard />
           </div>
-          <div className={styles.paginator}>
-            <Button text={'Previous'} price={<Backward />} />
-            <Button text={'1'} />
-            <Button text={'2'} />
-            <Button text={'3'} />
-            <Button text={'Next'} price={<Forward />} />
-          </div>
+          <Pagination />
         </div>
       </div>
     </div>

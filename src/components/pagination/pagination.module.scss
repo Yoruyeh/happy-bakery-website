@@ -1,0 +1,35 @@
+@import "../../styles/variables.scss";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+
+  button {
+    width: 39px;
+    height: 32px;
+    background-color: transparent;
+    border: 1px solid $dark-gray;
+    color: $dark-gray;
+    padding: 0;
+
+    &:first-child, &:last-child {
+      width: 124px;
+      height: 32px;
+    }
+
+    & svg {
+      width: 16px;
+      height: 16px;
+
+      path {
+        stroke: $dark-gray;
+      }
+    }
+  }
+
+  .active {
+    background-color: $dark-gray;
+    color: $white;
+  }
+}

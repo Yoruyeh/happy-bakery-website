@@ -114,22 +114,6 @@
         gap: 38px;
         margin-bottom: 64px;
       }
-
-      .paginator {
-        display: flex;
-        justify-content: center;
-        gap: 16px;
-
-        button {
-          background-color: transparent;
-          color: $dark-gray;
-          border: 1px solid $dark-gray;
-
-          span {
-            color: $dark-gray;
-          }
-        }
-      }
     }
   }
 }
