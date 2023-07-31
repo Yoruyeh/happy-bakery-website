@@ -1,0 +1,61 @@
+@import "../../styles/variables.scss";
+
+.orderCard {
+  width: 100%;
+  display: flex;
+  gap: 24px;
+
+  .orderImg {
+    flex: 1;
+    height: 158px;
+    border-radius: 24px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .orderContent{
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+
+    .orderText {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      h5 {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      p {
+        font-family: 'Opan Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .orderOption {
+      display: flex;
+      gap: 40px;
+
+      p {
+        font-family: 'Opan Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+
+    .orderSubtotal {
+      font-size: 20px;
+      color: $salmon-pink;
+    }
+  }
+}

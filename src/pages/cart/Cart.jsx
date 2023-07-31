@@ -27,7 +27,9 @@ const Cart = () => {
             <CartCard />
             <CartCard />
           </div>
-          <OrderSummaryCard />
+          <div className={styles.summaryWrapper}>
+            <OrderSummaryCard />
+          </div>
         </div>
       </div>
       <Recommend />

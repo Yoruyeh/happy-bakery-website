@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+
+.shipment {
+  display: flex;
+  justify-content: space-between;
+  gap: 46px;
+
+  .shipmentForm {
+    flex: 2;
+  }
+
+  .orderInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 46px;
+
+    .cardWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      width: 466px;
+      background-color: $FA-white;
+      border-radius: 24px;
+      padding: 24px;
+    }
+  }
+}
