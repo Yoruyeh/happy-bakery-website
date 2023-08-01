@@ -58,7 +58,7 @@ const Shipment = () => {
           <Link to="../cart" className={styles.back}>
             <Button text={'BACK'} />
           </Link>
-          <Link to="../cart/payment">
+          <Link to="../order/payment">
             <Button text={'NEXT STEP: PAYMENT'} />
           </Link>
         </div>

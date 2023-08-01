@@ -9,8 +9,9 @@ import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Footer'
 import Detail from '../pages/detail/Detail'
 import Cart from '../pages/cart/Cart'
-import Shipment from '../pages/cart/Shipment'
-import Payment from '../pages/cart/Payment'
+import Shipment from '../pages/order/Shipment'
+import Payment from '../pages/order/Payment'
+import Finish from '../pages/order/Finish'
 
 const Layout = () => {
   return (
@@ -62,12 +63,16 @@ const router = createBrowserRouter([
         element: <Cart />
       },
       {
-        path: 'cart/shipment',
+        path: 'order/shipment',
         element: <Shipment />
       },
       {
-        path: 'cart/payment',
+        path: 'order/payment',
         element: <Payment />
+      },
+      {
+        path: 'order/finish',
+        element: <Finish />
       }
     ]
   }

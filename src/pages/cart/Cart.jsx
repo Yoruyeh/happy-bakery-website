@@ -31,7 +31,7 @@ const Cart = () => {
           </div>
           <div className={styles.summaryWrapper}>
             <OrderSummaryCard />
-            <Link to="shipment">
+            <Link to="../order/shipment">
               <Button text={'CHECKOUT'} />
             </Link>
           </div>
