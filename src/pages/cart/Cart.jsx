@@ -1,4 +1,5 @@
 import styles from './cart.module.scss'
+import { Link } from 'react-router-dom'
 import Recommend from '../../components/recommend/Recommend'
 import CartCard from '../../components/card/CartCard'
 import OrderSummaryCard from '../../components/card/OrderSummaryCard'
@@ -30,7 +31,9 @@ const Cart = () => {
           </div>
           <div className={styles.summaryWrapper}>
             <OrderSummaryCard />
-            <Button text={'CHECKOUT'} />
+            <Link to="shipment">
+              <Button text={'CHECKOUT'} />
+            </Link>
           </div>
         </div>
       </div>
