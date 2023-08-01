@@ -12,6 +12,7 @@ import Cart from '../pages/cart/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
 import Finish from '../pages/order/Finish'
+import Member from '../pages/member/Member'
 
 const Layout = () => {
   return (
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: 'order/finish',
         element: <Finish />
+      },
+      {
+        path: 'member',
+        element: <Member />
       }
     ]
   }

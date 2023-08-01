@@ -103,6 +103,9 @@ const Navbar = () => {
                 <Link to="register">
                   <li className={styles.dropdownUserItem}>Register</li>
                 </Link>
+                <Link to="member">
+                  <li className={styles.dropdownUserItem}>Member Center</li>
+                </Link>
               </ul>
             </div>
           )}
