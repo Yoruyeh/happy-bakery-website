@@ -2,6 +2,7 @@ import styles from './login.module.scss'
 import { ArrowForward, FacebookColored } from "../../assets/icons"
 import ClubInfo from '../../components/clubInfo/ClubInfo'
 import Button from '../../components/button/Button'
+import { TextInput, CheckboxInput } from '../../components/input/Input'
 
 const Login = () => {
   return (
@@ -9,12 +10,17 @@ const Login = () => {
       <form className={styles.loginForm}>
         <h3>Login</h3>
         <a href="/">Forgot your password?</a>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <label>
-          <input type="checkbox" />
-          Keep me logged in - applies to all log in options below.
-        </label>
+        <div className={styles.inputWrapper}>
+          <TextInput type={'email'} placeholder={'Email'} />
+        </div>
+        <div className={styles.inputWrapper}>
+          <TextInput type={'password'} placeholder={'Password'} />
+        </div>
+        <div className={styles.inputWrapper}>
+          <CheckboxInput
+            label={'Keep me logged in - applies to all log in options below.'}
+          />
+        </div>
         <Button text={'EMAIL LOGIN'} price={<ArrowForward />} />
         <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
         <p>
