@@ -3,6 +3,7 @@ import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import Button from '../../components/button/Button'
 import OrderCard from '../../components/card/OrderCard'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
+import { Link } from 'react-router-dom'
 
 const Payment = () => {
   return (
@@ -56,20 +57,27 @@ const Payment = () => {
         <div className={styles.checkboxWrapper}>
           <div className={styles.inputWrapper}>
             <CheckboxInput
+              type={'checkbox'}
               label={'My billing and delivery information are the same'}
             />
           </div>
           <div className={styles.inputWrapper}>
-            <CheckboxInput label={`I'm 13+ year old`} />
+            <CheckboxInput type={'checkbox'} label={`I'm 13+ year old`} />
           </div>
           <div className={styles.inputWrapper}>
             <h6>Also want product updates with our newsletter?</h6>
             <CheckboxInput
+              type={'checkbox'}
               label={`Yes, I'd like to receive emails about exclusive sales and more.`}
             />
           </div>
         </div>
-        <Button text={'REVIEW AND PAY'} />
+        <div className={styles.link}>
+          <Link to="../cart/shipment" className={styles.back}>
+            <Button text={'BACK'} />
+          </Link>
+          <Button text={'REVIEW AND PAY'} />
+        </div>
       </div>
       <div className={styles.orderInfo}>
         <div className={styles.cardWrapper}>

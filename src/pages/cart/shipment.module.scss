@@ -105,23 +105,27 @@
       }
     }
 
-    .checkboxWrapper{
+    .link {
       display: flex;
-      flex-direction: column;
-      gap: 24px;
+      justify-content: space-between;
+      gap: 32px;
 
-      h6 {
-        font-size: 16px;
-        margin-bottom: 8px;
+      .back {
+        width: 10%;
+        opacity: 0.5;
       }
-    }
 
-    button {
-      width: 100%;
-      background-color: $dark-gray;
+      a {
+        width: 90%;
+      }
 
-      &:hover {
-        cursor: pointer;
+      button {
+        width: 100%;
+        background-color: $dark-gray;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }

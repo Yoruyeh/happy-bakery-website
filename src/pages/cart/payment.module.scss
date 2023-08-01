@@ -122,12 +122,27 @@
       }
     }
 
-    button {
-      width: 100%;
-      background-color: $dark-gray;
+    .link {
+      display: flex;
+      justify-content: space-between;
+      gap: 32px;
 
-      &:hover {
-        cursor: pointer;
+      .back {
+        width: 10%;
+        opacity: 0.5;
+      }
+
+      a {
+        width: 90%;
+      }
+
+      button {
+        width: 100%;
+        background-color: $dark-gray;
+
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
