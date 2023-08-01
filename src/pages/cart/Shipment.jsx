@@ -2,6 +2,7 @@ import styles from './shipment.module.scss'
 import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import Button from '../../components/button/Button'
 import OrderCard from '../../components/card/OrderCard'
+import { TextInput, CheckboxInput } from '../../components/input/Input'
 
 
 const Shipment = () => {
@@ -14,22 +15,35 @@ const Shipment = () => {
           <p>
             We will use these details to keep you inform about your delivery.
           </p>
-          <input type="email" placeholder="Email" />
+          <div className={styles.inputWrapper}>
+            <TextInput type={'email'} placeholder={'Email'} />
+          </div>
         </div>
         <div className={styles.shipmentInput}>
           <h3>Shipping Address</h3>
-          <input type="text" placeholder="First Name*" />
-          <input type="text" placeholder="Last Name*" />
-          <input type="text" placeholder="Delivery Address*" />
-          <input type="phone" placeholder="Phone Number*" />
+          <div className={styles.inputWrapper}>
+            <div className={styles.row}>
+              <TextInput type={'text'} placeholder={'First Name*'} />
+            </div>
+            <div className={styles.row}>
+              <TextInput type={'text'} placeholder={'Last Name*'} />
+            </div>
+            <div className={styles.row}>
+              <TextInput type={'text'} placeholder={'Delivery Address*'} />
+            </div>
+            <div className={styles.row}>
+              <TextInput type={'tel'} placeholder={'Phone Number*'} />
+            </div>
+          </div>
         </div>
         <div className={styles.deliveryButton}>
-          <div className={styles.button}>
+          <h3>Delivery Options</h3>
+          <div className={`${styles.button} ${styles.active}`}>
             <div className={styles.text}>
               <h6>Standard Delivery</h6>
               <p>Enter your address to see when you’ll get your order</p>
             </div>
-            <div className={styles.price}>$6</div>
+            <div className={styles.price}>$6.00</div>
           </div>
           <div className={styles.button}>
             <div className={styles.text}>
@@ -40,17 +54,22 @@ const Shipment = () => {
           </div>
         </div>
         <div className={styles.checkboxWrapper}>
-          <input type="checkbox" />
-          <label>My billing and delivery information are the same</label>
-          <input type="checkbox" />
-          <label>I’m 13+ year old</label>
-          <p>Also want product updates with our newsletter?</p>
-          <input type="checkbox" />
-          <label>
-            Yes, I’d like to receive emails about exclusive sales and more.
-          </label>
+          <div className={styles.inputWrapper}>
+            <CheckboxInput
+              label={'My billing and delivery information are the same'}
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <CheckboxInput label={'I’m 13+ year old'} />
+          </div>
+          <div className={styles.inputWrapper}>
+            <h6>Also want product updates with our newsletter?</h6>
+            <CheckboxInput
+              label={`Yes, I'd like to receive emails about exclusive sales and more.`}
+            />
+          </div>
         </div>
-        <Button text={'Next Step: Payment'} />
+        <Button text={'NEXT STEP: PAYMENT'} />
       </div>
       <div className={styles.orderInfo}>
         <div className={styles.cardWrapper}>

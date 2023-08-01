@@ -4,9 +4,118 @@
   display: flex;
   justify-content: space-between;
   gap: 46px;
+  padding: 0 16px;
 
   .shipmentForm {
+    display: flex;
+    flex-direction: column;
     flex: 2;
+    gap: 32px;
+
+    .contactInput {
+      p {
+        margin-bottom: 32px;
+      }
+
+      .inputWrapper {
+        width: 342px;
+      }
+    }
+
+    .shipmentInput {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      padding-right: 78px;
+
+      .inputWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        grid-template-areas: 
+          "first last"
+          "address address"
+          "tel .";
+
+        .row:nth-child(1) {
+          grid-area: first;
+        }
+        
+        .row:nth-child(2) {
+          grid-area: last;
+        }
+        
+        .row:nth-child(3) {
+          grid-area: address;
+        }
+
+        .row:nth-child(4) {
+          grid-area: tel;
+        }
+      }
+    }
+
+    .deliveryButton {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      h3 {
+        margin-bottom: 8px;
+      }
+
+      .button {
+        height: 90px;
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid $dark-gray;
+        border-radius: 16px;
+        background-color: transparent;
+        padding: 16px;
+
+        &.active {
+          background-color: $FA-white;
+          border: none;
+
+          .price {
+            color: $salmon-pink;
+          }
+        }
+
+        .text {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 8px;
+
+          p {
+           font-size: 16px;
+          }
+        }
+
+        .price {
+          font-size: 20px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    .checkboxWrapper{
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+
+      h6 {
+        font-size: 16px;
+        margin-bottom: 8px;
+      }
+    }
+
+    button {
+      width: 100%;
+      background-color: $dark-gray;
+    }
   }
 
   .orderInfo {
