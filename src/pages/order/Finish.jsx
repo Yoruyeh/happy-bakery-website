@@ -14,10 +14,10 @@ const Finish = () => {
         <h1>Thank you for your purchase!</h1>
         <img src={HappyImg} alt="" />
         <div className={styles.link}>
-          <Link to="../member/orders">
+          <Link to="../../member/orders">
             <Button text={'Check Orders'} />
           </Link>
-          <Link to="..">
+          <Link to="/happy-bakery-website">
             <Button text={'Continue Shopping'} />
           </Link>
         </div>

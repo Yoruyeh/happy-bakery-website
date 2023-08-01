@@ -8,7 +8,7 @@ import Products from '../pages/products/Products'
 import Navbar from '../components/navbar/Navbar'
 import Footer from '../components/footer/Footer'
 import Detail from '../pages/detail/Detail'
-import Cart from '../pages/cart/Cart'
+import Cart from '../pages/order/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
 import Finish from '../pages/order/Finish'
@@ -60,20 +60,25 @@ const router = createBrowserRouter([
         element: <Detail />
       },
       {
-        path: 'cart',
-        element: <Cart />
-      },
-      {
-        path: 'order/shipment',
-        element: <Shipment />
-      },
-      {
-        path: 'order/payment',
-        element: <Payment />
-      },
-      {
-        path: 'order/finish',
-        element: <Finish />
+        path: 'order',
+        children: [
+          {
+            path: 'cart',
+            element: <Cart />
+          },
+          {
+            path: 'shipment',
+            element: <Shipment />
+          },
+          {
+            path: 'payment',
+            element: <Payment />
+          },
+          {
+            path: 'finish',
+            element: <Finish />
+          }
+        ]
       },
       {
         path: 'member',

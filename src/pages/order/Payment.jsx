@@ -73,10 +73,10 @@ const Payment = () => {
           </div>
         </div>
         <div className={styles.link}>
-          <Link to="../order/shipment" className={styles.back}>
+          <Link to="../shipment" className={styles.back}>
             <Button text={'BACK'} />
           </Link>
-          <Link to="../order/finish">
+          <Link to="../finish">
             <Button text={'REVIEW AND PAY'} />
           </Link>
         </div>
