@@ -46,6 +46,12 @@
     .summaryWrapper {
       flex: 1;
       padding: 50px 0;
+
+      button {
+        margin-top: 24px;
+        width: 100%;
+        background-color: $dark-gray;
+      }
     }
   }
 }

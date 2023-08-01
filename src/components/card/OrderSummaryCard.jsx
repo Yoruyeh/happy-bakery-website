@@ -1,6 +1,4 @@
 import styles from './orderSummaryCard.module.scss'
-import Button from '../../components/button/Button'
-
 
 const OrderSummaryCard = () => {
   return (
@@ -18,7 +16,6 @@ const OrderSummaryCard = () => {
         <p>Total</p>
         <p>$185.00</p>
       </div>
-      <Button text={'CHECKOUT'} />
     </div>
   )
 }

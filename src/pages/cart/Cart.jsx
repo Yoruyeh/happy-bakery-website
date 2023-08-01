@@ -2,6 +2,7 @@ import styles from './cart.module.scss'
 import Recommend from '../../components/recommend/Recommend'
 import CartCard from '../../components/card/CartCard'
 import OrderSummaryCard from '../../components/card/OrderSummaryCard'
+import Button from '../../components/button/Button'
 
 const Cart = () => {
   return (
@@ -29,6 +30,7 @@ const Cart = () => {
           </div>
           <div className={styles.summaryWrapper}>
             <OrderSummaryCard />
+            <Button text={'CHECKOUT'} />
           </div>
         </div>
       </div>

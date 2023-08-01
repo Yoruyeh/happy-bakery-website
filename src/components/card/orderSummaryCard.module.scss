@@ -14,16 +14,10 @@
     justify-content: space-between;
     align-items: center;
 
-    &:nth-last-child(2) {
+    &:last-child {
       h6, p {
         font-size: 26px;
       }
     }
-  }
-
-  button {
-    margin-top: 8px;
-    width: 100%;
-    background-color: $dark-gray;
   }
 }
