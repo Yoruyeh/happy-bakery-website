@@ -103,7 +103,7 @@ const Navbar = () => {
                 <Link to="register">
                   <li className={styles.dropdownUserItem}>Register</li>
                 </Link>
-                <Link to="member">
+                <Link to="member/setting">
                   <li className={styles.dropdownUserItem}>Member Center</li>
                 </Link>
               </ul>

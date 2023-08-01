@@ -12,7 +12,8 @@ import Cart from '../pages/order/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
 import Finish from '../pages/order/Finish'
-import Member from '../pages/member/Member'
+import MemberSetting from '../pages/member/MemberSetting'
+import MemberOrders from '../pages/member/MemberOrders'
 
 const Layout = () => {
   return (
@@ -82,7 +83,16 @@ const router = createBrowserRouter([
       },
       {
         path: 'member',
-        element: <Member />
+        children: [
+          {
+            path: 'setting',
+            element: <MemberSetting />
+          },
+          {
+            path: 'orders',
+            element: <MemberOrders />
+          }
+        ]
       }
     ]
   }
