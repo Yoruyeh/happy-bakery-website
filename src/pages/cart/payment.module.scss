@@ -1,28 +1,34 @@
 @import "../../styles/variables.scss";
 
-.shipment {
+.payment {
   display: flex;
   justify-content: space-between;
   gap: 46px;
   padding: 0 16px;
 
-  .shipmentForm {
+  .paymentForm {
     display: flex;
     flex-direction: column;
     flex: 2;
     gap: 32px;
 
-    .contactInput {
+    .methodInput {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
       p {
-        margin-bottom: 32px;
+        font-size: 16px;
       }
 
-      .inputWrapper {
-        width: 342px;
+      .radioWrapper {
+        display: flex;
+        align-items: center;
+        gap: 50px;
       }
     }
 
-    .shipmentInput {
+    .paymentInput {
       display: flex;
       flex-direction: column;
       gap: 32px;
@@ -33,24 +39,24 @@
         grid-template-columns: 1fr 1fr;
         gap: 16px;
         grid-template-areas: 
-          "first last"
-          "address address"
-          "tel .";
+          "num num"
+          "date cvv"
+          "name .";
 
         .row:nth-child(1) {
-          grid-area: first;
+          grid-area: num;
         }
         
         .row:nth-child(2) {
-          grid-area: last;
+          grid-area: date;
         }
         
         .row:nth-child(3) {
-          grid-area: address;
+          grid-area: cvv;
         }
 
         .row:nth-child(4) {
-          grid-area: tel;
+          grid-area: name;
         }
       }
     }

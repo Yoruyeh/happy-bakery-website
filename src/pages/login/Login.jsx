@@ -18,6 +18,7 @@ const Login = () => {
         </div>
         <div className={styles.inputWrapper}>
           <CheckboxInput
+            type={'checkbox'}
             label={'Keep me logged in - applies to all log in options below.'}
           />
         </div>

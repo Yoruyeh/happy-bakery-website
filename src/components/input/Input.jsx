@@ -6,12 +6,12 @@ const TextInput = ({ type, placeholder }) => {
   )
 }
 
-const CheckboxInput = ({ label, name, value }) => {
+const CheckboxInput = ({ type, label, name, value }) => {
   return (
     <>
       <input
         className={styles.checkboxInput}
-        type="checkbox"
+        type={type}
         name={name}
         value={value}
       />

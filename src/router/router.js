@@ -10,6 +10,7 @@ import Footer from '../components/footer/Footer'
 import Detail from '../pages/detail/Detail'
 import Cart from '../pages/cart/Cart'
 import Shipment from '../pages/cart/Shipment'
+import Payment from '../pages/cart/Payment'
 
 const Layout = () => {
   return (
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: 'cart/shipment',
         element: <Shipment />
+      },
+      {
+        path: 'cart/payment',
+        element: <Payment />
       }
     ]
   }
