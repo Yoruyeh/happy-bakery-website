@@ -67,27 +67,6 @@ const router = createBrowserRouter([
         path: 'finish',
         element: <Finish />
       },
-      // {
-      //   path: 'order',
-      //   children: [
-      //     {
-      //       path: 'cart',
-      //       element: <Cart />
-      //     },
-      //     {
-      //       path: 'shipment',
-      //       element: <Shipment />
-      //     },
-      //     {
-      //       path: 'payment',
-      //       element: <Payment />
-      //     },
-      //     {
-      //       path: 'finish',
-      //       element: <Finish />
-      //     }
-      //   ]
-      // },
       {
         path: 'member',
         element: <Tab />,

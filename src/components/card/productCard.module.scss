@@ -38,6 +38,10 @@
     button {
       width: 100%;
       background-color: $dark-gray;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 }

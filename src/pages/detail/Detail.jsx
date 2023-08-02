@@ -1,9 +1,15 @@
 import styles from './detail.module.scss'
+import { useEffect } from 'react'
 import ProductImg from '../../assets/images/croissant.jpeg'
 import Button from '../../components/button/Button'
 import Recommend from '../../components/recommend/Recommend'
 
 const Detail = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <>
       <div className={styles.detail}>
