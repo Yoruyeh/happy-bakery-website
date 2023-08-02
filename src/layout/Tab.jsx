@@ -26,14 +26,14 @@ const Tab = () => {
           <li>Order History</li>
         </NavLink>
         <NavLink
-          to={'voucher'}
+          to={'coupon'}
           className={({ isActive }) =>
             isActive
               ? `${styles.tabItem} ${styles.active}`
               : `${styles.tabItem}`
           }
         >
-          <li>Discount Voucher</li>
+          <li>Coupon</li>
         </NavLink>
         <NavLink
           to={'wishlist'}

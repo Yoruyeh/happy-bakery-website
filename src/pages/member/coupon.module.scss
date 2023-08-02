@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.coupon {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  .buttons {
+    display: flex;
+
+    button {
+      width: 100px;
+      height: 20px;
+      background-color: transparent;
+      color: $dark-gray;
+      text-decoration: underline;
+      font-size: 16px;
+      font-weight: 600;
+      
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+  }
+}

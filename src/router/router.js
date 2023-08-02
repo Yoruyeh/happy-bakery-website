@@ -15,7 +15,10 @@ import {
   Setting,
   Orders,
   Tab,
-  Edit
+  Edit,
+  Coupon,
+  Wishlist,
+  Message
 } from './index'
 
 
@@ -84,6 +87,18 @@ const router = createBrowserRouter([
           {
             path: 'orders',
             element: <Orders />
+          },
+          {
+            path: 'coupon',
+            element: <Coupon />
+          },
+          {
+            path: 'wishlist',
+            element: <Wishlist />
+          },
+          {
+            path: 'message',
+            element: <Message />
           }
         ]
       }
