@@ -14,7 +14,8 @@ import {
   Finish,
   Setting,
   Orders,
-  Tab
+  Tab,
+  Edit
 } from './index'
 
 
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: 'finish',
         element: <Finish />
+      },
+      {
+        path: 'edit',
+        element: <Edit />
       },
       {
         path: 'member',

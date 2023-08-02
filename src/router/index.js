@@ -13,6 +13,7 @@ import Finish from '../pages/order/Finish'
 import Setting from '../pages/member/Setting'
 import Orders from '../pages/member/Orders'
 import Tab from '../layout/Tab'
+import Edit from '../pages/edit/Edit'
 
 export {
   Layout,
@@ -29,5 +30,6 @@ export {
   Finish,
   Setting,
   Orders,
-  Tab
+  Tab,
+  Edit
 }

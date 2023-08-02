@@ -55,7 +55,7 @@ const Setting = () => {
         </div>
         <div className={styles.inputWrapper}>
           <label>Password </label>
-          <Link to="edit">
+          <Link to="../../edit">
             <Button text={'Edit Password'} />
           </Link>
         </div>
