@@ -1,0 +1,58 @@
+@import "../../styles/variables.scss";
+
+.orders {
+  width: 100%;
+
+  .table {
+    width: 100%;
+    border: 1px solid $gray;
+    border-collapse: collapse;
+
+    .head {
+      width: 100%;  
+
+      tr {
+        border-bottom: 1px solid $gray;
+      }
+
+      th {
+        font-size: 20px;
+        font-weight: 600;
+        padding: 16px;
+        width: 20%;
+        text-align: start;
+      }
+    }
+
+    .body {
+      width: 100%;
+
+      tr {
+        border-bottom: 1px solid $gray;
+      }
+
+      td {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        padding: 16px;
+        width: 20%;
+        text-align: start;
+
+        a {
+          width: 100%;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+
+      button {
+        background-color: $baby-blue;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
