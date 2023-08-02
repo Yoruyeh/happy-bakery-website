@@ -1,0 +1,37 @@
+@import "../styles/variables.scss";
+
+.tab {
+  width: 100%;
+  padding: 0 32px;
+
+  .tablist {
+    display: flex;
+    border: 1px solid $gray;
+    border-bottom: none;
+
+    .tabItem {
+      width: 100%;
+      border-left: 1px solid $gray;
+      border-bottom: 1px solid $gray;
+      text-align: center;
+      padding: 16px 0;
+      font-size: 20px;
+
+      &:first-child {
+        border-left: none;
+      }
+    }
+    
+    .active {
+      background-color: $white;
+      border-bottom: none;
+    }
+  }
+
+  .memberWrapper {
+    width: 100%;
+    border: 1px solid $gray;
+    border-top: none;
+    background-color: $white;
+  }
+}
