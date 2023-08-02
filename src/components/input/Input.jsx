@@ -1,8 +1,14 @@
 import styles from './input.module.scss'
 
-const TextInput = ({ type, placeholder }) => {
+const TextInput = ({ type, placeholder, defaultValue, required }) => {
   return (
-    <input className={styles.textInput} type={type} placeholder={placeholder}/>
+    <input
+      className={styles.textInput}
+      type={type}
+      placeholder={placeholder}
+      defaultValue={defaultValue}
+      required={required}
+    />
   )
 }
 

@@ -1,0 +1,62 @@
+@import "../../styles/variables.scss";
+
+.setting {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  .settingForm {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    grid-template-areas: 
+      "fisrt last bday"
+      "email address address"
+      "password tel checkbox";
+
+    .inputWrapper:nth-child(5) {
+      grid-area: address;
+    }
+
+    .inputWrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 8px;
+
+      label {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      button {
+        background-color: $dark-gray;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .checkboxWrapper {
+      justify-self: end;
+      width: 60%;
+      display: flex;
+      align-items: flex-end;
+    }
+  }
+
+  .button {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: $baby-blue;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

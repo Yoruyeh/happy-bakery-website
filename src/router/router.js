@@ -12,8 +12,8 @@ import {
   Shipment,
   Payment,
   Finish,
-  MemberSetting,
-  MemberOrders,
+  Setting,
+  Orders,
   Tab
 } from './index'
 
@@ -79,11 +79,11 @@ const router = createBrowserRouter([
           {
             index: true,
             path: 'setting',
-            element: <MemberSetting />
+            element: <Setting />
           },
           {
             path: 'orders',
-            element: <MemberOrders />
+            element: <Orders />
           }
         ]
       }

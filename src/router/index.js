@@ -10,8 +10,8 @@ import Cart from '../pages/order/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
 import Finish from '../pages/order/Finish'
-import MemberSetting from '../pages/member/MemberSetting'
-import MemberOrders from '../pages/member/MemberOrders'
+import Setting from '../pages/member/Setting'
+import Orders from '../pages/member/Orders'
 import Tab from '../layout/Tab'
 
 export {
@@ -27,7 +27,7 @@ export {
   Shipment,
   Payment,
   Finish,
-  MemberSetting,
-  MemberOrders,
+  Setting,
+  Orders,
   Tab
 }
