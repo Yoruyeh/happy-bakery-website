@@ -14,7 +14,6 @@ import Setting from '../pages/member/Setting'
 import Orders from '../pages/member/Orders'
 import Coupon from '../pages/member/Coupon'
 import Wishlist from '../pages/member/Wishlist'
-import Message from '../pages/member/Message'
 import Tab from '../layout/Tab'
 import Edit from '../pages/edit/Edit'
 
@@ -37,5 +36,4 @@ export {
   Edit,
   Coupon,
   Wishlist,
-  Message
 }

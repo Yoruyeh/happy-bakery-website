@@ -45,16 +45,6 @@ const Tab = () => {
         >
           <li>Wishlist</li>
         </NavLink>
-        <NavLink
-          to={'message'}
-          className={({ isActive }) =>
-            isActive
-              ? `${styles.tabItem} ${styles.active}`
-              : `${styles.tabItem}`
-          }
-        >
-          <li>Message</li>
-        </NavLink>
       </ul>
       <div className={styles.memberWrapper}>
         <Outlet />

@@ -18,7 +18,6 @@ import {
   Edit,
   Coupon,
   Wishlist,
-  Message
 } from './index'
 
 
@@ -96,10 +95,6 @@ const router = createBrowserRouter([
             path: 'wishlist',
             element: <Wishlist />
           },
-          {
-            path: 'message',
-            element: <Message />
-          }
         ]
       }
     ]
