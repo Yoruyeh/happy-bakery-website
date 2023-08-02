@@ -1,25 +1,60 @@
-import { Outlet, Link } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
 import styles from './tab.module.scss'
 
 const Tab = () => {
   return (
     <div className={styles.tab}>
       <ul className={styles.tablist}>
-        <Link to="setting" className={`${styles.tabItem} ${styles.active}`}>
+        <NavLink
+          to={'setting'}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.tabItem} ${styles.active}`
+              : `${styles.tabItem}`
+          }
+        >
           <li>Member Info</li>
-        </Link>
-        <Link to="orders" className={styles.tabItem}>
+        </NavLink>
+        <NavLink
+          to={'orders'}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.tabItem} ${styles.active}`
+              : `${styles.tabItem}`
+          }
+        >
           <li>Order History</li>
-        </Link>
-        <Link className={styles.tabItem}>
+        </NavLink>
+        <NavLink
+          to={'voucher'}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.tabItem} ${styles.active}`
+              : `${styles.tabItem}`
+          }
+        >
           <li>Discount Voucher</li>
-        </Link>
-        <Link className={styles.tabItem}>
+        </NavLink>
+        <NavLink
+          to={'wishlist'}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.tabItem} ${styles.active}`
+              : `${styles.tabItem}`
+          }
+        >
           <li>Wishlist</li>
-        </Link>
-        <Link className={styles.tabItem}>
+        </NavLink>
+        <NavLink
+          to={'message'}
+          className={({ isActive }) =>
+            isActive
+              ? `${styles.tabItem} ${styles.active}`
+              : `${styles.tabItem}`
+          }
+        >
           <li>Message</li>
-        </Link>
+        </NavLink>
       </ul>
       <div className={styles.memberWrapper}>
         <Outlet />
