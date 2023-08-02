@@ -61,8 +61,10 @@ const Navbar = () => {
               <div className={styles.dropdownMenu}>
                 <ul className={styles.dropdownMenuList}>
                   <Link to="products">
-                    <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
+                    <li className={styles.dropdownMenuItem}>All</li>
                   </Link>
+                  <li className={styles.dropdownMenuItem}>New Drops</li>
+                  <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
                   <li className={styles.dropdownMenuItem}>Cupcakes</li>
                   <li className={styles.dropdownMenuItem}>European Breads</li>
                   <li className={styles.dropdownMenuItem}>Toasts</li>
