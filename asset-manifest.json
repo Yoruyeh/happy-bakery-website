@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/happy-bakery-website/static/css/main.5f9fbede.css",
-    "main.js": "/happy-bakery-website/static/js/main.553f7d14.js",
+    "main.css": "/happy-bakery-website/static/css/main.ab4a3b73.css",
+    "main.js": "/happy-bakery-website/static/js/main.901574bb.js",
     "static/media/bakery.jpeg": "/happy-bakery-website/static/media/bakery.fccfcc667704e06b75ac.jpeg",
     "static/media/about-bg2.jpeg": "/happy-bakery-website/static/media/about-bg2.f450a7f0ca1d2803c7f7.jpeg",
     "static/media/map.jpeg": "/happy-bakery-website/static/media/map.dc255af87bafb8ed22f1.jpeg",
@@ -17,6 +17,7 @@
     "static/media/radio-button-checked.svg": "/happy-bakery-website/static/media/radio-button-checked.7d94d0ba276c06c87849863d9a6a9bd9.svg",
     "static/media/instagram.svg": "/happy-bakery-website/static/media/instagram.e2df0355288df44311b086d69f39d834.svg",
     "static/media/Search.svg": "/happy-bakery-website/static/media/Search.1bf459e293cbb5c69f56ef871ddd8f39.svg",
+    "static/media/menubar.svg": "/happy-bakery-website/static/media/menubar.3dbcb4a9a53327f01fc88688133611e8.svg",
     "static/media/User.svg": "/happy-bakery-website/static/media/User.5696b71d5c4c9bccdf0793f8cf8f3990.svg",
     "index.html": "/happy-bakery-website/index.html",
     "static/media/logos_facebook.svg": "/happy-bakery-website/static/media/logos_facebook.d4156e60e6ab394f55021fa743fa1346.svg",
@@ -32,11 +33,11 @@
     "static/media/chevron_down.svg": "/happy-bakery-website/static/media/chevron_down.a81a799bd91833a6b7243bf604c5bbff.svg",
     "static/media/chevron_backward.svg": "/happy-bakery-website/static/media/chevron_backward.b1d1fd39c440c45fa24668675e33cf97.svg",
     "static/media/chevron_forward.svg": "/happy-bakery-website/static/media/chevron_forward.343d43ea5a981334fe70861e40eab296.svg",
-    "main.5f9fbede.css.map": "/happy-bakery-website/static/css/main.5f9fbede.css.map",
-    "main.553f7d14.js.map": "/happy-bakery-website/static/js/main.553f7d14.js.map"
+    "main.ab4a3b73.css.map": "/happy-bakery-website/static/css/main.ab4a3b73.css.map",
+    "main.901574bb.js.map": "/happy-bakery-website/static/js/main.901574bb.js.map"
   },
   "entrypoints": [
-    "static/css/main.5f9fbede.css",
-    "static/js/main.553f7d14.js"
+    "static/css/main.ab4a3b73.css",
+    "static/js/main.901574bb.js"
   ]
 }
