@@ -28,7 +28,7 @@ const Home = () => {
             DON'T MISS OUT <br />
             NEW DROPS
           </h2>
-          <Button text={'SHOP NEW DROPS'} />
+            <Button text={'SHOP NEW DROPS'} />
         </div>
         <div className={styles.newdropsCards}>
           <ProductCard />
