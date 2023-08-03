@@ -1,6 +1,29 @@
 export const menu = [
   {
     id: 1,
+    title: 'Our Story',
+    link: 'about'
+  },
+  {
+    id: 2,
+    title: 'Shop',
+    link: 'products'
+  },
+  {
+    id: 3,
+    title: 'Contact',
+    link: 'contact'
+  },
+  {
+    id: 4,
+    title: 'Home',
+    link: '/happy-bakery-website'
+  }
+]
+
+export const productMenu = [
+  {
+    id: 1,
     title: 'All',
     link: 'products'
   },

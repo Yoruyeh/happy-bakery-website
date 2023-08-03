@@ -1,4 +1,5 @@
 @import '../../styles/variables.scss';
+@import '../../styles/responsive.scss';
 
 .navbar {
   height: 96px;
@@ -6,12 +7,12 @@
   padding: 0 32px;
   margin-bottom: 32px;
   border-radius: 24px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
   align-items: center;
 
   .navListWrapper {
-    flex: 1;
-
     .navList {
       display: flex;
       justify-content: flex-start;
@@ -25,6 +26,7 @@
       font-size: 16px;
       display: flex;
       align-items: center;
+      text-align: center;
       position: relative;
 
       &:hover {
@@ -67,7 +69,7 @@
         width: 32px;
         height: 32px;
         border-radius: 50%;
-        background-color: $baby-blue;
+        background-color: $light-yellow;
         font-size: 16px;
         display: flex;
         align-items: center;
@@ -76,9 +78,84 @@
     }
   }
 
+  .menuBar {
+    display: none;
+  }
+
   .logoWrapper {
     display: flex;
-    flex: 1;
     justify-content: center;
+
+    svg {
+      width: 80%;
+    }
+  }
+
+  @include xl {
+    grid-template-columns: 1fr 1fr 0.8fr;
+  }
+
+  @include lg {
+    display: flex;
+    justify-content: space-between;
+
+    .logoWrapper {
+      display: none;
+    }
+  }
+
+  @include md {
+    .navListWrapper {
+      &:first-child {
+        display: none;
+      }
+    }
+    .menuBar {
+      display: block;
+      position: relative;
+
+      :hover {
+        cursor: pointer;
+      }
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      .dropdownMenu {
+        margin-top: 10px;
+        padding: 16px 8px 8px 8px;
+        border-radius: 8px;
+        border: 1px solid $FA-white;
+        background-color: $white;
+        font-family: 'Rubik', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        position: absolute;
+        top: 30px;
+        left: 0px;
+        z-index: 3;
+
+        .dropdownMenuList {
+          display: inline-flex;
+          flex-direction: column;
+          gap: 16px;
+
+          .dropdownMenuItem {
+            white-space: nowrap;
+            border-bottom: 2px solid $FA-white;
+          }
+        }
+      }
+    }
+  }
+
+  @include sm {
+    .navItem {
+      &.search {
+        display: none;
+      }
+    }
   }
 }

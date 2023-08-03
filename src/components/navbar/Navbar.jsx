@@ -1,8 +1,8 @@
 import styles from './navbar.module.scss'
-import { CaretDown, Logo, Search, User } from "../../assets/icons"
+import { CaretDown, Logo, Search, User, MenuBar } from '../../assets/icons'
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
-import { menu, userMenu } from '../../data'
+import { menu, productMenu, userMenu } from '../../data'
 
 const DropDownMenu = ({ data }) => {
   return (
@@ -13,18 +13,6 @@ const DropDownMenu = ({ data }) => {
             <li className={styles.dropdownMenuItem}>{item.title}</li>
           </Link>
         ))}
-        {/* <Link to={data.link}>
-          <li className={styles.dropdownMenuItem}>All</li>
-        </Link>
-        <li className={styles.dropdownMenuItem}>New Drops</li>
-        <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
-        <li className={styles.dropdownMenuItem}>Cupcakes</li>
-        <li className={styles.dropdownMenuItem}>European Breads</li>
-        <li className={styles.dropdownMenuItem}>Toasts</li>
-        <li className={styles.dropdownMenuItem}>Biscuits</li>
-        <li className={styles.dropdownMenuItem}>Croissants</li>
-        <li className={styles.dropdownMenuItem}>Donuts</li>
-        <li className={styles.dropdownMenuItem}>Scones</li> */}
       </ul>
     </div>
   )
@@ -33,9 +21,10 @@ const DropDownMenu = ({ data }) => {
 const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
   const [openUserDropdown, setOpenUserDropdown] = useState(false)
-  const productDropdownRef= useRef(null)
+  const [openMenu, setOpenMenu] = useState(false)
+  const productDropdownRef = useRef(null)
   const userDropdownRef = useRef(null)
-
+  const menuRef = useRef(null)
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -43,6 +32,10 @@ const Navbar = () => {
 
   const handleOpenUserDropdown = () => {
     setOpenUserDropdown(!openUserDropdown)
+  }
+
+  const handleOpenMenu = () => {
+    setOpenMenu(!openMenu)
   }
 
   useEffect(() => {
@@ -61,6 +54,10 @@ const Navbar = () => {
       ) {
         setOpenUserDropdown(false)
       }
+
+       if (menuRef.current && !menuRef.current.contains(e.target)) {
+         setOpenMenu(false)
+       }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
@@ -84,12 +81,16 @@ const Navbar = () => {
           >
             Shop
             <CaretDown />
-            {openProductDropdown && <DropDownMenu data={menu} />}
+            {openProductDropdown && <DropDownMenu data={productMenu} />}
           </li>
           <Link to="contact">
             <li className={styles.navItem}>Contact Us</li>
           </Link>
         </ul>
+      </div>
+      <div className={styles.menuBar} onClick={handleOpenMenu} ref={menuRef}>
+        <MenuBar />
+        {openMenu && <DropDownMenu data={menu} />}
       </div>
       <Link to="/happy-bakery-website">
         <div className={styles.logoWrapper}>
@@ -103,12 +104,15 @@ const Navbar = () => {
           </li>
           <li
             className={`${styles.navItem} ${styles.user}`}
+            ref={userDropdownRef}
             onClick={handleOpenUserDropdown}
           >
             <User />
             {openUserDropdown && <DropDownMenu data={userMenu} />}
           </li>
-          <li className={`${styles.navItem} ${styles.cartCount}`}>2</li>
+          <Link to="cart">
+            <li className={`${styles.navItem} ${styles.cartCount}`}>2</li>
+          </Link>
         </ul>
       </div>
     </div>

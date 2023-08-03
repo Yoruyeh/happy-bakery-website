@@ -16,6 +16,7 @@ import { ReactComponent as ArrowForward } from './arrow_forward.svg'
 import { ReactComponent as FacebookColored } from './logos_facebook.svg'
 import { ReactComponent as StarRate } from './star-rate.svg'
 import { ReactComponent as Down } from './chevron_down.svg'
+import { ReactComponent as MenuBar } from './menubar.svg'
 
 export {
   Logo,
@@ -35,5 +36,6 @@ export {
   ArrowForward,
   FacebookColored,
   StarRate,
-  Down
+  Down,
+  MenuBar
 }
