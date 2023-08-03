@@ -17,20 +17,21 @@
       justify-content: flex-start;
       align-items: center;
       gap: 40px;
-      position: relative;
     }
 
     .navItem {
       font-family: 'Rubik', sans-serif;
       font-weight: 600;
       font-size: 16px;
+      display: flex;
+      align-items: center;
+      position: relative;
 
       &:hover {
         cursor: pointer;
       }
 
       .dropdownMenu {
-        width: 160px;
         margin-top: 10px;
         padding: 16px 8px 8px 8px;
         border-radius: 8px;
@@ -40,19 +41,37 @@
         font-weight: 400;
         font-size: 16px;
         position: absolute;
-        top: 20px;
-        left: 110px;
+        top: 30px;
+        left: 0px;
         z-index: 3;
 
         .dropdownMenuList {
-          display: flex;
+          display: inline-flex;
           flex-direction: column;
           gap: 16px;
 
           .dropdownMenuItem {
+            white-space: nowrap;
             border-bottom: 2px solid $FA-white;
           }
         }
+      }
+    }
+
+    &:last-child {     
+      .navList {
+        justify-content: flex-end;
+      }
+
+      .cartCount {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: $baby-blue;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
   }
@@ -61,60 +80,5 @@
     display: flex;
     flex: 1;
     justify-content: center;
-  }
-
-  .navIconsWrapper {
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 42px;
-    position: relative;
-
-    .dropdownUser {
-      width: 90px;
-      margin-top: 10px;
-      padding: 16px 8px 8px 8px;
-      border-radius: 8px;
-      border: 1px solid $FA-white;
-      background-color: $white;
-      font-family: 'Rubik', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 3;
-
-      .dropdownUserList {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-
-        .dropdownUserItem {
-          border-bottom: 2px solid $FA-white;
-        }
-      }
-    }
-
-    .searchIcon, .userIcon, .cartCount {
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    .cartCount {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background-color: $baby-blue;
-      font-size: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 }

@@ -2,6 +2,33 @@ import styles from './navbar.module.scss'
 import { CaretDown, Logo, Search, User } from "../../assets/icons"
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
+import { menu, userMenu } from '../../data'
+
+const DropDownMenu = ({ data }) => {
+  return (
+    <div className={styles.dropdownMenu}>
+      <ul className={styles.dropdownMenuList}>
+        {data.map((item) => (
+          <Link to={item.link} key={item.id}>
+            <li className={styles.dropdownMenuItem}>{item.title}</li>
+          </Link>
+        ))}
+        {/* <Link to={data.link}>
+          <li className={styles.dropdownMenuItem}>All</li>
+        </Link>
+        <li className={styles.dropdownMenuItem}>New Drops</li>
+        <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
+        <li className={styles.dropdownMenuItem}>Cupcakes</li>
+        <li className={styles.dropdownMenuItem}>European Breads</li>
+        <li className={styles.dropdownMenuItem}>Toasts</li>
+        <li className={styles.dropdownMenuItem}>Biscuits</li>
+        <li className={styles.dropdownMenuItem}>Croissants</li>
+        <li className={styles.dropdownMenuItem}>Donuts</li>
+        <li className={styles.dropdownMenuItem}>Scones</li> */}
+      </ul>
+    </div>
+  )
+}
 
 const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
@@ -57,24 +84,7 @@ const Navbar = () => {
           >
             Shop
             <CaretDown />
-            {openProductDropdown && (
-              <div className={styles.dropdownMenu}>
-                <ul className={styles.dropdownMenuList}>
-                  <Link to="products">
-                    <li className={styles.dropdownMenuItem}>All</li>
-                  </Link>
-                  <li className={styles.dropdownMenuItem}>New Drops</li>
-                  <li className={styles.dropdownMenuItem}>Birthday Cakes</li>
-                  <li className={styles.dropdownMenuItem}>Cupcakes</li>
-                  <li className={styles.dropdownMenuItem}>European Breads</li>
-                  <li className={styles.dropdownMenuItem}>Toasts</li>
-                  <li className={styles.dropdownMenuItem}>Biscuits</li>
-                  <li className={styles.dropdownMenuItem}>Croissants</li>
-                  <li className={styles.dropdownMenuItem}>Donuts</li>
-                  <li className={styles.dropdownMenuItem}>Scones</li>
-                </ul>
-              </div>
-            )}
+            {openProductDropdown && <DropDownMenu data={menu} />}
           </li>
           <Link to="contact">
             <li className={styles.navItem}>Contact Us</li>
@@ -86,35 +96,20 @@ const Navbar = () => {
           <Logo />
         </div>
       </Link>
-      <div className={styles.navIconsWrapper}>
-        <div className={styles.searchIcon}>
-          <Search />
-        </div>
-        <div
-          className={styles.userIcon}
-          ref={userDropdownRef}
-          onClick={handleOpenUserDropdown}
-        >
-          <User />
-          {openUserDropdown && (
-            <div className={styles.dropdownUser}>
-              <ul className={styles.dropdownUserList}>
-                <Link to="login">
-                  <li className={styles.dropdownUserItem}>Login</li>
-                </Link>
-                <Link to="register">
-                  <li className={styles.dropdownUserItem}>Register</li>
-                </Link>
-                <Link to="member/setting">
-                  <li className={styles.dropdownUserItem}>Member Center</li>
-                </Link>
-              </ul>
-            </div>
-          )}
-        </div>
-        <Link to="cart">
-          <div className={styles.cartCount}>2</div>
-        </Link>
+      <div className={styles.navListWrapper}>
+        <ul className={styles.navList}>
+          <li className={`${styles.navItem} ${styles.search}`}>
+            <Search />
+          </li>
+          <li
+            className={`${styles.navItem} ${styles.user}`}
+            onClick={handleOpenUserDropdown}
+          >
+            <User />
+            {openUserDropdown && <DropDownMenu data={userMenu} />}
+          </li>
+          <li className={`${styles.navItem} ${styles.cartCount}`}>2</li>
+        </ul>
       </div>
     </div>
   )
