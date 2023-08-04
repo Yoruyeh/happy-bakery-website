@@ -3,7 +3,6 @@
 
 .home {
   width: 100%;
-  min-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -108,7 +107,6 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-      column-gap: 0.8rem;
       row-gap: 1rem;
       justify-items: center;
     }
@@ -201,6 +199,10 @@
       .product {
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
+
+      .reviews {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      }
     }
   }
 
@@ -230,6 +232,10 @@
 
       .product {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+
+      .reviews {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       }
     }
   }

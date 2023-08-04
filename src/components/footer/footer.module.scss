@@ -9,11 +9,12 @@
 
   .upperFooter {
     width: 100%;
-    height: 440px;
+    height: 100%;
     background-color: $salmon-pink;
     border-radius: 48px;
     display: flex;
-    padding: 3.2rem 3.6rem;
+    padding: 2rem;
+    position: relative;
     
     .subscribe {
       display: flex;
@@ -66,7 +67,7 @@
     background-color: $baby-blue;
     border-radius: 48px;
     position: relative;
-    top: -100px;
+    top: -50%;
     display: flex;
     gap: 4rem;
     justify-content: space-between;
@@ -107,11 +108,17 @@
   @include xl {
     .upperFooter {
       flex-direction: column;
-      gap: 3rem;
+      gap: 2rem;
+      margin-bottom: 2rem;
+      
+      .subscribe {
+        flex: 0;
+      }
 
       .logo {
-        justify-content: flex-start;
+        flex: 0;
         padding: 0;
+        justify-content: flex-start;
 
         svg {
           width: auto;
@@ -120,10 +127,24 @@
     }
   }
 
-  @include md {
+  @include lg {
     .lowerFooter {
       flex-direction: column;
-      padding: 4rem;
+      gap: 2rem;
+    }
+  }
+
+  @include xs {
+    .upperFooter {
+      .subscribe {
+        h3 {
+          font-size: 24px;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
     }
   }
 }
