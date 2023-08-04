@@ -89,7 +89,7 @@
     justify-content: center;
 
     svg {
-      width: 80%;
+      width: 90%;
     }
   }
 
@@ -101,12 +101,6 @@
     display: flex;
     justify-content: space-between;
 
-    .logoWrapper {
-      display: none;
-    }
-  }
-
-  @include md {
     .navListWrapper {
       &:first-child {
         display: none;
