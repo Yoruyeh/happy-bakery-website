@@ -1,15 +1,19 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .footer {
-  height: 700px;
-  margin-top: 55px;
+  width: 100%;
+  min-width: 400px;
+  height: 35rem;
+  margin-top: 3rem;
 
   .upperFooter {
+    width: 100%;
     height: 440px;
     background-color: $salmon-pink;
     border-radius: 48px;
     display: flex;
-    padding: 64px 0 0 72px;
+    padding: 3.2rem 3.6rem;
     
     .subscribe {
       display: flex;
@@ -31,20 +35,12 @@
         align-items: center;
           
         input {
-          width: 342px;
-          height: 48px;
+          max-width: 342px;
           margin-right: 4px;
-          background-color: transparent;
-          box-shadow: 0 4 20 rgba(0,0,0,0.25);
-          border: 1px solid $FA-white;
-          border-radius: 8px;
-          font-family: 'Open Sans', sans-serif;
-          padding: 14px 16px;
-          
+          border-color: $FA-white;
 
           &::placeholder {
             color: $white;
-            font-size: 16px;
           }
         }
 
@@ -56,6 +52,7 @@
     }
 
     .logo {
+      width: 100%;
       display: flex;
       flex: 1;
       justify-content: center;
@@ -64,29 +61,30 @@
   }
 
   .lowerFooter {
-    height: 360px;
+    width: 100%;
+    height: auto;
     background-color: $baby-blue;
     border-radius: 48px;
     position: relative;
     top: -100px;
     display: flex;
-    gap: 80px;
+    gap: 4rem;
     justify-content: space-between;
     color: $white;
-    padding: 40px;
+    padding: 2rem;
 
     .about {
       flex: 3;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 0.5rem;
     }
 
-    .categories {
+    .categories, .company, .socialMedia {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 0.8rem;
 
       .linkList {
         display: flex;
@@ -95,39 +93,37 @@
 
         .linkItem {
           font-family: 'Open Sans', sans-serif;
-          font-size: 18px;
+          font-size: 0.9rem;
         }
-      }   
-    }
-
-    .company {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
-      .linkList {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-
-        .linkItem {
-          font-family: 'Open Sans', sans-serif;
-          font-size: 18px;
-        }
-      }   
-    }
-
-    .socialMedia {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-
+      }
+      
       .socialMediaIcons {
         display: flex;
-        gap: 24px;
+        gap: 1.2rem;
       }
+    }
+  }
+
+  @include xl {
+    .upperFooter {
+      flex-direction: column;
+      gap: 3rem;
+
+      .logo {
+        justify-content: flex-start;
+        padding: 0;
+
+        svg {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .lowerFooter {
+      flex-direction: column;
+      padding: 4rem;
     }
   }
 }

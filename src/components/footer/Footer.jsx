@@ -1,6 +1,7 @@
 import styles from './footer.module.scss'
 import { Facebook, Instagram, Logo, Tiktok, Twitter } from '../../assets/icons'
 import Button from '../../components/button/Button'
+import { TextInput } from '../../components/input/Input'
 
 const Footer = () => {
   return (
@@ -10,8 +11,8 @@ const Footer = () => {
           <h3>Join Happy Bakery Club & get 15% off</h3>
           <p>Sign up for free! Join the community.</p>
           <div className={styles.subscribeInput}>
-            <input type="email" placeholder="Email address" />
-            <Button text={'SUBMIT'}/>
+            <TextInput type={'email'} placeholder={'Email Address'} />
+            <Button text={'SUBMIT'} />
           </div>
         </div>
         <div className={styles.logo}>
@@ -22,8 +23,9 @@ const Footer = () => {
         <div className={styles.about}>
           <h3>About Us</h3>
           <p>
-            We are the biggest hyperstore in the universe. <br />We got you all cover
-            with our exclusive collections and latest drops.
+            We are the biggest hyperstore in the universe. <br />
+            We got you all cover with our exclusive collections and latest
+            drops.
           </p>
         </div>
         <div className={styles.categories}>
