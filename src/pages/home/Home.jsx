@@ -16,32 +16,34 @@ const Home = () => {
         <div className={styles.image}>
           <img src={bannerImg} alt="" />
           <div className={styles.gradient}></div>
-          <h2>
-            No Chemical Added, <br /> Naturally Delicious!
-          </h2>
-          <Button text={'SHOP NOW'} />
+          <div className={styles.text}>
+            <h2>
+              No Chemical Added, <br /> Naturally Delicious!
+            </h2>
+            <Button text={'SHOP NOW'} />
+          </div>
         </div>
       </div>
-      <div className={styles.newdrops}>
+      <div className={styles.row}>
         <div className={styles.title}>
           <h2>
             DON'T MISS OUT <br />
             NEW DROPS
           </h2>
-            <Button text={'SHOP NEW DROPS'} />
+          <Button text={'SHOP NEW DROPS'} />
         </div>
-        <div className={styles.newdropsCards}>
+        <div className={styles.product}>
           <ProductCard />
           <ProductCard />
           <ProductCard />
           <ProductCard />
         </div>
       </div>
-      <div className={styles.reviews}>
+      <div className={styles.row}>
         <div className={styles.title}>
           <h2>Reviews</h2>
         </div>
-        <div className={styles.reviewCards}>
+        <div className={styles.reviews}>
           <ReviewCard />
           <ReviewCard />
           <ReviewCard />

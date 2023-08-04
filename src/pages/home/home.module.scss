@@ -5,16 +5,17 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 1.5em;
+  gap: 2rem;
 
   .banner {
     width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 1.6rem;
 
     h1 {
       width: 100%;
-      font-size: 6em;
+      font-size: 6rem;
       font-weight: 700;
       text-align: center;
       text-shadow: 4px 4px 4px rgba(0,0,0,0.25);
@@ -42,7 +43,7 @@
 
       img {
         width: 100%;
-        height: 750px;
+        height: 37.5rem;
         object-fit: cover; 
       }
 
@@ -57,64 +58,55 @@
         linear-gradient(to top, black, transparent 50%);
       }
 
-      h2 {
+      .text {
         position: absolute;
-        bottom: 20%;
-        left: 50px;
-        font-size: 3.5em;
-        font-weight: 400;
-        color: $white;
-      }
+        bottom: 2.5rem;
+        left: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
 
-      button {
-        position: absolute;
-        bottom: 10%;
-        left: 50px;
+        h2 {
+          font-size: 3.5rem;
+          font-weight: 400;
+          color: $white;
+        }
       }
     }
   }
 
-  .newdrops {  
+  .row {  
     width: 100%;
 
     .title {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
-      margin-bottom: 1.6em;
+      margin-bottom: 1.6rem;
 
       h2 {
-        font-size: 3.7em;
+        font-size: 3.7rem;
       }
 
       button {
-        width: 13em;
+        width: 9rem;
       }
     }
 
-    .newdropsCards {
-      display: flex;
-      gap: 0.8em;
+    .product {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      column-gap: 0.8rem;
+      row-gap: 1rem;
+      justify-items: center;
     }
-  }
 
-  .reviews {
-    width: 100%;
-
-    .title {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-bottom: 1.6em;
-
-      h2 {
-        font-size: 3.7em;
-      }
-    }
-    
-    .reviewCards {
-      display: flex;
-      gap: 0.8em;
+    .reviews {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+      column-gap: 0.8rem;
+      row-gap: 1rem;
+      justify-items: center;
     }
   }
 }

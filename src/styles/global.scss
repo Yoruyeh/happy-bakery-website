@@ -8,53 +8,7 @@
   font-family: 'Rubik','Open Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 600;
-}
-
-h1 {
-  font-size: 3em;
-}
-
-h2 {
-  font-size: 2.4em;
-}
-
-h3 {
-  font-size: 1.6em;
-}
-
-h4 {
-  font-size: 1.4em;
-}
-
-h5 {
-  font-size: 1.2em;
-}
-
-h6 {
-  font-size: 1em;
-}
-
-p {
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  font-weight: 600;
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-ol, ul, li {
-	list-style: none;
-}
-
-.main {
-  background-color: $main-bg;
-  padding: 1.6em 3em;
+html {
   font-size: 20px;
 
   @include xxl {
@@ -75,7 +29,56 @@ ol, ul, li {
 
   @include sm {
     font-size: 8px;
-  }
+  } 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+h4 {
+  font-size: 1.4rem;
+}
+
+h5 {
+  font-size: 1.2rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ol, ul, li {
+	list-style: none;
+}
+
+.main {
+  background-color: $main-bg;
+  padding: 1.6rem 3rem;
 }
 
 .container {
