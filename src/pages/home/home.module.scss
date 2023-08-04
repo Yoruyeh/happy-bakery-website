@@ -3,6 +3,7 @@
 
 .home {
   width: 100%;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -36,6 +37,7 @@
 
     .image {
       width: 100%;
+      height: 37.5rem;
       position: relative;
       border-radius: 64px;
       overflow: hidden;
@@ -43,7 +45,7 @@
 
       img {
         width: 100%;
-        height: 37.5rem;
+        height: 100%;
         object-fit: cover; 
       }
 
@@ -79,6 +81,7 @@
     width: 100%;
 
     .title {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -94,19 +97,179 @@
     }
 
     .product {
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      column-gap: 0.8rem;
       row-gap: 1rem;
       justify-items: center;
     }
 
     .reviews {
+      width: 100%;
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
       column-gap: 0.8rem;
       row-gap: 1rem;
       justify-items: center;
+    }
+  }
+
+  @include xl {
+    .banner {
+      h1 {
+        font-size: 4.5rem;
+      }
+
+      .image {
+        height: 35rem;
+
+        .text {
+          h2 {
+            font-size: 3rem;
+          }
+        }
+      }
+    }
+
+    .row {
+      .title {
+        h2 {
+          font-size: 3rem;
+        }
+      }
+
+      .product {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      }
+    }
+  }
+
+  @include lg {
+    .banner {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      .image {
+        height: 30rem;
+
+        .text {
+          h2 {
+            font-size: 2.5rem;
+          }
+        }
+      }
+    }
+
+    .row {
+      .title {
+        h2 {
+          font-size: 2.5rem;
+        }
+      }
+
+      .product {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+  }
+
+  @include md {
+    .banner {
+      h1 {
+        font-size: 3rem;
+      }
+
+      .image {
+        height: 25rem;
+
+        .text {
+          h2 {
+            font-size: 2rem;
+          }
+        }
+      }
+    }
+
+    .row {
+      .title {
+        h2 {
+          font-size: 2rem;
+        }
+      }
+
+      .product {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      }
+    }
+  }
+
+  @include sm {
+    .banner {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .image {
+        height: 20rem;
+
+        .text {
+          h2 {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .row {
+      .title {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      .product {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+  }
+
+  @include xs {
+    .banner {
+      .image {
+        height: 15rem;
+
+        .text {
+          bottom: 1.5rem;
+          left: 1.5rem;
+          gap: 0.5rem;
+
+          h2 {
+            font-size: 1rem;
+          }
+
+          button {
+            width: 5rem;
+          }
+        }
+      }
+    }
+
+    .row {
+      .title {
+        h2 {
+          font-size: 1.2rem;
+        }
+
+        button {
+          width: 5rem;
+          font-size: 0.5rem;
+        }
+      }
+
+      .product {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      }
     }
   }
 }

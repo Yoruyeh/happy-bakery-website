@@ -1,8 +1,9 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .card {
-  width: 430px;
-  height: 501px;
+  width: 400px;
+  height: 500px;
   border-radius: 32px;
   background-color: $FA-white;
   display: flex;
@@ -13,6 +14,11 @@
     height: 176px;
     display: flex;
     padding: 32px;
+    gap: 1rem;
+
+    h5 {
+      font-size: 20px;
+    }
 
     .text {
       display: flex;
@@ -58,5 +64,15 @@
       border-bottom-left-radius: 32px;
       border-bottom-right-radius: 32px;
     }
+  }
+
+  @include md {
+    width: 350px;
+    height: 450px;
+  }
+
+  @include sm {
+    width: 300px;
+    height: 400px;
   }
 }
