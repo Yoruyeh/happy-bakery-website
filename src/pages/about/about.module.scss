@@ -35,7 +35,7 @@
       transform: translate(-50%, -50%);
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 1.2rem;
     }
   }
 
@@ -66,25 +66,47 @@
     .bgImg1, .bgImg2 {
       align-self: center;
       width: 90%;
-    } 
+    }
+
+    .bgImg1 {
+      .text {
+        padding: 0 2rem;
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }
+
+    .bgImg2 {
+      .text {
+        padding: 0 6rem;
+
+        h1 {
+          font-size: 2rem;
+        }
+      }
+    }    
   }
 
   @include lg {
     .bgImg1, .bgImg2 {
-      align-self: center;
-      width: 80%;
-
       .text {
-        padding: 0 5rem;
+        p {
+          font-size: 0.9rem;
+        }
       }
-    } 
+    }
+
+    .bgImg2 {
+      .text {
+        padding: 0 4rem;
+      }
+    }    
   }
 
   @include md {
     .bgImg1, .bgImg2 {
-      align-self: center;
-      width: 70%;
-
       .text {
         padding: 0 2rem;
       }
@@ -93,11 +115,16 @@
 
   @include sm {
     .bgImg1, .bgImg2 {
-      align-self: center;
-      width: 60%;
-
       .text {
         padding: 0 2rem;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.8rem;
+        }
       }
     } 
   }

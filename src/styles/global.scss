@@ -59,6 +59,7 @@ ol, ul, li {
 .main {
   background-color: $main-bg;
   padding: 1.6rem 3rem;
+  min-width: 400px;
 
   @include sm {
     padding: 0.6rem 1rem;
@@ -67,7 +68,6 @@ ol, ul, li {
 
 .container {
   width: 100%;
-  min-width: 400px;
 }
 
 
