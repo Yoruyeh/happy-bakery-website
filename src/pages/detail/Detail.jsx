@@ -14,6 +14,15 @@ const Detail = () => {
     <>
       <div className={styles.detail}>
         <div className={styles.product}>
+          <div className={styles.mainImage}>
+            <img src={ProductImg} alt="" />
+            <div className={styles.dots}>
+              <div className={`${styles.dot} ${styles.active}`}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+              <div className={styles.dot}></div>
+            </div>
+          </div>
           <div className={styles.images}>
             <div className={styles.imageWrapper}>
               <img src={ProductImg} alt="" />
@@ -31,10 +40,11 @@ const Detail = () => {
           <div className={styles.content}>
             <div className={styles.title}>
               <div className={styles.tag}>New Release</div>
-              <h3>CROISSANT (4 flavors)</h3>
+              <h3>CROISSANT</h3>
+              <h6>Cream Cheese Flavor</h6>
               <h5>$125.00</h5>
             </div>
-            <div className={styles.wrapper}>
+            {/* <div className={styles.wrapper}>
               <h6>FLAVOR</h6>
               <div className={styles.types}>
                 <Button text={'ORIGINAL'} />
@@ -48,6 +58,16 @@ const Detail = () => {
               <div className={styles.sizes}>
                 <Button text={'F'} />
               </div>
+            </div> */}
+            <div className={styles.wrapper}>
+              <label for="quantity">Quantity</label>
+              <select id="quantity" name="quantity">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
             </div>
             <div className={styles.buttons}>
               <Button text={'ADD TO CART'} />
@@ -64,11 +84,21 @@ const Detail = () => {
                 id orci. Integer eget orci sed lacus gravida porta eu vitae ex.
                 Aliquam et felis a felis mollis condimentum.
               </p>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+                eget urna nulla. Praesent dapibus aliquet metus ac fringilla.
+                Mauris bibendum justo diam, in mollis tellus vehicula eget.
+                Phasellus vehicula ex quis justo consequat, quis scelerisque
+                ligula sagittis. In ut diam vitae ante condimentum ultrices et
+                id orci. Integer eget orci sed lacus gravida porta eu vitae ex.
+                Aliquam et felis a felis mollis condimentum.
+              </p>
             </div>
           </div>
         </div>
+        <Recommend />
       </div>
-      <Recommend />
+      {/* <Recommend /> */}
     </>
   )
 }

@@ -1,41 +1,39 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .detail {
+  width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
-  margin-bottom: 128px;
+  gap: 1.8rem;
 
   .product {
+    width: 100%;
+    height: 100%;
     display: flex;
-    gap: 16px;
+    gap: 0.8rem;
+
+    .mainImage {
+      display: none;
+    }
 
     .images {
+      width: 100%;
       flex: 2;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      gap: 0.8rem;
+      border-radius: 48px;
+      overflow: hidden;
 
       .imageWrapper {
-        overflow: hidden;
-
-        &:nth-child(1) {
-          border-top-left-radius: 48px;
-          overflow: hidden;
-        }
-        &:nth-child(2) {
-          border-top-right-radius: 48px;
-        }
-        &:nth-child(3) {
-          border-bottom-left-radius: 48px;
-        }
-        &:nth-child(4) {
-          border-bottom-right-radius: 48px;
-        }
+        height: 28rem;
       }
       
       img {
         width: 100%;
-        height: 510px;
+        height: 100%;
         object-fit: cover;
       }
     }
@@ -44,12 +42,12 @@
       display: flex;
       flex-direction: column;
       flex: 1;
-      gap: 32px;
+      gap: 1.6rem;
 
       .title {
         display: flex;
         flex-direction: column;
-        gap: 16px;
+        gap: 0.5rem;
 
         .tag {
           width: 106px;
@@ -64,8 +62,9 @@
           justify-content: center;
         }
 
-        h5 {
+        :last-child {
           color: $salmon-pink;
+          margin-top: 1rem;
         }
       }
 
@@ -74,31 +73,35 @@
         flex-direction: column;
         gap: 8px;
 
-        h6 {
-          font-size: 16px;
+        label {
+          font-size: 1rem;
+          font-weight: 600;
         }
 
-        .types, .sizes {
-          display: flex;
-          gap: 16px;
+        select {
+          width: 25%;
         }
 
-        .types {
-          button {
-            width: 95px;
-            background-color: $white;
-            color: $dark-gray;
-          }
-        }
+        // .types, .sizes {
+        //   display: flex;
+        //   gap: 16px;
+        // }
 
-        .sizes {
-          button {
-            width: 50px;
-            background-color: $FA-white;
-            color: $dark-gray;
-          }
-        }
+        // .types {
+        //   button {
+        //     width: 95px;
+        //     background-color: $white;
+        //     color: $dark-gray;
+        //   }
+        // }
 
+        // .sizes {
+        //   button {
+        //     width: 50px;
+        //     background-color: $FA-white;
+        //     color: $dark-gray;
+        //   }
+        // }
       }
 
       .buttons {
@@ -116,6 +119,10 @@
       }
 
       .description {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
         h6 {
           font-size: 16px;
           margin-bottom: 8px;
@@ -124,6 +131,121 @@
         p {
           font-size: 16px;
           font-weight: 400;
+          text-align: justify;
+        }
+      }
+    }
+  }
+
+  @include xl {
+    .product {
+      .images {
+        height: 95%;
+
+        .imageWrapper {
+          height: 20rem;
+        }
+      }
+    }
+  }
+
+  @include lg {
+    .product {
+      flex-direction: column;
+      gap: 1.2rem;
+
+      .mainImage {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: auto;
+        border-radius: 1.6rem;
+        overflow: hidden;
+        position: relative;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .dots {
+          position: absolute;
+          bottom: 1rem;
+          left: 50%;
+          transform: translateX(-50%);
+          display: flex;
+          gap: 1rem;
+
+          .dot {
+            width: 0.8rem;
+            height: 0.8rem;
+            border-radius: 50%;
+            background-color: $gray;
+
+            &.active {
+              background-color: $FA-white;
+            }
+          }
+        }
+      }
+      
+      .images {
+        display: flex;
+        border-radius: 0;
+
+        .imageWrapper {
+          border-radius: 0.8rem;
+          overflow: hidden;
+          width: 5rem;
+          height: 5rem;
+        }
+      }
+    }
+  }
+
+  @include sm {
+    .product {
+      .mainImage {
+        .dots {
+          gap: 0.8rem;
+
+          .dot {
+            width: 0.6rem;
+            height: 0.6rem;
+          }
+        }
+      }
+
+      .images {
+        .imageWrapper {
+          border-radius: 0.6rem;
+          width: 3.5rem;
+          height: 3.5rem;
+        }
+      }
+    }
+  }
+
+   @include xs {
+    .product {
+      .mainImage {
+        .dots {
+          gap: 0.5rem;
+
+          .dot {
+            width: 0.5rem;
+            height: 0.5rem;
+          }
+        }
+      }
+
+      .images {
+        .imageWrapper {
+          border-radius: 0.4rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
     }
