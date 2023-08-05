@@ -98,7 +98,6 @@ const Detail = () => {
         </div>
         <Recommend />
       </div>
-      {/* <Recommend /> */}
     </>
   )
 }

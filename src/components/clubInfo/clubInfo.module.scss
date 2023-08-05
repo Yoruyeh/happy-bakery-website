@@ -1,14 +1,17 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .clubInfo {
-  height: 516px;
+  width: 100%;
+  height: auto;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
+  justify-content: space-between;
   flex: 1.2;
+  gap: 5rem;
   background-color: $FA-white;
   border-radius: 16px;
-  padding: 24px;
+  padding: 1.2rem;
   margin-right: 8px;
 
   .clubInfoText {
@@ -16,19 +19,19 @@
     display: flex;
     flex-direction: column;
     color: $dark-gray;
-    gap: 24px;
+    gap: 1.2rem;
 
     h3 {
-      font-size: 36px;
+      font-size: 1.8rem;
     }
 
     p, ul {
-      font-size: 16px;
+      font-size: 0.8rem;
       opacity: 0.8;
     }
 
     ul {
-      padding-left: 20px;
+      padding-left: 1rem;
     }
 
     li {
@@ -40,5 +43,33 @@
     width: 100%;
     justify-content: space-between;
     background-color: $dark-gray;
+  }
+
+  @include lg {
+    width: 80%;
+  }
+
+  @include md {
+    gap: 3rem;
+
+    .clubInfoText {
+      h3 {
+        font-size: 1.4rem;
+      }
+
+      p, ul {
+        font-size: 0.7rem;
+      }
+    }
+  }
+
+    @include xs {
+    gap: 1rem;
+
+    .clubInfoText {
+      h3 {
+        font-size: 1.2rem;
+      }
+    }
   }
 }
