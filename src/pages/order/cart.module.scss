@@ -1,11 +1,12 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .cart {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding: 0 16px;
-  margin-bottom: 40px;
+  gap: 1.6rem;
+  padding: 0 0.8rem;
 
   .text {
     display: flex;
@@ -13,21 +14,21 @@
     gap: 8px;
 
     p {
-      font-size: 14px;
+      font-size: 0.7rem;
     }
   }
 
   .container {
     display: flex;
-    gap: 47px;
+    gap: 2.4rem;
     justify-content: space-between;
 
     .cartWrapper {
       display: flex;
       flex-direction: column;
       flex: 1.5;
-      gap: 48px;
-      padding: 24px;
+      gap: 2.4rem;
+      padding: 1.2rem;
       background-color: $FA-white;
       border-radius: 16px;
 
@@ -44,17 +45,42 @@
     }
 
     .summaryWrapper {
+      width: 100%;
       flex: 1;
-      padding: 50px 0;
+      padding: 2.5rem 0;
 
       button {
-        margin-top: 24px;
+        margin-top: 1.2rem;
         width: 100%;
         background-color: $dark-gray;
 
         &:hover {
           cursor: pointer;
         }
+      }
+    }
+  }
+
+   @include lg {
+    .container {
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+
+      .summaryWrapper {
+        padding: 2rem;
+      }
+    }
+  }
+
+  @include xs {
+    .container {
+      .cartWrapper {
+        padding: 0.5rem;
+      }
+
+      .summaryWrapper {
+        padding: 1rem;
       }
     }
   }

@@ -11,7 +11,7 @@ const CartCard = () => {
       <div className={styles.cardContent}>
         <div className={styles.cardText}>
           <div className={styles.cardInfo}>
-            <h5>CROISSANT (4 flavors)</h5>
+            <h5>CROISSANT</h5>
             <p>Cream Cheese</p>
             <div className={styles.option}>
               <label for="quantity">Quantity</label>

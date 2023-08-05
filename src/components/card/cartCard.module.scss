@@ -1,12 +1,15 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .cartCard {
   width: 100%;
+  height: auto;
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 24px;
+  grid-template-columns: 225px 1fr;
+  gap: 1.2rem;
 
   .cardImg {
+    width: 100%;
     height: 225px;
     border-radius: 24px;
     overflow: hidden;
@@ -19,6 +22,7 @@
   }
 
   .cardContent{
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,23 +34,23 @@
       .cardInfo {
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        gap: 0.5rem;
 
         .option {
           display: flex;
           align-items: center;
-          margin-top: 20px;
+          margin-top: 1rem;
 
           label {
             margin-right: 10px;
-            font-size: 20px;
+            font-size: 1rem;
             font-weight: 600;
           }
         }
       }
 
       .cardSubtotal {
-        font-size: 24px;
+        font-size: 1.2rem;
         font-weight: 600;
         color: $salmon-pink;
       }
@@ -58,13 +62,72 @@
       justify-content: flex-end;
 
       .icon {
-        width: 32px;
-        height: 32px;
+        width: 1.6rem;
+        height: 1.6rem;
 
         &:hover {
           cursor: pointer;
         }
       }
+    }
+  }
+
+  @include xl {
+    grid-template-columns: 180px 1fr;
+
+    .cardImg {
+      height: 180px;
+    }
+  }
+
+  @include sm {
+    grid-template-columns: 200px 1fr;
+
+    .cardImg {
+      height: 200px;
+    }
+
+    .cardContent {
+      .cardText {
+        flex-direction: column;
+
+        .cardInfo {
+          gap: 0;
+
+          h5 {
+            font-size: 1.1rem;
+          }
+
+          p {
+            font-size: 0.8rem;
+          }
+
+          .option {
+            label, select {
+              font-size: 0.8rem;
+            }
+          }
+        }
+
+        .cardSubtotal {
+          margin: 1rem 0;
+          font-size: 1rem;
+        }
+      }
+
+      .cardIcon {
+        justify-content: flex-start;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+
+  @include xs {
+    grid-template-columns: 160px 1fr;
+
+    .cardImg {
+      height: 160px;
     }
   }
 }
