@@ -37,6 +37,7 @@ const Products = () => {
             </div>
             <div className={styles.button}>
               <Button text={'PRICE'} price={<Down />} />
+              <Button text={'CATEGORIES'} price={<Down />} />
             </div>
           </div>
           <div className={styles.cardWrapper}>
