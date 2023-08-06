@@ -54,12 +54,6 @@ const Setting = () => {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <label>Password </label>
-          <Link to="../../edit">
-            <Button text={'Edit Password'} />
-          </Link>
-        </div>
-        <div className={styles.inputWrapper}>
           <label>Phone Number </label>
           <TextInput
             type={'tel'}
@@ -67,6 +61,12 @@ const Setting = () => {
             defaultValue={'02-12345678'}
             required={true}
           />
+        </div>
+        <div className={styles.inputWrapper}>
+          <label>Password </label>
+          <Link to="../../edit">
+            <Button text={'Edit Password'} />
+          </Link>
         </div>
         <div className={styles.checkboxWrapper}>
           <CheckboxInput

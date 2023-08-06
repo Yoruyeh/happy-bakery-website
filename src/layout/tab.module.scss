@@ -1,8 +1,9 @@
 @import "../styles/variables.scss";
+@import "../styles/responsive.scss";
 
 .tab {
   width: 100%;
-  padding: 0 32px;
+  padding: 0 1.6rem;
 
   .tablist {
     display: flex;
@@ -11,12 +12,15 @@
 
     .tabItem {
       width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       border-left: 1px solid $gray;
       border-bottom: 1px solid $gray;
-      text-align: center;
-      padding: 16px 0;
+      padding: 0.8rem 0;
       font-weight: 400;
-      font-size: 20px;
+      font-size: 1rem;
     }
 
     :first-child {
@@ -32,9 +36,17 @@
 
   .memberWrapper {
     width: 100%;
-    padding: 32px;
+    padding: 1.6rem;
     border: 1px solid $gray;
     border-top: none;
     background-color: $white;
+  }
+
+  @include lg {
+    padding: 0 1rem;
+  }
+
+  @include xs {
+    padding: 0 0.5rem;
   }
 }

@@ -1,19 +1,21 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .setting {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 1.6rem;
 
   .settingForm {
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px;
+    gap: 1.2rem;
     grid-template-areas: 
       "fisrt last bday"
       "email address address"
-      "password tel checkbox";
+      "tel password checkbox";
 
     .inputWrapper:nth-child(5) {
       grid-area: address;
@@ -26,7 +28,7 @@
       gap: 8px;
 
       label {
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: 600;
       }
 
@@ -40,10 +42,14 @@
     }
 
     .checkboxWrapper {
-      justify-self: end;
-      width: 60%;
+      width: 100%;
       display: flex;
+      justify-content: flex-end;
       align-items: flex-end;
+
+      label {
+        width: auto;
+      }
     }
   }
 
@@ -57,6 +63,13 @@
       &:hover {
         cursor: pointer;
       }
+    }
+  }
+
+  @include sm {
+    .settingForm {
+      display: flex;
+      flex-direction: column;
     }
   }
 }
