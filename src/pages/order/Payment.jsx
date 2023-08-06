@@ -82,13 +82,19 @@ const Payment = () => {
         </div>
       </div>
       <div className={styles.orderInfo}>
-        <div className={styles.cardWrapper}>
+        <div className={styles.summary}>
           <OrderSummaryCard />
         </div>
-        <div className={styles.cardWrapper}>
+        <div className={styles.detail}>
           <h3>Order Details</h3>
-          <OrderCard />
-          <OrderCard />
+          <div className={styles.cardWrapper}>
+            <OrderCard />
+            <OrderCard />
+            <OrderCard />
+            <OrderCard />
+            <OrderCard />
+            <OrderCard />
+          </div>
         </div>
       </div>
     </div>
