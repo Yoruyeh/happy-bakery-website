@@ -5,7 +5,7 @@ import Login from '../pages/login/Login'
 import Register from '../pages/register/Register'
 import Contact from '../pages/contact/Contact'
 import Products from '../pages/products/Products'
-import Detail from '../pages/detail/Detail'
+import ProductDetail from '../pages/detail/ProductDetail'
 import Cart from '../pages/order/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
@@ -25,7 +25,7 @@ export {
   Register,
   Contact,
   Products,
-  Detail,
+  ProductDetail,
   Cart,
   Shipment,
   Payment,
@@ -35,5 +35,5 @@ export {
   Tab,
   Edit,
   Coupon,
-  Wishlist,
+  Wishlist
 }

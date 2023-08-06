@@ -7,7 +7,7 @@ import {
   Register,
   Contact,
   Products,
-  Detail,
+  ProductDetail,
   Cart,
   Shipment,
   Payment,
@@ -17,7 +17,7 @@ import {
   Tab,
   Edit,
   Coupon,
-  Wishlist,
+  Wishlist
 } from './index'
 
 
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
       },
       {
         path: 'products/:id',
-        element: <Detail />
+        element: <ProductDetail />
       },
       {
         path: 'cart',
@@ -94,7 +94,7 @@ const router = createBrowserRouter([
           {
             path: 'wishlist',
             element: <Wishlist />
-          },
+          }
         ]
       }
     ]

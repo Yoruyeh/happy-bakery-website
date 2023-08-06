@@ -1,10 +1,10 @@
-import styles from './detail.module.scss'
+import styles from './productDetail.module.scss'
 import { useEffect } from 'react'
 import ProductImg from '../../assets/images/croissant.jpeg'
 import Button from '../../components/button/Button'
 import Recommend from '../../components/recommend/Recommend'
 
-const Detail = () => {
+const ProductDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -12,7 +12,7 @@ const Detail = () => {
 
   return (
     <>
-      <div className={styles.detail}>
+      <div className={styles.productDetail}>
         <div className={styles.product}>
           <div className={styles.mainImage}>
             <img src={ProductImg} alt="" />
@@ -102,4 +102,4 @@ const Detail = () => {
   )
 }
 
-export default Detail
+export default ProductDetail
