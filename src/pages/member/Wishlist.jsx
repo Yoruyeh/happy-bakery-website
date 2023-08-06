@@ -50,6 +50,73 @@ const Wishlist = () => {
           </tr>
         </tbody>
       </table>
+
+      <table className={styles.smallTable}>
+        <thead className={styles.head}>
+          <tr>
+            <th>Product Image</th>
+            <td>
+              <img src={ProductImg1} alt="" />
+            </td>
+          </tr>
+          <tr>
+            <th>Product Info</th>
+            <td>Chocolate Cake</td>
+          </tr>
+          <tr>
+            <th>Product Price</th>
+            <td>$800.00</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>
+              <div className={styles.buttonWrapper}>
+                <Button text={'ADD TO CART'} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Delete</th>
+            <td>
+              <div className={styles.buttonWrapper}>
+                <Bin />
+              </div>
+            </td>
+          </tr>
+        </thead>
+        <thead className={styles.head}>
+          <tr>
+            <th>Product Image</th>
+            <td>
+              <img src={ProductImg1} alt="" />
+            </td>
+          </tr>
+          <tr>
+            <th>Product Info</th>
+            <td>Chocolate Cake</td>
+          </tr>
+          <tr>
+            <th>Product Price</th>
+            <td>$800.00</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>
+              <div className={styles.buttonWrapper}>
+                <Button text={'ADD TO CART'} />
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th>Delete</th>
+            <td>
+              <div className={styles.buttonWrapper}>
+                <Bin />
+              </div>
+            </td>
+          </tr>
+        </thead>
+      </table>
     </div>
   )
 }

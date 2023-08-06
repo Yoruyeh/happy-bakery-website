@@ -1,10 +1,16 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .wishlist {
   width: 100%;
 
+  .smallTable {
+    display: none;
+  }
+
   .table {
     width: 100%;
+    min-width: 570px;
     border: 1px solid $gray;
     border-collapse: collapse;
 
@@ -16,9 +22,9 @@
       }
 
       th {
-        font-size: 20px;
+        font-size: 1rem;
         font-weight: 600;
-        padding: 16px;
+        padding: 0.8rem;
         width: 20%;
         text-align: center;
       }
@@ -33,9 +39,9 @@
 
       td {
         font-family: 'Open Sans', sans-serif;
-        font-size: 16px;
+        font-size: 0.8rem;
         font-weight: 400;
-        padding: 16px;
+        padding: 0.8rem;
         width: 20%;
         text-align: center;
 
@@ -60,6 +66,70 @@
           }
         } 
       }
+    }
+  }
+
+  @include lg {
+    .table {
+      .body {
+        button {
+          width: 5rem;
+        }
+      }
+    }
+  }
+
+  @include md {
+    .table {
+      display: none;
+    }
+
+    .smallTable {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      .head {
+        width: 100%;
+        border: 1px solid $gray;
+        border-bottom: none;
+        border-collapse: collapse;
+
+        tr {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          border-bottom: 1px solid $gray;
+        }
+
+        th, td {
+          padding: 0.5rem;
+
+          img {
+            text-align: end;
+            width: 50%;
+          }
+
+          button {
+            background-color: $baby-blue;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+
+        td {
+          text-align: end;
+        }
+      }
+    }
+  }
+
+   @include xs {
+    .smallTable {
+      font-size: 0.8rem;
     }
   }
 }

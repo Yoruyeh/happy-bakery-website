@@ -95,34 +95,7 @@ const Orders = () => {
           </tr>
         </thead>
       </table>
-      {/* <table className={styles.smallTable}>
-        <thead className={styles.head}>
-          <tr>
-            <th>Order No.</th>
-            <td>20230801123546</td>
-          </tr>
-          <tr>
-            <th>Order Date</th>
-            <td>2023-08-01</td>
-          </tr>
-          <tr>
-            <th>Total Price</th>
-            <td>$185.00</td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>Delivered</td>
-          </tr>
-          <tr>
-            <th></th>
-            <td>
-              <Link to=":id">
-                <Button text={'Check'} />
-              </Link>
-            </td>
-          </tr>
-        </thead>
-      </table> */}
+      
     </div>
   )
 }
