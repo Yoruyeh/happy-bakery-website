@@ -9,11 +9,10 @@ const OrderCard = () => {
       </div>
       <div className={styles.orderContent}>
         <div className={styles.orderText}>
-          <h6>CROISSANT (4 flavors)</h6>
+          <h6>CROISSANT</h6>
           <p>Cream Cheese</p>
         </div>
         <div className={styles.orderOption}>
-          <p>Size F</p>
           <p>Quantity 2</p>
         </div>
         <div className={styles.orderSubtotal}>$125.00</div>
