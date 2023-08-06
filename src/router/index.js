@@ -6,6 +6,7 @@ import Register from '../pages/register/Register'
 import Contact from '../pages/contact/Contact'
 import Products from '../pages/products/Products'
 import ProductDetail from '../pages/detail/ProductDetail'
+import OrderDetail from '../pages/detail/OrderDetail'
 import Cart from '../pages/order/Cart'
 import Shipment from '../pages/order/Shipment'
 import Payment from '../pages/order/Payment'
@@ -26,6 +27,7 @@ export {
   Contact,
   Products,
   ProductDetail,
+  OrderDetail,
   Cart,
   Shipment,
   Payment,

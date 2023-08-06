@@ -8,6 +8,7 @@ import {
   Contact,
   Products,
   ProductDetail,
+  OrderDetail,
   Cart,
   Shipment,
   Payment,
@@ -94,6 +95,10 @@ const router = createBrowserRouter([
           {
             path: 'wishlist',
             element: <Wishlist />
+          },
+          {
+            path: 'orders/:id',
+            element: <OrderDetail />
           }
         ]
       }
