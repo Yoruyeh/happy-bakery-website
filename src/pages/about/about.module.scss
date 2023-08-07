@@ -106,6 +106,8 @@
   }
 
   @include md {
+    padding: 0 1rem;
+
     .bgImg1, .bgImg2 {
       .text {
         padding: 0 2rem;
@@ -131,6 +133,8 @@
   }
 
   @include xs {
+    padding: 0;
+
     .bgImg1, .bgImg2 {
       .text {
         gap: 0.5rem;
