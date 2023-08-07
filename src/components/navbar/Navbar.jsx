@@ -3,6 +3,7 @@ import { CaretDown, Logo, Search, User, MenuBar } from '../../assets/icons'
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { menu, productMenu, userMenu } from '../../data'
+import SearchInput from '../searchInput/SearchInput'
 
 const DropDownMenu = ({ data }) => {
   return (
@@ -22,9 +23,11 @@ const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
   const [openUserDropdown, setOpenUserDropdown] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
+  const [openSearchInput, setOpenSearchInput] = useState(false)
   const productDropdownRef = useRef(null)
   const userDropdownRef = useRef(null)
   const menuRef = useRef(null)
+  const searchInputRef = useRef(null)
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -36,6 +39,10 @@ const Navbar = () => {
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu)
+  }
+
+  const handleOpenSearchInput = () => {
+    setOpenSearchInput(!openSearchInput)
   }
 
   useEffect(() => {
@@ -99,7 +106,11 @@ const Navbar = () => {
       </Link>
       <div className={styles.navListWrapper}>
         <ul className={styles.navList}>
-          <li className={`${styles.navItem} ${styles.search}`}>
+          <li
+            className={`${styles.navItem} ${styles.search}`}
+            ref={searchInputRef}
+            onClick={handleOpenSearchInput}
+          >
             <Search />
           </li>
           <li
@@ -115,6 +126,7 @@ const Navbar = () => {
           </Link>
         </ul>
       </div>
+      {openSearchInput && <SearchInput onClick={handleOpenSearchInput} />}
     </div>
   )
 }

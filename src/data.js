@@ -13,11 +13,6 @@ export const menu = [
     id: 3,
     title: 'Contact',
     link: 'contact'
-  },
-  {
-    id: 4,
-    title: 'Search',
-    link: 'search'
   }
 ]
 
