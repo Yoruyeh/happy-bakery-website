@@ -2,6 +2,7 @@ import styles from './footer.module.scss'
 import { Facebook, Instagram, Logo, Tiktok, Twitter } from '../../assets/icons'
 import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -58,6 +59,10 @@ const Footer = () => {
             <Tiktok />
           </div>
         </div>
+        <Link to="admin/login">
+          <div className={styles.admin}>Admin Login</div>
+        </Link>
+        <div className={styles.rights}>Happy Bakery © All Rights Reserved</div>
       </div>
     </div>
   )
