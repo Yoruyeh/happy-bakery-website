@@ -6,11 +6,11 @@ import Header from '../components/header/Header'
 const AdminLayout = () => {
   return (
     <div className="admin">
-        <AdminNavbar />
+      <AdminNavbar />
       <div className="adminContainer">
-          <Header />
-          <Outlet />
-          <AdminFooter />
+        <Header />
+        <Outlet />
+        <AdminFooter />
       </div>
     </div>
   )
