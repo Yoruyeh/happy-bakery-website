@@ -30,6 +30,7 @@ import { ReactComponent as VerticalDot } from './dots-three-vertical.svg'
 import { ReactComponent as Image } from './image.svg'
 import { ReactComponent as Notification } from './notifications.svg'
 import { ReactComponent as Product } from './product.svg'
+import { ReactComponent as Bag } from './bag_handle.svg'
 
 export {
   Logo,
@@ -63,5 +64,6 @@ export {
   VerticalDot,
   Image,
   Notification,
-  Product
+  Product,
+  Bag
 }

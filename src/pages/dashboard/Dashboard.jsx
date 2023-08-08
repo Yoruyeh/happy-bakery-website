@@ -1,6 +1,7 @@
 import styles from './dashboard.module.scss'
 import ChartBox from '../../components/chartBox/ChartBox'
 import { Calendar } from '../../assets/icons'
+import AmountCard from '../../components/card/AmountCard'
 
 const Dashboard = () => {
   return (
@@ -18,9 +19,15 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.cards}>
-        <div className={styles.card1}>1</div>
-        <div className={styles.card2}>2</div>
-        <div className={styles.card3}>3</div>
+        <div className={styles.card1}>
+          <AmountCard />
+        </div>
+        <div className={styles.card2}>
+          <AmountCard />
+        </div>
+        <div className={styles.card3}>
+          <AmountCard />
+        </div>
         <div className={styles.card4}>
           <ChartBox />
         </div>
