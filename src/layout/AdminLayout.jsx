@@ -8,15 +8,9 @@ const AdminLayout = () => {
     <div className="admin">
         <AdminNavbar />
       <div className="adminContainer">
-        <div className="adminHeader">
           <Header />
-        </div>
-        <div className="adminMain">
           <Outlet />
-        </div>
-        <div className="adminFooter">
           <AdminFooter />
-        </div>
       </div>
     </div>
   )

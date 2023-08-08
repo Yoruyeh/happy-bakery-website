@@ -18,6 +18,7 @@ import Wishlist from '../pages/member/Wishlist'
 import Tab from '../layout/Tab'
 import Edit from '../pages/edit/Edit'
 import AdminLayout from '../layout/AdminLayout'
+import Dashboard from '../pages/dashboard/Dashboard'
 
 export {
   Layout,
@@ -39,5 +40,6 @@ export {
   Edit,
   Coupon,
   Wishlist,
-  AdminLayout
+  AdminLayout,
+  Dashboard
 }

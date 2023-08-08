@@ -19,7 +19,8 @@ import {
   Edit,
   Coupon,
   Wishlist,
-  AdminLayout
+  AdminLayout,
+  Dashboard
 } from './index'
 
 
@@ -110,13 +111,8 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        index: true,
         path: 'dashboard',
-        element: <AdminLayout />
-      },
-      {
-        path: 'cupcakes',
-        element: <AdminLayout />
+        element: <Dashboard />
       }
     ]
   }

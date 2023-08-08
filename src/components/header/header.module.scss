@@ -1,0 +1,40 @@
+@import "../../styles/variables.scss";
+
+.header {
+  width: 100%;
+  height: auto;
+  background-color: $FA-white;
+  border-bottom: 1px solid rgba(35,35,33,0.25);
+  padding: 1.4rem 3rem;
+  position: sticky;
+
+  .btnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 2rem;
+
+    svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      cursor: pointer;
+    }
+
+    button {
+      background-color: transparent;
+      border: 1px solid $dark-gray;
+      width: 4.9rem;
+      height: 2rem;
+      padding: 0.6rem;
+      color: $dark-gray;
+      cursor: pointer;
+
+      span {
+        svg {
+          width: 0.8rem;
+          height: 0.8rem;
+        }
+      }
+    }
+  }
+}
