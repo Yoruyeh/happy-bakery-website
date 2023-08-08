@@ -70,6 +70,15 @@ ol, ul, li {
   width: 100%;
 }
 
+.admin {
+  background-color: $main-bg;
+  display: flex;
+}
+
+.adminContainer {
+  flex: 4.5;
+}
+
 
 
 

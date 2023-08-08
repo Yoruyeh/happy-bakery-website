@@ -86,3 +86,54 @@ export const userMenu = [
     link: 'member/setting'
   }
 ]
+
+export const adminMenu = [
+  {
+    id: 1,
+    title: 'Birthday Cakes',
+    link: 'birthday_cakes',
+    quantity: 10
+  },
+  {
+    id: 2,
+    title: 'Cupcakes',
+    link: 'cupcakes',
+    quantity: 10
+  },
+  {
+    id: 3,
+    title: 'European Breads',
+    link: 'european_breads',
+    quantity: 10
+  },
+  {
+    id: 4,
+    title: 'Toasts',
+    link: 'toasts',
+    quantity: 10
+  },
+  {
+    id: 5,
+    title: 'Biscuits',
+    link: 'biscuits',
+    quantity: 10
+  },
+  {
+    id: 6,
+    title: 'Croissants',
+    link: 'croissants',
+    quantity: 10
+  },
+  {
+    id: 7,
+    title: 'Donuts',
+    link: 'donuts',
+    quantity: 10
+  },
+  {
+    id: 8,
+    title: 'Scones',
+    link: 'scones',
+    quantity: 10
+  }
+]

@@ -18,7 +18,8 @@ import {
   Tab,
   Edit,
   Coupon,
-  Wishlist
+  Wishlist,
+  AdminLayout
 } from './index'
 
 
@@ -101,6 +102,21 @@ const router = createBrowserRouter([
             element: <OrderDetail />
           }
         ]
+      }
+    ]
+  },
+  {
+    path: '/happy-bakery-website/admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        path: 'dashboard',
+        element: <AdminLayout />
+      },
+      {
+        path: 'cupcakes',
+        element: <AdminLayout />
       }
     ]
   }

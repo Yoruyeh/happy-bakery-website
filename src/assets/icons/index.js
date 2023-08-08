@@ -15,8 +15,21 @@ import { ReactComponent as RedioUnchecked } from './radio-button-unchecked.svg'
 import { ReactComponent as ArrowForward } from './arrow_forward.svg'
 import { ReactComponent as FacebookColored } from './logos_facebook.svg'
 import { ReactComponent as StarRate } from './star-rate.svg'
+import { ReactComponent as Up } from './chevron_up.svg'
 import { ReactComponent as Down } from './chevron_down.svg'
 import { ReactComponent as MenuBar } from './menubar.svg'
+import { ReactComponent as AdminLogo } from './admin-Logo.svg'
+import { ReactComponent as AddCircle } from './Add_circle.svg'
+import { ReactComponent as ArrowUp } from './arrow_up.svg'
+import { ReactComponent as Calendar } from './calendar.svg'
+import { ReactComponent as SuccessCheck } from './Check-Success.svg'
+import { ReactComponent as Dashboard } from './dashboard.svg'
+import { ReactComponent as Document } from './document.svg'
+import { ReactComponent as Dot } from './dots-three.svg'
+import { ReactComponent as VerticalDot } from './dots-three-vertical.svg'
+import { ReactComponent as Image } from './image.svg'
+import { ReactComponent as Notification } from './notifications.svg'
+import { ReactComponent as Product } from './product.svg'
 
 export {
   Logo,
@@ -36,6 +49,19 @@ export {
   ArrowForward,
   FacebookColored,
   StarRate,
+  Up,
   Down,
-  MenuBar
+  MenuBar,
+  AdminLogo,
+  AddCircle,
+  ArrowUp,
+  Calendar,
+  SuccessCheck,
+  Dashboard,
+  Document,
+  Dot,
+  VerticalDot,
+  Image,
+  Notification,
+  Product
 }
