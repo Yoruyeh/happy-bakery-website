@@ -71,6 +71,8 @@ ol, ul, li {
 }
 
 .admin {
+  width: 100vw;
+  height: 100vh;
   background-color: $main-bg;
   display: flex;
 }
@@ -79,6 +81,7 @@ ol, ul, li {
   flex: 4.5;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
 

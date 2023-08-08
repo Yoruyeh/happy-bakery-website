@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+
+.adminFooter {
+  width: 100%;
+  padding: 0 1.2rem;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.7rem;
+
+  .footerWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-top: 1px solid rgba(35,35,33,0.25);
+
+    .text {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+    }
+
+    .links {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      display: flex;
+      gap: 0.8rem;
+    }
+  }
+}
