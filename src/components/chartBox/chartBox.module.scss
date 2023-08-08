@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.chartBox {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  background-color: $FA-white;
+  border-radius: 0.8rem;
+  padding: 1.2rem 1rem;
+
+  .title {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid $dark-gray;
+
+    .btnWrapper {
+      display: flex;
+      gap: 0.8rem;
+
+      button {
+        width: 5rem;
+        height: 1.6rem;
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+        background-color: transparent;
+        border: 1px solid $dark-gray;
+        color: $dark-gray;
+      }
+    }
+  }
+
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
+
+}

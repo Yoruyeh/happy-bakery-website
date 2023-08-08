@@ -137,3 +137,55 @@ export const adminMenu = [
     quantity: 10
   }
 ]
+
+export const monthlyChartData = [
+  {
+    name: 'JAN',
+    amount: 2400,
+  },
+  {
+    name: 'FEB',
+    amount: 1398,
+  },
+  {
+    name: 'MAR',
+    amount: 9800,
+  },
+  {
+    name: 'APR',
+    amount: 3908,
+  },
+  {
+    name: 'MAY',
+    amount: 4800,
+  },
+  {
+    name: 'JUN',
+    amount: 3800,
+    amt: 2500
+  },
+  {
+    name: 'JUL',
+    amount: 4300,
+  },
+  {
+    name: 'AUG',
+    amount: 4300,
+  },
+  {
+    name: 'SEP',
+    amount: 4300,
+  },
+  {
+    name: 'OCT',
+    amount: 4300,
+  },
+  {
+    name: 'NOV',
+    amount: 4300,
+  },
+  {
+    name: 'DEC',
+    amount: 4300,
+  }
+]
