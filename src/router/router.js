@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import {
   Layout,
   Home,
@@ -20,6 +20,7 @@ import {
   Coupon,
   Wishlist,
   AdminLayout,
+  AdminLogin,
   Dashboard
 } from './index'
 
@@ -107,9 +108,17 @@ const router = createBrowserRouter([
     ]
   },
   {
+    path: '/happy-bakery-website/admin/login',
+    element: <AdminLogin />
+  },
+  {
     path: '/happy-bakery-website/admin',
     element: <AdminLayout />,
     children: [
+      {
+        index: true,
+        element: <Navigate to="/happy-bakery-website/admin/dashboard" replace />
+      },
       {
         path: 'dashboard',
         element: <Dashboard />

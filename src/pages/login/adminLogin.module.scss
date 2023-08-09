@@ -1,18 +1,37 @@
 @import "../../styles/variables.scss";
-@import "../../styles/responsive.scss";
 
-.login {
-  width: 100%;
-  height: auto;
+.adminLogin {
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
+  align-items: center;
+  overflow: hidden;
 
   .adminCover {
-    outline: 1px solid red;
     flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
 
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 15rem;
+      height: 15rem;
+
+      path {
+        fill: $white;
+      }
+    }
   }
 
   .loginForm {
@@ -44,16 +63,6 @@
 
     p {
       font-size: 0.8rem;
-    }
-  }
-
-  @include lg {
-    flex-direction: column;
-    align-items: center;
-    
-    .loginForm {
-      width: 90%;
-      padding: 0;
     }
   }
 }
