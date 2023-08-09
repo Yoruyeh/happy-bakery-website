@@ -59,7 +59,7 @@ const AdminNavbar = () => {
             </li>
           </NavLink>
           <NavLink
-            to={'all'}
+            to={'all_products'}
             className={({ isActive }) =>
               isActive
                 ? `${styles.navItem} ${styles.active}`

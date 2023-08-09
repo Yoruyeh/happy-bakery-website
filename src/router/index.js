@@ -20,6 +20,7 @@ import Edit from '../pages/edit/Edit'
 import AdminLayout from '../layout/AdminLayout'
 import AdminLogin from '../pages/login/AdminLogin'
 import Dashboard from '../pages/dashboard/Dashboard'
+import AdminAllProducts from '../pages/products/AdminAllProducts'
 
 export {
   Layout,
@@ -43,5 +44,6 @@ export {
   Wishlist,
   AdminLayout,
   AdminLogin,
-  Dashboard
+  Dashboard,
+  AdminAllProducts
 }

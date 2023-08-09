@@ -21,7 +21,8 @@ import {
   Wishlist,
   AdminLayout,
   AdminLogin,
-  Dashboard
+  Dashboard,
+  AdminAllProducts
 } from './index'
 
 
@@ -122,6 +123,10 @@ const router = createBrowserRouter([
       {
         path: 'dashboard',
         element: <Dashboard />
+      },
+      {
+        path: 'all_products',
+        element: <AdminAllProducts />
       }
     ]
   }
