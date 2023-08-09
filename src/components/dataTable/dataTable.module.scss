@@ -1,0 +1,45 @@
+@import "../../styles/variables.scss";
+
+.dataTable {
+  width: 100%;
+  height: 100%;
+
+  .dataGrid {
+    background-color: $FA-white;
+    padding: 1.2rem 0.8rem;
+  }
+
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(35,35,33,0.25);
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    .delivered, .cancelled, .pending {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: $salmon-pink;
+    }
+
+    .cancelled {
+      background-color: $gray;
+    }
+
+    .pending {
+      background-color: $baby-blue;
+    }
+
+    p {
+      font-size: 0.7rem;
+    }
+  }
+}
+
