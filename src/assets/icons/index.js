@@ -31,6 +31,8 @@ import { ReactComponent as Image } from './image.svg'
 import { ReactComponent as Notification } from './notifications.svg'
 import { ReactComponent as Product } from './product.svg'
 import { ReactComponent as Bag } from './bag_handle.svg'
+import { ReactComponent as Edit } from './Edit.svg'
+import { ReactComponent as Logout } from './Logout.svg'
 
 export {
   Logo,
@@ -65,5 +67,7 @@ export {
   Image,
   Notification,
   Product,
-  Bag
+  Bag,
+  Edit,
+  Logout
 }

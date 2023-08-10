@@ -65,6 +65,14 @@
             stroke: $white;
           }
         }
+
+        &:last-child {
+          svg {
+            path {
+              fill: $white;
+            }
+          }
+        }
       }
     }
   }

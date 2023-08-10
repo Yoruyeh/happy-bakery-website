@@ -1,13 +1,13 @@
 import styles from './dataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
-import { VerticalDot } from '../../assets/icons'
+import { VerticalDot, Edit, Bin } from '../../assets/icons'
 
 
 const columns = [
   {
     field: 'id',
     headerName: 'Order ID',
-    width: 150
+    width: 100
   },
   {
     field: 'date',
@@ -20,13 +20,13 @@ const columns = [
   {
     field: 'payment',
     headerName: 'Payment Method',
-    width: 200,
+    width: 180,
     editable: true
   },
   {
     field: 'name',
     headerName: 'Customer Name',
-    width: 200,
+    width: 150,
     editable: true
   },
   {
@@ -50,14 +50,13 @@ const columns = [
             <p>Cancelled</p>
           </div>
         )
-      } else {
-        return (
-          <div className={styles.status}>
-            <div className={styles.pending}></div>
-            <p>Pending</p>
-          </div>
-        )
       }
+      return (
+        <div className={styles.status}>
+          <div className={styles.pending}></div>
+          <p>Pending</p>
+        </div>
+      )
     }
   },
   {
@@ -67,7 +66,26 @@ const columns = [
     editable: false,
     width: 150,
     renderCell: (params) => {
-      return <p>${params.row.amount}</p>
+      return <div>${params.row.amount}</div>
+    }
+  },
+  {
+    field: 'actions',
+    headerName: 'Actions',
+    sortable: false,
+    editable: false,
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={styles.action}>
+          <div className={styles.edit}>
+            <Edit />
+          </div>
+          <div className={styles.delete}>
+            <Bin />
+          </div>
+        </div>
+      )
     }
   }
 ]
