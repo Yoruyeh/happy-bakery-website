@@ -1,4 +1,4 @@
-import styles from './product.module.scss'
+import styles from './products.module.scss'
 import BannerImg from '../../assets/images/cupcakes.jpeg'
 import Button from '../../components/button/Button'
 import ProductCard from '../../components/card/ProductCard'

@@ -22,7 +22,8 @@ import {
   AdminLayout,
   AdminLogin,
   Dashboard,
-  AdminAllProducts
+  AdminAllProducts,
+  AdminOrders
 } from './index'
 
 
@@ -127,6 +128,10 @@ const router = createBrowserRouter([
       {
         path: 'all_products',
         element: <AdminAllProducts />
+      },
+      {
+        path: 'orders',
+        element: <AdminOrders />
       }
     ]
   }

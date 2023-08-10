@@ -1,0 +1,30 @@
+@import "../../styles/variables.scss";
+
+.adminOrders {
+  .title {
+    margin-bottom: 1.2rem;
+
+    .text {
+      display: flex;
+      justify-content: space-between;
+      
+      p {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 0.8rem;
+        display: flex;
+        align-items: center;
+
+        span {
+          display: flex;
+          align-items: center;
+          margin-right: 8px;
+
+          svg {
+            width: 1.2rem;
+            height: 1.2rem;
+          }
+        }
+      }
+    }
+  }
+}
