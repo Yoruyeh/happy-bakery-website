@@ -1,6 +1,6 @@
 import styles from './dataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
-import { VerticalDot, Edit, Bin } from '../../assets/icons'
+import { VerticalDot, Edit, Bin, See } from '../../assets/icons'
 
 
 const columns = [
@@ -64,7 +64,7 @@ const columns = [
     headerName: 'Amount',
     sortable: false,
     editable: false,
-    width: 150,
+    width: 125,
     renderCell: (params) => {
       return <div>${params.row.amount}</div>
     }
@@ -74,7 +74,7 @@ const columns = [
     headerName: 'Actions',
     sortable: false,
     editable: false,
-    width: 100,
+    width: 125,
     renderCell: (params) => {
       return (
         <div className={styles.action}>
@@ -83,6 +83,9 @@ const columns = [
           </div>
           <div className={styles.delete}>
             <Bin />
+          </div>
+          <div className={styles.see}>
+            <See />
           </div>
         </div>
       )

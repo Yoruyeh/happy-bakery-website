@@ -33,6 +33,7 @@ import { ReactComponent as Product } from './product.svg'
 import { ReactComponent as Bag } from './bag_handle.svg'
 import { ReactComponent as Edit } from './Edit.svg'
 import { ReactComponent as Logout } from './Logout.svg'
+import { ReactComponent as See } from './see.svg'
 
 export {
   Logo,
@@ -69,5 +70,6 @@ export {
   Product,
   Bag,
   Edit,
-  Logout
+  Logout,
+  See
 }
