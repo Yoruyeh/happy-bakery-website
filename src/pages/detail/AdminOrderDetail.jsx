@@ -1,6 +1,7 @@
 import styles from './adminOrderDetail.module.scss'
 import { Calendar, Down, OutlineUser, Bag } from '../../assets/icons'
 import Button from '../../components/button/Button'
+import ProductDataTable from '../../components/dataTable/ProductDataTable'
 
 const AdminOrderCard = ({ icon }) => {
   return (
@@ -31,7 +32,7 @@ const AdminOrderDetail = () => {
 
       <div className={styles.info}>
         <div className={styles.header}>
-          <div className={styles.title}>
+          <div className={styles.text}>
             <h6>Orders ID: #6743</h6>
             <div className={styles.status}>Pending</div>
           </div>
@@ -63,7 +64,9 @@ const AdminOrderDetail = () => {
         </div>
       </div>
 
-      <div className={styles.table}></div>
+      <div className={styles.table}>
+        <ProductDataTable />
+      </div>
     </div>
   )
 }
