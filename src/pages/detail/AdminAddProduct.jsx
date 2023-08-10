@@ -18,14 +18,13 @@ const UploadedCard = () => {
   )
 }
 
-
-const AdminProductDetail = () => {
+const AdminAddProduct = () => {
   return (
     <div className={styles.adminProductDetail}>
       <div className={styles.title}>
         <h5>Product Details</h5>
         <div className={styles.text}>
-          <p>Home ＞ All Products ＞ Product Details</p>
+          <p>Home ＞ All Products ＞ Add New Product</p>
         </div>
       </div>
       <div className={styles.body}>
@@ -33,11 +32,11 @@ const AdminProductDetail = () => {
           <form>
             <div className={styles.name}>
               <label>Product Name</label>
-              <TextInput type={'text'} />
+              <TextInput type={'text'} placeholder={'Type Name Here'} />
             </div>
             <div className={styles.description}>
               <label>Description</label>
-              <textarea></textarea>
+              <textarea placeholder="Type Description here"></textarea>
             </div>
             <div className={styles.category}>
               <label for="category">Category</label>
@@ -56,19 +55,19 @@ const AdminProductDetail = () => {
             </div>
             <div className={styles.sku}>
               <label>SKU</label>
-              <TextInput type={'text'} />
+              <TextInput type={'text'} placeholder={'Fox-3983'} />
             </div>
             <div className={styles.stock}>
               <label>Stock Quantity</label>
-              <TextInput type={'number'} />
+              <TextInput type={'number'} placeholder={1234} />
             </div>
             <div className={styles.price}>
               <label>Regular Price</label>
-              <TextInput type={'text'} />
+              <TextInput type={'text'} placeholder={'$1000'} />
             </div>
             <div className={styles.sale}>
               <label>Sale Price</label>
-              <TextInput type={'text'} />
+              <TextInput type={'text'} placeholder={'$450'} />
             </div>
           </form>
           <div className={styles.gallery}>
@@ -92,9 +91,6 @@ const AdminProductDetail = () => {
               </div>
             </div>
             <div className={styles.btnWrapper}>
-              <div className={styles.update}>
-                <Button text={'UPDATE'} />
-              </div>
               <div className={styles.delete}>
                 <Button text={'DELETE'} />
               </div>
@@ -109,4 +105,4 @@ const AdminProductDetail = () => {
   )
 }
 
-export default AdminProductDetail
+export default AdminAddProduct

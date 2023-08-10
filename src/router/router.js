@@ -25,7 +25,8 @@ import {
   AdminAllProducts,
   AdminOrders,
   AdminOrderDetail,
-  AdminProductDetail
+  AdminProductDetail,
+  AdminAddProduct
 } from './index'
 
 
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: 'all_products',
         element: <AdminAllProducts />
+      },
+      {
+        path: 'all_products/new',
+        element: <AdminAddProduct />
       },
       {
         path: 'all_products/:id',

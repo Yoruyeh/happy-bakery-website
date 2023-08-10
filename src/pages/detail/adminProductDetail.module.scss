@@ -53,6 +53,10 @@
             border-color: $dark-gray;
             border-radius: 0.4rem;
             padding: 0.8rem;
+
+            &::placeholder {
+              font-size: 0.8rem;
+            }
           }
         }
 
@@ -62,6 +66,7 @@
             border-radius: 0.4rem;
             border-color: $dark-gray;
             padding: 0 0.8rem;
+            font-size: 0.8rem;
           }
         }
       }
@@ -166,29 +171,43 @@
             }
           }
         }
-      }
-    }
 
-    .btnWrapper {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.8rem;
+        .btnWrapper {
+          width: 100%;
+          display: flex;
+          gap: 0.8rem;
 
-      button {
-        &:nth-child(1) {
-          background-color: $dark-gray;
-        }
-        &:nth-child(2) {
-          background-color: red;
-        }
-        &:nth-child(3) {
-          background-color: transparent;
-          color: $dark-gray;
-          border: 1px solid $dark-gray;
-        }
+          .update {
+            flex: 1;
 
-        &:hover {
-          cursor: pointer;
+            button {
+              width: 100%;
+              background-color: $dark-gray;
+              cursor: pointer;
+            }
+          }
+
+          .delete {
+            flex: 1;
+
+            button {
+              width: 100%;
+              background-color: red;
+              cursor: pointer;
+            }
+          }
+
+          .cancel {
+            flex: 1;
+
+            button {
+              width: 100%;
+              background-color: transparent;
+              color: $dark-gray;
+              border: 1px solid $dark-gray;
+              cursor: pointer;
+            }
+          }
         }
       }
     }

@@ -24,6 +24,7 @@ import AdminAllProducts from '../pages/products/AdminAllProducts'
 import AdminOrders from '../pages/adminOrders/AdminOrders'
 import AdminOrderDetail from '../pages/detail/AdminOrderDetail'
 import AdminProductDetail from '../pages/detail/AdminProductDetail'
+import AdminAddProduct from '../pages/detail/AdminAddProduct'
 
 export {
   Layout,
@@ -51,5 +52,6 @@ export {
   AdminAllProducts,
   AdminOrders,
   AdminOrderDetail,
-  AdminProductDetail
+  AdminProductDetail,
+  AdminAddProduct
 }
