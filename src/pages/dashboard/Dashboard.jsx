@@ -1,8 +1,8 @@
 import styles from './dashboard.module.scss'
 import ChartBox from '../../components/chartBox/ChartBox'
 import { Calendar } from '../../assets/icons'
-import AmountCard from '../../components/card/AmountCard'
-import BestSellers from '../../components/card/BestSellers'
+import AmountCard from '../../components/adminCard/AmountCard'
+import BestSellers from '../../components/adminCard/BestSellers'
 import DataTable from '../../components/dataTable/DataTable'
 
 const Dashboard = () => {

@@ -1,6 +1,7 @@
 import styles from './adminAllProducts.module.scss'
 import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
+import AdminProductCard from '../../components/adminCard/AdminProductCard'
 
 const AdminAllProducts = () => {
   return (
@@ -12,7 +13,17 @@ const AdminAllProducts = () => {
         </div>
         <Button text={'ADD NEW PRODUCT'} price={<AddCircle />} />
       </div>
-      <div className={styles.cards}></div>
+      <div className={styles.cards}>
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+        <AdminProductCard />
+      </div>
     </div>
   )
 }
