@@ -1,6 +1,7 @@
 import { ReactComponent as Logo} from "./icon.svg"
 import { ReactComponent as CaretDown } from './caret_down.svg'
 import { ReactComponent as User } from './User.svg'
+import { ReactComponent as OutlineUser} from './User-outline.svg'
 import { ReactComponent as Search } from './Search.svg'
 import { ReactComponent as Bin } from './Bin.svg'
 import { ReactComponent as Heart } from './heart.svg'
@@ -39,6 +40,7 @@ export {
   Logo,
   CaretDown,
   User,
+  OutlineUser,
   Search,
   Bin,
   Heart,

@@ -22,6 +22,7 @@ import AdminLogin from '../pages/login/AdminLogin'
 import Dashboard from '../pages/dashboard/Dashboard'
 import AdminAllProducts from '../pages/products/AdminAllProducts'
 import AdminOrders from '../pages/adminOrders/AdminOrders'
+import AdminOrderDetail from '../pages/detail/AdminOrderDetail'
 
 export {
   Layout,
@@ -47,5 +48,6 @@ export {
   AdminLogin,
   Dashboard,
   AdminAllProducts,
-  AdminOrders
+  AdminOrders,
+  AdminOrderDetail
 }
