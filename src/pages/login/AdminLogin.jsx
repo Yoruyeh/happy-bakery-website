@@ -36,14 +36,14 @@ const AdminLogin = () => {
           <TextInput
             type={'email'}
             placeholder={'Email'}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(emailInputValue) => setEmail(emailInputValue)}
           />
         </div>
         <div className={styles.inputWrapper}>
           <TextInput
             type={'password'}
             placeholder={'Password'}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(passwordInputValue) => setPassword(passwordInputValue)}
           />
         </div>
         <div className={styles.inputWrapper}>

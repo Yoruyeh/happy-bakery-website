@@ -8,12 +8,12 @@ const TextInput = ({ type, placeholder, defaultValue, required, onChange }) => {
       placeholder={placeholder}
       defaultValue={defaultValue}
       required={required}
-      onChange={onChange}
+      onChange={(e) => onChange?.(e.target.value)}
     />
   )
 }
 
-const CheckboxInput = ({ type, label, name, value }) => {
+const CheckboxInput = ({ type, label, name, value, onChange, disabled }) => {
   return (
     <>
       <input
@@ -21,6 +21,8 @@ const CheckboxInput = ({ type, label, name, value }) => {
         type={type}
         name={name}
         value={value}
+        onChange={(e) => onChange?.(e.target.checked)}
+        disabled={disabled}
       />
       <label className={styles.checkboxLabel} htmlFor={name}>
         {label}

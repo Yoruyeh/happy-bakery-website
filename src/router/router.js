@@ -29,7 +29,6 @@ import {
   AdminAddProduct
 } from './index'
 
-
 const router = createBrowserRouter([
   {
     path: '/happy-bakery-website',
