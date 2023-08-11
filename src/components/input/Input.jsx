@@ -22,7 +22,7 @@ const CheckboxInput = ({ type, label, name, value }) => {
         name={name}
         value={value}
       />
-      <label className={styles.checkboxLabel} for={name}>
+      <label className={styles.checkboxLabel} htmlFor={name}>
         {label}
       </label>
     </>

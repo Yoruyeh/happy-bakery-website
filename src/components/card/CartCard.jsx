@@ -14,7 +14,7 @@ const CartCard = () => {
             <h5>CROISSANT</h5>
             <p>Cream Cheese</p>
             <div className={styles.option}>
-              <label for="quantity">Quantity</label>
+              <label htmlFor="quantity">Quantity</label>
               <select id="quantity" name="quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>

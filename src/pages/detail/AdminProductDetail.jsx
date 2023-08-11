@@ -40,7 +40,7 @@ const AdminProductDetail = () => {
               <textarea></textarea>
             </div>
             <div className={styles.category}>
-              <label for="category">Category</label>
+              <label htmlFor="category">Category</label>
               <select id="category" name="category">
                 <option value="" disabled selected>
                   Choose Category Here
