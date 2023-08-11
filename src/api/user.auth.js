@@ -12,7 +12,6 @@ export const UserSignIn = async ({ email, password }) => {
     const { token } = data
 
     if(token) {
-      localStorage.setItem('token', token)
       return { success: true, ...data }
     }
 
@@ -44,7 +43,6 @@ export const UserSignUp = async ({
     const { token } = data
 
     if (token) {
-      localStorage.setItem('token', token)
       return { success: true, ...data }
     }
 
