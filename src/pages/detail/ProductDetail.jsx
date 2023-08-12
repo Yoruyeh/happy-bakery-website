@@ -60,7 +60,7 @@ const ProductDetail = () => {
               </div>
             </div> */}
             <div className={styles.wrapper}>
-              <label for="quantity">Quantity</label>
+              <label htmlFor="quantity">Quantity</label>
               <select id="quantity" name="quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>

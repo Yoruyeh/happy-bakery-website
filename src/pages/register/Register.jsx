@@ -5,6 +5,7 @@ import Button from '../../components/button/Button'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
   const [firstName, setFirstName] = useState('')
@@ -14,6 +15,7 @@ const Register = () => {
   const [password, setPassword] = useState('')
   const [termsAgreement, setTermsAgreement] = useState(false)
   const { signUp } = useAuth()
+  const navigate = useNavigate()
 
   const handleClick = async () => {
     if (firstName.length === 0) {
@@ -50,7 +52,9 @@ const Register = () => {
       termsAgreement
     })
 
-    console.log(success)
+    if (success) {
+      navigate('/happy-bakery-website')
+    }
   }
 
   return (

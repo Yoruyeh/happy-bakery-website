@@ -31,7 +31,7 @@ export const UserSignUp = async ({
   termsAgreement
 }) => {
   try {
-    const { data } = axios.post(`${baseUrl}`, {
+    const { data } = await axios.post(baseUrl, {
       firstName,
       lastName,
       gender,
@@ -55,7 +55,7 @@ export const UserSignUp = async ({
 
 export const CheckPermission = async (token) => {
   try {
-    const { data } = axios.get(baseUrl, {
+    const { data } = await axios.get(baseUrl, {
       headers: {
         Authorization: 'Bearer ' + token
       }
