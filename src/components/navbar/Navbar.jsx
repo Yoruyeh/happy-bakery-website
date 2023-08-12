@@ -2,15 +2,21 @@ import styles from './navbar.module.scss'
 import { CaretDown, Logo, Search, User, MenuBar } from '../../assets/icons'
 import { Link } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
-import { menu, productMenu, userMenu } from '../../data'
+import { menu, productMenu, userMenu, memberMenu } from '../../data'
 import SearchInput from '../searchInput/SearchInput'
+import { useAuth } from '../../context/AuthContext'
+import Swal from 'sweetalert2'
 
-const DropDownMenu = ({ data }) => {
+const DropDownMenu = ({ data, onClickLogout }) => {
   return (
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
         {data.map((item) => (
-          <Link to={item.link} key={item.id}>
+          <Link to={item.link} key={item.id} onClick={() => {
+            if (item.title === 'Logout') {
+              onClickLogout()
+            }
+          }}>
             <li className={styles.dropdownMenuItem}>{item.title}</li>
           </Link>
         ))}
@@ -28,6 +34,7 @@ const Navbar = () => {
   const userDropdownRef = useRef(null)
   const menuRef = useRef(null)
   const searchInputRef = useRef(null)
+  const { isAuthenticated, logout } = useAuth()
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -43,6 +50,17 @@ const Navbar = () => {
 
   const handleOpenSearchInput = () => {
     setOpenSearchInput(!openSearchInput)
+  }
+
+  const handleLogoutClick = () => {
+    logout()
+    Swal.fire({
+      position: 'top',
+      icon: 'success',
+      title: 'Successfully Logged Out',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   useEffect(() => {
@@ -119,7 +137,15 @@ const Navbar = () => {
             onClick={handleOpenUserDropdown}
           >
             <User />
-            {openUserDropdown && <DropDownMenu data={userMenu} />}
+            {openUserDropdown && isAuthenticated && (
+              <DropDownMenu
+                data={memberMenu}
+                onClickLogout={handleLogoutClick}
+              />
+            )}
+            {openUserDropdown && !isAuthenticated && (
+              <DropDownMenu data={userMenu} />
+            )}
           </li>
           <Link to="cart">
             <li className={`${styles.navItem} ${styles.cartCount}`}>2</li>

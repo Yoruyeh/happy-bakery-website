@@ -79,11 +79,19 @@ export const userMenu = [
     id: 2,
     title: 'Register',
     link: 'register'
-  },
+  }
+]
+
+export const memberMenu = [
   {
-    id: 3,
+    id: 1,
     title: 'Member Center',
     link: 'member/setting'
+  },
+  {
+    id: 2,
+    title: 'Logout',
+    link: '/happy-bakery-website'
   }
 ]
 
