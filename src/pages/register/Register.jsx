@@ -6,6 +6,7 @@ import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Register = () => {
   const [firstName, setFirstName] = useState('')
@@ -17,31 +18,24 @@ const Register = () => {
   const { signUp } = useAuth()
   const navigate = useNavigate()
 
-  const handleClick = async () => {
-    if (firstName.length === 0) {
+  const handleRegisterClick = async () => {
+    if (
+      firstName.trim().length === 0 ||
+      lastName.trim().length === 0 ||
+      !gender ||
+      email.trim().length === 0 ||
+      password.trim().length === 0 ||
+      !termsAgreement
+    ) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return
     }
-
-    if (lastName.length === 0) {
-      return
-    }
-
-    if (!gender) {
-      return
-    }
-
-    if (email.length === 0) {
-      return
-    }
-
-    if (password.length === 0) {
-      return
-    }
-
-    if (!termsAgreement) {
-      return
-    }
-    
 
     const success = await signUp({
       firstName,
@@ -53,8 +47,26 @@ const Register = () => {
     })
 
     if (success) {
-      navigate('/happy-bakery-website')
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Successfully Signed Up',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
+        navigate('/happy-bakery-website')
+      }, 1700)
+      return
     }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Register Failed',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
@@ -182,7 +194,7 @@ const Register = () => {
           price={<ArrowForward />}
           onClick={(e) => {
             e.preventDefault()
-            handleClick()
+            handleRegisterClick()
           }}
         />
       </form>

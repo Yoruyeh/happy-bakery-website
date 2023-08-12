@@ -15,11 +15,14 @@ const Login = () => {
   const navigate = useNavigate()
 
   const handleLoginClick = async () => {
-    if (email.trim().length === 0) {
-      return
-    }
-
-    if (password.trim().length === 0) {
+    if (email.trim().length === 0 || password.trim().length === 0) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
       return
     }
 
