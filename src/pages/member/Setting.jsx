@@ -2,8 +2,11 @@ import { Link } from 'react-router-dom'
 import Button from '../../components/button/Button'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
 import styles from './setting.module.scss'
+import { useAuth } from '../../context/AuthContext'
 
 const Setting = () => {
+  const { currentUser } = useAuth()
+
   return (
     <div className={styles.setting}>
       <h3>Edit Member Info</h3>
@@ -13,7 +16,7 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'First Name'}
-            defaultValue={'Yoru'}
+            defaultValue={currentUser.firstName}
             required={true}
           />
         </div>
@@ -22,7 +25,7 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'Last Name'}
-            defaultValue={'Yeh'}
+            defaultValue={currentUser.lastName}
             required={true}
           />
         </div>
@@ -31,7 +34,7 @@ const Setting = () => {
           <TextInput
             type={'date'}
             placeholder={'Birthday'}
-            defaultValue={'2000-08-01'}
+            defaultValue={currentUser.birthday}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -39,7 +42,7 @@ const Setting = () => {
           <TextInput
             type={'email'}
             placeholder={'Email'}
-            defaultValue={'happybakery@gmail.com'}
+            defaultValue={currentUser.email}
             required={true}
           />
         </div>
@@ -48,9 +51,7 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'Address'}
-            defaultValue={
-              '1F., No. 10, Ln. 67, Smile 1st St., Happy Dist., Taipei City, Taiwan'
-            }
+            defaultValue={currentUser.address}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -58,7 +59,7 @@ const Setting = () => {
           <TextInput
             type={'tel'}
             placeholder={'Phone Number'}
-            defaultValue={'02-12345678'}
+            defaultValue={currentUser.phone}
             required={true}
           />
         </div>
