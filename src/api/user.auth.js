@@ -19,6 +19,7 @@ export const UserSignIn = async ({ email, password }) => {
 
   } catch (error) {
     console.error('[User Login Failed]: ', error)
+    return { success: false, error: error.message }
   }
 }
 
@@ -50,6 +51,7 @@ export const UserSignUp = async ({
 
   } catch (error) {
     console.error('[User Register Failed]: ', error)
+    return { success: false, error: error.message }
   }
 }
 
@@ -65,6 +67,7 @@ export const CheckPermission = async (token) => {
 
   } catch (error) {
     console.error('[Unauthorized]: ', error)
+    return { success: false, error: error.message }
   }
 }
 

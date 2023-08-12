@@ -6,6 +6,7 @@ import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const Login = () => {
   const [email, setEmail] = useState('')
@@ -13,15 +14,41 @@ const Login = () => {
   const { signIn } = useAuth()
   const navigate = useNavigate()
 
-  const handleClick = async () => {
+  const handleLoginClick = async () => {
+    if (email.trim().length === 0) {
+      return
+    }
+
+    if (password.trim().length === 0) {
+      return
+    }
+
     const success = await signIn({
       email,
       password
     })
 
     if (success) {
-      navigate('/happy-bakery-website')
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Successfully Logged In',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
+        navigate('/happy-bakery-website')
+      }, 1700)
+      return
     }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Wrong Email or Password',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
@@ -40,7 +67,9 @@ const Login = () => {
           <TextInput
             type={'password'}
             placeholder={'Password'}
-            onChange={(passwordInputValue) => setPassword(passwordInputValue)}
+            onChange={(passwordInputValue) => 
+              setPassword(passwordInputValue)
+            }
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -54,7 +83,7 @@ const Login = () => {
           price={<ArrowForward />}
           onClick={(e) => {
             e.preventDefault()
-            handleClick()
+            handleLoginClick()
           }}
         />
         <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />

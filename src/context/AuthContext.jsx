@@ -32,11 +32,11 @@ export const AuthProvider = ({ children }) => {
       }
 
       // 如果token存在，丟進api測試
-      const result = await CheckPermission(token)
+      const {success, user} = await CheckPermission(token)
       // 有結果回傳就是通過驗證，沒有就是不通過
-      if (result) {
+      if (success) {
         setIsAuthenticated(true)
-        setCurrentUser(result.user)
+        setCurrentUser(user)
       } else {
         setIsAuthenticated(false)
         setCurrentUser(null)
