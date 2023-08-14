@@ -1,6 +1,6 @@
 import styles from './home.module.scss'
 import bannerImg from "../../assets/images/dough.jpeg"
-import ProductCard from '../../components/card/ProductCard'
+// import ProductCard from '../../components/card/ProductCard'
 import Button from "../../components/button/Button"
 import ReviewCard from '../../components/card/ReviewCard'
 
@@ -33,10 +33,10 @@ const Home = () => {
           <Button text={'SHOP NEW DROPS'} />
         </div>
         <div className={styles.product}>
+          {/* <ProductCard />
           <ProductCard />
           <ProductCard />
-          <ProductCard />
-          <ProductCard />
+          <ProductCard /> */}
         </div>
       </div>
       <div className={styles.row}>

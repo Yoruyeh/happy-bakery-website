@@ -4,9 +4,23 @@ import Button from '../../components/button/Button'
 import ProductCard from '../../components/card/ProductCard'
 import { Down } from '../../assets/icons'
 import Pagination from '../../components/pagination/Pagination'
+import { GetProducts } from '../../api/products'
+import { useEffect, useState } from 'react'
 
 
 const Products = () => {
+  const [allProducts, setAllProducts] = useState([])
+
+  useEffect(() => {
+    const getProductsAsync = async () => {
+      const { products } = await GetProducts({
+        id: ''
+      })
+      setAllProducts(products)
+    }
+    getProductsAsync()
+  }, [])
+
   return (
     <div className={styles.products}>
       <div className={styles.banner}>
@@ -41,15 +55,9 @@ const Products = () => {
             </div>
           </div>
           <div className={styles.cardWrapper}>
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {allProducts.map((product) => (
+              <ProductCard product={product} key={product.id} />
+            ))}
           </div>
           <Pagination />
         </div>
