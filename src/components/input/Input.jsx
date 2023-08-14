@@ -1,11 +1,12 @@
 import styles from './input.module.scss'
 
-const TextInput = ({ type, placeholder, defaultValue, required, onChange }) => {
+const TextInput = ({ type, placeholder, value, defaultValue, required, onChange }) => {
   return (
     <input
       className={styles.textInput}
       type={type}
       placeholder={placeholder}
+      value={value}
       defaultValue={defaultValue}
       required={required}
       onChange={(e) => onChange?.(e.target.value)}

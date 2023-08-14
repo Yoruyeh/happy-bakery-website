@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { axiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/users'
 
@@ -68,6 +69,21 @@ export const CheckPermission = async (token) => {
   } catch (error) {
     console.error('[Unauthorized]: ', error)
     return { success: false, error: error.message }
+  }
+}
+
+export const EditPassword = async ({ currentPW, newPW, confirmPW }) => {
+  try {
+    const { data } = await axiosInstance.put(`${baseUrl}/password`, {
+      currentPW,
+      newPW,
+      confirmPW
+    })
+
+    return data
+
+  } catch (error) {
+    console.error('[Edit Password Failed]: ', error)
   }
 }
 
