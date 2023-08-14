@@ -113,6 +113,12 @@
     }
   }
 
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   @include xl {
     .banner {
       h1 {

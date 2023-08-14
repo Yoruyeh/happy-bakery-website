@@ -7,10 +7,15 @@ import Pagination from '../../components/pagination/Pagination'
 import { productMenu } from '../../data'
 import { Link } from 'react-router-dom'
 import { useProducts } from '../../context/ProductsContext'
+import { useEffect } from 'react'
 
 
 const Products = () => {
   const { products, handleNavItemClick } = useProducts()
+
+  useEffect(() => {
+      window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className={styles.products}>

@@ -1,10 +1,15 @@
 import styles from './home.module.scss'
 import bannerImg from "../../assets/images/dough.jpeg"
-// import ProductCard from '../../components/card/ProductCard'
+import ProductCard from '../../components/card/ProductCard'
 import Button from "../../components/button/Button"
 import ReviewCard from '../../components/card/ReviewCard'
+import { useProducts } from '../../context/ProductsContext'
+import { Link } from 'react-router-dom'
 
 const Home = () => {
+  const { products } = useProducts()
+  const fourNewProducts = products.slice(0, 4)
+
   return (
     <div className={styles.home}>
       <div className={styles.banner}>
@@ -20,7 +25,9 @@ const Home = () => {
             <h2>
               No Chemical Added, <br /> Naturally Delicious!
             </h2>
-            <Button text={'SHOP NOW'} />
+            <Link to="/happy-bakery-website/products/all">
+              <Button text={'SHOP NOW'} />
+            </Link>
           </div>
         </div>
       </div>
@@ -30,13 +37,16 @@ const Home = () => {
             DON'T MISS OUT <br />
             NEW DROPS
           </h2>
-          <Button text={'SHOP NEW DROPS'} />
+          <Link
+            to="/happy-bakery-website/products/new"
+          >
+            <Button text={'SHOP NEW DROPS'} />
+          </Link>
         </div>
         <div className={styles.product}>
-          {/* <ProductCard />
-          <ProductCard />
-          <ProductCard />
-          <ProductCard /> */}
+          {fourNewProducts.map((product) => (
+            <ProductCard product={product} key={product.id} />
+          ))}
         </div>
       </div>
       <div className={styles.row}>
