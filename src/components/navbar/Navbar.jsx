@@ -6,8 +6,9 @@ import { menu, productMenu, userMenu, memberMenu } from '../../data'
 import SearchInput from '../searchInput/SearchInput'
 import { useAuth } from '../../context/AuthContext'
 import Swal from 'sweetalert2'
+import { useProducts } from '../../context/ProductsContext'
 
-const DropDownMenu = ({ data, onClickLogout }) => {
+const DropDownMenu = ({ data, onClickLogout, onClick }) => {
   return (
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
@@ -15,7 +16,9 @@ const DropDownMenu = ({ data, onClickLogout }) => {
           <Link to={item.link} key={item.id} onClick={() => {
             if (item.title === 'Logout') {
               onClickLogout()
+              return
             }
+            onClick?.(item.id)
           }}>
             <li className={styles.dropdownMenuItem}>{item.title}</li>
           </Link>
@@ -35,6 +38,7 @@ const Navbar = () => {
   const menuRef = useRef(null)
   const searchInputRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
+  const { handleNavItemClick } = useProducts()
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -106,7 +110,9 @@ const Navbar = () => {
           >
             Shop
             <CaretDown />
-            {openProductDropdown && <DropDownMenu data={productMenu} />}
+            {openProductDropdown && (
+              <DropDownMenu data={productMenu} onClick={(id) => handleNavItemClick(id)} />
+            )}
           </li>
           <Link to="contact">
             <li className={styles.navItem}>Contact Us</li>

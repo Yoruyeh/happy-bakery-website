@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { UserSignIn, UserSignUp, CheckPermission } from "../api/user.auth";
-import { useLocation } from "react-router-dom";
+import { createContext, useContext, useState, useEffect } from "react"
+import { UserSignIn, UserSignUp, CheckPermission } from "../api/user.auth"
+import { useLocation } from "react-router-dom"
 
 const defaultAuthContext = {
   isAuthenticated: false,

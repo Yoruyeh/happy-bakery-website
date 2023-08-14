@@ -19,54 +19,54 @@ export const menu = [
 export const productMenu = [
   {
     id: 1,
-    title: 'All',
-    link: 'products'
+    title: 'All Products',
+    link: '/happy-bakery-website/products/all'
   },
   {
     id: 2,
-    title: 'New',
-    link: 'new'
+    title: 'New Products',
+    link: '/happy-bakery-website/products/new'
   },
   {
     id: 3,
     title: 'Birthday Cakes',
-    link: 'birthday_cakes'
+    link: '/happy-bakery-website/products/birthday_cakes'
   },
   {
     id: 4,
     title: 'Cupcakes',
-    link: 'cupcakes'
+    link: '/happy-bakery-website/products/cupcakes'
   },
   {
     id: 5,
     title: 'European Breads',
-    link: 'european_breads'
-  },
-  {
-    id: 6,
-    title: 'Toasts',
-    link: 'toasts'
-  },
-  {
-    id: 7,
-    title: 'Biscuits',
-    link: 'biscuits'
-  },
-  {
-    id: 8,
-    title: 'Croissants',
-    link: 'croissants'
-  },
-  {
-    id: 9,
-    title: 'Donuts',
-    link: 'donuts'
-  },
-  {
-    id: 10,
-    title: 'Scones',
-    link: 'scones'
+    link: '/happy-bakery-website/products/european_breads'
   }
+  // {
+  //   id: 6,
+  //   title: 'Toasts',
+  //   link: '/happy-bakery-website/products/toasts'
+  // },
+  // {
+  //   id: 7,
+  //   title: 'Biscuits',
+  //   link: '/happy-bakery-website/products/biscuits'
+  // },
+  // {
+  //   id: 8,
+  //   title: 'Croissants',
+  //   link: '/happy-bakery-website/products/croissants'
+  // },
+  // {
+  //   id: 9,
+  //   title: 'Donuts',
+  //   link: '/happy-bakery-website/products/donuts'
+  // },
+  // {
+  //   id: 10,
+  //   title: 'Scones',
+  //   link: '/happy-bakery-website/products/scones'
+  // }
 ]
 
 export const userMenu = [

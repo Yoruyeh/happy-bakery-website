@@ -56,7 +56,18 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <Products />
+        children: [
+          {
+            index: true,
+            element: (
+              <Navigate to="/happy-bakery-website/products/all" replace />
+            )
+          },
+          {
+            path: ':category',
+            element: <Products />
+          }
+        ]
       },
       {
         path: 'products/:id',

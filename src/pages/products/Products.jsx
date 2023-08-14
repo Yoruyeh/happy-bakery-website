@@ -4,22 +4,13 @@ import Button from '../../components/button/Button'
 import ProductCard from '../../components/card/ProductCard'
 import { Down } from '../../assets/icons'
 import Pagination from '../../components/pagination/Pagination'
-import { GetProducts } from '../../api/products'
-import { useEffect, useState } from 'react'
+import { productMenu } from '../../data'
+import { Link } from 'react-router-dom'
+import { useProducts } from '../../context/ProductsContext'
 
 
 const Products = () => {
-  const [allProducts, setAllProducts] = useState([])
-
-  useEffect(() => {
-    const getProductsAsync = async () => {
-      const { products } = await GetProducts({
-        id: ''
-      })
-      setAllProducts(products)
-    }
-    getProductsAsync()
-  }, [])
+  const { products, handleNavItemClick } = useProducts()
 
   return (
     <div className={styles.products}>
@@ -38,9 +29,16 @@ const Products = () => {
         <div className={styles.navbar}>
           <h3>Categories</h3>
           <ul className={styles.navList}>
-            <li className={styles.navItem}>Birthday Cakes</li>
-            <li className={styles.navItem}>Birthday Cakes</li>
-            <li className={styles.navItem}>Birthday Cakes</li>
+            {productMenu.map((item) => (
+              <Link
+                to={item.link}
+                key={item.id}
+                data-id={item.id}
+                onClick={(e) => handleNavItemClick(e.currentTarget.dataset.id)}
+              >
+                <li className={styles.navItem}>{item.title}</li>
+              </Link>
+            ))}
           </ul>
         </div>
         <div className={styles.content}>
@@ -55,7 +53,7 @@ const Products = () => {
             </div>
           </div>
           <div className={styles.cardWrapper}>
-            {allProducts.map((product) => (
+            {products.map((product) => (
               <ProductCard product={product} key={product.id} />
             ))}
           </div>
