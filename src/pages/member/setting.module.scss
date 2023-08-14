@@ -15,7 +15,7 @@
     grid-template-areas: 
       "fisrt last bday"
       "email address address"
-      "tel password checkbox";
+      "tel checkbox password";
 
     .inputWrapper:nth-child(5) {
       grid-area: address;
@@ -41,14 +41,24 @@
       }
     }
 
-    .checkboxWrapper {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+    .inputWrapper:last-child {
+      button {
+        margin: 0 auto;
+      }
+    }
 
-      label {
-        width: auto;
+    .checkboxes {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 1rem;
+      
+      .checkbox {
+        label {
+          font-size: 0.9rem;
+          vertical-align: middle;
+        }
+
+
       }
     }
   }

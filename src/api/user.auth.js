@@ -87,3 +87,30 @@ export const EditPassword = async ({ currentPW, newPW, confirmPW }) => {
   }
 }
 
+export const EditUserInfo = async ({
+  firstName,
+  lastName,
+  birthday,
+  email,
+  address,
+  phone,
+  gender
+}) => {
+  try {
+    const { data } = await axiosInstance.put(baseUrl, {
+      firstName,
+      lastName,
+      birthday,
+      email,
+      address,
+      phone,
+      gender
+    })
+    console.log(data)
+    return data
+
+  } catch (error) {
+    console.error('[Edit User Info Failed]: ', error)
+  }
+}
+
