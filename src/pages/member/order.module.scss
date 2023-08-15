@@ -4,6 +4,11 @@
 .orders {
   width: 100%;
 
+  .text {
+    display: flex;
+    justify-content: center;
+  }
+
   .smallTable {
     display: none;
   }
@@ -39,7 +44,7 @@
 
       td {
         font-family: 'Open Sans', sans-serif;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
         font-weight: 400;
         padding: 0.8rem;
         width: 20%;

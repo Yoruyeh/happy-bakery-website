@@ -1,9 +1,13 @@
 import styles from './order.module.scss'
 import Button from '../../components/button/Button'
 import { Link } from 'react-router-dom'
+import { useUserOrders } from '../../context/OrdersContext'
 
 const Orders = () => {
-  return (
+  const { userOrders } = useUserOrders()
+
+
+  return userOrders && userOrders.length > 0 ? (
     <div className={styles.orders}>
       <table className={styles.table}>
         <thead className={styles.head}>
@@ -16,86 +20,58 @@ const Orders = () => {
           </tr>
         </thead>
         <tbody className={styles.body}>
-          <tr>
-            <td>20230801123546</td>
-            <td>2023-08-01</td>
-            <td>$185.00</td>
-            <td>Delivered</td>
-            <td>
-              <Link to=":id">
-                <Button text={'Check'} />
-              </Link>
-            </td>
-          </tr>
-          <tr>
-            <td>20230601784562</td>
-            <td>2023-06-01</td>
-            <td>$700.00</td>
-            <td>Delivered</td>
-            <td>
-              <Link to=":id">
-                <Button text={'Check'} />
-              </Link>
-            </td>
-          </tr>
+          {userOrders.map((order) => (
+            <tr key={order.id}>
+              <td>{order.id}</td>
+              <td>{order.order_date}</td>
+              <td>${order.total_price}</td>
+              <td>{order.status}</td>
+              <td>
+                <Link to={`${order.id}`}>
+                  <Button text={'Check'} />
+                </Link>
+              </td>
+            </tr>
+          ))}
         </tbody>
       </table>
 
       <table className={styles.smallTable}>
-        <thead className={styles.head}>
-          <tr>
-            <th>Order No.</th>
-            <td>20230801123546</td>
-          </tr>
-          <tr>
-            <th>Order Date</th>
-            <td>2023-08-01</td>
-          </tr>
-          <tr>
-            <th>Total Price</th>
-            <td>$185.00</td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>Delivered</td>
-          </tr>
-          <tr>
-            <th></th>
-            <td>
-              <Link to=":id">
-                <Button text={'Check'} />
-              </Link>
-            </td>
-          </tr>
-        </thead>
-        <thead className={styles.head}>
-          <tr>
-            <th>Order No.</th>
-            <td>20230801123546</td>
-          </tr>
-          <tr>
-            <th>Order Date</th>
-            <td>2023-08-01</td>
-          </tr>
-          <tr>
-            <th>Total Price</th>
-            <td>$185.00</td>
-          </tr>
-          <tr>
-            <th>Status</th>
-            <td>Delivered</td>
-          </tr>
-          <tr>
-            <th></th>
-            <td>
-              <Link to=":id">
-                <Button text={'Check'} />
-              </Link>
-            </td>
-          </tr>
-        </thead>
+        {userOrders.map((order) => (
+          <thead className={styles.head}>
+            <tr>
+              <th>Order No.</th>
+              <td>{order.id}</td>
+            </tr>
+            <tr>
+              <th>Order Date</th>
+              <td>{order.order_date}</td>
+            </tr>
+            <tr>
+              <th>Total Price</th>
+              <td>${order.total_price}</td>
+            </tr>
+            <tr>
+              <th>Status</th>
+              <td>{order.status}</td>
+            </tr>
+            <tr>
+              <th></th>
+              <td>
+                <Link to={`${order.id}`}>
+                  <Button text={'Check'} />
+                </Link>
+              </td>
+            </tr>
+          </thead>
+        ))}
       </table>
-      
+    </div>
+  ) : (
+    <div className={styles.orders}>
+      <div className={styles.text}>
+        <p>No Orders</p>
+      </div>
     </div>
   )
 }

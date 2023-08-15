@@ -114,3 +114,14 @@ export const EditUserInfo = async ({
   }
 }
 
+export const GetUserOrders = async () => {
+  try {
+    const { data } = await axiosInstance.get(`${baseUrl}/orders`)
+
+    return data
+
+  } catch (error) {
+    console.error('[Get User Orders Failed]: ', error)
+  }
+}
+
