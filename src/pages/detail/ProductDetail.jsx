@@ -3,8 +3,11 @@ import { useEffect } from 'react'
 import ProductImg from '../../assets/images/croissant.jpeg'
 import Button from '../../components/button/Button'
 // import Recommend from '../../components/recommend/Recommend'
+import { useProducts } from '../../context/ProductsContext'
 
 const ProductDetail = () => {
+  const { productDetail } = useProducts()
+  console.log(productDetail)
 
   useEffect(() => {
     window.scrollTo(0, 0)

@@ -35,3 +35,14 @@ export const GetProducts = async ({ id, page, sort }) => {
     console.error('[Get Products Failed]: ', error)
   }
 }
+
+export const GetProductById = async (id) => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/${id}`)
+
+    return data
+
+  } catch (error) {
+    console.error('[Get Product Detail Failed]: ', error)
+  }
+}

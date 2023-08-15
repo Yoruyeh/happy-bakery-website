@@ -2,8 +2,11 @@ import styles from './productCard.module.scss'
 import { Link } from 'react-router-dom'
 import Button from '../button/Button'
 import Tag from '../tag/Tag'
+import { useProducts } from '../../context/ProductsContext'
 
 const ProductCard = ({ product }) => {
+  const { handleViewProductClick } = useProducts()
+
   return (
     <div className={styles.card}>
       <div className={styles.cardImage}>
@@ -16,6 +19,10 @@ const ProductCard = ({ product }) => {
       <div className={styles.cardButton}>
         <Link
           to={`/happy-bakery-website/products/${product.Category.name}/${product.id}`}
+          onClick={() => {
+            handleViewProductClick(product.id)
+            console.log(product.id)
+          }}
         >
           <Button
             text={'VIEW PRODCUT - '}
