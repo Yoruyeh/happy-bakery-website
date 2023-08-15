@@ -18,18 +18,37 @@ const Setting = () => {
   const [gender, setGender] = useState(currentUser.gender || '')
 
   const handleSaveClick = async () => {
-    if (email.trim().length === 0) {
+    if (
+      firstName.trim().length === 0 ||
+      lastName.trim().length === 0 ||
+      !gender ||
+      email.trim().length === 0 ||
+      !birthday ||
+      phone.trim().length === 0
+    ) {
       Swal.fire({
         position: 'top',
         icon: 'error',
-        title: 'Email Cannot be blank',
+        title: '* Are Required Fields.',
         showConfirmButton: false,
         timer: 1500
       })
       return
     }
 
-    const data = await EditUserInfo({
+    if (phone.trim().length < 10) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Invalid Phone Number',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+
+    const { status } = await EditUserInfo({
       firstName,
       lastName,
       birthday,
@@ -38,7 +57,25 @@ const Setting = () => {
       phone,
       gender
     })
-    console.log(data)
+    
+    if (status === 'success') {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Successfully Saved',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Edit Member Info Failed',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
@@ -46,7 +83,9 @@ const Setting = () => {
       <h3>Edit Member Info</h3>
       <form className={styles.settingForm}>
         <div className={styles.inputWrapper}>
-          <label>First Name </label>
+          <label>
+            First Name <span>*</span>
+          </label>
           <TextInput
             type={'text'}
             placeholder={'First Name'}
@@ -58,7 +97,9 @@ const Setting = () => {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <label>Last Name </label>
+          <label>
+            Last Name <span>*</span>
+          </label>
           <TextInput
             type={'text'}
             placeholder={'Last Name'}
@@ -68,7 +109,9 @@ const Setting = () => {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <label>Birthday </label>
+          <label>
+            Birthday <span>*</span>
+          </label>
           <TextInput
             type={'date'}
             placeholder={'Birthday'}
@@ -77,7 +120,9 @@ const Setting = () => {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <label>Email </label>
+          <label>
+            Email <span>*</span>
+          </label>
           <TextInput
             type={'email'}
             placeholder={'Email'}
@@ -96,17 +141,21 @@ const Setting = () => {
           />
         </div>
         <div className={styles.inputWrapper}>
-          <label>Phone Number </label>
+          <label>
+            Phone Number <span>*</span>
+          </label>
           <TextInput
             type={'tel'}
-            placeholder={'Phone Number'}
+            placeholder={'Should be 10 numbers'}
             defaultValue={phone}
             required={true}
             onChange={(phoneInputValue) => setPhone(phoneInputValue)}
           />
         </div>
         <div className={styles.inputWrapper}>
-          <h6>Gender</h6>
+          <h6>
+            Gender<span>*</span>
+          </h6>
           <div className={styles.checkboxes}>
             <div className={styles.checkbox}>
               <CheckboxInput
