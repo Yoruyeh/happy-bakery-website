@@ -17,19 +17,14 @@ export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([])
   const [productCount, setProductCount] = useState(0)
   
-  const handleNavItemClick = async (id) => {
+  const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await GetProducts({
-      id
-    })
-    setProducts(products)
-    setProductCount(productCount)
-  }
-
-  const handleSortClick = async (sort) => {
-    const { products } = await GetProducts({
+      id,
+      page,
       sort
     })
     setProducts(products)
+    setProductCount(productCount)
   }
 
    useEffect(() => {
@@ -46,7 +41,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, productCount, handleNavItemClick, handleSortClick }}
+      value={{ products, productCount, handleNavItemClick }}
     >
       {children}
     </ProductsContext.Provider>

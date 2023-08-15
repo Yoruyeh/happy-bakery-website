@@ -27,7 +27,7 @@ const Home = () => {
             </h2>
             <Link
               to="/happy-bakery-website/products/all"
-              onClick={() => handleNavItemClick('')}
+              onClick={() => handleNavItemClick({ id: '' })}
             >
               <Button text={'SHOP NOW'} />
             </Link>
@@ -42,7 +42,7 @@ const Home = () => {
           </h2>
           <Link
             to="/happy-bakery-website/products/new"
-            onClick={() => handleNavItemClick('')}
+            onClick={() => handleNavItemClick({ id: '', sort: 'date_desc' })}
           >
             <Button text={'SHOP NEW DROPS'} />
           </Link>

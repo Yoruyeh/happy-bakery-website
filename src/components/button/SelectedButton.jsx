@@ -1,8 +1,14 @@
 import styles from './button.module.scss'
 
-const SelectedButton = ({ name, id, onChange, children }) => {
+const SelectedButton = ({ name, id, value, onChange, children }) => {
   return (
-    <select className={styles.selectBtn} name={name} id={id} onChange={onChange}>
+    <select
+      className={styles.selectBtn}
+      name={name}
+      id={id}
+      value={value}
+      onChange={onChange}
+    >
       {children}
     </select>
   )

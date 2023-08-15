@@ -26,7 +26,7 @@ export const GetProducts = async ({ id, page, sort }) => {
     if (queryParams.length) {
       url += `?${queryParams.join('&')}`
     }
-
+    
     const { data } = await axios.get(url)
 
     return data

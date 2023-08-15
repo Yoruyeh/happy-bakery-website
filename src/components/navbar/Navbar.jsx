@@ -13,7 +13,7 @@ const DropDownMenu = ({ data, onClickLogout, onClick }) => {
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
         {data.map((item) => (
-          <Link to={item.link} key={item.id} onClick={() => {
+          <Link to={item.link} key={item.title} onClick={() => {
             if (item.title === 'Logout') {
               onClickLogout()
               return

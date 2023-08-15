@@ -5,15 +5,16 @@ import Pagination from '../../components/pagination/Pagination'
 import { productMenu } from '../../data'
 import { Link, useNavigate } from 'react-router-dom'
 import { useProducts } from '../../context/ProductsContext'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import SelectedButton from '../../components/button/SelectedButton'
 
 const Products = () => {
-  const { products, productCount, handleNavItemClick, handleSortClick } =
+  const { products, productCount, handleNavItemClick } =
     useProducts()
   let { category } = useParams()
   const navigate = useNavigate()
+  const [selectedSortValue, setSelectedSortValue] = useState('')
 
   const ProductPageTitle = (category) => {
     if (category === 'all') {
@@ -25,14 +26,41 @@ const Products = () => {
     return category
   }
 
-  const handleSelectBtnChange = (value) => {
-    const SelectedItem = productMenu.find(item => item.id === value)
+  const handleCategoryChange = (value) => {
+    const SelectedItem = productMenu.find(item => item.title === value)
+    if (!SelectedItem) {
+      return
+    } 
+    
     navigate(SelectedItem.link)
+
+    if (value === 'New Drops') {
+      handleNavItemClick({ id: SelectedItem.id, sort: 'date_desc'})
+    } else {
+      handleNavItemClick({ id: SelectedItem.id })
+    }
+  }
+
+  const handleSortChange = (value) => {
+    setSelectedSortValue(value)
+    const SelectedItem = productMenu.find((item) =>
+      item.link.includes(category)
+    )
+    handleNavItemClick({ id: SelectedItem.id, sort: value })
   }
 
   useEffect(() => {
       window.scrollTo(0, 0)
+      setSelectedSortValue('')
   }, [])
+
+  useEffect(() => {
+    if (category === 'new') {
+      setSelectedSortValue('date_desc')
+    } else {
+      setSelectedSortValue('price_asc')
+    }
+  }, [category])
 
   return (
     <div className={styles.products}>
@@ -55,7 +83,13 @@ const Products = () => {
               <Link
                 to={item.link}
                 key={item.title}
-                onClick={() => handleNavItemClick(item.id)}
+                onClick={() => {
+                  if (item.title === 'New Drops') {
+                    handleNavItemClick({ id: item.id, sort: 'date_desc' })
+                    return
+                  }
+                  handleNavItemClick({ id: item.id })
+                }}
               >
                 <li className={styles.navItem}>{item.title}</li>
               </Link>
@@ -69,20 +103,23 @@ const Products = () => {
               <p>{productCount} items</p>
             </div>
             <div className={styles.button}>
-              <SelectedButton onChange={(e) => handleSortClick(e.target.value)}>
-                <option value="price_desc">Price: desc</option>
+              <SelectedButton
+                value={selectedSortValue}
+                onChange={(e) => handleSortChange(e.target.value)}
+              >
                 <option value="price_asc">Price: asc</option>
+                <option value="price_desc">Price: desc</option>
                 <option value="date_desc">Date: desc</option>
                 <option value="date_asc">Date: asc</option>
               </SelectedButton>
               <SelectedButton
                 onChange={(e) => {
-                  handleNavItemClick(e.target.value)
-                  handleSelectBtnChange(e.target.value)
+                  handleCategoryChange(e.target.value)
                 }}
               >
+                <option value="">Category</option>
                 {productMenu.map((item) => (
-                  <option value={item.id} key={item.title}>
+                  <option value={item.title} key={item.title}>
                     {item.title}
                   </option>
                 ))}
