@@ -10,7 +10,8 @@ import { useParams } from 'react-router-dom'
 import SelectedButton from '../../components/button/SelectedButton'
 
 const Products = () => {
-  const { products, productCount, handleNavItemClick } = useProducts()
+  const { products, productCount, handleNavItemClick, handleSortClick } =
+    useProducts()
   let { category } = useParams()
   const navigate = useNavigate()
 
@@ -68,15 +69,16 @@ const Products = () => {
               <p>{productCount} items</p>
             </div>
             <div className={styles.button}>
-              <SelectedButton>
+              <SelectedButton onChange={(e) => handleSortClick(e.target.value)}>
                 <option value="price_desc">Price: desc</option>
                 <option value="price_asc">Price: asc</option>
                 <option value="date_desc">Date: desc</option>
                 <option value="date_asc">Date: asc</option>
               </SelectedButton>
               <SelectedButton
-                onChange={(e) => {handleNavItemClick(e.target.value)
-                handleSelectBtnChange(e.target.value)
+                onChange={(e) => {
+                  handleNavItemClick(e.target.value)
+                  handleSelectBtnChange(e.target.value)
                 }}
               >
                 {productMenu.map((item) => (

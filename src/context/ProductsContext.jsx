@@ -5,6 +5,7 @@ const defaultProductsContext = {
   products: null,
   productCount: 0,
   handleNavItemClick: () => {},
+  handleSortClick: () => {},
   productDetail: null
 }
 
@@ -24,6 +25,13 @@ export const ProductsProvider = ({ children }) => {
     setProductCount(productCount)
   }
 
+  const handleSortClick = async (sort) => {
+    const { products } = await GetProducts({
+      sort
+    })
+    setProducts(products)
+  }
+
    useEffect(() => {
      const getProductsAsync = async () => {
        const { products, productCount } = await GetProducts({
@@ -38,7 +46,7 @@ export const ProductsProvider = ({ children }) => {
 
   return (
     <ProductsContext.Provider
-      value={{ products, productCount, handleNavItemClick }}
+      value={{ products, productCount, handleNavItemClick, handleSortClick }}
     >
       {children}
     </ProductsContext.Provider>

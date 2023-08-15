@@ -91,7 +91,7 @@
       }
 
       .button {
-        :last-child {
+        select:last-child {
           display: none;
         }
       }
@@ -136,7 +136,7 @@
           flex-direction: row-reverse;
           gap: 1rem;
 
-          :last-child {
+          select:last-child {
             display: flex;
           }
         }
