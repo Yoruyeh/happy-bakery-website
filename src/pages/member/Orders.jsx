@@ -38,7 +38,7 @@ const Orders = () => {
 
       <table className={styles.smallTable}>
         {userOrders.map((order) => (
-          <thead className={styles.head}>
+          <thead className={styles.head} key={order.id}>
             <tr>
               <th>Order No.</th>
               <td>{order.id}</td>
