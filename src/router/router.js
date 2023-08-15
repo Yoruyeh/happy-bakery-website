@@ -66,12 +66,12 @@ const router = createBrowserRouter([
           {
             path: ':category',
             element: <Products />
+          },
+          {
+            path: ':category/:id',
+            element: <ProductDetail />
           }
         ]
-      },
-      {
-        path: 'products/:id',
-        element: <ProductDetail />
       },
       {
         path: 'cart',

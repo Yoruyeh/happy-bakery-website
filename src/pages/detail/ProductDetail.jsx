@@ -2,7 +2,7 @@ import styles from './productDetail.module.scss'
 import { useEffect } from 'react'
 import ProductImg from '../../assets/images/croissant.jpeg'
 import Button from '../../components/button/Button'
-import Recommend from '../../components/recommend/Recommend'
+// import Recommend from '../../components/recommend/Recommend'
 
 const ProductDetail = () => {
 
@@ -44,21 +44,6 @@ const ProductDetail = () => {
               <h6>Cream Cheese Flavor</h6>
               <h5>$125.00</h5>
             </div>
-            {/* <div className={styles.wrapper}>
-              <h6>FLAVOR</h6>
-              <div className={styles.types}>
-                <Button text={'ORIGINAL'} />
-                <Button text={'SEA SALT'} />
-                <Button text={'CREAM CHEESE'} />
-                <Button text={'ALMOND'} />
-              </div>
-            </div>
-            <div className={styles.wrapper}>
-              <h6>SIZE</h6>
-              <div className={styles.sizes}>
-                <Button text={'F'} />
-              </div>
-            </div> */}
             <div className={styles.wrapper}>
               <label htmlFor="quantity">Quantity</label>
               <select id="quantity" name="quantity">
@@ -96,7 +81,7 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-        <Recommend />
+        {/* <Recommend /> */}
       </div>
     </>
   )

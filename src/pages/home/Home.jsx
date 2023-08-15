@@ -7,7 +7,7 @@ import { useProducts } from '../../context/ProductsContext'
 import { Link } from 'react-router-dom'
 
 const Home = () => {
-  const { products } = useProducts()
+  const { products, handleNavItemClick } = useProducts()
   const fourNewProducts = products.slice(0, 4)
 
   return (
@@ -25,7 +25,10 @@ const Home = () => {
             <h2>
               No Chemical Added, <br /> Naturally Delicious!
             </h2>
-            <Link to="/happy-bakery-website/products/all">
+            <Link
+              to="/happy-bakery-website/products/all"
+              onClick={() => handleNavItemClick('')}
+            >
               <Button text={'SHOP NOW'} />
             </Link>
           </div>
@@ -39,6 +42,7 @@ const Home = () => {
           </h2>
           <Link
             to="/happy-bakery-website/products/new"
+            onClick={() => handleNavItemClick('')}
           >
             <Button text={'SHOP NEW DROPS'} />
           </Link>

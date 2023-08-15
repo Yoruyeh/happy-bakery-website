@@ -14,8 +14,13 @@ const ProductCard = ({ product }) => {
         <h5>{product.name}</h5>
       </div>
       <div className={styles.cardButton}>
-        <Link to={`/happy-bakery-website/products/${product.id}`}>
-          <Button text={'VIEW PRODCUT - '} price={`$ ${product.price_regular}`} />
+        <Link
+          to={`/happy-bakery-website/products/${product.Category.name}/${product.id}`}
+        >
+          <Button
+            text={'VIEW PRODCUT - '}
+            price={`$ ${product.price_regular}`}
+          />
         </Link>
       </div>
     </div>
