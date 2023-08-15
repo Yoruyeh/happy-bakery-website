@@ -1,19 +1,18 @@
 import styles from './products.module.scss'
 import BannerImg from '../../assets/images/cupcakes.jpeg'
-import Button from '../../components/button/Button'
 import ProductCard from '../../components/card/ProductCard'
-import { Down } from '../../assets/icons'
 import Pagination from '../../components/pagination/Pagination'
 import { productMenu } from '../../data'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useProducts } from '../../context/ProductsContext'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-
+import SelectedButton from '../../components/button/SelectedButton'
 
 const Products = () => {
-  const { products, productCount,  handleNavItemClick } = useProducts()
+  const { products, productCount, handleNavItemClick } = useProducts()
   let { category } = useParams()
+  const navigate = useNavigate()
 
   const ProductPageTitle = (category) => {
     if (category === 'all') {
@@ -23,6 +22,11 @@ const Products = () => {
     }
 
     return category
+  }
+
+  const handleSelectBtnChange = (value) => {
+    const SelectedItem = productMenu.find(item => item.id === value)
+    navigate(SelectedItem.link)
   }
 
   useEffect(() => {
@@ -64,8 +68,23 @@ const Products = () => {
               <p>{productCount} items</p>
             </div>
             <div className={styles.button}>
-              <Button text={'PRICE'} price={<Down />} />
-              <Button text={'CATEGORIES'} price={<Down />} />
+              <SelectedButton>
+                <option value="price_desc">Price: desc</option>
+                <option value="price_asc">Price: asc</option>
+                <option value="date_desc">Date: desc</option>
+                <option value="date_asc">Date: asc</option>
+              </SelectedButton>
+              <SelectedButton
+                onChange={(e) => {handleNavItemClick(e.target.value)
+                handleSelectBtnChange(e.target.value)
+                }}
+              >
+                {productMenu.map((item) => (
+                  <option value={item.id} key={item.title}>
+                    {item.title}
+                  </option>
+                ))}
+              </SelectedButton>
             </div>
           </div>
           <div className={styles.cardWrapper}>

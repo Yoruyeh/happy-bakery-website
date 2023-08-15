@@ -1,23 +1,39 @@
 @import "../../styles/variables.scss";
 
-button {
+.button {
   width: 138px;
   height: 48px;
   font-family: 'Rubik', sans-serif;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-weight: 500;
   background-color: $salmon-pink;
   color: $white;
   border: none;
   border-radius: 8px;
-  padding: 16px;
+  padding: 0 0.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   span {
     display: flex;
     align-items: center;
     color: $light-yellow;
   }
+}
+
+.selectBtn {
+  composes: button;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 8rem;
+  height: 3rem;
+  background-color: $FA-white;
+  background-image: url('../../assets/icons/chevron_down.svg');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  color: $dark-gray;
+  cursor: pointer; 
 }

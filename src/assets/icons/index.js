@@ -21,7 +21,8 @@ import { ReactComponent as Down } from './chevron_down.svg'
 import { ReactComponent as MenuBar } from './menubar.svg'
 import { ReactComponent as AdminLogo } from './admin-Logo.svg'
 import { ReactComponent as AddCircle } from './Add_circle.svg'
-import { ReactComponent as ArrowUp } from './arrow_up.svg'
+import { ReactComponent as ArrowUp } from './arrow-up.svg'
+import { ReactComponent as ArrowDown } from './arrow-down.svg'
 import { ReactComponent as Calendar } from './calendar.svg'
 import { ReactComponent as SuccessCheck } from './Check-Success.svg'
 import { ReactComponent as Dashboard } from './dashboard.svg'
@@ -61,6 +62,7 @@ export {
   AdminLogo,
   AddCircle,
   ArrowUp,
+  ArrowDown,
   Calendar,
   SuccessCheck,
   Dashboard,
