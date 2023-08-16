@@ -4,9 +4,21 @@ import Button from '../../components/button/Button'
 import OrderCard from '../../components/card/OrderCard'
 import { TextInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
+import { useUserCartItems } from '../../context/CartContext'
 
 
 const Shipment = () => {
+  const { userCartItems } = useUserCartItems()
+  const totalPrice = userCartItems.reduce((total, item) => {
+    return total + item.quantity * item.price_each
+  }, 0)
+
+  const orderProp = {
+    item_count: userCartItems.length,
+    total_price: totalPrice,
+    shipping_fee: 0
+  }
+
   return (
     <div className={styles.shipment}>
       <div className={styles.shipmentForm}>
@@ -65,16 +77,15 @@ const Shipment = () => {
       </div>
       <div className={styles.orderInfo}>
         <div className={styles.summary}>
-          <OrderSummaryCard />
+          <OrderSummaryCard order={orderProp} />
         </div>
         <div className={styles.detail}>
           <h3>Order Details</h3>
           <div className={styles.cardWrapper}>
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
+            {userCartItems &&
+              userCartItems.map((item) => (
+                <OrderCard item={item} key={item.Product.name} />
+              ))}
           </div>
         </div>
       </div>
