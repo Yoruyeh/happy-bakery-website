@@ -8,16 +8,19 @@ import { useAuth } from '../../context/AuthContext'
 import Swal from 'sweetalert2'
 import { useProducts } from '../../context/ProductsContext'
 import DropDownMenu from './DropDownMenu'
+import CartPeek from './CartPeek'
 
 const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
   const [openUserDropdown, setOpenUserDropdown] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openSearchInput, setOpenSearchInput] = useState(false)
+  const [openCartPeek, setOpenCartPeek] = useState(false)
   const productDropdownRef = useRef(null)
   const userDropdownRef = useRef(null)
   const menuRef = useRef(null)
   const searchInputRef = useRef(null)
+  const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
   const { handleNavItemClick } = useProducts()
 
@@ -35,6 +38,10 @@ const Navbar = () => {
 
   const handleOpenSearchInput = () => {
     setOpenSearchInput(!openSearchInput)
+  }
+
+  const handleOpenCartPeek = () => {
+    setOpenCartPeek(!openCartPeek)
   }
 
   const handleLogoutClick = () => {
@@ -65,9 +72,13 @@ const Navbar = () => {
         setOpenUserDropdown(false)
       }
 
-       if (menuRef.current && !menuRef.current.contains(e.target)) {
-         setOpenMenu(false)
-       }
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpenMenu(false)
+      }
+
+      if (cartPeekRef.current && !cartPeekRef.current.contains(e.target)) {
+        setOpenCartPeek(false)
+      }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
@@ -92,7 +103,10 @@ const Navbar = () => {
             Shop
             <CaretDown />
             {openProductDropdown && (
-              <DropDownMenu data={productMenu} onClick={(id) => handleNavItemClick(id)} />
+              <DropDownMenu
+                data={productMenu}
+                onClick={(id) => handleNavItemClick(id)}
+              />
             )}
           </li>
           <Link to="contact">
@@ -134,9 +148,13 @@ const Navbar = () => {
               <DropDownMenu data={userMenu} />
             )}
           </li>
-          <Link to="cart">
-            <li className={`${styles.navItem} ${styles.cartCount}`}>2</li>
-          </Link>
+          <li
+            className={`${styles.navItem} ${styles.cartCount}`}
+            ref={cartPeekRef}
+            onClick={handleOpenCartPeek}
+          >
+            2{openCartPeek && <CartPeek />}
+          </li>
         </ul>
       </div>
       {openSearchInput && <SearchInput onClick={handleOpenSearchInput} />}

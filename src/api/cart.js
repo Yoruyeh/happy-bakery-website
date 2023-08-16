@@ -10,5 +10,6 @@ export const GetUserCartItems = async () => {
 
   } catch (error) {
     console.error('[Get User Cart Items Failed]: ', error)
+    return { cartItems: [] }
   }
 }
