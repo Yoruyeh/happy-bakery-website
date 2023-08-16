@@ -22,6 +22,8 @@ export const UserCartItemsProvider = ({ children }) => {
         setUserCartIems(cartItems)
       }
       GetUserCartItemsAsync()
+    } else {
+      setUserCartIems([])
     }
   }, [isAuthenticated])
 

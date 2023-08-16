@@ -9,6 +9,7 @@ import Swal from 'sweetalert2'
 import { useProducts } from '../../context/ProductsContext'
 import DropDownMenu from './DropDownMenu'
 import CartPeek from './CartPeek'
+import { useUserCartItems } from '../../context/CartContext'
 
 const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
@@ -23,6 +24,7 @@ const Navbar = () => {
   const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
   const { handleNavItemClick } = useProducts()
+  const { userCartItems } = useUserCartItems()
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -153,7 +155,8 @@ const Navbar = () => {
             ref={cartPeekRef}
             onClick={handleOpenCartPeek}
           >
-            2{openCartPeek && <CartPeek />}
+            {userCartItems.length}
+            {openCartPeek && <CartPeek />}
           </li>
         </ul>
       </div>
