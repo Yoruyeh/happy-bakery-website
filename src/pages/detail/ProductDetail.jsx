@@ -1,13 +1,12 @@
 import styles from './productDetail.module.scss'
 import { useEffect } from 'react'
-import ProductImg from '../../assets/images/croissant.jpeg'
 import Button from '../../components/button/Button'
 // import Recommend from '../../components/recommend/Recommend'
 import { useProducts } from '../../context/ProductsContext'
+import SelectedButton from '../../components/button/SelectedButton'
 
 const ProductDetail = () => {
   const { productDetail } = useProducts()
-  console.log(productDetail)
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -18,7 +17,7 @@ const ProductDetail = () => {
       <div className={styles.productDetail}>
         <div className={styles.product}>
           <div className={styles.mainImage}>
-            <img src={ProductImg} alt="" />
+            <img src={productDetail.cover} alt="" />
             <div className={styles.dots}>
               <div className={`${styles.dot} ${styles.active}`}></div>
               <div className={styles.dot}></div>
@@ -28,34 +27,49 @@ const ProductDetail = () => {
           </div>
           <div className={styles.images}>
             <div className={styles.imageWrapper}>
-              <img src={ProductImg} alt="" />
+              <img src={productDetail.cover} alt="" />
             </div>
-            <div className={styles.imageWrapper}>
-              <img src={ProductImg} alt="" />
-            </div>
-            <div className={styles.imageWrapper}>
-              <img src={ProductImg} alt="" />
-            </div>
-            <div className={styles.imageWrapper}>
-              <img src={ProductImg} alt="" />
-            </div>
+            {productDetail.ProductImages.length > 0 ? (
+              productDetail.ProductImages.map((image) => (
+                <div className={styles.imageWrapper} key={image.name}>
+                  <img src={image.image_path} alt="" />
+                </div>
+              ))
+            ) : (
+              <>
+                <div className={styles.imageWrapper}>
+                  <img src={productDetail.cover} alt="" />
+                </div>
+                <div className={styles.imageWrapper}>
+                  <img src={productDetail.cover} alt="" />
+                </div>
+                <div className={styles.imageWrapper}>
+                  <img src={productDetail.cover} alt="" />
+                </div>
+              </>
+            )}
           </div>
           <div className={styles.content}>
             <div className={styles.title}>
               <div className={styles.tag}>New Release</div>
-              <h3>CROISSANT</h3>
-              <h6>Cream Cheese Flavor</h6>
-              <h5>$125.00</h5>
+              <h3>{productDetail.name}</h3>
+              {/* <h6>Cream Cheese Flavor</h6> */}
+              <h5>${productDetail.price_regular}</h5>
             </div>
             <div className={styles.wrapper}>
               <label htmlFor="quantity">Quantity</label>
-              <select id="quantity" name="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
+              <SelectedButton
+                name="quantity"
+                id="order-quantity"
+              >
+                {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                  (num) => (
+                    <option key={num} value={num}>
+                      {num}
+                    </option>
+                  )
+                )}
+              </SelectedButton>
             </div>
             <div className={styles.buttons}>
               <Button text={'ADD TO CART'} />
@@ -63,24 +77,7 @@ const ProductDetail = () => {
             </div>
             <div className={styles.description}>
               <h6>ABOUT THE PRODUCT</h6>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                eget urna nulla. Praesent dapibus aliquet metus ac fringilla.
-                Mauris bibendum justo diam, in mollis tellus vehicula eget.
-                Phasellus vehicula ex quis justo consequat, quis scelerisque
-                ligula sagittis. In ut diam vitae ante condimentum ultrices et
-                id orci. Integer eget orci sed lacus gravida porta eu vitae ex.
-                Aliquam et felis a felis mollis condimentum.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                eget urna nulla. Praesent dapibus aliquet metus ac fringilla.
-                Mauris bibendum justo diam, in mollis tellus vehicula eget.
-                Phasellus vehicula ex quis justo consequat, quis scelerisque
-                ligula sagittis. In ut diam vitae ante condimentum ultrices et
-                id orci. Integer eget orci sed lacus gravida porta eu vitae ex.
-                Aliquam et felis a felis mollis condimentum.
-              </p>
+              <p>{productDetail.description}</p>
             </div>
           </div>
         </div>

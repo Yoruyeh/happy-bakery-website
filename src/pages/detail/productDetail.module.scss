@@ -79,29 +79,11 @@
         }
 
         select {
-          width: 25%;
+          background-color: $white;
+          border: 1px solid $dark-gray;
+          width: 4rem;
+          height: 2rem;
         }
-
-        // .types, .sizes {
-        //   display: flex;
-        //   gap: 16px;
-        // }
-
-        // .types {
-        //   button {
-        //     width: 95px;
-        //     background-color: $white;
-        //     color: $dark-gray;
-        //   }
-        // }
-
-        // .sizes {
-        //   button {
-        //     width: 50px;
-        //     background-color: $FA-white;
-        //     color: $dark-gray;
-        //   }
-        // }
       }
 
       .buttons {

@@ -32,7 +32,6 @@ export const ProductsProvider = ({ children }) => {
   const handleViewProductClick = async (id) => {
     const { product } = await GetProductById(id)
     setProductDetail(product)
-    console.log(product)
   }
 
   useEffect(() => {
