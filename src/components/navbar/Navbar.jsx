@@ -7,26 +7,7 @@ import SearchInput from '../searchInput/SearchInput'
 import { useAuth } from '../../context/AuthContext'
 import Swal from 'sweetalert2'
 import { useProducts } from '../../context/ProductsContext'
-
-const DropDownMenu = ({ data, onClickLogout, onClick }) => {
-  return (
-    <div className={styles.dropdownMenu}>
-      <ul className={styles.dropdownMenuList}>
-        {data.map((item) => (
-          <Link to={item.link} key={item.title} onClick={() => {
-            if (item.title === 'Logout') {
-              onClickLogout()
-              return
-            }
-            onClick?.(item.id)
-          }}>
-            <li className={styles.dropdownMenuItem}>{item.title}</li>
-          </Link>
-        ))}
-      </ul>
-    </div>
-  )
-}
+import DropDownMenu from './DropDownMenu'
 
 const Navbar = () => {
   const [openProductDropdown, setOpenProductDropdown] = useState(false)

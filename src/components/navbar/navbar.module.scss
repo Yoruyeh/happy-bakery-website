@@ -33,33 +33,6 @@
       &:hover {
         cursor: pointer;
       }
-
-      .dropdownMenu {
-        margin-top: 0.5rem;
-        padding: 0.8rem 0.4rem 0.4rem 0.4rem;
-        border-radius: 8px;
-        border: 1px solid $FA-white;
-        background-color: $white;
-        font-family: 'Rubik', sans-serif;
-        font-weight: 400;
-        font-size: 0.8rem;
-        position: absolute;
-        top: 1.5rem;
-        left: 0;
-        z-index: 3;
-
-        .dropdownMenuList {
-          display: inline-flex;
-          flex-direction: column;
-          gap: 0.8rem;
-
-          .dropdownMenuItem {
-            white-space: wrap;
-            border-bottom: 2px solid $FA-white;
-            text-align: left;
-          }
-        }
-      }
     }
 
     &:last-child {     
@@ -117,32 +90,6 @@
       svg {
         width: 1.6rem;
         height: 1.6rem;
-      }
-
-      .dropdownMenu {
-        margin-top: 0.5rem;
-        padding: 0.8rem 0.4rem 0.4rem 0.4rem;
-        border-radius: 8px;
-        border: 1px solid $FA-white;
-        background-color: $white;
-        font-family: 'Rubik', sans-serif;
-        font-weight: 400;
-        font-size: 0.8rem;
-        position: absolute;
-        top: 1.5rem;
-        left: 0px;
-        z-index: 3;
-
-        .dropdownMenuList {
-          display: inline-flex;
-          flex-direction: column;
-          gap: 0.8rem;
-
-          .dropdownMenuItem {
-            white-space: nowrap;
-            border-bottom: 2px solid $FA-white;
-          }
-        }
       }
     }
   }
