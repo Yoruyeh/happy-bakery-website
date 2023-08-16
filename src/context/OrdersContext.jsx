@@ -1,10 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { GetUserOrders } from "../api/user.auth";
+import { GetUserOrderById } from '../api/orders'
 
 const defaultUserOrdersContext = {
-  orders: null,
-  orderDetail: null
+  userOrders: null,
+  handleCheckOrderClick: () => {},
+  userOrderDetail: null
 }
 
 const UserOrdersContext = createContext(defaultUserOrdersContext)
@@ -14,6 +16,12 @@ export const useUserOrders = () => useContext(UserOrdersContext)
 export const UserOrdersProvider = ({ children }) => {
   const { isAuthenticated } = useAuth()
   const [userOrders, setUserOrders] = useState([])
+  const [userOrderDetail, setUserOrderDetail] = useState({})
+
+  const handleCheckOrderClick = async (id) => {
+    const { order } = await GetUserOrderById(id)
+    setUserOrderDetail(order)
+  }
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -26,7 +34,9 @@ export const UserOrdersProvider = ({ children }) => {
   }, [isAuthenticated])
 
   return (
-    <UserOrdersContext.Provider value={{ userOrders }}>
+    <UserOrdersContext.Provider
+      value={{ userOrders, userOrderDetail, handleCheckOrderClick }}
+    >
       {children}
     </UserOrdersContext.Provider>
   )

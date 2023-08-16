@@ -1,22 +1,30 @@
 import OrderCard from '../../components/card/OrderCard'
 import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import styles from './orderDetail.module.scss'
+import { useUserOrders } from '../../context/OrdersContext'
+import { useEffect } from 'react'
 
 const OrderDetail = () => {
+  const { userOrderDetail } = useUserOrders()
+  const orderItemArray = userOrderDetail.OrderItems
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div className={styles.orderDetail}>
       <div className={styles.orderInfo}>
         <div className={styles.summary}>
-          <OrderSummaryCard />
+          <OrderSummaryCard order={userOrderDetail} />
         </div>
         <div className={styles.detail}>
           <h3>Order Details</h3>
           <div className={styles.cardWrapper}>
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
-            <OrderCard />
+            {orderItemArray &&
+              orderItemArray.map((item) => (
+                <OrderCard item={item} key={item.id} />
+              ))}
           </div>
         </div>
       </div>
@@ -24,51 +32,48 @@ const OrderDetail = () => {
         <thead className={styles.head}>
           <tr>
             <th>Order No.</th>
-            <td>20230801123546</td>
+            <td>{userOrderDetail.id}</td>
           </tr>
           <tr>
             <th>Order Date</th>
-            <td>2023-08-01</td>
+            <td>{userOrderDetail.order_date}</td>
           </tr>
           <tr>
             <th>Total Price</th>
-            <td>$185.00</td>
+            <td>${userOrderDetail.total_price}</td>
           </tr>
           <tr>
             <th>Status</th>
-            <td>Delivered</td>
+            <td>{userOrderDetail.status}</td>
           </tr>
           <tr>
             <th>Customer Name</th>
-            <td>Yoru Yeh</td>
+            <td>{userOrderDetail.customer_name}</td>
           </tr>
           <tr>
             <th>E-mail</th>
-            <td>happybakery@gmail.com</td>
+            <td>{userOrderDetail.email}</td>
           </tr>
           <tr>
             <th>Address</th>
-            <td>
-              1F., No. 10, Ln. 67, Smile 1st St., Happy Dist., Taipei City,
-              Taiwan
-            </td>
+            <td>{userOrderDetail.address}</td>
           </tr>
           <tr>
             <th>Phone Number</th>
-            <td>02-12345678</td>
+            <td>{userOrderDetail.phone}</td>
           </tr>
           <tr>
             <th>Delivery Option</th>
-            <td>Standard Delivery</td>
+            <td>{userOrderDetail.shipping_method}</td>
           </tr>
           <tr>
             <th>Payment Method</th>
-            <td>Credit Card</td>
+            <td>{userOrderDetail.payment_method}</td>
           </tr>
-          <tr>
+          {/* <tr>
             <th>Payment Status</th>
             <td>Paid</td>
-          </tr>
+          </tr> */}
         </thead>
       </table>
     </div>

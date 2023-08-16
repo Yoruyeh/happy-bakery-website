@@ -1,21 +1,21 @@
 import styles from './orderCard.module.scss'
-import ProductImg from '../../assets/images/croissant.jpeg'
 
-const OrderCard = () => {
+
+const OrderCard = ({ item }) => {
   return (
     <div className={styles.orderCard}>
       <div className={styles.orderImg}>
-        <img src={ProductImg} alt="" />
+        <img src={item.Product.cover} alt="" />
       </div>
       <div className={styles.orderContent}>
         <div className={styles.orderText}>
-          <h6>CROISSANT</h6>
-          <p>Cream Cheese</p>
+          <h6>{item.Product.name}</h6>
+          {/* <p>Cream Cheese</p> */}
         </div>
         <div className={styles.orderOption}>
-          <p>Quantity 2</p>
+          <p>Quantity {item.quantity}</p>
         </div>
-        <div className={styles.orderSubtotal}>$125.00</div>
+        <div className={styles.orderSubtotal}>${item.price_each}</div>
       </div>
     </div>
   )

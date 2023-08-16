@@ -4,8 +4,7 @@ import { Link } from 'react-router-dom'
 import { useUserOrders } from '../../context/OrdersContext'
 
 const Orders = () => {
-  const { userOrders } = useUserOrders()
-
+  const { userOrders, handleCheckOrderClick } = useUserOrders()
 
   return userOrders && userOrders.length > 0 ? (
     <div className={styles.orders}>
@@ -27,7 +26,10 @@ const Orders = () => {
               <td>${order.total_price}</td>
               <td>{order.status}</td>
               <td>
-                <Link to={`${order.id}`}>
+                <Link
+                  to={`${order.id}`}
+                  onClick={() => handleCheckOrderClick(order.id)}
+                >
                   <Button text={'Check'} />
                 </Link>
               </td>
@@ -58,7 +60,10 @@ const Orders = () => {
             <tr>
               <th></th>
               <td>
-                <Link to={`${order.id}`}>
+                <Link
+                  to={`${order.id}`}
+                  onClick={() => handleCheckOrderClick(order.id)}
+                >
                   <Button text={'Check'} />
                 </Link>
               </td>
