@@ -21,7 +21,6 @@ const ProductCard = ({ product }) => {
           to={`/happy-bakery-website/products/${product.Category.name}/${product.id}`}
           onClick={() => {
             handleViewProductClick(product.id)
-            console.log(product.id)
           }}
         >
           <Button

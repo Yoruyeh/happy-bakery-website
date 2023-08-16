@@ -13,3 +13,19 @@ export const GetUserCartItems = async () => {
     return { cartItems: [] }
   }
 }
+
+export const AddCartItem = async ({ id, quantity, price }) => {
+  try {
+    const { data } = await axiosInstance.post(baseUrl, {
+      id,
+      quantity,
+      price
+    })
+
+    return data
+
+  } catch (error) {
+    console.error('[Add Cart Item Failed]: ', error)
+    return error.response.data
+  }
+}

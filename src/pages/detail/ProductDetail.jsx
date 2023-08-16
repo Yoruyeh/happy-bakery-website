@@ -1,12 +1,16 @@
 import styles from './productDetail.module.scss'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Button from '../../components/button/Button'
 // import Recommend from '../../components/recommend/Recommend'
 import { useProducts } from '../../context/ProductsContext'
 import SelectedButton from '../../components/button/SelectedButton'
+import { useUserCartItems } from '../../context/CartContext'
 
 const ProductDetail = () => {
   const { productDetail } = useProducts()
+  const { handleAddToCart } = useUserCartItems()
+  const [quantity, setQuantity] = useState(1)
+  
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -29,7 +33,8 @@ const ProductDetail = () => {
             <div className={styles.imageWrapper}>
               <img src={productDetail.cover} alt="" />
             </div>
-            {productDetail.ProductImages.length > 0 ? (
+            {productDetail.ProductImages &&
+            productDetail.ProductImages.length > 0 ? (
               productDetail.ProductImages.map((image) => (
                 <div className={styles.imageWrapper} key={image.name}>
                   <img src={image.image_path} alt="" />
@@ -61,6 +66,8 @@ const ProductDetail = () => {
               <SelectedButton
                 name="quantity"
                 id="order-quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
               >
                 {Array.from({ length: 10 }, (_, index) => index + 1).map(
                   (num) => (
@@ -72,7 +79,16 @@ const ProductDetail = () => {
               </SelectedButton>
             </div>
             <div className={styles.buttons}>
-              <Button text={'ADD TO CART'} />
+              <Button
+                text={'ADD TO CART'}
+                onClick={() => {
+                  handleAddToCart({
+                    id: productDetail.id,
+                    quantity: Number(quantity),
+                    price: productDetail.price_regular
+                  })
+                }}
+              />
               <Button text={'BUY IT NOW'} />
             </div>
             <div className={styles.description}>
