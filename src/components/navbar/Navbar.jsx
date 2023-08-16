@@ -6,7 +6,6 @@ import { menu, productMenu, userMenu, memberMenu } from '../../data'
 import SearchInput from '../searchInput/SearchInput'
 import { useAuth } from '../../context/AuthContext'
 import Swal from 'sweetalert2'
-import { useProducts } from '../../context/ProductsContext'
 import DropDownMenu from './DropDownMenu'
 import CartPeek from './CartPeek'
 import { useUserCartItems } from '../../context/CartContext'
@@ -23,7 +22,6 @@ const Navbar = () => {
   const searchInputRef = useRef(null)
   const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
-  const { handleNavItemClick } = useProducts()
   const { userCartItems, setUserCartIems } = useUserCartItems()
 
   const handleOpenProductDropdown = () => {
@@ -108,7 +106,6 @@ const Navbar = () => {
             {openProductDropdown && (
               <DropDownMenu
                 data={productMenu}
-                onClick={(id) => handleNavItemClick(id)}
               />
             )}
           </li>

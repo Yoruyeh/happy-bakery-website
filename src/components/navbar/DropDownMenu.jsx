@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom'
 import styles from './dropDownMenu.module.scss'
+import { useProducts } from '../../context/ProductsContext'
 
-
-const DropDownMenu = ({ data, onClickLogout, onClick }) => {
+const DropDownMenu = ({ data, onClickLogout }) => {
+  const { handleNavItemClick } = useProducts()
+  
   return (
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
@@ -15,7 +17,11 @@ const DropDownMenu = ({ data, onClickLogout, onClick }) => {
                 onClickLogout()
                 return
               }
-              onClick?.(item.id)
+              if (item.title === 'New Drops') {
+                handleNavItemClick({ id: item.id, sort: 'date_desc' })
+                return
+              }
+              handleNavItemClick({ id: item.id })
             }}
           >
             <li className={styles.dropdownMenuItem}>{item.title}</li>
