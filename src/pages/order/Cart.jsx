@@ -2,12 +2,21 @@ import styles from './cart.module.scss'
 import { Link } from 'react-router-dom'
 // import Recommend from '../../components/recommend/Recommend'
 import CartCard from '../../components/card/CartCard'
-// import OrderSummaryCard from '../../components/card/OrderSummaryCard'
+import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import Button from '../../components/button/Button'
 import { useUserCartItems } from '../../context/CartContext'
 
 const Cart = () => {
   const { userCartItems } = useUserCartItems()
+  const totalPrice = userCartItems.reduce((total, item) => {
+    return total + item.quantity * item.price_each
+  }, 0)
+
+  const orderProp = {
+    item_count: userCartItems.length,
+    total_price: totalPrice,
+    shipping_fee: 0
+  }
 
   return (
     <div className={styles.cart}>
@@ -35,7 +44,7 @@ const Cart = () => {
           </div>
         </div>
         <div className={styles.summaryWrapper}>
-          {/* <OrderSummaryCard /> */}
+          <OrderSummaryCard order={orderProp} />
           <Link to="../shipment">
             <Button text={'CHECKOUT'} />
           </Link>
