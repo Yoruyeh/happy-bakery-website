@@ -1,12 +1,11 @@
 {
   "files": {
-    "main.css": "/happy-bakery-website/static/css/main.8669a22d.css",
-    "main.js": "/happy-bakery-website/static/js/main.174dd952.js",
+    "main.css": "/happy-bakery-website/static/css/main.cf29ec31.css",
+    "main.js": "/happy-bakery-website/static/js/main.eb3a1038.js",
     "static/media/bakery.jpeg": "/happy-bakery-website/static/media/bakery.fccfcc667704e06b75ac.jpeg",
     "static/media/admin-cover.jpg": "/happy-bakery-website/static/media/admin-cover.20b787d967ff897d10d7.jpg",
     "static/media/about-bg2.jpeg": "/happy-bakery-website/static/media/about-bg2.b144102349759953c176.jpeg",
     "static/media/map.jpeg": "/happy-bakery-website/static/media/map.dc255af87bafb8ed22f1.jpeg",
-    "static/media/croissant.jpeg": "/happy-bakery-website/static/media/croissant.54c6310e7499fbfd3897.jpeg",
     "static/media/about-bg1.jpeg": "/happy-bakery-website/static/media/about-bg1.bb582aef6614579840c1.jpeg",
     "static/media/chocolate-cake.jpeg": "/happy-bakery-website/static/media/chocolate-cake.96c3176eded5e181241c.jpeg",
     "static/media/dough.jpeg": "/happy-bakery-website/static/media/dough.356fa97138e3b5ffd2c6.jpeg",
@@ -52,11 +51,11 @@
     "static/media/chevron_up.svg": "/happy-bakery-website/static/media/chevron_up.de94943e1a6d842f48c25438c5aff76c.svg",
     "static/media/chevron_backward.svg": "/happy-bakery-website/static/media/chevron_backward.b1d1fd39c440c45fa24668675e33cf97.svg",
     "static/media/chevron_forward.svg": "/happy-bakery-website/static/media/chevron_forward.343d43ea5a981334fe70861e40eab296.svg",
-    "main.8669a22d.css.map": "/happy-bakery-website/static/css/main.8669a22d.css.map",
-    "main.174dd952.js.map": "/happy-bakery-website/static/js/main.174dd952.js.map"
+    "main.cf29ec31.css.map": "/happy-bakery-website/static/css/main.cf29ec31.css.map",
+    "main.eb3a1038.js.map": "/happy-bakery-website/static/js/main.eb3a1038.js.map"
   },
   "entrypoints": [
-    "static/css/main.8669a22d.css",
-    "static/js/main.174dd952.js"
+    "static/css/main.cf29ec31.css",
+    "static/js/main.eb3a1038.js"
   ]
 }
