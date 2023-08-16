@@ -113,6 +113,12 @@
             label, select {
               font-size: 0.8rem;
             }
+
+            select {
+              width: 3rem;
+              height: 2rem;
+              background-position: right 5px center;
+            }
           }
         }
 

@@ -27,10 +27,12 @@ const Cart = () => {
               Items in your bag not reserved- check out now to make them yours.
             </p>
           </div>
-          {userCartItems &&
-            userCartItems.map((item) => (
-              <CartCard item={item} key={item.Product.name} />
-            ))}
+          <div className={styles.cardWrapper}>
+            {userCartItems &&
+              userCartItems.map((item) => (
+                <CartCard item={item} key={item.Product.name} />
+              ))}
+          </div>
         </div>
         <div className={styles.summaryWrapper}>
           {/* <OrderSummaryCard /> */}
