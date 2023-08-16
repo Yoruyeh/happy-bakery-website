@@ -24,25 +24,6 @@ const Navbar = () => {
   const { isAuthenticated, logout } = useAuth()
   const { userCartItems, setUserCartIems } = useUserCartItems()
 
-  const handleOpenProductDropdown = () => {
-    setOpenProductDropdown(!openProductDropdown)
-  }
-
-  const handleOpenUserDropdown = () => {
-    setOpenUserDropdown(!openUserDropdown)
-  }
-
-  const handleOpenMenu = () => {
-    setOpenMenu(!openMenu)
-  }
-
-  const handleOpenSearchInput = () => {
-    setOpenSearchInput(!openSearchInput)
-  }
-
-  const handleOpenCartPeek = () => {
-    setOpenCartPeek(!openCartPeek)
-  }
 
   const handleLogoutClick = () => {
     logout()
@@ -99,22 +80,22 @@ const Navbar = () => {
           <li
             className={styles.navItem}
             ref={productDropdownRef}
-            onClick={handleOpenProductDropdown}
+            onClick={() => setOpenProductDropdown(!openProductDropdown)}
           >
             Shop
             <CaretDown />
-            {openProductDropdown && (
-              <DropDownMenu
-                data={productMenu}
-              />
-            )}
+            {openProductDropdown && <DropDownMenu data={productMenu} />}
           </li>
           <Link to="contact">
             <li className={styles.navItem}>Contact Us</li>
           </Link>
         </ul>
       </div>
-      <div className={styles.menuBar} onClick={handleOpenMenu} ref={menuRef}>
+      <div
+        className={styles.menuBar}
+        onClick={() => setOpenMenu(!openMenu)}
+        ref={menuRef}
+      >
         <MenuBar />
         {openMenu && <DropDownMenu data={menu} />}
       </div>
@@ -128,20 +109,20 @@ const Navbar = () => {
           <li
             className={`${styles.navItem} ${styles.search}`}
             ref={searchInputRef}
-            onClick={handleOpenSearchInput}
+            onClick={() => setOpenSearchInput(!openSearchInput)}
           >
             <Search />
           </li>
           <li
             className={`${styles.navItem} ${styles.user}`}
             ref={userDropdownRef}
-            onClick={handleOpenUserDropdown}
+            onClick={() => setOpenUserDropdown(!openUserDropdown)}
           >
             <User />
             {openUserDropdown && isAuthenticated && (
               <DropDownMenu
                 data={memberMenu}
-                onClickLogout={handleLogoutClick}
+                onClickLogout={() => handleLogoutClick()}
               />
             )}
             {openUserDropdown && !isAuthenticated && (
@@ -151,14 +132,16 @@ const Navbar = () => {
           <li
             className={`${styles.navItem} ${styles.cartCount}`}
             ref={cartPeekRef}
-            onClick={handleOpenCartPeek}
+            onClick={() => setOpenCartPeek(!openCartPeek)}
           >
             {userCartItems.length}
             {openCartPeek && <CartPeek />}
           </li>
         </ul>
       </div>
-      {openSearchInput && <SearchInput onClick={handleOpenSearchInput} />}
+      {openSearchInput && (
+        <SearchInput onClick={() => setOpenSearchInput(!openSearchInput)} />
+      )}
     </div>
   )
 }
