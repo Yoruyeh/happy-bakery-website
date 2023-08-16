@@ -4,21 +4,24 @@ import { Outlet } from "react-router-dom"
 import { AuthProvider } from "../context/AuthContext"
 import { ProductsProvider } from '../context/ProductsContext'
 import { UserOrdersProvider } from '../context/OrdersContext'
+import { UserCartItemsProvider } from "../context/CartContext"
 
 
 const Layout = () => {
   return (
     <AuthProvider>
       <ProductsProvider>
-        <UserOrdersProvider>
-          <div className="main">
-            <Navbar />
-            <div className="container">
-              <Outlet />
+        <UserCartItemsProvider>
+          <UserOrdersProvider>
+            <div className="main">
+              <Navbar />
+              <div className="container">
+                <Outlet />
+              </div>
+              <Footer />
             </div>
-            <Footer />
-          </div>
-        </UserOrdersProvider>
+          </UserOrdersProvider>
+        </UserCartItemsProvider>
       </ProductsProvider>
     </AuthProvider>
   )
