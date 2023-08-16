@@ -6,9 +6,6 @@
   border-radius: 8px;
   border: 1px solid $gray;
   background-color: $FA-white;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 400;
-  font-size: 0.8rem;
   position: absolute;
   top: 1.5rem;
   right: 0;
@@ -19,7 +16,9 @@
   align-items: center;
 
   .empty {
+    font-family: 'Rubik', sans-serif;
     white-space: nowrap;
+    font-size: 0.8rem;
   }
 
   .cartItem {

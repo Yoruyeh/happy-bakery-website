@@ -24,7 +24,7 @@ const Navbar = () => {
   const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
   const { handleNavItemClick } = useProducts()
-  const { userCartItems } = useUserCartItems()
+  const { userCartItems, setUserCartIems } = useUserCartItems()
 
   const handleOpenProductDropdown = () => {
     setOpenProductDropdown(!openProductDropdown)
@@ -48,6 +48,7 @@ const Navbar = () => {
 
   const handleLogoutClick = () => {
     logout()
+    setUserCartIems([])
     Swal.fire({
       position: 'top',
       icon: 'success',

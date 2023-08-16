@@ -4,6 +4,7 @@ import { useAuth } from "./AuthContext";
 
 const defaultUserCartItemsContext = {
   userCartItems: null,
+  setUserCartIems: () => {},
   handleAddToCart: () => {}
 }
 
@@ -22,13 +23,11 @@ export const UserCartItemsProvider = ({ children }) => {
         setUserCartIems(cartItems)
       }
       GetUserCartItemsAsync()
-    } else {
-      setUserCartIems([])
     }
   }, [isAuthenticated])
 
   return (
-    <UserCartItemsContext.Provider value={{ userCartItems }}>
+    <UserCartItemsContext.Provider value={{ userCartItems, setUserCartIems }}>
       {children}
     </UserCartItemsContext.Provider>
   )
