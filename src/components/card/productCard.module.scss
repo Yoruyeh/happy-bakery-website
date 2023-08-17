@@ -4,9 +4,8 @@
 .card {
   width: 318px;
   height: 486px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.8rem;
+  display: grid;
+  grid-template-rows: 4fr 1fr 1fr;
   padding: 0 0.5rem;
 
   .cardImage {
@@ -30,6 +29,7 @@
 
   .cardTitle {
     width: 100%;
+    height: 100%;
     display: flex;
     align-items: center;
   }
