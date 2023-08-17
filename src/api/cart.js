@@ -29,3 +29,14 @@ export const AddCartItem = async ({ id, quantity, price }) => {
     return error.response.data
   }
 }
+
+export const DeleteCartItem = async (id) => {
+  try {
+    const { data } = await axiosInstance.delete(`${baseUrl}/${id}`)
+
+    return data
+  } catch (error) {
+    console.error('[Delete Cart Item Failed]: ', error)
+    return error.response.data
+  }
+}

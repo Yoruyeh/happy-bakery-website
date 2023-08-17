@@ -1,13 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { GetUserCartItems } from "../api/cart";
 import { useAuth } from "./AuthContext";
-import { AddCartItem } from "../api/cart";
+import { AddCartItem, DeleteCartItem } from '../api/cart'
 import Swal from 'sweetalert2'
 
 const defaultUserCartItemsContext = {
   userCartItems: null,
   setUserCartIems: () => {},
-  handleAddToCart: () => {}
+  handleAddToCart: () => {},
+  handleDeleteCart: () => {}
 }
 
 const UserCartItemsContext = createContext(defaultUserCartItemsContext)
@@ -47,6 +48,31 @@ export const UserCartItemsProvider = ({ children }) => {
     })
   }
 
+  const handleDeleteCart = async (id) => {
+    const { status, message } = await DeleteCartItem(id)
+
+    if (status === 'success') {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `${message}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      const { cartItems } = await GetUserCartItems()
+      setUserCartIems(cartItems)
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: `${message}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   useEffect(() => {
     if (isAuthenticated) {
       const GetUserCartItemsAsync = async () => {
@@ -59,7 +85,12 @@ export const UserCartItemsProvider = ({ children }) => {
 
   return (
     <UserCartItemsContext.Provider
-      value={{ userCartItems, setUserCartIems, handleAddToCart }}
+      value={{
+        userCartItems,
+        setUserCartIems,
+        handleAddToCart,
+        handleDeleteCart
+      }}
     >
       {children}
     </UserCartItemsContext.Provider>

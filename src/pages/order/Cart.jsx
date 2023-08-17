@@ -39,7 +39,7 @@ const Cart = () => {
           <div className={styles.cardWrapper}>
             {userCartItems &&
               userCartItems.map((item) => (
-                <CartCard item={item} key={item.Product.name} />
+                <CartCard item={item} key={item.Product.id} />
               ))}
           </div>
         </div>

@@ -2,13 +2,12 @@ import styles from './cartCard.module.scss'
 import { Bin } from '../../assets/icons'
 import SelectedButton from '../../components/button/SelectedButton'
 import { useEffect, useState } from 'react'
+import { useUserCartItems } from '../../context/CartContext'
 
 const CartCard = ({ item }) => {
   const [quantity, setQuantity] = useState('')
+  const { handleDeleteCart } = useUserCartItems()
 
-  const handleQuantityChange = (value) => {
-    setQuantity(value)
-  }
 
   useEffect(() => {
     setQuantity(item.quantity)
@@ -30,7 +29,7 @@ const CartCard = ({ item }) => {
                 name="quantity"
                 id="cartItem-quantity"
                 value={quantity}
-                onChange={(e) => handleQuantityChange(e.target.value)}
+                onChange={(e) => setQuantity(e.target.value)}
               >
                 {Array.from({ length: 10 }, (_, index) => index + 1).map(
                   (num) => (
@@ -45,7 +44,7 @@ const CartCard = ({ item }) => {
           <div className={styles.cardSubtotal}>${item.price_each}</div>
         </div>
         <div className={styles.cardIcon}>
-          <div className={styles.icon}>
+          <div className={styles.icon} onClick={() => handleDeleteCart(item.Product.id)}>
             <Bin />
           </div>
         </div>
