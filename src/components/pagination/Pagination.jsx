@@ -14,7 +14,7 @@ const Pagination = ({
   return (
     <div className={styles.pagination}>
       <button
-        className={activePage - 1 === 0 ? styles.disabled : ''}
+        className={activePage - 1 === 0 ? styles.disabled : styles.previous}
         onClick={() => {
           if (activePage - 1 === 0) {
             return
@@ -26,20 +26,37 @@ const Pagination = ({
         <Backward />
         Previous
       </button>
-      {pageArr.map((page) => (
-        <button
-          key={page}
-          className={activePage === page ? styles.active : ''}
-          onClick={() => {
-            setActivePage(page)
-            handlePaginationClick(page)
-          }}
-        >
-          {page}
-        </button>
-      ))}
+      <div className={styles.pages}>
+        {pageArr.map((page) => (
+          <button
+            key={page}
+            className={activePage === page ? styles.active : ''}
+            onClick={() => {
+              setActivePage(page)
+              handlePaginationClick(page)
+            }}
+          >
+            {page}
+          </button>
+        ))}
+      </div>
+      <div className={styles.smallPages}>
+        {pageArr.map((page) => (
+          <button
+            key={page}
+            className={activePage === page ? styles.active : styles.hidden}
+            onClick={() => {
+              setActivePage(page)
+              handlePaginationClick(page)
+            }}
+          >
+            {page}
+          </button>
+        ))}
+        {/* <span className={styles.ellipsis}>...</span> */}
+      </div>
       <button
-        className={activePage + 1 > pageCount ? styles.disabled : ''}
+        className={activePage + 1 > pageCount ? styles.disabled : styles.next}
         onClick={() => {
           if (activePage + 1 > pageCount) {
             return

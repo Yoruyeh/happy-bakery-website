@@ -1,29 +1,28 @@
 @import "../../styles/variables.scss";
+@import "../../styles/responsive.scss";
 
 .pagination {
   width: 100%;
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: 0.8rem;
 
   button {
-    width: 39px;
-    height: 32px;
+    height: 1.6rem;
     background-color: transparent;
     border: 1px solid $dark-gray;
     border-radius: 8px;
     color: $dark-gray;
     padding: 0;
     cursor: pointer;
+  }
 
-    &:first-child, &:last-child {
-      width: 124px;
-      height: 32px;
-    }
+  .previous, .next {
+    width: 6rem;
 
     & svg {
-      width: 16px;
-      height: 16px;
+      width: 0.8rem;
+      height: 0.8rem;
 
       path {
         stroke: $dark-gray;
@@ -31,18 +30,57 @@
     }
   }
 
-  .active {
-    background-color: $dark-gray;
-    color: $white;
+  .pages {
+    display: flex;
+    gap: 0.8rem;
+
+    button {
+      width: 2rem;
+    }
+
+    .active {
+      background-color: $dark-gray;
+      color: $white;
+    }
   }
 
   .disabled {
+    width: 6rem;
     border-color: $gray;
     color: $gray;
     
-    & svg {
+    svg {
+      stroke: $gray;
       path {
         stroke: $gray;
+      }
+    }
+  }
+
+  .smallPages {
+    display: none;
+  }
+
+  @include sm {
+    .pages {
+      display: none;
+    }
+
+    .smallPages {
+      display: flex;
+      gap: 0.8rem;
+
+      button {
+        width: 2rem;
+      }
+
+      .active {
+        background-color: $dark-gray;
+        color: $white;
+      }
+
+      .hidden {
+        display: none;
       }
     }
   }
