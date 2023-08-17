@@ -6,15 +6,16 @@ import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import Button from '../../components/button/Button'
 import { useUserCartItems } from '../../context/CartContext'
 import { useEffect } from 'react'
+import BackgroundImg from '../../assets/images/cupcakes.jpeg'
 
 const Cart = () => {
   const { userCartItems } = useUserCartItems()
-  const totalPrice = userCartItems.reduce((total, item) => {
+  const totalPrice = userCartItems && userCartItems.reduce((total, item) => {
     return total + item.quantity * item.price_each
   }, 0)
 
   const orderProp = {
-    item_count: userCartItems.length,
+    item_count: userCartItems && userCartItems.length,
     total_price: totalPrice,
     shipping_fee: 0
   }
@@ -23,7 +24,7 @@ const Cart = () => {
     window.scrollTo(0, 0)
   }, [])
 
-  return (
+  return userCartItems && userCartItems.length > 0 ? (
     <div className={styles.cart}>
       <div className={styles.text}>
         <h3>Saving to celebrate </h3>
@@ -56,6 +57,20 @@ const Cart = () => {
         </div>
       </div>
       {/* <Recommend /> */}
+    </div>
+  ) : (
+    <div className={styles.emptyCart}>
+      <div className={styles.bgImg}>
+        <img src={BackgroundImg} alt="" />
+      </div>
+      <div className={styles.text}>
+        <h1>Your Cart Is Empty!</h1>
+        <div className={styles.link}>
+          <Link to="/happy-bakery-website">
+            <Button text={'Continue Shopping'} />
+          </Link>
+        </div>
+      </div>
     </div>
   )
 }
