@@ -134,7 +134,7 @@ const Navbar = () => {
             ref={cartPeekRef}
             onClick={() => setOpenCartPeek(!openCartPeek)}
           >
-            {userCartItems.length}
+            {userCartItems ? userCartItems.length : '0'}
             {openCartPeek && <CartPeek />}
           </li>
         </ul>
