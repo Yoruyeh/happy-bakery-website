@@ -75,12 +75,6 @@ export const UserOrdersProvider = ({ children }) => {
   }
 
   const handleNewOrderSubmit =  async () => {
-    console.log({
-      orderItems: orderItems,
-      total: totalPrice + shippingFee,
-      shipment: shipmentData,
-      payment: paymentData
-    })
     const { status, message } = await AddNewOrder({
       orderItems: orderItems,
       total: totalPrice + shippingFee,
@@ -90,6 +84,8 @@ export const UserOrdersProvider = ({ children }) => {
 
     if (status === 'success') {
       navigate('/happy-bakery-website/finish')
+      const { userOrders } = await GetUserOrders()
+      setUserOrders(userOrders)
       return
     }
 
