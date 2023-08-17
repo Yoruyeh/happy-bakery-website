@@ -5,9 +5,10 @@ import OrderCard from '../../components/card/OrderCard'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
 import { useUserCartItems } from '../../context/CartContext'
+import { useEffect } from 'react'
 
 const Payment = () => {
-  const { userCartItems } = useUserCartItems()
+  const { userCartItems, shippingFee } = useUserCartItems()
   const totalPrice = userCartItems.reduce((total, item) => {
     return total + item.quantity * item.price_each
   }, 0)
@@ -15,8 +16,12 @@ const Payment = () => {
   const orderProp = {
     item_count: userCartItems.length,
     total_price: totalPrice,
-    shipping_fee: 0
+    shipping_fee: shippingFee
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className={styles.payment}>

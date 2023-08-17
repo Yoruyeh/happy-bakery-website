@@ -5,6 +5,7 @@ import CartCard from '../../components/card/CartCard'
 import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import Button from '../../components/button/Button'
 import { useUserCartItems } from '../../context/CartContext'
+import { useEffect } from 'react'
 
 const Cart = () => {
   const { userCartItems } = useUserCartItems()
@@ -17,6 +18,10 @@ const Cart = () => {
     total_price: totalPrice,
     shipping_fee: 0
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className={styles.cart}>

@@ -18,6 +18,7 @@ export const useUserCartItems = () => useContext(UserCartItemsContext)
 export const UserCartItemsProvider = ({ children }) => {
   const { isAuthenticated } = useAuth()
   const [userCartItems, setUserCartIems] = useState([])
+  const [shippingFee, setShippingFee] = useState(60)
 
   const handleAddToCart = async ({ id, quantity, price }) => {
     const { status, message } = await AddCartItem({
@@ -89,7 +90,9 @@ export const UserCartItemsProvider = ({ children }) => {
         userCartItems,
         setUserCartIems,
         handleAddToCart,
-        handleDeleteCart
+        handleDeleteCart,
+        shippingFee,
+        setShippingFee
       }}
     >
       {children}

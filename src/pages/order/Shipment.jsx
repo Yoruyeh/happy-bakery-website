@@ -5,10 +5,13 @@ import OrderCard from '../../components/card/OrderCard'
 import { TextInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
 import { useUserCartItems } from '../../context/CartContext'
+import { useEffect, useState } from 'react'
 
 
 const Shipment = () => {
-  const { userCartItems } = useUserCartItems()
+  const { userCartItems, shippingFee, setShippingFee } = useUserCartItems()
+  const [activeButton, setActiveButton] = useState(shippingFee === 60 ? 1 : 2)
+
   const totalPrice = userCartItems.reduce((total, item) => {
     return total + item.quantity * item.price_each
   }, 0)
@@ -16,8 +19,12 @@ const Shipment = () => {
   const orderProp = {
     item_count: userCartItems.length,
     total_price: totalPrice,
-    shipping_fee: 0
+    shipping_fee: shippingFee
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className={styles.shipment}>
@@ -51,14 +58,30 @@ const Shipment = () => {
         </div>
         <div className={styles.deliveryButton}>
           <h3>Delivery Options</h3>
-          <div className={`${styles.button} ${styles.active}`}>
+          <div
+            className={`${styles.button} ${
+              activeButton === 1 ? styles.active : ''
+            }`}
+            onClick={() => {
+              setActiveButton(1)
+              setShippingFee(60)
+            }}
+          >
             <div className={styles.text}>
               <h6>Standard Delivery</h6>
               <p>Enter your address to see when you’ll get your order</p>
             </div>
-            <div className={styles.price}>$6.00</div>
+            <div className={styles.price}>$60</div>
           </div>
-          <div className={styles.button}>
+          <div
+            className={`${styles.button} ${
+              activeButton === 2 ? styles.active : ''
+            }`}
+            onClick={() => {
+              setActiveButton(2)
+              setShippingFee(0)
+            }}
+          >
             <div className={styles.text}>
               <h6>Collect in store</h6>
               <p>Pay now, collect in store</p>
