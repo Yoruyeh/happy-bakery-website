@@ -9,12 +9,24 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Login = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [loginInfo, setLoginInfo] = useState({
+    email: '',
+    password: ''
+  })
+
   const { signIn } = useAuth()
   const navigate = useNavigate()
 
+  const handleLoginInputChange = (event) => {
+    const { name, value } = event.target
+    setLoginInfo((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const handleLoginClick = async () => {
+    const { email, password } = loginInfo
     if (email.trim().length === 0 || password.trim().length === 0) {
       Swal.fire({
         position: 'top',
@@ -63,16 +75,16 @@ const Login = () => {
           <TextInput
             type={'email'}
             placeholder={'Email'}
-            onChange={(emailInputValue) => setEmail(emailInputValue)}
+            name={'email'}
+            onChange={(e) => handleLoginInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
           <TextInput
             type={'password'}
             placeholder={'Password'}
-            onChange={(passwordInputValue) => 
-              setPassword(passwordInputValue)
-            }
+            name={'password'}
+            onChange={(e) => handleLoginInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>

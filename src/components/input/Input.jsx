@@ -10,7 +10,6 @@ const TextInput = ({ type, placeholder, value, defaultValue, name, required, onC
       defaultValue={defaultValue}
       name={name}
       required={required}
-      // onChange={(e) => onChange?.(e.target.value)}
       onChange={(e) => onChange?.(e)}
     />
   )

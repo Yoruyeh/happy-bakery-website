@@ -9,16 +9,28 @@ import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Register = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [gender, setGender] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [termsAgreement, setTermsAgreement] = useState(false)
+  const [registerInfo, setRegisterInfo] = useState({
+    firstName: '',
+    lastName: '',
+    gender: '',
+    email: '',
+    password: '',
+    termsAgreement: false
+  })
+
   const { signUp } = useAuth()
   const navigate = useNavigate()
 
+  const handleRegisterInputChange = (event) => {
+    const { name, value } = event.target
+    setRegisterInfo((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
   const handleRegisterClick = async () => {
+    const { firstName, lastName, gender, email, password, termsAgreement } = registerInfo
     if (
       firstName.trim().length === 0 ||
       lastName.trim().length === 0 ||
@@ -83,16 +95,16 @@ const Register = () => {
             <TextInput
               type={'text'}
               placeholder={'First Name'}
-              onChange={(firstNameInputValue) =>
-                setFirstName(firstNameInputValue)
-              }
+              name={'firstName'}
+              onChange={(e) => handleRegisterInputChange(e)}
             />
           </div>
           <div className={styles.inputWrapper}>
             <TextInput
               type={'text'}
               placeholder={'Last Name'}
-              onChange={(lastNameInputValue) => setLastName(lastNameInputValue)}
+              name={'lastName'}
+              onChange={(e) => handleRegisterInputChange(e)}
             />
           </div>
         </div>
@@ -108,12 +120,18 @@ const Register = () => {
                 label={'Male'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('male')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: 'male'
+                    }))
                   } else {
-                    setGender('')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                disabled={gender && gender !== 'male'}
+                disabled={registerInfo.gender && registerInfo.gender !== 'male'}
               />
             </div>
             <div className={styles.inputWrapper}>
@@ -124,12 +142,20 @@ const Register = () => {
                 label={'Female'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('female')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: 'female'
+                    }))
                   } else {
-                    setGender('')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                disabled={gender && gender !== 'female'}
+                disabled={
+                  registerInfo.gender && registerInfo.gender !== 'female'
+                }
               />
             </div>
             <div className={styles.inputWrapper}>
@@ -140,12 +166,20 @@ const Register = () => {
                 label={'Other'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('other')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: 'other'
+                    }))
                   } else {
-                    setGender('')
+                    setRegisterInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                disabled={gender && gender !== 'other'}
+                disabled={
+                  registerInfo.gender && registerInfo.gender !== 'other'
+                }
               />
             </div>
           </div>
@@ -157,14 +191,16 @@ const Register = () => {
             <TextInput
               type={'email'}
               placeholder={'Email'}
-              onChange={(emailInputValue) => setEmail(emailInputValue)}
+              name={'email'}
+              onChange={(e) => handleRegisterInputChange(e)}
             />
           </div>
           <div className={styles.inputWrapper}>
             <TextInput
               type={'password'}
               placeholder={'Password'}
-              onChange={(passwordInputValue) => setPassword(passwordInputValue)}
+              name={'password'}
+              onChange={(e) => handleRegisterInputChange(e)}
             />
           </div>
         </div>
@@ -177,7 +213,17 @@ const Register = () => {
           Privacy Notice and Terms & Conditions.`}
               name={'termsAgreement'}
               onChange={(isChecked) => {
-                setTermsAgreement(isChecked)
+                if (isChecked) {
+                  setRegisterInfo((prev) => ({
+                    ...prev,
+                    termsAgreement: true
+                  }))
+                } else {
+                  setRegisterInfo((prev) => ({
+                    ...prev,
+                    gender: false
+                  }))
+                }
               }}
             />
           </div>
