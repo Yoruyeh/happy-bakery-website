@@ -6,9 +6,12 @@ import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
 import { useUserCartItems } from '../../context/CartContext'
 import { useEffect } from 'react'
+import { useUserOrders } from '../../context/OrdersContext'
+import { PaymentMethod } from '../../data'
 
 const Payment = () => {
   const { userCartItems, shippingFee } = useUserCartItems()
+  const { handlePaymentDataChange } = useUserOrders()
   const totalPrice = userCartItems.reduce((total, item) => {
     return total + item.quantity * item.price_each
   }, 0)
@@ -31,27 +34,19 @@ const Payment = () => {
           <h3>Payment Method</h3>
           <p>Please Choose a payment method and fill out the payment info.</p>
           <div className={styles.radioWrapper}>
-            <div className={styles.inputWrapper}>
-              <CheckboxInput
-                type={'radio'}
-                name={'paymentMethod'}
-                label={'Credit Card'}
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <CheckboxInput
-                type={'radio'}
-                name={'paymentMethod'}
-                label={'Bank Transfer'}
-              />
-            </div>
-            <div className={styles.inputWrapper}>
-              <CheckboxInput
-                type={'radio'}
-                name={'paymentMethod'}
-                label={'Line Pay'}
-              />
-            </div>
+            {PaymentMethod.map((method) => (
+              <div className={styles.inputWrapper} key={method.id}>
+                <CheckboxInput
+                  type={'radio'}
+                  name={'paymentMethod'}
+                  label={method.name}
+                  value={method.value}
+                  onChange={(isChecked) => {
+                    handlePaymentDataChange(method.value)
+                  }}
+                />
+              </div>
+            ))}
           </div>
         </div>
         <div className={styles.paymentInput}>

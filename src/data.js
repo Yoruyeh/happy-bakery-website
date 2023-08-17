@@ -80,6 +80,29 @@ export const memberMenu = [
   }
 ]
 
+export const PaymentMethod = [
+  {
+    id: '1',
+    name: 'Credit Card',
+    value: 'Credit'
+  },
+  {
+    id: '2',
+    name: 'ECPAY',
+    value: 'ECPAY'
+  },
+  {
+    id: '3',
+    name: 'PayPal',
+    value: 'PayPal'
+  },
+  {
+    id: '4',
+    name: 'NewebPay',
+    value: 'NewebPay'
+  }
+]
+
 export const adminMenu = [
   {
     id: '1',

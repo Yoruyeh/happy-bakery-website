@@ -6,10 +6,12 @@ import { TextInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
 import { useUserCartItems } from '../../context/CartContext'
 import { useEffect, useState } from 'react'
+import { useUserOrders } from '../../context/OrdersContext'
 
 
 const Shipment = () => {
   const { userCartItems, shippingFee, setShippingFee } = useUserCartItems()
+  const { handleShipmentDataChange } = useUserOrders()
   const [activeButton, setActiveButton] = useState(shippingFee === 60 ? 1 : 2)
 
   const totalPrice = userCartItems.reduce((total, item) => {
@@ -28,7 +30,7 @@ const Shipment = () => {
 
   return (
     <div className={styles.shipment}>
-      <div className={styles.shipmentForm}>
+      <form className={styles.shipmentForm}>
         <p>Login and Checkout faster</p>
         <div className={styles.contactInput}>
           <h3>Contact Details</h3>
@@ -36,23 +38,48 @@ const Shipment = () => {
             We will use these details to keep you inform about your delivery.
           </p>
           <div className={styles.inputWrapper}>
-            <TextInput type={'email'} placeholder={'Email'} />
+            <TextInput
+              type={'email'}
+              placeholder={'Email'}
+              name={'email'}
+              onChange={(e) => handleShipmentDataChange(e)}
+            />
           </div>
         </div>
         <div className={styles.shipmentInput}>
           <h3>Shipping Address</h3>
           <div className={styles.inputWrapper}>
             <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'First Name*'} />
+              <TextInput
+                type={'text'}
+                placeholder={'First Name*'}
+                name={'firstName'}
+                onChange={(e) => handleShipmentDataChange(e)}
+              />
             </div>
             <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'Last Name*'} />
+              <TextInput
+                type={'text'}
+                placeholder={'Last Name*'}
+                name={'lastName'}
+                onChange={(e) => handleShipmentDataChange(e)}
+              />
             </div>
             <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'Delivery Address*'} />
+              <TextInput
+                type={'text'}
+                placeholder={'Delivery Address*'}
+                name={'address'}
+                onChange={(e) => handleShipmentDataChange(e)}
+              />
             </div>
             <div className={styles.row}>
-              <TextInput type={'tel'} placeholder={'Phone Number*'} />
+              <TextInput
+                type={'tel'}
+                placeholder={'Phone Number*'}
+                name={'phone'}
+                onChange={(e) => handleShipmentDataChange(e)}
+              />
             </div>
           </div>
         </div>
@@ -62,9 +89,11 @@ const Shipment = () => {
             className={`${styles.button} ${
               activeButton === 1 ? styles.active : ''
             }`}
-            onClick={() => {
+            data-name="standard"
+            onClick={(e) => {
               setActiveButton(1)
               setShippingFee(60)
+              handleShipmentDataChange(e)
             }}
           >
             <div className={styles.text}>
@@ -77,9 +106,11 @@ const Shipment = () => {
             className={`${styles.button} ${
               activeButton === 2 ? styles.active : ''
             }`}
-            onClick={() => {
+            data-name="store"
+            onClick={(e) => {
               setActiveButton(2)
               setShippingFee(0)
+              handleShipmentDataChange(e)
             }}
           >
             <div className={styles.text}>
@@ -97,7 +128,7 @@ const Shipment = () => {
             <Button text={'NEXT STEP: PAYMENT'} />
           </Link>
         </div>
-      </div>
+      </form>
       <div className={styles.orderInfo}>
         <div className={styles.summary}>
           <OrderSummaryCard order={orderProp} />

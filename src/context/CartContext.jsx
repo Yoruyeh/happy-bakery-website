@@ -8,7 +8,9 @@ const defaultUserCartItemsContext = {
   userCartItems: null,
   setUserCartIems: () => {},
   handleAddToCart: () => {},
-  handleDeleteCart: () => {}
+  handleDeleteCart: () => {},
+  shippingFee: 60,
+  setShippingFee: () => {}
 }
 
 const UserCartItemsContext = createContext(defaultUserCartItemsContext)

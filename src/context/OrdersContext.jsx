@@ -6,7 +6,20 @@ import { GetUserOrderById } from '../api/orders'
 const defaultUserOrdersContext = {
   userOrders: null,
   handleCheckOrderClick: () => {},
-  userOrderDetail: null
+  userOrderDetail: null,
+  shipmentData: {
+    email: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    phone: '',
+    shippingMethod: ''
+  },
+  paymentData: {
+    paymentMethod: ''
+  },
+  handleShipmentDataChange: () => {},
+  handlePaymentDataChange: () => {}
 }
 
 const UserOrdersContext = createContext(defaultUserOrdersContext)
@@ -17,10 +30,43 @@ export const UserOrdersProvider = ({ children }) => {
   const { isAuthenticated } = useAuth()
   const [userOrders, setUserOrders] = useState([])
   const [userOrderDetail, setUserOrderDetail] = useState({})
+  const [shipmentData, setShipmentData] = useState({
+    email: '',
+    firstName: '',
+    lastName: '',
+    address: '',
+    phone: '',
+    shippingMethod: ''
+  })
+  const [paymentData, setPaymentData] = useState({
+    paymentMethod: ''
+  })
 
   const handleCheckOrderClick = async (id) => {
     const { order } = await GetUserOrderById(id)
     setUserOrderDetail(order)
+  }
+
+  const handleShipmentDataChange = (event) => {
+    if (event.type === 'click') {
+      const method = event.currentTarget.dataset.name
+      setShipmentData((prev) => ({
+        ...prev,
+        shippingMethod: method
+      }))
+      return
+    }
+    const { name, value } = event.target
+    setShipmentData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handlePaymentDataChange = (value) => {
+    setPaymentData({
+      paymentMethod: value
+    })
   }
 
   useEffect(() => {
@@ -35,7 +81,13 @@ export const UserOrdersProvider = ({ children }) => {
 
   return (
     <UserOrdersContext.Provider
-      value={{ userOrders, userOrderDetail, handleCheckOrderClick }}
+      value={{
+        userOrders,
+        userOrderDetail,
+        handleCheckOrderClick,
+        handleShipmentDataChange,
+        handlePaymentDataChange
+      }}
     >
       {children}
     </UserOrdersContext.Provider>
