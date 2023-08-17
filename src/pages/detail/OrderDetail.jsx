@@ -23,7 +23,7 @@ const OrderDetail = () => {
           <div className={styles.cardWrapper}>
             {orderItemArray &&
               orderItemArray.map((item) => (
-                <OrderCard item={item} key={item.id} />
+                <OrderCard item={item} key={item.Product.name} />
               ))}
           </div>
         </div>

@@ -10,11 +10,9 @@ import { useUserOrders } from '../../context/OrdersContext'
 import { PaymentMethod } from '../../data'
 
 const Payment = () => {
-  const { userCartItems, shippingFee } = useUserCartItems()
-  const { handlePaymentDataChange } = useUserOrders()
-  const totalPrice = userCartItems.reduce((total, item) => {
-    return total + item.quantity * item.price_each
-  }, 0)
+  const { userCartItems, totalPrice, shippingFee } = useUserCartItems()
+  const { handlePaymentDataChange, handleNewOrderSubmit, paymentData } =
+    useUserOrders()
 
   const orderProp = {
     item_count: userCartItems.length,
@@ -44,6 +42,7 @@ const Payment = () => {
                   onChange={(isChecked) => {
                     handlePaymentDataChange(method.value)
                   }}
+                  checked={paymentData.paymentMethod === method.value}
                 />
               </div>
             ))}
@@ -88,9 +87,12 @@ const Payment = () => {
           <Link to="../shipment" className={styles.back}>
             <Button text={'BACK'} />
           </Link>
-          <Link to="../finish">
-            <Button text={'REVIEW AND PAY'} />
-          </Link>
+          {/* <Link to="../finish"> */}
+          <Button
+            text={'REVIEW AND PAY'}
+            onClick={() => handleNewOrderSubmit()}
+          />
+          {/* </Link> */}
         </div>
       </div>
       <div className={styles.orderInfo}>

@@ -9,8 +9,10 @@ const defaultUserCartItemsContext = {
   setUserCartIems: () => {},
   handleAddToCart: () => {},
   handleDeleteCart: () => {},
+  totalPrice: 0,
   shippingFee: 60,
-  setShippingFee: () => {}
+  setShippingFee: () => {},
+  orderItems: []
 }
 
 const UserCartItemsContext = createContext(defaultUserCartItemsContext)
@@ -21,6 +23,10 @@ export const UserCartItemsProvider = ({ children }) => {
   const { isAuthenticated } = useAuth()
   const [userCartItems, setUserCartIems] = useState([])
   const [shippingFee, setShippingFee] = useState(60)
+  const [orderItems, setOrderItems] = useState([])
+  const totalPrice = userCartItems && userCartItems.reduce((total, item) => {
+    return total + item.quantity * item.price_each
+  }, 0)
 
   const handleAddToCart = async ({ id, quantity, price }) => {
     const { status, message } = await AddCartItem({
@@ -83,8 +89,16 @@ export const UserCartItemsProvider = ({ children }) => {
         setUserCartIems(cartItems)
       }
       GetUserCartItemsAsync()
+
+    const initialOrderItems = userCartItems && userCartItems.map((item) => ({
+      id: item.Product.id,
+      quantity: item.quantity,
+      price: Number(item.price_each)
+    }))
+      setOrderItems(initialOrderItems)
     }
-  }, [isAuthenticated])
+
+  }, [isAuthenticated, userCartItems])
 
   return (
     <UserCartItemsContext.Provider
@@ -93,8 +107,10 @@ export const UserCartItemsProvider = ({ children }) => {
         setUserCartIems,
         handleAddToCart,
         handleDeleteCart,
+        totalPrice,
         shippingFee,
-        setShippingFee
+        setShippingFee,
+        orderItems
       }}
     >
       {children}

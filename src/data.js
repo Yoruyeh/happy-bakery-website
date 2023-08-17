@@ -84,7 +84,7 @@ export const PaymentMethod = [
   {
     id: '1',
     name: 'Credit Card',
-    value: 'Credit'
+    value: 'credit'
   },
   {
     id: '2',

@@ -1,7 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { GetUserOrders } from "../api/user.auth";
-import { GetUserOrderById } from '../api/orders'
+import { GetUserOrderById, AddNewOrder } from '../api/orders'
+import { useUserCartItems } from "./CartContext";
+import { useNavigate } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 const defaultUserOrdersContext = {
   userOrders: null,
@@ -27,7 +30,9 @@ const UserOrdersContext = createContext(defaultUserOrdersContext)
 export const useUserOrders = () => useContext(UserOrdersContext)
 
 export const UserOrdersProvider = ({ children }) => {
+  const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
+  const { orderItems, totalPrice, shippingFee } = useUserCartItems()
   const [userOrders, setUserOrders] = useState([])
   const [userOrderDetail, setUserOrderDetail] = useState({})
   const [shipmentData, setShipmentData] = useState({
@@ -36,7 +41,7 @@ export const UserOrdersProvider = ({ children }) => {
     lastName: '',
     address: '',
     phone: '',
-    shippingMethod: ''
+    shippingMethod: 'standard'
   })
   const [paymentData, setPaymentData] = useState({
     paymentMethod: ''
@@ -69,6 +74,34 @@ export const UserOrdersProvider = ({ children }) => {
     })
   }
 
+  const handleNewOrderSubmit =  async () => {
+    console.log({
+      orderItems: orderItems,
+      total: totalPrice + shippingFee,
+      shipment: shipmentData,
+      payment: paymentData
+    })
+    const { status, message } = await AddNewOrder({
+      orderItems: orderItems,
+      total: totalPrice + shippingFee,
+      shipment: shipmentData,
+      payment: paymentData
+    })
+
+    if (status === 'success') {
+      navigate('/happy-bakery-website/finish')
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: `${message}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   useEffect(() => {
     if (isAuthenticated) {
       const GetUserOrdersAsync = async () => {
@@ -84,9 +117,12 @@ export const UserOrdersProvider = ({ children }) => {
       value={{
         userOrders,
         userOrderDetail,
+        shipmentData,
+        paymentData,
         handleCheckOrderClick,
         handleShipmentDataChange,
-        handlePaymentDataChange
+        handlePaymentDataChange,
+        handleNewOrderSubmit
       }}
     >
       {children}

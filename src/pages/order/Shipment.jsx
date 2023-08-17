@@ -10,13 +10,11 @@ import { useUserOrders } from '../../context/OrdersContext'
 
 
 const Shipment = () => {
-  const { userCartItems, shippingFee, setShippingFee } = useUserCartItems()
-  const { handleShipmentDataChange } = useUserOrders()
+  const { userCartItems, totalPrice, shippingFee, setShippingFee } =
+    useUserCartItems()
+  const { handleShipmentDataChange, shipmentData } =
+    useUserOrders()
   const [activeButton, setActiveButton] = useState(shippingFee === 60 ? 1 : 2)
-
-  const totalPrice = userCartItems.reduce((total, item) => {
-    return total + item.quantity * item.price_each
-  }, 0)
 
   const orderProp = {
     item_count: userCartItems.length,
@@ -42,6 +40,7 @@ const Shipment = () => {
               type={'email'}
               placeholder={'Email'}
               name={'email'}
+              value={shipmentData.email}
               onChange={(e) => handleShipmentDataChange(e)}
             />
           </div>
@@ -54,6 +53,7 @@ const Shipment = () => {
                 type={'text'}
                 placeholder={'First Name*'}
                 name={'firstName'}
+                value={shipmentData.firstName}
                 onChange={(e) => handleShipmentDataChange(e)}
               />
             </div>
@@ -62,6 +62,7 @@ const Shipment = () => {
                 type={'text'}
                 placeholder={'Last Name*'}
                 name={'lastName'}
+                value={shipmentData.lastName}
                 onChange={(e) => handleShipmentDataChange(e)}
               />
             </div>
@@ -70,6 +71,7 @@ const Shipment = () => {
                 type={'text'}
                 placeholder={'Delivery Address*'}
                 name={'address'}
+                value={shipmentData.address}
                 onChange={(e) => handleShipmentDataChange(e)}
               />
             </div>
@@ -78,6 +80,7 @@ const Shipment = () => {
                 type={'tel'}
                 placeholder={'Phone Number*'}
                 name={'phone'}
+                value={shipmentData.phone}
                 onChange={(e) => handleShipmentDataChange(e)}
               />
             </div>
