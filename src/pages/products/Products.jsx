@@ -15,6 +15,7 @@ const Products = () => {
   let { category } = useParams()
   const navigate = useNavigate()
   const [selectedSortValue, setSelectedSortValue] = useState('')
+  const [activePage, setActivePage] = useState(1)
 
   const ProductPageTitle = (category) => {
     if (category === 'all') {
@@ -49,10 +50,17 @@ const Products = () => {
     handleNavItemClick({ id: SelectedItem.id, sort: value })
   }
 
+  const handlePaginationClick = (page) => {
+    const SelectedItem = productMenu.find((item) =>
+      item.link.includes(category)
+    )
+
+    handleNavItemClick({ id: SelectedItem.id, sort: selectedSortValue, page: page })
+  }
+
   useEffect(() => {
-      window.scrollTo(0, 0)
-      setSelectedSortValue('')
-  }, [])
+    window.scrollTo(0, 500)
+  }, [activePage, category])
 
   useEffect(() => {
     if (category === 'new') {
@@ -60,6 +68,7 @@ const Products = () => {
     } else {
       setSelectedSortValue('price_asc')
     }
+    setActivePage(1)
   }, [category])
 
   return (
@@ -131,7 +140,12 @@ const Products = () => {
               <ProductCard product={product} key={product.id} />
             ))}
           </div>
-          <Pagination />
+          <Pagination
+            productCount={productCount}
+            handlePaginationClick={handlePaginationClick}
+            activePage={activePage}
+            setActivePage={setActivePage}
+          />
         </div>
       </div>
     </div>
