@@ -32,7 +32,7 @@ export const useUserOrders = () => useContext(UserOrdersContext)
 export const UserOrdersProvider = ({ children }) => {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
-  const { orderItems, totalPrice, shippingFee } = useUserCartItems()
+  const { orderItems, totalPrice } = useUserCartItems()
   const [userOrders, setUserOrders] = useState([])
   const [userOrderDetail, setUserOrderDetail] = useState({})
   const [shipmentData, setShipmentData] = useState({
@@ -77,7 +77,7 @@ export const UserOrdersProvider = ({ children }) => {
   const handleNewOrderSubmit =  async () => {
     const { status, message } = await AddNewOrder({
       orderItems: orderItems,
-      total: totalPrice + shippingFee,
+      total: totalPrice,
       shipment: shipmentData,
       payment: paymentData
     })
