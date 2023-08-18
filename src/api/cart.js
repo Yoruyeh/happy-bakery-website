@@ -1,10 +1,10 @@
-import { axiosInstance } from './axiosInstance'
+import { UserAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/cart'
 
 export const GetUserCartItems = async () => {
   try {
-    const { data } = await axiosInstance.get(baseUrl)
+    const { data } = await UserAxiosInstance.get(baseUrl)
 
     return data
 
@@ -16,7 +16,7 @@ export const GetUserCartItems = async () => {
 
 export const AddCartItem = async ({ id, quantity, price }) => {
   try {
-    const { data } = await axiosInstance.post(baseUrl, {
+    const { data } = await UserAxiosInstance.post(baseUrl, {
       id,
       quantity,
       price
@@ -32,7 +32,7 @@ export const AddCartItem = async ({ id, quantity, price }) => {
 
 export const DeleteCartItem = async (id) => {
   try {
-    const { data } = await axiosInstance.delete(`${baseUrl}/${id}`)
+    const { data } = await UserAxiosInstance.delete(`${baseUrl}/${id}`)
 
     return data
   } catch (error) {

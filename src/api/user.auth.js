@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { axiosInstance } from './axiosInstance'
+import { UserAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/users'
 
@@ -74,7 +74,7 @@ export const CheckPermission = async (token) => {
 
 export const EditPassword = async ({ currentPW, newPW, confirmPW }) => {
   try {
-    const { data } = await axiosInstance.put(`${baseUrl}/password`, {
+    const { data } = await UserAxiosInstance.put(`${baseUrl}/password`, {
       currentPW,
       newPW,
       confirmPW
@@ -98,7 +98,7 @@ export const EditUserInfo = async ({
   gender
 }) => {
   try {
-    const { data } = await axiosInstance.put(baseUrl, {
+    const { data } = await UserAxiosInstance.put(baseUrl, {
       firstName,
       lastName,
       birthday,
@@ -118,7 +118,7 @@ export const EditUserInfo = async ({
 
 export const GetUserOrders = async () => {
   try {
-    const { data } = await axiosInstance.get(`${baseUrl}/orders`)
+    const { data } = await UserAxiosInstance.get(`${baseUrl}/orders`)
 
     return data
 

@@ -7,9 +7,11 @@ import { Link } from 'react-router-dom'
 import { useUserCartItems } from '../../context/CartContext'
 import { useEffect, useState } from 'react'
 import { useUserOrders } from '../../context/OrdersContext'
-
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const Shipment = () => {
+  const navigate = useNavigate()
   const { userCartItems, totalPrice, shippingFee, setShippingFee } =
     useUserCartItems()
   const { handleShipmentDataChange, shipmentData } =
@@ -20,6 +22,40 @@ const Shipment = () => {
     item_count: userCartItems.length,
     total_price: totalPrice,
     shipping_fee: shippingFee
+  }
+
+  const handleNextStepClick = () => {
+    const { email, firstName, lastName, address, phone } = shipmentData
+
+    if (
+      !email.trim() ||
+      !firstName.trim() ||
+      !lastName.trim() ||
+      !address.trim() ||
+      !phone.trim()
+    ) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (phone.trim().length < 10) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Invalid Phone Number',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    navigate('../payment')
   }
 
   useEffect(() => {
@@ -127,9 +163,13 @@ const Shipment = () => {
           <Link to="../cart" className={styles.back}>
             <Button text={'BACK'} />
           </Link>
-          <Link to="../payment">
-            <Button text={'NEXT STEP: PAYMENT'} />
-          </Link>
+          <Button
+            text={'NEXT STEP: PAYMENT'}
+            onClick={(e) => {
+              e.preventDefault()
+              handleNextStepClick()
+            }}
+          />
         </div>
       </form>
       <div className={styles.orderInfo}>

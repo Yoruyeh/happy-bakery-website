@@ -1,10 +1,10 @@
-import { axiosInstance } from './axiosInstance'
+import { UserAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/orders'
 
 export const GetUserOrderById = async (id) => {
   try {
-    const { data } = await axiosInstance.get(`${baseUrl}/${id}`)
+    const { data } = await UserAxiosInstance.get(`${baseUrl}/${id}`)
 
     return data
 
@@ -16,7 +16,7 @@ export const GetUserOrderById = async (id) => {
 export const AddNewOrder = async (payload) => {
   try {
     const {orderItems, total, shipment, payment} = payload
-    const { data } = await axiosInstance.post(baseUrl, {
+    const { data } = await UserAxiosInstance.post(baseUrl, {
       orderItems,
       total,
       shipment,

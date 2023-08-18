@@ -1,12 +1,13 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3000/api/users'
+const userBaseUrl = 'http://localhost:3000/api/users'
+const adminBaseUrl = 'http://localhost:3000/api/admin'
 
-const axiosInstance = axios.create({
-  baseUrl: baseUrl
+const UserAxiosInstance = axios.create({
+  baseUrl: userBaseUrl
 })
 
-axiosInstance.interceptors.request.use(
+UserAxiosInstance.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('token')
     if (token) {
@@ -19,4 +20,21 @@ axiosInstance.interceptors.request.use(
   }
 )
 
-export { axiosInstance }
+const AdminAxiosInstance = axios.create({
+  baseUrl: adminBaseUrl
+})
+
+AdminAxiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      config.headers['Authorization'] = `Bearer ${token}`
+    }
+    return config
+  },
+  (error) => {
+    console.error(error)
+  }
+)
+
+export { UserAxiosInstance, AdminAxiosInstance }
