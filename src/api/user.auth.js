@@ -84,6 +84,7 @@ export const EditPassword = async ({ currentPW, newPW, confirmPW }) => {
 
   } catch (error) {
     console.error('[Edit Password Failed]: ', error)
+    return error.response.data
   }
 }
 
@@ -111,6 +112,7 @@ export const EditUserInfo = async ({
 
   } catch (error) {
     console.error('[Edit User Info Failed]: ', error)
+    return error.response.data
   }
 }
 
@@ -122,6 +124,7 @@ export const GetUserOrders = async () => {
 
   } catch (error) {
     console.error('[Get User Orders Failed]: ', error)
+    return error.response.data
   }
 }
 

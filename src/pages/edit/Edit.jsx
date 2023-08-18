@@ -6,11 +6,23 @@ import { useState } from 'react'
 import Swal from 'sweetalert2'
 
 const Edit = () => {
-  const [currentPW, setCurrentPW] = useState('')
-  const [newPW, setNewPW] = useState('')
-  const [confirmPW, setConfirmPW] = useState('')
+  const [passwords, setPassowrds] = useState({
+    currentPW: '',
+    newPW: '',
+    confirmPW: ''
+  })
+
+  const handleEditInputChange = (event) => {
+    const { name, value } = event.target
+    setPassowrds((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   const handleUpdateClick = async () => {
+    const { currentPW, newPW, confirmPW } = passwords
+
     if (
       currentPW.trim().length === 0 ||
       newPW.trim().length === 0 ||
@@ -26,6 +38,17 @@ const Edit = () => {
       return
     }
 
+    if (newPW !== confirmPW) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Passwords do not match',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
     const { status } = await EditPassword({
       currentPW,
       newPW,
@@ -33,9 +56,11 @@ const Edit = () => {
     })
 
     if (status === 'success') {
-      setCurrentPW('')
-      setNewPW('')
-      setConfirmPW('')
+      setPassowrds({
+        currentPW: '',
+        newPW: '',
+        confirmPW: ''
+      })
       
       Swal.fire({
         position: 'top',
@@ -64,27 +89,26 @@ const Edit = () => {
           <TextInput
             type={'password'}
             placeholder={'Current Password'}
-            value={currentPW}
+            value={passwords.currentPW}
             required={true}
-            onChange={(currentPWInputValue) =>
-              setCurrentPW(currentPWInputValue)
-            }
+            name={'currentPW'}
+            onChange={(e) => handleEditInputChange(e)}
           />
           <TextInput
             type={'password'}
             placeholder={'New Password'}
-            value={newPW}
+            value={passwords.newPW}
             required={true}
-            onChange={(newPWInputValue) => setNewPW(newPWInputValue)}
+            name={'newPW'}
+            onChange={(e) => handleEditInputChange(e)}
           />
           <TextInput
             type={'password'}
             placeholder={'Confirm New Password'}
-            value={confirmPW}
+            value={passwords.confirmPW}
             required={true}
-            onChange={(confirmedPWInputValue) =>
-              setConfirmPW(confirmedPWInputValue)
-            }
+            name={'confirmPW'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <Button
