@@ -3,10 +3,21 @@ import OrderSummaryCard from '../../components/card/OrderSummaryCard'
 import styles from './orderDetail.module.scss'
 import { useUserOrders } from '../../context/OrdersContext'
 import { useEffect } from 'react'
+import { useAuth } from '../../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const OrderDetail = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
   const { userOrderDetail } = useUserOrders()
   const orderItemArray = userOrderDetail.OrderItems
+
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/happy-bakery-website/login')
+    }
+  }, [isAuthenticated, navigate])
 
   useEffect(() => {
     window.scrollTo(0, 0)

@@ -100,6 +100,11 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
+            element: (
+              <Navigate to="/happy-bakery-website/member/setting" replace />
+            )
+          },
+          {
             path: 'setting',
             element: <Setting />
           },

@@ -1,22 +1,23 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from '../../components/button/Button'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
 import styles from './setting.module.scss'
 import { useAuth } from '../../context/AuthContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { EditUserInfo } from '../../api/user.auth'
 import Swal from 'sweetalert2'
 
 const Setting = () => {
-  const { currentUser } = useAuth()
+  const navigate = useNavigate()
+  const { currentUser, isAuthenticated } = useAuth()
   const [editUserInfo, setEditUserInfo] = useState({
-    firstName: currentUser.firstName || '',
-    lastName: currentUser.lastName || '',
-    birthday: currentUser.birthday || '',
-    address: currentUser.address || '',
-    email: currentUser.email || '',
-    phone: currentUser.phone || '',
-    gender: currentUser.gender || ''
+    firstName: currentUser?.firstName || '',
+    lastName: currentUser?.lastName || '',
+    birthday: currentUser?.birthday || '',
+    address: currentUser?.address || '',
+    email: currentUser?.email || '',
+    phone: currentUser?.phone || '',
+    gender: currentUser?.gender || ''
   })
 
    const handleEditInputChange = (event) => {
@@ -89,6 +90,12 @@ const Setting = () => {
       timer: 1500
     })
   }
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/happy-bakery-website/login')
+    }
+  }, [isAuthenticated, navigate])
 
   return (
     <div className={styles.setting}>

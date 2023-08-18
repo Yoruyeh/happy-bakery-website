@@ -1,10 +1,20 @@
 import styles from './order.module.scss'
 import Button from '../../components/button/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useUserOrders } from '../../context/OrdersContext'
+import { useAuth } from '../../context/AuthContext'
+import { useEffect } from 'react'
 
 const Orders = () => {
+  const navigate = useNavigate()
+  const { isAuthenticated } = useAuth()
   const { userOrders, handleCheckOrderClick } = useUserOrders()
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/happy-bakery-website/login')
+    }
+  }, [isAuthenticated, navigate])
 
   return userOrders && userOrders.length > 0 ? (
     <div className={styles.orders}>
