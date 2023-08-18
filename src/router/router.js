@@ -26,7 +26,8 @@ import {
   AdminOrders,
   AdminOrderDetail,
   AdminProductDetail,
-  AdminAddProduct
+  AdminAddProduct,
+  AdminEdit
 } from './index'
 
 const router = createBrowserRouter([
@@ -157,6 +158,10 @@ const router = createBrowserRouter([
       {
         path: 'orders/:id',
         element: <AdminOrderDetail />
+      },
+      {
+        path: 'setting',
+        element: <AdminEdit />
       }
     ]
   }
