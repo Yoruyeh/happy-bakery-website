@@ -1,7 +1,7 @@
 import styles from './orderSummaryCard.module.scss'
 
 const OrderSummaryCard = ({ order }) => {
-  const total = order.total_price + order.shipping_fee
+  const total = Number(order.total_price) + Number(order.shipping_fee)
 
   return (
     <div className={styles.summary}>

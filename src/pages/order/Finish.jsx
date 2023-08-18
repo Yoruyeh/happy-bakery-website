@@ -3,8 +3,14 @@ import BackgroundImg from '../../assets/images/cupcakes.jpeg'
 import HappyImg from '../../assets/images/happy.png'
 import { Link } from 'react-router-dom'
 import Button from '../../components/button/Button'
+import { useEffect } from 'react'
 
 const Finish = () => {
+
+   useEffect(() => {
+     window.scrollTo(0, 0)
+   }, [])
+
   return (
     <div className={styles.finish}>
       <div className={styles.bgImg}>
