@@ -74,7 +74,7 @@ const Shipment = () => {
           <div className={styles.inputWrapper}>
             <TextInput
               type={'email'}
-              placeholder={'Email'}
+              placeholder={'Email*'}
               name={'email'}
               value={shipmentData.email}
               onChange={(e) => handleShipmentDataChange(e)}
