@@ -4,13 +4,15 @@ import Button from '../button/Button'
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useAdmin } from '../../context/AdminContext'
 
 const Header = () => {
   const [openDropDown, setOpenDropDown] = useState(false)
   const adminRef = useRef(null)
+  const { logout } = useAdmin()
 
   const handleLogoutClick = () => {
-    localStorage.removeItem('token')
+    logout()
     Swal.fire({
       position: 'top',
       icon: 'success',
@@ -40,25 +42,30 @@ const Header = () => {
   return (
     <div className={styles.header}>
       <div className={styles.btnWrapper}>
-        <Search />
-        <Notification />
-        <Button
-          text={'ADMIN'}
-          price={<Down />}
+        <div className={styles.btn}>
+          <Search />
+        </div>
+        <div className={styles.btn}>
+          <Notification />
+        </div>
+        <div
+          className={styles.btn}
           ref={adminRef}
           onClick={() => setOpenDropDown(!openDropDown)}
-        />
-        {openDropDown && (
-          <div className={styles.dropdown}>
-            <h6>Admin</h6>
-            <Link to="setting">
-              <Button text={'Change Password'} price={<Forward />} />
-            </Link>
-            <Link to="login" onClick={() => handleLogoutClick()}>
-              <Button text={'Logout'} price={<Logout />} />
-            </Link>
-          </div>
-        )}
+        >
+          <Button text={'ADMIN'} price={<Down />} />
+          {openDropDown && (
+            <div className={styles.dropdown}>
+              <h6>Admin</h6>
+              <Link to="setting">
+                <Button text={'Change Password'} price={<Forward />} />
+              </Link>
+              <Link to="login" onClick={() => handleLogoutClick()}>
+                <Button text={'Logout'} price={<Logout />} />
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

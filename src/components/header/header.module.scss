@@ -6,7 +6,6 @@
   background-color: $FA-white;
   border-bottom: 1px solid rgba(35,35,33,0.25);
   padding: 1rem 3rem;
-  position: relative;
 
   .btnWrapper {
     display: flex;
@@ -15,25 +14,31 @@
     gap: 2rem;
     position: relative;
 
-    svg {
-      width: 1.2rem;
-      height: 1.2rem;
-      cursor: pointer;
-    }
+    .btn {
+      display: flex;
+      align-items: center;
+      position: relative;
 
-    button {
-      background-color: transparent;
-      border: 1px solid $dark-gray;
-      width: 4.9rem;
-      height: 2rem;
-      padding: 0.6rem;
-      color: $dark-gray;
-      cursor: pointer;
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+        cursor: pointer;
+      }
 
-      span {
-        svg {
-          width: 0.8rem;
-          height: 0.8rem;
+      button {
+        background-color: transparent;
+        border: 1px solid $dark-gray;
+        width: 4.9rem;
+        height: 2rem;
+        padding: 0.6rem;
+        color: $dark-gray;
+        cursor: pointer;
+
+        span {
+          svg {
+            width: 0.8rem;
+            height: 0.8rem;
+          }
         }
       }
     }
