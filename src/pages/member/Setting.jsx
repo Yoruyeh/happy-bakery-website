@@ -9,15 +9,27 @@ import Swal from 'sweetalert2'
 
 const Setting = () => {
   const { currentUser } = useAuth()
-  const [firstName, setFirstName] = useState(currentUser.firstName || '')
-  const [lastName, setLastName] = useState(currentUser.lastName || '')
-  const [birthday, setBirthday] = useState(currentUser.birthday || '')
-  const [email, setEmail] = useState(currentUser.email || '')
-  const [address, setAddress] = useState(currentUser.address || '')
-  const [phone, setPhone] = useState(currentUser.phone || '')
-  const [gender, setGender] = useState(currentUser.gender || '')
+  const [editUserInfo, setEditUserInfo] = useState({
+    firstName: currentUser.firstName || '',
+    lastName: currentUser.lastName || '',
+    birthday: currentUser.birthday || '',
+    address: currentUser.address || '',
+    email: currentUser.email || '',
+    phone: currentUser.phone || '',
+    gender: currentUser.gender || ''
+  })
+
+   const handleEditInputChange = (event) => {
+     const { name, value } = event.target
+     setEditUserInfo((prev) => ({
+       ...prev,
+       [name]: value
+     }))
+   }
 
   const handleSaveClick = async () => {
+    const { firstName, lastName, gender, email, birthday, address, phone } =
+      editUserInfo
     if (
       firstName.trim().length === 0 ||
       lastName.trim().length === 0 ||
@@ -89,11 +101,10 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'First Name'}
-            defaultValue={firstName}
+            defaultValue={editUserInfo.firstName}
             required={true}
-            onChange={(firstNameInputValue) =>
-              setFirstName(firstNameInputValue)
-            }
+            name={'firstName'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -103,9 +114,10 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'Last Name'}
-            defaultValue={lastName}
+            defaultValue={editUserInfo.lastName}
             required={true}
-            onChange={(lastNameInputValue) => setLastName(lastNameInputValue)}
+            name={'lastName'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -115,8 +127,9 @@ const Setting = () => {
           <TextInput
             type={'date'}
             placeholder={'Birthday'}
-            defaultValue={birthday}
-            onChange={(birthdayInputValue) => setBirthday(birthdayInputValue)}
+            defaultValue={editUserInfo.birthday}
+            name={'birthday'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -126,9 +139,10 @@ const Setting = () => {
           <TextInput
             type={'email'}
             placeholder={'Email'}
-            defaultValue={email}
+            defaultValue={editUserInfo.email}
             required={true}
-            onChange={(emailInputValue) => setEmail(emailInputValue)}
+            name={'email'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -136,8 +150,9 @@ const Setting = () => {
           <TextInput
             type={'text'}
             placeholder={'Address'}
-            defaultValue={address}
-            onChange={(addressInputValue) => setAddress(addressInputValue)}
+            defaultValue={editUserInfo.address}
+            name={'address'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -147,9 +162,10 @@ const Setting = () => {
           <TextInput
             type={'tel'}
             placeholder={'Should be 10 numbers'}
-            defaultValue={phone}
+            defaultValue={editUserInfo.phone}
             required={true}
-            onChange={(phoneInputValue) => setPhone(phoneInputValue)}
+            name={'phone'}
+            onChange={(e) => handleEditInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -165,13 +181,19 @@ const Setting = () => {
                 label={'Male'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('male')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: 'male'
+                    }))
                   } else {
-                    setGender('')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                checked={gender === 'male'}
-                disabled={gender && gender !== 'male'}
+                disabled={editUserInfo.gender && editUserInfo.gender !== 'male'}
+                checked={editUserInfo.gender && editUserInfo.gender === 'male'}
               />
             </div>
             <div className={styles.checkbox}>
@@ -182,13 +204,23 @@ const Setting = () => {
                 label={'Female'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('female')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: 'female'
+                    }))
                   } else {
-                    setGender('')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                checked={gender === 'female'}
-                disabled={gender && gender !== 'female'}
+                disabled={
+                  editUserInfo.gender && editUserInfo.gender !== 'female'
+                }
+                checked={
+                  editUserInfo.gender && editUserInfo.gender === 'female'
+                }
               />
             </div>
             <div className={styles.checkbox}>
@@ -199,13 +231,21 @@ const Setting = () => {
                 label={'Other'}
                 onChange={(isChecked) => {
                   if (isChecked) {
-                    setGender('other')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: 'other'
+                    }))
                   } else {
-                    setGender('')
+                    setEditUserInfo((prev) => ({
+                      ...prev,
+                      gender: ''
+                    }))
                   }
                 }}
-                checked={gender === 'other'}
-                disabled={gender && gender !== 'other'}
+                disabled={
+                  editUserInfo.gender && editUserInfo.gender !== 'other'
+                }
+                checked={editUserInfo.gender && editUserInfo.gender === 'other'}
               />
             </div>
           </div>
