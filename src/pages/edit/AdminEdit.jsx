@@ -1,9 +1,9 @@
 import styles from './adminEdit.module.scss'
 import { TextInput } from '../../components/input/Input'
 import Button from '../../components/button/Button'
-import { EditPassword } from '../../api/user.auth'
+// import { EditPassword } from '../../api/user.auth'
 import { useState } from 'react'
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 const AdminEdit = () => {
   const [passwords, setPassowrds] = useState({
@@ -20,66 +20,66 @@ const AdminEdit = () => {
     }))
   }
 
-  const handleUpdateClick = async () => {
-    const { currentPW, newPW, confirmPW } = passwords
+  // const handleUpdateClick = async () => {
+  //   const { currentPW, newPW, confirmPW } = passwords
 
-    if (
-      currentPW.trim().length === 0 ||
-      newPW.trim().length === 0 ||
-      confirmPW.trim().length === 0
-    ) {
-      Swal.fire({
-        position: 'top',
-        icon: 'error',
-        title: 'Cannot be blank',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      return
-    }
+  //   if (
+  //     currentPW.trim().length === 0 ||
+  //     newPW.trim().length === 0 ||
+  //     confirmPW.trim().length === 0
+  //   ) {
+  //     Swal.fire({
+  //       position: 'top',
+  //       icon: 'error',
+  //       title: 'Cannot be blank',
+  //       showConfirmButton: false,
+  //       timer: 1500
+  //     })
+  //     return
+  //   }
 
-    if (newPW !== confirmPW) {
-      Swal.fire({
-        position: 'top',
-        icon: 'error',
-        title: 'Passwords do not match',
-        showConfirmButton: false,
-        timer: 1500
-      })
-      return
-    }
+  //   if (newPW !== confirmPW) {
+  //     Swal.fire({
+  //       position: 'top',
+  //       icon: 'error',
+  //       title: 'Passwords do not match',
+  //       showConfirmButton: false,
+  //       timer: 1500
+  //     })
+  //     return
+  //   }
 
-    const { status } = await EditPassword({
-      currentPW,
-      newPW,
-      confirmPW
-    })
+  //   const { status } = await EditPassword({
+  //     currentPW,
+  //     newPW,
+  //     confirmPW
+  //   })
 
-    if (status === 'success') {
-      setPassowrds({
-        currentPW: '',
-        newPW: '',
-        confirmPW: ''
-      })
+  //   if (status === 'success') {
+  //     setPassowrds({
+  //       currentPW: '',
+  //       newPW: '',
+  //       confirmPW: ''
+  //     })
 
-      Swal.fire({
-        position: 'top',
-        icon: 'success',
-        title: `Successfully Updated`,
-        showConfirmButton: false,
-        timer: 1500
-      })
-      return
-    }
+  //     Swal.fire({
+  //       position: 'top',
+  //       icon: 'success',
+  //       title: `Successfully Updated`,
+  //       showConfirmButton: false,
+  //       timer: 1500
+  //     })
+  //     return
+  //   }
 
-    Swal.fire({
-      position: 'top',
-      icon: 'error',
-      title: 'Update Password Failed',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  }
+  //   Swal.fire({
+  //     position: 'top',
+  //     icon: 'error',
+  //     title: 'Update Password Failed',
+  //     showConfirmButton: false,
+  //     timer: 1500
+  //   })
+  // }
 
   return (
     <div className={styles.adminEdit}>
@@ -115,7 +115,7 @@ const AdminEdit = () => {
           text={'UPDATE'}
           onClick={(e) => {
             e.preventDefault()
-            handleUpdateClick()
+            // handleUpdateClick()
           }}
         />
       </form>
