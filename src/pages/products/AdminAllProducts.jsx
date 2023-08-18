@@ -2,6 +2,7 @@ import styles from './adminAllProducts.module.scss'
 import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
 import AdminProductCard from '../../components/adminCard/AdminProductCard'
+import { Link } from 'react-router-dom'
 
 const AdminAllProducts = () => {
   return (
@@ -11,10 +12,14 @@ const AdminAllProducts = () => {
           <h5>All Products</h5>
           <p>Home ＞ All Products</p>
         </div>
-        <Button text={'ADD NEW PRODUCT'} price={<AddCircle />} />
+        <Link to="new">
+          <Button text={'ADD NEW PRODUCT'} price={<AddCircle />} />
+        </Link>
       </div>
       <div className={styles.cards}>
-        <AdminProductCard />
+        <Link to=":id">
+          <AdminProductCard />
+        </Link>
         <AdminProductCard />
         <AdminProductCard />
         <AdminProductCard />
