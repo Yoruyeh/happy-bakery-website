@@ -31,18 +31,45 @@ const Register = () => {
 
   const handleRegisterClick = async () => {
     const { firstName, lastName, gender, email, password, termsAgreement } = registerInfo
+
+    function isValidEmail(email) {
+      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+      return regex.test(email)
+    }
+
     if (
-      firstName.trim().length === 0 ||
-      lastName.trim().length === 0 ||
+      !firstName.trim() ||
+      !lastName.trim() ||
       !gender ||
-      email.trim().length === 0 ||
-      password.trim().length === 0 ||
-      !termsAgreement
+      !email.trim() ||
+      !password.trim()
     ) {
       Swal.fire({
         position: 'top',
         icon: 'error',
         title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!isValidEmail(email)) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Invalid Email',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!termsAgreement) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Please Agree Our Terms',
         showConfirmButton: false,
         timer: 1500
       })
@@ -75,7 +102,7 @@ const Register = () => {
     Swal.fire({
       position: 'top',
       icon: 'error',
-      title: 'Register Failed',
+      title: 'Email Already Exists',
       showConfirmButton: false,
       timer: 1500
     })
