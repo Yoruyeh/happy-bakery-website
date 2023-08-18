@@ -20,5 +20,6 @@ export const AdminSignIn = async ({ email, password })  => {
 
   } catch (error) {
     console.error('[Admin Login failed]: ', error)
+    return { success: false, error: error.message }
   }
 }

@@ -6,7 +6,7 @@ import Swal from 'sweetalert2'
 
 const defaultUserCartItemsContext = {
   userCartItems: null,
-  setUserCartIems: () => {},
+  setUserCartItems: () => {},
   handleAddToCart: () => {},
   handleDeleteCart: () => {},
   totalPrice: 0,
@@ -21,7 +21,7 @@ export const useUserCartItems = () => useContext(UserCartItemsContext)
 
 export const UserCartItemsProvider = ({ children }) => {
   const { isAuthenticated } = useAuth()
-  const [userCartItems, setUserCartIems] = useState([])
+  const [userCartItems, setUserCartItems] = useState([])
   const [shippingFee, setShippingFee] = useState(60)
   const [orderItems, setOrderItems] = useState([])
   const totalPrice = userCartItems && userCartItems.reduce((total, item) => {
@@ -44,7 +44,7 @@ export const UserCartItemsProvider = ({ children }) => {
         timer: 1500
       })
       const { cartItems } = await GetUserCartItems()
-      setUserCartIems(cartItems)
+      setUserCartItems(cartItems)
       return
     }
 
@@ -69,7 +69,7 @@ export const UserCartItemsProvider = ({ children }) => {
         timer: 1500
       })
       const { cartItems } = await GetUserCartItems()
-      setUserCartIems(cartItems)
+      setUserCartItems(cartItems)
       return
     }
 
@@ -86,25 +86,30 @@ export const UserCartItemsProvider = ({ children }) => {
     if (isAuthenticated) {
       const GetUserCartItemsAsync = async () => {
         const { cartItems } = await GetUserCartItems()
-        setUserCartIems(cartItems)
+        setUserCartItems(cartItems)
       }
       GetUserCartItemsAsync()
-
-    const initialOrderItems = userCartItems && userCartItems.map((item) => ({
-      id: item.Product.id,
-      quantity: item.quantity,
-      price: Number(item.price_each)
-    }))
-      setOrderItems(initialOrderItems)
     }
+  }, [isAuthenticated])
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      const initialOrderItems =
+        userCartItems &&
+        userCartItems.map((item) => ({
+          id: item.Product.id,
+          quantity: item.quantity,
+          price: Number(item.price_each)
+        }))
+      setOrderItems(initialOrderItems) 
+    }
   }, [isAuthenticated, userCartItems])
 
   return (
     <UserCartItemsContext.Provider
       value={{
         userCartItems,
-        setUserCartIems,
+        setUserCartItems,
         handleAddToCart,
         handleDeleteCart,
         totalPrice,

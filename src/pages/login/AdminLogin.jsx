@@ -6,21 +6,61 @@ import AdminCover from '../../assets/images/admin-cover.jpg'
 import { AdminSignIn } from '../../api/admin.auth'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 const AdminLogin = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [AdminloginInfo, setAdminLoginInfo] = useState({
+    email: '',
+    password: ''
+  })
   const navigate = useNavigate()
 
-  const handleClick = async () => {
-    try {
-      const res = await AdminSignIn({email, password})
-      if (res.success) {
-        navigate('/happy-bakery-website/admin/dashboard')
-      }
-    } catch (error) {
-      console.error(error)
+  const handleLoginInputChange = (event) => {
+    const { name, value } = event.target
+    setAdminLoginInfo((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleLoginClick = async () => {
+    const { email, password } = AdminloginInfo 
+    if (email.trim().length === 0 || password.trim().length === 0) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
     }
+    const { success } = await AdminSignIn({
+      email,
+      password
+    })
+
+    if (success) {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: 'Successfully Logged In',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      setTimeout(() => {
+        navigate('/happy-bakery-website/admin/dashboard')
+      }, 1700)
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: 'Wrong Email or Password',
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
@@ -36,14 +76,16 @@ const AdminLogin = () => {
           <TextInput
             type={'email'}
             placeholder={'Email'}
-            onChange={(emailInputValue) => setEmail(emailInputValue)}
+            name={'email'}
+            onChange={(e) => handleLoginInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
           <TextInput
             type={'password'}
             placeholder={'Password'}
-            onChange={(passwordInputValue) => setPassword(passwordInputValue)}
+            name={'password'}
+            onChange={(e) => handleLoginInputChange(e)}
           />
         </div>
         <div className={styles.inputWrapper}>
@@ -57,7 +99,7 @@ const AdminLogin = () => {
           price={<ArrowForward />}
           onClick={(e) => {
             e.preventDefault()
-            handleClick()
+            handleLoginClick()
           }}
         />
         <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />

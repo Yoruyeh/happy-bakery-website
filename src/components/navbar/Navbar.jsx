@@ -22,12 +22,12 @@ const Navbar = () => {
   const searchInputRef = useRef(null)
   const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
-  const { userCartItems, setUserCartIems } = useUserCartItems()
+  const { userCartItems, setUserCartItems } = useUserCartItems()
 
 
   const handleLogoutClick = () => {
     logout()
-    setUserCartIems([])
+    setUserCartItems([])
     Swal.fire({
       position: 'top',
       icon: 'success',
