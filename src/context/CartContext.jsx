@@ -32,7 +32,20 @@ export const UserCartItemsProvider = ({ children }) => {
   }, 0)
 
   const handleAddToCart = async ({ id, quantity, price }) => {
-    const { status, message } = await AddCartItem({
+    if (!isAuthenticated) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Login first',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        navigate('login')
+      })
+      return
+    }
+
+    const { status } = await AddCartItem({
       id,
       quantity,
       price
@@ -53,36 +66,49 @@ export const UserCartItemsProvider = ({ children }) => {
 
     Swal.fire({
       position: 'top',
-      icon: 'error',
-      title: `${message}`,
+      icon: 'warning',
+      title: 'Product Already In Cart',
       showConfirmButton: false,
       timer: 1500
     })
   }
 
   const handleBuyItNowClick = async ({ id, quantity, price }) => {
-     const { status } = await AddCartItem({
-       id,
-       quantity,
-       price
-     })
+    if (!isAuthenticated) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Login first',
+        showConfirmButton: false,
+        timer: 1500
+      }).then(() => {
+        navigate('login')
+      })
+      return
+    }
 
-     if (status === 'success') {
-       const { cartItems } = await GetUserCartItems()
-       setUserCartItems(cartItems)
-       navigate('cart')
-       return
-     }
+    const { status } = await AddCartItem({
+      id,
+      quantity,
+      price
+    })
 
-     Swal.fire({
-       position: 'top',
-       icon: 'error',
-       title: 'Product Already In Cart ',
-       showConfirmButton: false,
-       timer: 1500
-     }).then(() => {
-       navigate('cart')
-     })
+    if (status === 'success') {
+      const { cartItems } = await GetUserCartItems()
+      setUserCartItems(cartItems)
+      navigate('cart')
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'warning',
+      title: 'Product Already In Cart',
+      showConfirmButton: false,
+      timer: 1500
+    }).then(() => {
+      navigate('cart')
+    })
   }
 
   const handleDeleteCart = async (id) => {
