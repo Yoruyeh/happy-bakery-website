@@ -32,7 +32,7 @@ export const useUserOrders = () => useContext(UserOrdersContext)
 export const UserOrdersProvider = ({ children }) => {
   const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
-  const { orderItems, totalPrice } = useUserCartItems()
+  const { orderItems, totalPrice, setUserCartItems } = useUserCartItems()
   const [userOrders, setUserOrders] = useState([])
   const [userOrderDetail, setUserOrderDetail] = useState({})
   const [shipmentData, setShipmentData] = useState({
@@ -84,6 +84,7 @@ export const UserOrdersProvider = ({ children }) => {
 
     if (status === 'success') {
       navigate('/happy-bakery-website/finish')
+      setUserCartItems([])
       const { userOrders } = await GetUserOrders()
       setUserOrders(userOrders)
       return

@@ -27,6 +27,11 @@ const Shipment = () => {
   const handleNextStepClick = () => {
     const { email, firstName, lastName, address, phone } = shipmentData
 
+    function isValidEmail(email) {
+      const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
+      return regex.test(email)
+    }
+
     if (
       !email.trim() ||
       !firstName.trim() ||
@@ -38,6 +43,17 @@ const Shipment = () => {
         position: 'top',
         icon: 'error',
         title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!isValidEmail(email)) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Invalid Email',
         showConfirmButton: false,
         timer: 1500
       })
