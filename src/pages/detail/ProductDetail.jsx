@@ -8,7 +8,7 @@ import { useUserCartItems } from '../../context/CartContext'
 
 const ProductDetail = () => {
   const { productDetail } = useProducts()
-  const { handleAddToCart } = useUserCartItems()
+  const { handleAddToCart, handleBuyItNowClick } = useUserCartItems()
   const [quantity, setQuantity] = useState(1)
   
 
@@ -89,7 +89,16 @@ const ProductDetail = () => {
                   })
                 }}
               />
-              <Button text={'BUY IT NOW'} />
+              <Button
+                text={'BUY IT NOW'}
+                onClick={() => {
+                  handleBuyItNowClick({
+                    id: productDetail.id,
+                    quantity: Number(quantity),
+                    price: productDetail.price_regular
+                  })
+                }}
+              />
             </div>
             <div className={styles.description}>
               <h6>ABOUT THE PRODUCT</h6>

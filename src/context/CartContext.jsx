@@ -3,11 +3,13 @@ import { GetUserCartItems } from "../api/cart";
 import { useAuth } from "./AuthContext";
 import { AddCartItem, DeleteCartItem } from '../api/cart'
 import Swal from 'sweetalert2'
+import { useNavigate } from "react-router-dom";
 
 const defaultUserCartItemsContext = {
   userCartItems: null,
   setUserCartItems: () => {},
   handleAddToCart: () => {},
+  handleBuyItNowClick: () => {},
   handleDeleteCart: () => {},
   totalPrice: 0,
   shippingFee: 60,
@@ -20,6 +22,7 @@ const UserCartItemsContext = createContext(defaultUserCartItemsContext)
 export const useUserCartItems = () => useContext(UserCartItemsContext)
 
 export const UserCartItemsProvider = ({ children }) => {
+  const navigate = useNavigate()
   const { isAuthenticated } = useAuth()
   const [userCartItems, setUserCartItems] = useState([])
   const [shippingFee, setShippingFee] = useState(60)
@@ -55,6 +58,31 @@ export const UserCartItemsProvider = ({ children }) => {
       showConfirmButton: false,
       timer: 1500
     })
+  }
+
+  const handleBuyItNowClick = async ({ id, quantity, price }) => {
+     const { status } = await AddCartItem({
+       id,
+       quantity,
+       price
+     })
+
+     if (status === 'success') {
+       const { cartItems } = await GetUserCartItems()
+       setUserCartItems(cartItems)
+       navigate('cart')
+       return
+     }
+
+     Swal.fire({
+       position: 'top',
+       icon: 'error',
+       title: 'Product Already In Cart ',
+       showConfirmButton: false,
+       timer: 1500
+     }).then(() => {
+       navigate('cart')
+     })
   }
 
   const handleDeleteCart = async (id) => {
@@ -111,6 +139,7 @@ export const UserCartItemsProvider = ({ children }) => {
         userCartItems,
         setUserCartItems,
         handleAddToCart,
+        handleBuyItNowClick,
         handleDeleteCart,
         totalPrice,
         shippingFee,
