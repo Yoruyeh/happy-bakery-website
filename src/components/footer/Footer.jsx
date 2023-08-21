@@ -62,7 +62,9 @@ const Footer = () => {
             <Link to="contact">
               <li className={styles.linkItem}>Contact</li>
             </Link>
-            <li className={styles.linkItem}>Blog</li>
+            <Link to="blog">
+              <li className={styles.linkItem}>Blog</li>
+            </Link>
           </ul>
         </div>
         <div className={styles.socialMedia}>

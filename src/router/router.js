@@ -27,7 +27,8 @@ import {
   AdminOrderDetail,
   AdminProductDetail,
   AdminAddProduct,
-  AdminEdit
+  AdminEdit,
+  Blog
 } from './index'
 
 const router = createBrowserRouter([
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: 'contact',
         element: <Contact />
+      },
+      {
+        path: 'blog',
+        element: <Blog />
       },
       {
         path: 'products',

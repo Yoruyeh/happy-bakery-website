@@ -26,6 +26,7 @@ import AdminOrderDetail from '../pages/detail/AdminOrderDetail'
 import AdminProductDetail from '../pages/detail/AdminProductDetail'
 import AdminAddProduct from '../pages/detail/AdminAddProduct'
 import AdminEdit from '../pages/edit/AdminEdit'
+import Blog from '../pages/blog/Blog'
 
 export {
   Layout,
@@ -55,5 +56,6 @@ export {
   AdminOrderDetail,
   AdminProductDetail,
   AdminAddProduct,
-  AdminEdit
+  AdminEdit,
+  Blog
 }
