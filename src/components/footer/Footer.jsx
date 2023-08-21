@@ -3,8 +3,12 @@ import { Facebook, Instagram, Logo, Tiktok, Twitter } from '../../assets/icons'
 import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import { Link } from 'react-router-dom'
+import { productMenu } from '../../data'
+import { useProducts } from '../../context/ProductsContext'
 
 const Footer = () => {
+  const { handleNavItemClick } = useProducts()
+
   return (
     <div className={styles.footer}>
       <div className={styles.upperFooter}>
@@ -32,21 +36,32 @@ const Footer = () => {
         <div className={styles.categories}>
           <h5>Categories</h5>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>Birthday Cakes</li>
-            <li className={styles.linkItem}>Cupcakes</li>
-            <li className={styles.linkItem}>European Breads</li>
-            <li className={styles.linkItem}>Toasts</li>
-            <li className={styles.linkItem}>Biscuits</li>
-            <li className={styles.linkItem}>Croissants</li>
-            <li className={styles.linkItem}>Donuts</li>
-            <li className={styles.linkItem}>Scones</li>
+            {productMenu.map((item) => (
+              <Link
+                to={item.link}
+                key={item.title}
+                onClick={() => {
+                  if (item.title === 'New Drops') {
+                    handleNavItemClick({ id: item.id, sort: 'date_desc' })
+                    return
+                  }
+                  handleNavItemClick({ id: item.id })
+                }}
+              >
+                <li className={styles.dropdownMenuItem}>{item.title}</li>
+              </Link>
+            ))}
           </ul>
         </div>
         <div className={styles.company}>
           <h5>Company</h5>
           <ul className={styles.linkList}>
-            <li className={styles.linkItem}>About</li>
-            <li className={styles.linkItem}>Contact</li>
+            <Link to="about">
+              <li className={styles.linkItem}>About</li>
+            </Link>
+            <Link to="contact">
+              <li className={styles.linkItem}>Contact</li>
+            </Link>
             <li className={styles.linkItem}>Blog</li>
           </ul>
         </div>

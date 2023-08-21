@@ -1,9 +1,14 @@
 import styles from './about.module.scss'
 import BackgroundImg1 from '../../assets/images/about-bg1.jpeg'
 import BackgroundImg2 from '../../assets/images/about-bg2.jpeg'
+import { useEffect } from 'react'
 
 
 const About = () => {
+   useEffect(() => {
+     window.scrollTo(0, 0)
+   }, [])
+
   return (
     <div className={styles.about}>
       <div className={styles.bgImg1}>

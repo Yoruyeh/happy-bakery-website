@@ -1,8 +1,13 @@
 import styles from './contact.module.scss'
 import BackeryImg from '../../assets/images/bakery.jpeg'
 import Map from '../../assets/images/map.jpeg'
+import { useEffect } from 'react'
 
 const Contact = () => {
+   useEffect(() => {
+     window.scrollTo(0, 0)
+   }, [])
+
   return (
     <div className={styles.contact}>
       <div className={styles.bg}>
