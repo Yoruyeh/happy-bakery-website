@@ -14,7 +14,7 @@
     display: flex;
     gap: 0.8rem;
 
-    .mainImage {
+    .mySwiper {
       display: none;
     }
 
@@ -136,42 +136,13 @@
       flex-direction: column;
       gap: 1.2rem;
 
-      .mainImage {
+      .mySwiper {
+        display: block;
         width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: auto;
+        height: 30rem;
         border-radius: 1.6rem;
         overflow: hidden;
         position: relative;
-
-        img {
-          width: 100%;
-          height: 30rem;
-          object-fit: cover;
-        }
-
-        .dots {
-          position: absolute;
-          bottom: 1rem;
-          left: 50%;
-          transform: translateX(-50%);
-          display: flex;
-          gap: 1rem;
-
-          .dot {
-            width: 0.8rem;
-            height: 0.8rem;
-            border-radius: 50%;
-            background-color: $gray;
-
-            &.active {
-              background-color: $FA-white;
-            }
-          }
-        }
       }
       
       .images {
@@ -183,7 +154,6 @@
           overflow: hidden;
           width: 5rem;
           height: 5rem;
-          cursor: pointer;
         }
       }
     }
@@ -191,19 +161,8 @@
 
   @include sm {
     .product {
-      .mainImage {
-        .dots {
-          gap: 0.8rem;
-
-          .dot {
-            width: 0.6rem;
-            height: 0.6rem;
-          }
-        }
-
-        img {
-          height: 25rem
-        }
+      .mySwiper {
+        height: 25rem
       }
 
       .images {
@@ -218,19 +177,8 @@
 
   @include xs {
     .product {
-      .mainImage {
-        .dots {
-          gap: 0.5rem;
-
-          .dot {
-            width: 0.5rem;
-            height: 0.5rem;
-          }
-        }
-
-        img {
-          height: 20rem
-        }
+      .mySwiper {
+        height: 20rem
       }
 
       .images {
