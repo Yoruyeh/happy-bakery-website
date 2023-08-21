@@ -28,7 +28,7 @@
       .radioWrapper {
         display: flex;
         align-items: center;
-        gap: 2.5rem;
+        gap: 1.2rem;
       }
     }
 
@@ -152,10 +152,11 @@
   }
 
   .orderInfo {
+    width: 100%;
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 46px;
+    gap: 2rem;
 
     .summary, .detail {
       width: 100%;
@@ -229,7 +230,9 @@
     .paymentForm {
       .methodInput {
         .radioWrapper {
-          gap: 1.5rem;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 0.8rem;
         }
       }
     }
@@ -237,19 +240,9 @@
 
   @include xs {
     .paymentForm {
-      .methodInput {
-        .radioWrapper {
-          gap: 0.6rem;
-
-          .inputWrapper {
-            label {
-              font-size: 0.7rem;
-            }
-            input {
-              width: 0.8rem;
-              height: 0.8rem;
-            }
-          }
+      input {
+        &::placeholder {
+          font-size: 0.7rem;
         }
       }
     }
