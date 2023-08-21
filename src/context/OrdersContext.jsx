@@ -46,6 +46,10 @@ export const UserOrdersProvider = ({ children }) => {
   const [paymentData, setPaymentData] = useState({
     paymentMethod: ''
   })
+  const [isConfirmChecked, setIsConfirmChecked] = useState({
+    confirmInfo: false,
+    confirmAge: false
+  })
 
   const handleCheckOrderClick = async (id) => {
     const { order } = await GetUserOrderById(id)
@@ -74,7 +78,40 @@ export const UserOrdersProvider = ({ children }) => {
     })
   }
 
-  const handleNewOrderSubmit =  async () => {
+  const handleNewOrderSubmit = async () => {
+    if (!paymentData.paymentMethod) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Choose Payment Method',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!isConfirmChecked.confirmInfo) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Confirm Your Info Are The Same',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!isConfirmChecked.confirmAge) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Confirm You are over 13',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
     const { status, message } = await AddNewOrder({
       orderItems: orderItems,
       total: totalPrice,
@@ -87,6 +124,21 @@ export const UserOrdersProvider = ({ children }) => {
       setUserCartItems([])
       const { userOrders } = await GetUserOrders()
       setUserOrders(userOrders)
+      setShipmentData({
+        email: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        phone: '',
+        shippingMethod: 'standard'
+      })
+      setPaymentData({
+        paymentMethod: ''
+      })
+      setIsConfirmChecked({
+        confirmInfo: false,
+        confirmAge: false
+      })
       return
     }
 
@@ -116,6 +168,7 @@ export const UserOrdersProvider = ({ children }) => {
         userOrderDetail,
         shipmentData,
         paymentData,
+        setIsConfirmChecked,
         handleCheckOrderClick,
         handleShipmentDataChange,
         handlePaymentDataChange,

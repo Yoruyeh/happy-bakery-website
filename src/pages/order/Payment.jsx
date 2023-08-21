@@ -11,8 +11,12 @@ import { PaymentMethod } from '../../data'
 
 const Payment = () => {
   const { userCartItems, totalPrice, shippingFee } = useUserCartItems()
-  const { handlePaymentDataChange, handleNewOrderSubmit, paymentData } =
-    useUserOrders()
+  const {
+    handlePaymentDataChange,
+    handleNewOrderSubmit,
+    paymentData,
+    setIsConfirmChecked
+  } = useUserOrders()
 
   const orderProp = {
     item_count: userCartItems.length,
@@ -48,32 +52,49 @@ const Payment = () => {
             ))}
           </div>
         </div>
-        <div className={styles.paymentInput}>
-          <h3>Payment Information</h3>
-          <div className={styles.inputWrapper}>
-            <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'Creadit Card Numbers'} />
-            </div>
-            <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'Expire Date MM/YY'} />
-            </div>
-            <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'CVV / CSC'} />
-            </div>
-            <div className={styles.row}>
-              <TextInput type={'text'} placeholder={'Cardholder Name'} />
+        {paymentData.paymentMethod === 'credit' && (
+          <div className={styles.paymentInput}>
+            <h3>Payment Information</h3>
+            <div className={styles.inputWrapper}>
+              <div className={styles.row}>
+                <TextInput type={'text'} placeholder={'Creadit Card Numbers'} />
+              </div>
+              <div className={styles.row}>
+                <TextInput type={'text'} placeholder={'Expire Date MM/YY'} />
+              </div>
+              <div className={styles.row}>
+                <TextInput type={'text'} placeholder={'CVV / CSC'} />
+              </div>
+              <div className={styles.row}>
+                <TextInput type={'text'} placeholder={'Cardholder Name'} />
+              </div>
             </div>
           </div>
-        </div>
+        )}
         <div className={styles.checkboxWrapper}>
           <div className={styles.inputWrapper}>
             <CheckboxInput
               type={'checkbox'}
               label={'My billing and delivery information are the same'}
+              onChange={(isChecked) => {
+                setIsConfirmChecked((prev) => ({
+                  ...prev,
+                  confirmInfo: isChecked
+                }))
+              }}
             />
           </div>
           <div className={styles.inputWrapper}>
-            <CheckboxInput type={'checkbox'} label={`I'm 13+ year old`} />
+            <CheckboxInput
+              type={'checkbox'}
+              label={`I'm 13+ year old`}
+              onChange={(isChecked) => {
+                setIsConfirmChecked((prev) => ({
+                  ...prev,
+                  confirmAge: isChecked
+                }))
+              }}
+            />
           </div>
           <div className={styles.inputWrapper}>
             <h6>Also want product updates with our newsletter?</h6>
@@ -87,12 +108,10 @@ const Payment = () => {
           <Link to="../shipment" className={styles.back}>
             <Button text={'BACK'} />
           </Link>
-          {/* <Link to="../finish"> */}
           <Button
             text={'REVIEW AND PAY'}
             onClick={() => handleNewOrderSubmit()}
           />
-          {/* </Link> */}
         </div>
       </div>
       <div className={styles.orderInfo}>
