@@ -5,10 +5,15 @@ import Button from "../../components/button/Button"
 import ReviewCard from '../../components/card/ReviewCard'
 import { useProducts } from '../../context/ProductsContext'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const Home = () => {
-  const { products, handleNavItemClick } = useProducts()
-  const fourNewProducts = products.slice(0, 4)
+  const { newProducts, handleNavItemClick } = useProducts()
+  const fourNewProducts = newProducts.slice(0, 4)
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   return (
     <div className={styles.home}>

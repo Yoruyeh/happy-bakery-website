@@ -16,6 +16,7 @@ export const useProducts = () => useContext(ProductsContext)
 
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([])
+  const [newProducts, setNewProducts]  = useState([])
   const [productCount, setProductCount] = useState(0)
   const [productDetail, setProductDetail] = useState({})
 
@@ -41,6 +42,7 @@ export const ProductsProvider = ({ children }) => {
         sort: 'date_desc'
       })
       setProducts(products)
+      setNewProducts(products.slice(0, 9))
       setProductCount(productCount)
     }
     getProductsAsync()
@@ -50,6 +52,7 @@ export const ProductsProvider = ({ children }) => {
     <ProductsContext.Provider
       value={{
         products,
+        newProducts,
         productCount,
         handleNavItemClick,
         productDetail,

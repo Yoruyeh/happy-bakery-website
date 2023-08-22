@@ -5,13 +5,17 @@ import Tag from '../tag/Tag'
 import { useProducts } from '../../context/ProductsContext'
 
 const ProductCard = ({ product }) => {
-  const { handleViewProductClick } = useProducts()
+  const { newProducts, handleViewProductClick } = useProducts()
 
   return (
     <div className={styles.card}>
       <div className={styles.cardImage}>
         <img src={product.cover} alt="" />
-        <Tag text={'NEW'} />
+        {newProducts.find((item) => item.id === product.id) ? (
+          <Tag text={'NEW'} />
+        ) : (
+          ""
+        )}
       </div>
       <div className={styles.cardTitle}>
         <h5>{product.name}</h5>
