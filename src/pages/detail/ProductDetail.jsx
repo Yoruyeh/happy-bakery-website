@@ -11,7 +11,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 
 const ProductDetail = () => {
-  const { productDetail } = useProducts()
+  const { newProducts, productDetail } = useProducts()
   const { handleAddToCart, handleBuyItNowClick } = useUserCartItems()
   const [quantity, setQuantity] = useState(1)
 
@@ -82,7 +82,11 @@ const ProductDetail = () => {
           </div>
           <div className={styles.content}>
             <div className={styles.title}>
-              <div className={styles.tag}>New Release</div>
+              {newProducts.find((item) => item.id === productDetail.id) ? (
+                <div className={styles.tag}>New Release</div>
+              ) : (
+                ""
+              )}
               <h3>{productDetail.name}</h3>
               {/* <h6>Cream Cheese Flavor</h6> */}
               <h5>${productDetail.price_regular}</h5>
