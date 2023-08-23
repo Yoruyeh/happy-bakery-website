@@ -40,3 +40,17 @@ export const DeleteCartItem = async (id) => {
     return error.response.data
   }
 }
+
+export const ModifyCartItemQty = async (id, quantity) => {
+  try {
+    const { data } = await UserAxiosInstance.patch(`${baseUrl}/${id}`, {
+      quantity
+    })
+
+    return data
+    
+  } catch (error) {
+    console.error('[Modify Cart Item Qty Failed]: ', error)
+    return error.response.data
+  }
+}

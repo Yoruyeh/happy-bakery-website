@@ -33,8 +33,8 @@ const ProductDetail = () => {
             </SwiperSlide>
             {productDetail.ProductImages &&
             productDetail.ProductImages.length > 0 ? (
-              productDetail.ProductImages.map((image) => (
-                <SwiperSlide key={image.name}>
+              productDetail.ProductImages.map((image, index) => (
+                <SwiperSlide key={index}>
                   <img src={image.image_path} alt="" />
                 </SwiperSlide>
               ))
@@ -58,8 +58,11 @@ const ProductDetail = () => {
             </div>
             {productDetail.ProductImages &&
             productDetail.ProductImages.length > 0 ? (
-              productDetail.ProductImages.map((image) => (
-                <div className={styles.imageWrapper} key={image.name}>
+              productDetail.ProductImages.map((image, index) => (
+                <div
+                  className={styles.imageWrapper}
+                  key={index}
+                >
                   <img src={image.image_path} alt="" />
                 </div>
               ))

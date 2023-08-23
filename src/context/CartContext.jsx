@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { GetUserCartItems } from "../api/cart";
+import { GetUserCartItems, ModifyCartItemQty } from "../api/cart";
 import { useAuth } from "./AuthContext";
 import { AddCartItem, DeleteCartItem } from '../api/cart'
 import Swal from 'sweetalert2'
@@ -136,6 +136,31 @@ export const UserCartItemsProvider = ({ children }) => {
     })
   }
 
+  const handleCartItemQtyChange = async ({ id, quantity }) => {
+    const { status, message } = await ModifyCartItemQty(id, quantity)
+
+    if (status === 'success') {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `Successfully Changed to ${quantity}`,
+        showConfirmButton: false,
+        timer: 1000
+      })
+      const { cartItems } = await GetUserCartItems()
+      setUserCartItems(cartItems)
+      return
+    }
+
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: `${message}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   useEffect(() => {
     if (isAuthenticated) {
       const GetUserCartItemsAsync = async () => {
@@ -167,6 +192,7 @@ export const UserCartItemsProvider = ({ children }) => {
         handleAddToCart,
         handleBuyItNowClick,
         handleDeleteCart,
+        handleCartItemQtyChange,
         totalPrice,
         shippingFee,
         setShippingFee,

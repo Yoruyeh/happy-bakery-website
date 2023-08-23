@@ -6,7 +6,7 @@ import { useUserCartItems } from '../../context/CartContext'
 
 const CartCard = ({ item }) => {
   const [quantity, setQuantity] = useState('')
-  const { handleDeleteCart } = useUserCartItems()
+  const { handleDeleteCart, handleCartItemQtyChange } = useUserCartItems()
 
 
   useEffect(() => {
@@ -29,7 +29,12 @@ const CartCard = ({ item }) => {
                 name="quantity"
                 id="cartItem-quantity"
                 value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
+                onChange={(e) => {
+                  setQuantity(e.target.value)
+                  handleCartItemQtyChange({ 
+                    id: item.Product.id, 
+                    quantity: Number(e.target.value)})
+                }}
               >
                 {Array.from({ length: 10 }, (_, index) => index + 1).map(
                   (num) => (
