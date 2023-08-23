@@ -91,8 +91,8 @@ const AdminAddProduct = () => {
               </div>
             </div>
             <div className={styles.btnWrapper}>
-              <div className={styles.delete}>
-                <Button text={'DELETE'} />
+              <div className={styles.update}>
+                <Button text={'SAVE'} />
               </div>
               <div className={styles.cancel}>
                 <Button text={'CANCEL'} />
