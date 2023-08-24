@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { AdminAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/admin'
 
@@ -21,5 +22,21 @@ export const AdminSignIn = async ({ email, password })  => {
   } catch (error) {
     console.error('[Admin Login failed]: ', error)
     return { success: false, error: error.message }
+  }
+}
+
+export const AdminEditPassword = async ({ currentPW, newPW, confirmPW }) => {
+  try {
+    const { data } = await AdminAxiosInstance.put(`${baseUrl}/password`, {
+      currentPW,
+      newPW,
+      confirmPW
+    })
+
+    return data
+    
+  } catch (error) {
+    console.error('[Admin Edit Password Failed]: ', error)
+    return error.response.data
   }
 }
