@@ -2,6 +2,40 @@ import { AdminAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/admin/product'
 
+export const AdminGetAllProducts = async ({ id, page, sort }) => {
+  try {
+    let url = baseUrl + 's'
+    const queryParams = []
+
+    if (id) {
+       queryParams.push(`category=${id}`)
+    }
+
+    if (sort) {
+      queryParams.push(`sort=${sort}`)
+    } else {
+      queryParams.push('sort=price_asc')
+    }
+
+    if (page) {
+      queryParams.push(`page=${page}`)
+    } else {
+      queryParams.push('page=1')
+    }
+
+    if (queryParams.length) {
+      url += `?${queryParams.join('&')}`
+    }
+    console.log(url)
+    const { data } = await AdminAxiosInstance.get(url)
+
+    return data
+  } catch (error) {
+    console.error('[Admin Get All Products failed]: ', error)
+    return error.response.data
+  }
+}
+
 export const AdminUploadFile = async (formData) => {
   try {
     const { data } = await AdminAxiosInstance.post(

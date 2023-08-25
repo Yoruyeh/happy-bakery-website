@@ -1,18 +1,17 @@
 import styles from './adminProductCard.module.scss'
 import { Dot, ArrowUp } from '../../assets/icons'
-import ProdcutImg from '../../assets/images/chocolate-cake.jpeg'
 
-const AdminProductCard = () => {
+const AdminProductCard = ({ product }) => {
   return (
     <div className={styles.adminProductCard}>
       <div className={styles.info}>
         <div className={styles.img}>
-          <img src={ProdcutImg} alt="" />
+          <img src={product.cover} alt="" />
         </div>
         <div className={styles.text}>
-          <h6>Chocolate Cake</h6>
-          <p>6 inch</p>
-          <p className={styles.price}>$600.00</p>
+          <h6>{product.name}</h6>
+          {/* <p>6 inch</p> */}
+          <p className={styles.price}>${product.price_regular}</p>
         </div>
         <div className={styles.btn}>
           <Dot />
@@ -20,23 +19,22 @@ const AdminProductCard = () => {
       </div>
       <div className={styles.description}>
         <h6>Summary</h6>
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-        </p>
+        <p>{product.description}</p>
       </div>
       <div className={styles.count}>
         <div className={styles.sale}>
           Sales
           <p>
             <ArrowUp />
-            1269
+            {product.salesCount}
           </p>
         </div>
         <hr />
         <div className={styles.remain}>
           Remaining Products
           <p>
-            <span></span>1269
+            <span></span>
+            {product.stock_quantity}
           </p>
         </div>
       </div>

@@ -3,8 +3,11 @@ import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
 import AdminProductCard from '../../components/adminCard/AdminProductCard'
 import { Link } from 'react-router-dom'
+import { useAdmin } from '../../context/AdminContext'
 
 const AdminAllProducts = () => {
+  const { adminProducts } = useAdmin()
+
   return (
     <div className={styles.allProducts}>
       <div className={styles.title}>
@@ -17,17 +20,12 @@ const AdminAllProducts = () => {
         </Link>
       </div>
       <div className={styles.cards}>
-        <Link to=":id">
-          <AdminProductCard />
-        </Link>
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
-        <AdminProductCard />
+        {adminProducts &&
+          adminProducts.length > 0 && adminProducts.map((product) => (
+            <Link to={`${product.id}`} key={product.id}>
+              <AdminProductCard product={product} />
+            </Link>
+          ))}
       </div>
     </div>
   )
