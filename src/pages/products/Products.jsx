@@ -16,6 +16,8 @@ const Products = () => {
   const navigate = useNavigate()
   const [selectedSortValue, setSelectedSortValue] = useState('')
   const [activePage, setActivePage] = useState(1)
+  const pageCount = Math.ceil(productCount / 9)
+  const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
 
   const ProductPageTitle = (category) => {
     if (category === 'all') {
@@ -141,7 +143,8 @@ const Products = () => {
             ))}
           </div>
           <Pagination
-            productCount={productCount}
+            pageCount={pageCount}
+            pageArr={pageArr}
             handlePaginationClick={handlePaginationClick}
             activePage={activePage}
             setActivePage={setActivePage}

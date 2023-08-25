@@ -158,7 +158,11 @@ const router = createBrowserRouter([
         element: <AdminAddProduct />
       },
       {
-        path: 'all_products/:id',
+        path: ':category',
+        element: <AdminAllProducts />,
+      },
+      {
+        path: ':category/:id',
         element: <AdminProductDetail />
       },
       {

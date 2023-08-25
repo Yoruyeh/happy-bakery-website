@@ -1,12 +1,14 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { AdminGetAllProducts } from "../api/admin.products";
+import { AdminGetProducts } from '../api/admin.products'
 
 const defaultAdminContext = {
   isAuthenticated: false,
   adminInfo: null,
   logout: null,
-  adminProducts: null
+  adminProducts: null,
+  productCount: 0,
+  handleNavItemClick: () => {}
 }
 
 const AdminContext = createContext(defaultAdminContext)
@@ -17,6 +19,17 @@ export const AdminProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { pathname } = useLocation()
   const [adminProducts, setAdminProducts] = useState([])
+  const [adminProductCount, setAdminProductCount] = useState(0)
+
+  const handleNavItemClick = async ({ id, page, sort }) => {
+    const { products, productCount } = await AdminGetProducts({
+      id,
+      page,
+      sort
+    })
+    setAdminProducts(products)
+    setAdminProductCount(productCount)
+  }
 
   useEffect(() => {
     const checkTokenIsValid = async () => {
@@ -32,12 +45,14 @@ export const AdminProvider = ({ children }) => {
   }, [pathname])
 
   useEffect(() => {
-    const AdminGetAllProductsAsync = async () => {
-      const { products } = await AdminGetAllProducts({id: ''})
+    const AdminGetProductsAsync = async () => {
+      const { products, productCount } = await AdminGetProducts({ id: '' })
       setAdminProducts(products)
+      setAdminProductCount(productCount)
     }
-    AdminGetAllProductsAsync()
+    AdminGetProductsAsync()
   }, [])
+
 
   return (
     <AdminContext.Provider
@@ -47,7 +62,9 @@ export const AdminProvider = ({ children }) => {
           localStorage.removeItem('token')
           setIsAuthenticated(false)
         },
-        adminProducts
+        adminProducts,
+        adminProductCount,
+        handleNavItemClick
       }}
     >
       {children}

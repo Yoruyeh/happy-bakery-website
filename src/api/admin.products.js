@@ -2,7 +2,7 @@ import { AdminAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/admin/product'
 
-export const AdminGetAllProducts = async ({ id, page, sort }) => {
+export const AdminGetProducts = async ({ id, page, sort }) => {
   try {
     let url = baseUrl + 's'
     const queryParams = []
@@ -26,7 +26,7 @@ export const AdminGetAllProducts = async ({ id, page, sort }) => {
     if (queryParams.length) {
       url += `?${queryParams.join('&')}`
     }
-    console.log(url)
+
     const { data } = await AdminAxiosInstance.get(url)
 
     return data

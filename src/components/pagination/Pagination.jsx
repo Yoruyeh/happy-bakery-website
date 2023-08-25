@@ -3,14 +3,12 @@ import styles from './pagination.module.scss'
 
 
 const Pagination = ({
-  productCount,
+  pageCount,
+  pageArr,
   handlePaginationClick,
   activePage,
   setActivePage
 }) => {
-  const pageCount = Math.ceil(productCount / 9)
-  const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
-
   return (
     <div className={styles.pagination}>
       <button
@@ -53,7 +51,6 @@ const Pagination = ({
             {page}
           </button>
         ))}
-        {/* <span className={styles.ellipsis}>...</span> */}
       </div>
       <button
         className={activePage + 1 > pageCount ? styles.disabled : styles.next}

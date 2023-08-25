@@ -1,3 +1,5 @@
+import { AdminGetProducts } from "./api/admin.products"
+
 export const menu = [
   {
     id: '1',
@@ -108,31 +110,26 @@ export const adminMenu = [
     id: '1',
     title: 'Cakes',
     link: 'Cakes',
-    quantity: 10
   },
   {
     id: '2',
     title: 'Cupcakes',
     link: 'Cupcakes',
-    quantity: 10
   },
   {
     id: '3',
     title: 'Biscuits',
     link: 'Biscuits',
-    quantity: 10
   },
   {
     id: '4',
     title: 'Croissants',
     link: 'Croissants',
-    quantity: 10
   },
   {
     id: '5',
     title: 'Donuts',
     link: 'Donuts',
-    quantity: 10
   }
 ]
 

@@ -9,8 +9,10 @@ import {
 } from '../../assets/icons'
 import { NavLink } from 'react-router-dom'
 import { adminMenu } from '../../data'
+import { useAdmin } from '../../context/AdminContext'
 
-const DropDownMenu = ({ data }) => {
+const DropDownMenu = ({ data, handleNavItemClick }) => {
+
   return (
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
@@ -23,6 +25,7 @@ const DropDownMenu = ({ data }) => {
                 ? `${styles.dropdownMenuItem} ${styles.active}`
                 : `${styles.dropdownMenuItem}`
             }
+            onClick={() => handleNavItemClick({ id: item.id })}
           >
             <li>
               {item.title}
@@ -36,6 +39,8 @@ const DropDownMenu = ({ data }) => {
 }
 
 const AdminNavbar = () => {
+  const { handleNavItemClick } = useAdmin()
+
   return (
     <div className={styles.adminNavbar}>
       <div className={styles.logo}>
@@ -65,6 +70,7 @@ const AdminNavbar = () => {
                 ? `${styles.navItem} ${styles.active}`
                 : `${styles.navItem}`
             }
+            onClick={() => handleNavItemClick({ id: '' })}
           >
             <li>
               <span>
@@ -98,7 +104,10 @@ const AdminNavbar = () => {
             <Up />
           </span>
         </h6>
-        <DropDownMenu data={adminMenu} />
+        <DropDownMenu
+          data={adminMenu}
+          handleNavItemClick={handleNavItemClick}
+        />
       </div>
     </div>
   )
