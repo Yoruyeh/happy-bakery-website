@@ -106,50 +106,32 @@ export const PaymentMethod = [
 export const adminMenu = [
   {
     id: '1',
-    title: 'Birthday Cakes',
-    link: 'birthday_cakes',
+    title: 'Cakes',
+    link: 'Cakes',
     quantity: 10
   },
   {
     id: '2',
     title: 'Cupcakes',
-    link: 'cupcakes',
+    link: 'Cupcakes',
     quantity: 10
   },
   {
     id: '3',
-    title: 'European Breads',
-    link: 'european_breads',
+    title: 'Biscuits',
+    link: 'Biscuits',
     quantity: 10
   },
   {
     id: '4',
-    title: 'Toasts',
-    link: 'toasts',
+    title: 'Croissants',
+    link: 'Croissants',
     quantity: 10
   },
   {
     id: '5',
-    title: 'Biscuits',
-    link: 'biscuits',
-    quantity: 10
-  },
-  {
-    id: '6',
-    title: 'Croissants',
-    link: 'croissants',
-    quantity: 10
-  },
-  {
-    id: '7',
     title: 'Donuts',
-    link: 'donuts',
-    quantity: 10
-  },
-  {
-    id: '8',
-    title: 'Scones',
-    link: 'scones',
+    link: 'Donuts',
     quantity: 10
   }
 ]

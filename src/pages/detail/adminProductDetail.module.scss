@@ -97,7 +97,7 @@
           flex-direction: column;
           gap: 0.8rem;
 
-          .content {
+          .dropZone {
             border: 1px dashed $dark-gray;
             border-radius: 0.4rem;
             padding: 0.8rem;
@@ -106,6 +106,7 @@
             justify-content: center;
             align-items: center;
             gap: 0.8rem;
+            cursor: pointer;
 
             .text {
               display: flex;
@@ -132,6 +133,11 @@
               display: flex;
               align-items: center;
               gap: 0.8rem;
+              position: relative;
+
+              .danger {
+                display: none;
+              }
 
               img {
                 width: 3.2rem;
@@ -167,6 +173,33 @@
                     background-color: $salmon-pink;
                   }
                 }
+              }
+
+              &:hover {
+                background-color: rgba(0,0,0,0.1);
+                border: 1px dashed $dark-gray;
+                border-radius: 0.4rem;
+
+                img, .filename, .success {
+                  opacity: 0.3;
+                }
+
+                .danger {
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  position: absolute;
+                  top: 50%;
+                  left: 50%;
+                  transform: translate(-50%, -50%);
+                  z-index: 3;
+                  cursor: pointer;
+
+                  svg {
+                    width: 2rem;
+                    height: 2rem;
+                  }
+                } 
               }
             }
           }

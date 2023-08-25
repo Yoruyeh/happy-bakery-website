@@ -36,6 +36,7 @@ import { ReactComponent as Bag } from './bag_handle.svg'
 import { ReactComponent as Edit } from './Edit.svg'
 import { ReactComponent as Logout } from './Logout.svg'
 import { ReactComponent as See } from './see.svg'
+import { ReactComponent as Cross } from './cross-small-svgrepo-com.svg'
 
 export {
   Logo,
@@ -75,5 +76,6 @@ export {
   Bag,
   Edit,
   Logout,
-  See
+  See,
+  Cross
 }
