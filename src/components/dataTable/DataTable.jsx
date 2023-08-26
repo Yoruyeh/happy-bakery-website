@@ -2,32 +2,32 @@ import styles from './dataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
 import { VerticalDot, Edit, See } from '../../assets/icons'
 import { Link } from 'react-router-dom'
+import { useAdminOrders } from '../../context/AdminOrdersContext'
 
 const columns = [
   {
     field: 'id',
     headerName: 'Order ID',
-    width: 100
+    width: 100,
+    editable: false
   },
   {
     field: 'order_date',
     headerName: 'Order Date',
-    type: 'date',
     width: 150,
-    editable: true,
-    valueGetter: (params) => new Date(params.value)
+    editable: false
   },
   {
     field: 'payment_method',
     headerName: 'Payment Method',
     width: 180,
-    editable: true
+    editable: false
   },
   {
     field: 'customer_name',
     headerName: 'Customer Name',
     width: 150,
-    editable: true
+    editable: false
   },
   {
     field: 'status',
@@ -67,7 +67,7 @@ const columns = [
     editable: false,
     width: 125,
     renderCell: (params) => {
-      return <div>${params.row.amount}</div>
+      return <div>${params.row.total_price}</div>
     }
   },
   {
@@ -93,27 +93,8 @@ const columns = [
   }
 ]
 
-const rows = [
-  {
-    id: 109,
-    order_date: 'Aug 21st, 2023',
-    payment_method: 'NewebPay',
-    customer_name: 'yoru2 yeh',
-    status: 'pending',
-    total_price: '687.00'
-  },
-  {
-    id: 110,
-    order_date: 'Aug 21st, 2023',
-    payment_method: 'PayPal',
-    customer_name: 'yoru2 yeh',
-    status: 'pending',
-    total_price: '199.00'
-  }
-]
-
 const DataTable = () => {
- 
+  const { adminOrders } = useAdminOrders()
   const CustomToolbar = () => {
     return (
       <div className={styles.toolbar}>
@@ -128,7 +109,7 @@ const DataTable = () => {
       <DataGrid
         className={styles.dataGrid}
         editMode="row"
-        rows={rows}
+        rows={adminOrders}
         columns={columns}
         initialState={{
           pagination: {
