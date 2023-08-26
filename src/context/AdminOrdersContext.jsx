@@ -4,6 +4,9 @@ import Swal from 'sweetalert2'
 
 const defaultAdminOrdersContext = {
   adminOrders: null,
+  setAdminOrders: () => {},
+  dateValue: null,
+  handleDateChange: () => {}
 }
 
 const AdminOrdersContext = createContext(defaultAdminOrdersContext)
