@@ -1,68 +1,79 @@
 import styles from './adminOrders.module.scss'
 import { Calendar } from '../../assets/icons'
 import DataTable from '../../components/dataTable/DataTable'
-import { useState } from 'react'
-import Swal from 'sweetalert2'
+// import { useState } from 'react'
+// import Swal from 'sweetalert2'
+import { useAdminOrders } from '../../context/AdminOrdersContext'
+// import { AdminGetOrders } from '../../api/admin.orders'
 
 const AdminOrders = () => {
-  const currentDate = new Date()
-  const sevenDaysAgo = new Date()
-  // 設置日期為7天前
-  sevenDaysAgo.setDate(currentDate.getDate() - 7)
+  const { dateValue, handleDateChange } = useAdminOrders()
+  console.log(dateValue)
+  // const currentDate = new Date()
+  // const sevenDaysAgo = new Date()
+  // // 設置日期為7天前
+  // sevenDaysAgo.setDate(currentDate.getDate() - 7)
 
-  const formattedInputValue = (date) => {
-     const year = date.getFullYear()
-     const month = date.getMonth() + 1
-     const day = date.getDate()
-     const format = `${year}-${month < 10 ? '0' + month : month}-${
-       day < 10 ? '0' + day : day
-     }`
-     return format
-  }
+  // const formattedInputValue = (date) => {
+  //    const year = date.getFullYear()
+  //    const month = date.getMonth() + 1
+  //    const day = date.getDate()
+  //    const format = `${year}-${month < 10 ? '0' + month : month}-${
+  //      day < 10 ? '0' + day : day
+  //    }`
+  //    return format
+  // }
 
-  const formattedCurrentDate = formattedInputValue(currentDate)
-  const formattedSevenDaysAgo = formattedInputValue(sevenDaysAgo)
+  // const formattedCurrentDate = formattedInputValue(currentDate)
+  // const formattedSevenDaysAgo = formattedInputValue(sevenDaysAgo)
 
-  const [dateValue, setDateValue] = useState({
-    startDate: formattedSevenDaysAgo,
-    endDate: formattedCurrentDate
-  })
+  // const [dateValue, setDateValue] = useState({
+  //   startDate: formattedSevenDaysAgo,
+  //   endDate: formattedCurrentDate
+  // })
 
-  const handleDateChange = (e) => {
-    const { name, value } = e.target
+  // const handleDateChange = async (e) => {
+  //   const { name, value } = e.target
 
-    const startDateObj = new Date(dateValue.startDate)
-    const endDateObj = new Date(dateValue.endDate)
+  //   const startDateObj = new Date(dateValue.startDate)
+  //   const endDateObj = new Date(dateValue.endDate)
 
-    if (name === 'startDate' && new Date(value) >= endDateObj) {
-      Swal.fire({
-        position: 'top',
-        icon: 'warning',
-        title: 'Invalid Date',
-        text: 'Start date should not be later than end date.',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      return
-    }
+  //   if (name === 'startDate' && new Date(value) >= endDateObj) {
+  //     Swal.fire({
+  //       position: 'top',
+  //       icon: 'warning',
+  //       title: 'Invalid Date',
+  //       text: 'Start date should not be later than end date.',
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     })
+  //     return
+  //   }
 
-    if (name === 'endDate' && new Date(value) <= startDateObj) {
-      Swal.fire({
-        position: 'top',
-        icon: 'warning',
-        title: 'Invalid Date',
-        text: 'End date should not be earlier than start date.',
-        showConfirmButton: false,
-        timer: 2000
-      })
-      return
-    }
+  //   if (name === 'endDate' && new Date(value) <= startDateObj) {
+  //     Swal.fire({
+  //       position: 'top',
+  //       icon: 'warning',
+  //       title: 'Invalid Date',
+  //       text: 'End date should not be earlier than start date.',
+  //       showConfirmButton: false,
+  //       timer: 2000
+  //     })
+  //     return
+  //   }
 
-      setDateValue((prev) => ({
-        ...prev,
-        [name]: value
-      }))
-  }
+  //   setDateValue((prev) => ({
+  //     ...prev,
+  //     [name]: value
+  //   }))
+
+  //   const { orders } = await AdminGetOrders({
+  //     page: 1,
+  //     startDate: dateValue.startDate,
+  //     endDate: dateValue.endDate
+  //   })
+  //   setAdminOrders(orders)
+  // }
 
   const formattedDate = (inputValue) => {
     // 解析日期
