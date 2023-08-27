@@ -8,7 +8,6 @@ import {
   Up
 } from '../../assets/icons'
 import { NavLink } from 'react-router-dom'
-import { adminMenu } from '../../data'
 import { useAdmin } from '../../context/AdminContext'
 
 const DropDownMenu = ({ data, handleNavItemClick }) => {
@@ -39,7 +38,7 @@ const DropDownMenu = ({ data, handleNavItemClick }) => {
 }
 
 const AdminNavbar = () => {
-  const { handleNavItemClick } = useAdmin()
+  const { handleNavItemClick, adminMenu } = useAdmin()
 
   return (
     <div className={styles.adminNavbar}>

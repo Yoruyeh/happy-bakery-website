@@ -2,7 +2,7 @@ import styles from './adminProductDetail.module.scss'
 import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import ProductImg from '../../assets/images/scone.jpeg'
-import { adminMenu } from '../../data'
+import { BaseAdminMenu } from '../../data'
 import { Image, SuccessCheck } from '../../assets/icons'
 import { useRef } from 'react'
 import { useState } from 'react'
@@ -255,7 +255,7 @@ const AdminAddProduct = () => {
                 <option value="" disabled>
                   Choose Category Here
                 </option>
-                {adminMenu.map((item) => (
+                {BaseAdminMenu.map((item) => (
                   <>
                     <option value={item.title} key={item.id}>
                       {item.title}
@@ -341,10 +341,7 @@ const AdminAddProduct = () => {
               </div>
             </div>
             <div className={styles.btnWrapper}>
-              <div
-                className={styles.update}
-                onClick={() => handleSaveClick()}
-              >
+              <div className={styles.update} onClick={() => handleSaveClick()}>
                 <Button text={'SAVE'} />
               </div>
               <div className={styles.cancel}>

@@ -2,7 +2,7 @@ import styles from './adminProductDetail.module.scss'
 import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import ProductImg from '../../assets/images/scone.jpeg'
-import { adminMenu } from '../../data'
+import { BaseAdminMenu } from '../../data'
 import { Image, SuccessCheck } from '../../assets/icons'
 
 const UploadedCard = () => {
@@ -45,7 +45,7 @@ const AdminProductDetail = () => {
                 <option value="" disabled selected>
                   Choose Category Here
                 </option>
-                {adminMenu.map((item) => (
+                {BaseAdminMenu.map((item) => (
                   <>
                     <option value={item.title} key={item.id}>
                       {item.title}

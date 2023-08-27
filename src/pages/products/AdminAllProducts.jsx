@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useAdmin } from '../../context/AdminContext'
 import Pagination from '../../components/pagination/Pagination'
 import { useEffect, useState } from 'react'
-import { adminMenu } from '../../data'
+import { BaseAdminMenu } from '../../data'
 
 const AdminAllProducts = () => {
   const { adminProducts, adminProductCount, handleNavItemClick } = useAdmin()
@@ -23,7 +23,9 @@ const AdminAllProducts = () => {
   }
 
   const handlePaginationClick = (page) => {
-    const SelectedItem = adminMenu.find((item) => item.link.includes(category))
+    const SelectedItem = BaseAdminMenu.find((item) =>
+      item.link.includes(category)
+    )
 
     handleNavItemClick({
       id: SelectedItem ? SelectedItem.id : '',

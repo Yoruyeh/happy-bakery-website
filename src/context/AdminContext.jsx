@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { AdminGetProducts } from '../api/admin.products'
+import { BaseAdminMenu } from '../data'
 
 const defaultAdminContext = {
   isAuthenticated: false,
@@ -20,6 +21,7 @@ export const AdminProvider = ({ children }) => {
   const { pathname } = useLocation()
   const [adminProducts, setAdminProducts] = useState([])
   const [adminProductCount, setAdminProductCount] = useState(0)
+  const [adminMenu, setAdminMenu] = useState([])
 
   const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await AdminGetProducts({
@@ -53,6 +55,26 @@ export const AdminProvider = ({ children }) => {
     AdminGetProductsAsync()
   }, [])
 
+  useEffect(() => {
+    const initializeAdminMenu = async () => {
+      const promises = BaseAdminMenu.map(async (item) => {
+        const { productCount } = await AdminGetProducts({ id: item.id })
+        return {
+          ...item,
+          quantity: productCount
+        }
+      })
+
+      return Promise.all(promises)
+    }
+
+    const loadAdminMenu = async () => {
+      const menu = await initializeAdminMenu()
+      setAdminMenu(menu)
+    }
+    loadAdminMenu()
+  }, [])
+
 
   return (
     <AdminContext.Provider
@@ -64,7 +86,8 @@ export const AdminProvider = ({ children }) => {
         },
         adminProducts,
         adminProductCount,
-        handleNavItemClick
+        handleNavItemClick,
+        adminMenu
       }}
     >
       {children}

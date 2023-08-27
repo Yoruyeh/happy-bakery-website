@@ -1,5 +1,3 @@
-import { AdminGetProducts } from "./api/admin.products"
-
 export const menu = [
   {
     id: '1',
@@ -105,7 +103,7 @@ export const PaymentMethod = [
   }
 ]
 
-export const adminMenu = [
+export const BaseAdminMenu = [
   {
     id: '1',
     title: 'Cakes',
