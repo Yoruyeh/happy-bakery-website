@@ -1,16 +1,15 @@
 import styles from './adminProductCard.module.scss'
 import { Dot, ArrowUp } from '../../assets/icons'
 
-const AdminProductCard = ({ product }) => {
+const AdminProductCard = ({ product, onClick }) => {
   return (
-    <div className={styles.adminProductCard}>
+    <div className={styles.adminProductCard} onClick={onClick}>
       <div className={styles.info}>
         <div className={styles.img}>
           <img src={product.cover} alt="" />
         </div>
         <div className={styles.text}>
           <h6>{product.name}</h6>
-          {/* <p>6 inch</p> */}
           <p className={styles.price}>${product.price_regular}</p>
         </div>
         <div className={styles.btn}>

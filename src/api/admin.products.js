@@ -36,6 +36,18 @@ export const AdminGetProducts = async ({ id, page, sort }) => {
   }
 }
 
+export const AdminGetProductById = async (id) => {
+  try {
+    const { data } = await AdminAxiosInstance.get(`${baseUrl}/${id}`)
+
+    return data
+    
+  } catch (error) {
+    console.error('[Admin Get Product failed]: ', error)
+    return error.response.data
+  }
+}
+
 export const AdminUploadFile = async (formData) => {
   try {
     const { data } = await AdminAxiosInstance.post(

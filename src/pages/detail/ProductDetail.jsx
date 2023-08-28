@@ -14,6 +14,7 @@ const ProductDetail = () => {
   const { newProducts, productDetail } = useProducts()
   const { handleAddToCart, handleBuyItNowClick } = useUserCartItems()
   const [quantity, setQuantity] = useState(1)
+  console.log(productDetail)
 
   useEffect(() => {
     window.scrollTo(0, 0)

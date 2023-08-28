@@ -268,7 +268,7 @@ const AdminAddProduct = () => {
               <label>SKU</label>
               <TextInput
                 type={'number'}
-                placeholder={'Fox-3983'}
+                placeholder={'3983'}
                 name={'sku'}
                 onChange={(e) => handleNewProductInputChange(e)}
               />

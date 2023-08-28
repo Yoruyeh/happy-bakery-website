@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { AdminGetProducts } from '../api/admin.products'
+import { useLocation, useNavigate } from "react-router-dom";
+import { AdminGetProducts, AdminGetProductById } from '../api/admin.products'
 import { BaseAdminMenu } from '../data'
 
 const defaultAdminContext = {
@@ -9,7 +9,9 @@ const defaultAdminContext = {
   logout: null,
   adminProducts: null,
   productCount: 0,
-  handleNavItemClick: () => {}
+  handleNavItemClick: () => {},
+  handleProductCardClick: () => {},
+  adminProductDetail: null
 }
 
 const AdminContext = createContext(defaultAdminContext)
@@ -17,11 +19,14 @@ const AdminContext = createContext(defaultAdminContext)
 export const useAdmin = () => useContext(AdminContext)
 
 export const AdminProvider = ({ children }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { pathname } = useLocation()
   const [adminProducts, setAdminProducts] = useState([])
   const [adminProductCount, setAdminProductCount] = useState(0)
   const [adminMenu, setAdminMenu] = useState([])
+  const [adminProduct, setAdminProduct] = useState({})
 
   const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await AdminGetProducts({
@@ -31,6 +36,12 @@ export const AdminProvider = ({ children }) => {
     })
     setAdminProducts(products)
     setAdminProductCount(productCount)
+  }
+
+  const handleProductCardClick = async (id) => {
+    const { product } = await AdminGetProductById(id)
+    setAdminProduct(product)
+    navigate(`${location.pathname}/${id}`)
   }
 
   useEffect(() => {
@@ -87,7 +98,9 @@ export const AdminProvider = ({ children }) => {
         adminProducts,
         adminProductCount,
         handleNavItemClick,
-        adminMenu
+        adminMenu,
+        handleProductCardClick,
+        adminProduct
       }}
     >
       {children}

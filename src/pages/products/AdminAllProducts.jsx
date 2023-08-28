@@ -9,7 +9,12 @@ import { useEffect, useState } from 'react'
 import { BaseAdminMenu } from '../../data'
 
 const AdminAllProducts = () => {
-  const { adminProducts, adminProductCount, handleNavItemClick } = useAdmin()
+  const {
+    adminProducts,
+    adminProductCount,
+    handleNavItemClick,
+    handleProductCardClick
+  } = useAdmin()
   const [activePage, setActivePage] = useState(1)
   let { category } = useParams()
   const pageCount = Math.ceil(adminProductCount / 12)
@@ -52,9 +57,13 @@ const AdminAllProducts = () => {
         {adminProducts &&
           adminProducts.length > 0 &&
           adminProducts.map((product) => (
-            <Link to={`${product.id}`} key={product.id}>
-              <AdminProductCard product={product} />
-            </Link>
+              <AdminProductCard
+                product={product}
+                key={product.id}
+                onClick={() => 
+                  handleProductCardClick(product.id) 
+                }
+              />
           ))}
       </div>
       <Pagination
