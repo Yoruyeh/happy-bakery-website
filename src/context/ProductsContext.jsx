@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { GetProducts, GetProductById } from '../api/products'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const defaultProductsContext = {
   products: null,
@@ -15,6 +16,8 @@ const ProductsContext = createContext(defaultProductsContext)
 export const useProducts = () => useContext(ProductsContext)
 
 export const ProductsProvider = ({ children }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [products, setProducts] = useState([])
   const [newProducts, setNewProducts]  = useState([])
   const [productCount, setProductCount] = useState(0)
@@ -33,6 +36,7 @@ export const ProductsProvider = ({ children }) => {
   const handleViewProductClick = async (id) => {
     const { product } = await GetProductById(id)
     setProductDetail(product)
+    navigate(`${location.pathname}/${id}`)
   }
 
   useEffect(() => {

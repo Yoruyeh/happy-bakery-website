@@ -1,5 +1,4 @@
 import styles from './productCard.module.scss'
-import { Link } from 'react-router-dom'
 import Button from '../button/Button'
 import Tag from '../tag/Tag'
 import { useProducts } from '../../context/ProductsContext'
@@ -14,24 +13,20 @@ const ProductCard = ({ product }) => {
         {newProducts.find((item) => item.id === product.id) ? (
           <Tag text={'NEW'} />
         ) : (
-          ""
+          ''
         )}
       </div>
       <div className={styles.cardTitle}>
         <h5>{product.name}</h5>
       </div>
       <div className={styles.cardButton}>
-        <Link
-          to={`/happy-bakery-website/products/${product.Category.name}/${product.id}`}
-          onClick={() => {
-            handleViewProductClick(product.id)
-          }}
-        >
           <Button
             text={'VIEW PRODCUT - '}
             price={`$ ${product.price_regular}`}
+            onClick={() => {
+              handleViewProductClick(product.id)
+            }}
           />
-        </Link>
       </div>
     </div>
   )
