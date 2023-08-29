@@ -41,7 +41,7 @@ export const AdminGetProductById = async (id) => {
     const { data } = await AdminAxiosInstance.get(`${baseUrl}/${id}`)
 
     return data
-    
+
   } catch (error) {
     console.error('[Admin Get Product failed]: ', error)
     return error.response.data
@@ -78,6 +78,20 @@ export const AdminAddNewProduct = async ({ productInfo, productImage }) => {
     return data
   } catch (error) {
     console.error('[Admin Add New Product failed]: ', error)
+    return error.response.data
+  }
+}
+
+export const AdminModifyProduct = async (id, { productInfo, productImage }) => {
+  try {
+    const { data } = await AdminAxiosInstance.put(`${baseUrl}/${id}`, {
+      productInfo,
+      productImage
+    })
+
+    return data
+  } catch (error) {
+    console.error('[Admin Modify Product failed]: ', error)
     return error.response.data
   }
 }

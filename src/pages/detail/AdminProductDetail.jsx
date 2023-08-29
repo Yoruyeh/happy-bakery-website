@@ -5,20 +5,22 @@ import { BaseAdminMenu } from '../../data'
 import { Image, SuccessCheck } from '../../assets/icons'
 import { useAdmin } from '../../context/AdminContext'
 import { Cross } from '../../assets/icons'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import Swal from 'sweetalert2'
+import { AdminUploadFile, AdminModifyProduct } from '../../api/admin.products'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
     <div className={styles.card}>
       <div
         className={styles.danger}
-        onClick={() => handleDeleteUpload(image.image_path)}
+        onClick={() => handleDeleteUpload(image.image_path || image.url)}
       >
         <Cross />
       </div>
-      <img alt="" src={image.image_path} />
+      <img alt="" src={image.image_path || image.url} />
       <div className={styles.filename}>
-        <p>{image.name}</p>
+        <p>{image.name || image.file.name}</p>
         <div className={styles.line}></div>
       </div>
       <div className={styles.success}>
@@ -31,14 +33,304 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 
 const AdminProductDetail = () => {
   const { adminProduct } = useAdmin()
-  const [uploadImages, setUploadImages] = useState(adminProduct.ProductImages)
+  const [editProductInfo, setEditProductInfo] = useState({
+    name: adminProduct.name || '',
+    description: adminProduct.description || '',
+    category: adminProduct.Category.name || '',
+    cover: adminProduct.cover || '',
+    sku: adminProduct.sku || '',
+    quantity: adminProduct.stock_quantity || '',
+    priceRegular: adminProduct.price_regular || '',
+    priceSale: adminProduct.price_sale || ''
+  })
+  const [editImages, setEditImages] = useState(adminProduct.ProductImages)
+  const [uploadImages, setUploadImages] = useState([])
+  const dropImageRef = useRef(null)
+  const formDataRef = useRef(new FormData())
+  const [imageFormData, setImageFormData] = useState(null)
+  const totalImageQty = !editProductInfo.cover ? 0 : 1 + editImages.length + uploadImages.length
+
+  const handleEditProductInputChange = (event) => {
+    const { name, value } = event.target
+    if (
+      name === 'sku' ||
+      name === 'quantity' ||
+      name === 'priceRegular' ||
+      name === 'priceSale'
+    ) {
+      setEditProductInfo((prev) => ({
+        ...prev,
+        [name]: Number(value)
+      }))
+    } else {
+      setEditProductInfo((prev) => ({
+        ...prev,
+        [name]: value
+      }))
+    }
+  }
+
+  const handleUploadImage = () => {
+    // 數量抵達四張時不能再新增
+    if (totalImageQty >= 4) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Maximum upload is 4',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    dropImageRef.current.click()
+  }
+
+  const handleImageChange = (e) => {
+    // 可上傳多張或一張
+    const files = Array.from(e.target.files)
+    const totalUploadQty = totalImageQty + files.length
+    if (totalUploadQty > 4) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Maximum upload is 4',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      const imagesToRemove = totalUploadQty - 4
+      files.splice(4 - totalImageQty, imagesToRemove)
+    }
+    files.forEach((file, index) => {
+      const imageURL = URL.createObjectURL(file)
+      if (!editProductInfo.cover) {
+        if (index === 0) {
+          setEditProductInfo((prev) => ({
+            ...prev,
+            cover: imageURL
+          }))
+        } else {
+          setUploadImages((prev) => [...prev, { file, url: imageURL }])
+        }
+      } else {
+        setUploadImages((prev) => [...prev, { file, url: imageURL }])
+      }
+      formDataRef.current.append('image', file)
+    })
+    setImageFormData(formDataRef.current)
+  }
 
   const handleDeleteUpload = (url) => {
-    const updatedArray = uploadImages.filter(
-      (item) => item.image_path !== url
-    )
-    setUploadImages(updatedArray)
+    const updatedImg = editImages.filter((item) => item.image_path !== url)
+    const updatedUpload = uploadImages.filter((item) => item.url !== url)
+    setEditImages(updatedImg)
+    setUploadImages(updatedUpload)
   }
+
+   const handleUpdateClick = async () => {
+     const {
+       name,
+       description,
+       category,
+       sku,
+       quantity,
+       priceRegular,
+       priceSale
+     } = editProductInfo
+
+     if (
+       !name.trim() ||
+       !description.trim() ||
+       !category ||
+       !sku ||
+       !priceRegular ||
+       !priceSale
+     ) {
+       Swal.fire({
+         position: 'top',
+         icon: 'error',
+         title: 'Cannot be blank',
+         showConfirmButton: false,
+         timer: 1500
+       })
+       return
+     }
+
+     if (!quantity && quantity !== 0) {
+       Swal.fire({
+         position: 'top',
+         icon: 'error',
+         title: 'Cannot be blank',
+         showConfirmButton: false,
+         timer: 1500
+       })
+       return
+     }
+
+     if (totalImageQty < 4) {
+       Swal.fire({
+         position: 'top',
+         icon: 'warning',
+         title: 'Please Upload 4 Images',
+         showConfirmButton: false,
+         timer: 1500
+       })
+       return
+     }
+     
+     if (!editImages.length && uploadImages.length > 0) {
+      //  顯示上傳中的提示框
+       Swal.fire({
+         title: 'Uploading Files...Please Wait...',
+         timerProgressBar: true,
+         allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
+         didOpen: () => {
+           Swal.showLoading()
+         }
+       })
+
+       try {
+         const { status, image } = await AdminUploadFile(imageFormData)
+
+         if (status === 'success') {
+          const realImageUrlTemp = image.slice(1)
+          const editProductInfoTemp = {
+            ...editProductInfo,
+            cover: image[0].link
+          }
+          const { status: addStatus, message } = await AdminModifyProduct(adminProduct.id, {
+            productInfo: editProductInfoTemp,
+            productImage: realImageUrlTemp
+          })
+
+          if (addStatus === 'success') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: `Successfully Updated ${editProductInfo.name}`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            return
+          }
+
+          Swal.fire({
+            position: 'top',
+            icon: 'error',
+            title: `${message}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+         }
+       } catch (error) {
+         Swal.fire({
+           icon: 'error',
+           title: 'Upload Failed!',
+           text: 'Please try again.',
+           showConfirmButton: true
+         })
+       }
+     } else if (editImages.length > 0 && uploadImages.length > 0) {
+       // 顯示上傳中的提示框
+       Swal.fire({
+         title: 'Uploading Files...Please Wait...',
+         timerProgressBar: true,
+         allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
+         didOpen: () => {
+           Swal.showLoading()
+         }
+       })
+
+       try {
+         const { status, image } = await AdminUploadFile(imageFormData)
+
+         if (status === 'success') {
+           const realImageUrlTemp = editImages
+             .map((image) => ({
+               id: String(image.id),
+               name: image.name,
+               link: image.image_path
+             }))
+             .concat(image)
+
+           const { status: addStatus, message } = await AdminModifyProduct(adminProduct.id, {
+             productInfo: editProductInfo,
+             productImage: realImageUrlTemp
+           })
+
+           if (addStatus === 'success') {
+             Swal.fire({
+               position: 'top',
+               icon: 'success',
+               title: `Successfully Updated ${editProductInfo.name}`,
+               showConfirmButton: false,
+               timer: 1500
+             })
+             return
+           }
+
+           Swal.fire({
+             position: 'top',
+             icon: 'error',
+             title: `${message}`,
+             showConfirmButton: false,
+             timer: 1500
+           })
+         }
+       } catch (error) {
+         Swal.fire({
+           icon: 'error',
+           title: 'Upload Failed!',
+           text: 'Please try again.',
+           showConfirmButton: true
+         })
+       }
+     } else if (editImages.length > 0 && !uploadImages.length) {
+      try {
+          const realImageUrlTemp = editImages
+          .map((image) => ({
+            id: String(image.id),
+            name: image.name,
+            link: image.image_path
+          }))
+
+          const { status, message } = await AdminModifyProduct(
+            adminProduct.id,
+            {
+              productInfo: editProductInfo,
+              productImage: realImageUrlTemp
+            }
+          )
+
+          if (status === 'success') {
+            Swal.fire({
+              position: 'top',
+              icon: 'success',
+              title: `Successfully Updated ${editProductInfo.name}`,
+              showConfirmButton: false,
+              timer: 1500
+            })
+            return
+          }
+
+          Swal.fire({
+            position: 'top',
+            icon: 'error',
+            title: `${message}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+        
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Update Failed!',
+          text: 'Please try again.',
+          showConfirmButton: true
+        })
+      }
+     }
+   }
 
   return (
     <div className={styles.adminProductDetail}>
@@ -57,7 +349,8 @@ const AdminProductDetail = () => {
                 type={'text'}
                 placeholder={'Type Name Here'}
                 name={'name'}
-                defaultValue={adminProduct.name}
+                defaultValue={editProductInfo.name}
+                onChange={(e) => handleEditProductInputChange(e)}
               />
             </div>
             <div className={styles.description}>
@@ -65,7 +358,8 @@ const AdminProductDetail = () => {
               <textarea
                 placeholder="Type Description here"
                 name={'description'}
-                defaultValue={adminProduct.description}
+                defaultValue={editProductInfo.description}
+                onChange={(e) => handleEditProductInputChange(e)}
               ></textarea>
             </div>
             <div className={styles.category}>
@@ -73,17 +367,16 @@ const AdminProductDetail = () => {
               <select
                 id="category"
                 name="category"
-                defaultValue={adminProduct.Category.name}
+                defaultValue={editProductInfo.category}
+                onChange={(e) => handleEditProductInputChange(e)}
               >
                 <option value="" disabled>
                   Choose Category Here
                 </option>
                 {BaseAdminMenu.map((item) => (
-                  <>
-                    <option value={item.title} key={item.id}>
-                      {item.title}
-                    </option>
-                  </>
+                  <option value={item.title} key={item.id}>
+                    {item.title}
+                  </option>
                 ))}
               </select>
             </div>
@@ -93,7 +386,8 @@ const AdminProductDetail = () => {
                 type={'number'}
                 placeholder={3983}
                 name={'sku'}
-                defaultValue={adminProduct.sku}
+                defaultValue={editProductInfo.sku}
+                onChange={(e) => handleEditProductInputChange(e)}
               />
             </div>
             <div className={styles.stock}>
@@ -102,7 +396,8 @@ const AdminProductDetail = () => {
                 type={'number'}
                 placeholder={1234}
                 name={'quantity'}
-                defaultValue={adminProduct.stock_quantity}
+                defaultValue={editProductInfo.quantity}
+                onChange={(e) => handleEditProductInputChange(e)}
               />
             </div>
             <div className={styles.price}>
@@ -111,7 +406,8 @@ const AdminProductDetail = () => {
                 type={'number'}
                 placeholder={'$1000'}
                 name={'priceRegular'}
-                defaultValue={adminProduct.price_regular}
+                defaultValue={editProductInfo.priceRegular}
+                onChange={(e) => handleEditProductInputChange(e)}
               />
             </div>
             <div className={styles.sale}>
@@ -120,17 +416,56 @@ const AdminProductDetail = () => {
                 type={'number'}
                 placeholder={'$450'}
                 name={'priceSale'}
-                defaultValue={adminProduct.price_sale}
+                defaultValue={editProductInfo.priceSale}
+                onChange={(e) => handleEditProductInputChange(e)}
               />
             </div>
           </form>
           <div className={styles.gallery}>
             <div className={styles.image}>
-              <img src={adminProduct.cover} alt="" />
+              <img src={editProductInfo.cover} alt="" />
+              <div
+                className={styles.deleteCover}
+                onClick={() => {
+                  if (!editImages.length && !uploadImages.length) {
+                    setEditProductInfo((prev) => ({
+                      ...prev,
+                      cover: ''
+                    }))
+                  } else if (!editImages.length && uploadImages.length > 0) {
+                    setEditProductInfo((prev) => ({
+                      ...prev,
+                      cover: uploadImages[0].url
+                    }))
+                    setUploadImages(uploadImages.slice(1))
+                  } else if (editImages.length > 0) {
+                    setEditProductInfo((prev) => ({
+                      ...prev,
+                      cover: editImages[0].image_path
+                    }))
+                    setEditImages(editImages.slice(1))
+                  }
+                }}
+              >
+                <Cross />
+              </div>
             </div>
             <div className={styles.upload}>
               <h6>Product Gallery</h6>
-              <div className={styles.dropZone}>
+              <div
+                className={styles.dropZone}
+                onClick={() => handleUploadImage()}
+              >
+                <input
+                  type="file"
+                  multiple
+                  id="drop-image"
+                  accept="image/*"
+                  style={{ display: 'none' }}
+                  name="drop-image"
+                  ref={dropImageRef}
+                  onChange={(e) => handleImageChange(e)}
+                />
                 <Image />
                 <div className={styles.text}>
                   <p>Drop your imager here, or browse</p>
@@ -138,12 +473,21 @@ const AdminProductDetail = () => {
                 </div>
               </div>
               <div className={styles.cards}>
+                {editImages &&
+                  editImages.length > 0 &&
+                  editImages.map((image) => (
+                    <UploadedCard
+                      image={image}
+                      key={image.id}
+                      handleDeleteUpload={(url) => handleDeleteUpload(url)}
+                    />
+                  ))}
                 {uploadImages &&
                   uploadImages.length > 0 &&
                   uploadImages.map((image) => (
                     <UploadedCard
                       image={image}
-                      key={image.image_path}
+                      key={image.url}
                       handleDeleteUpload={(url) => handleDeleteUpload(url)}
                     />
                   ))}
@@ -151,7 +495,7 @@ const AdminProductDetail = () => {
             </div>
             <div className={styles.btnWrapper}>
               <div className={styles.update}>
-                <Button text={'UPDATE'} />
+                <Button text={'UPDATE'} onClick={() => handleUpdateClick()} />
               </div>
               <div className={styles.delete}>
                 <Button text={'DELETE'} />
