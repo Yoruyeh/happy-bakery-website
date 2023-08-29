@@ -122,7 +122,7 @@ export const AdminProvider = ({ children }) => {
       setAdminMenu(menu)
     }
     loadAdminMenu()
-  }, [])
+  }, [adminProductCount])
 
   useEffect(() => {
     setActivePage(1)
@@ -142,6 +142,8 @@ export const AdminProvider = ({ children }) => {
         adminMenu,
         handleProductCardClick,
         adminProduct,
+        setAdminProducts,
+        setAdminProductCount,
         activePage,
         setActivePage,
         handleProductDelete

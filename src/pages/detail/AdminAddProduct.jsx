@@ -7,9 +7,10 @@ import { Image, SuccessCheck } from '../../assets/icons'
 import { useRef } from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
-import { AdminUploadFile, AdminAddNewProduct } from '../../api/admin.products'
+import { AdminUploadFile, AdminAddNewProduct, AdminGetProducts } from '../../api/admin.products'
 import { Cross } from '../../assets/icons'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAdmin } from '../../context/AdminContext'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -30,7 +31,9 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 }
 
 const AdminAddProduct = () => {
+  let { category } = useParams()
   const navigate = useNavigate()
+  const {setAdminProducts, setAdminProductCount, activePage} = useAdmin()
   const [uploadImages, setUploadImages] = useState([])
   const [imageFormData, setImageFormData] = useState(null)
   const dropImageRef = useRef(null)
@@ -38,13 +41,20 @@ const AdminAddProduct = () => {
   const [newProductInfo, setNewProductInfo] = useState({
     name: '',
     description: '',
-    category: '',
+    category: category === 'all_products' ? '' : category,
     cover: '',
     sku: '',
     quantity: '',
     priceRegular: '',
     priceSale: ''
   })
+
+  const ProductPageTitle = (category) => {
+    if (category === 'all_products') {
+      return 'All Products'
+    }
+    return category
+  }
   
   const handleNewProductInputChange = (event) => {
     const { name, value } = event.target
@@ -120,6 +130,9 @@ const AdminAddProduct = () => {
       priceRegular,
       priceSale
     } = newProductInfo
+    const SelectedItem = BaseAdminMenu.find((item) =>
+      item.link.includes(category)
+    )
 
     if (
       !name.trim() ||
@@ -195,6 +208,13 @@ const AdminAddProduct = () => {
               showConfirmButton: false,
               timer: 1500
             })
+            const { products, productCount } = await AdminGetProducts({
+              id: SelectedItem ? SelectedItem.id : '',
+              page: activePage
+            })
+            setAdminProducts(products)
+            setAdminProductCount(productCount)
+            navigate(-1)
             return
           }
 
@@ -223,7 +243,7 @@ const AdminAddProduct = () => {
       <div className={styles.title}>
         <h5>Product Details</h5>
         <div className={styles.text}>
-          <p>Home ＞ All Products ＞ Add New Product</p>
+          <p>Home ＞ {ProductPageTitle(category)} ＞ Add New Product</p>
         </div>
       </div>
       <div className={styles.body}>
@@ -251,7 +271,7 @@ const AdminAddProduct = () => {
               <select
                 id="category"
                 name="category"
-                defaultValue=""
+                defaultValue={newProductInfo.category}
                 onChange={(e) => handleNewProductInputChange(e)}
               >
                 <option value="" disabled>
@@ -347,7 +367,7 @@ const AdminAddProduct = () => {
                 <Button text={'SAVE'} />
               </div>
               <div className={styles.cancel}>
-                <Button text={'CANCEL'} onClick={() => navigate(-1)}/>
+                <Button text={'CANCEL'} onClick={() => navigate(-1)} />
               </div>
             </div>
           </div>

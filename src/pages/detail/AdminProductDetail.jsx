@@ -8,7 +8,7 @@ import { Cross } from '../../assets/icons'
 import { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminModifyProduct } from '../../api/admin.products'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -33,6 +33,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 
 
 const AdminProductDetail = () => {
+  let { category } = useParams()
   const navigate = useNavigate()
   const { adminProduct, handleProductDelete } = useAdmin()
   const [editProductInfo, setEditProductInfo] = useState({
@@ -51,6 +52,13 @@ const AdminProductDetail = () => {
   const formDataRef = useRef(new FormData())
   const [imageFormData, setImageFormData] = useState(null)
   const totalImageQty = !editProductInfo.cover ? 0 : 1 + editImages.length + uploadImages.length
+
+  const ProductPageTitle = (category) => {
+    if (category === 'all_products') {
+      return 'All Products'
+    }
+    return category
+  }
 
   const handleEditProductInputChange = (event) => {
     const { name, value } = event.target
@@ -129,7 +137,7 @@ const AdminProductDetail = () => {
     setUploadImages(updatedUpload)
   }
 
-   const handleUpdateClick = async () => {
+  const handleUpdateClick = async () => {
      const {
        name,
        description,
@@ -332,14 +340,14 @@ const AdminProductDetail = () => {
         })
       }
      }
-   }
+  }
 
   return (
     <div className={styles.adminProductDetail}>
       <div className={styles.title}>
         <h5>Product Details</h5>
         <div className={styles.text}>
-          <p>Home ＞ All Products ＞ Product Details</p>
+          <p>Home ＞ {ProductPageTitle(category)} ＞ Product Details</p>
         </div>
       </div>
       <div className={styles.body}>
