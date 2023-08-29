@@ -150,20 +150,16 @@ const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
-        path: 'all_products',
-        element: <AdminAllProducts />
-      },
-      {
-        path: 'all_products/new',
-        element: <AdminAddProduct />
-      },
-      {
         path: ':category',
-        element: <AdminAllProducts />,
+        element: <AdminAllProducts />
       },
       {
         path: ':category/:id',
         element: <AdminProductDetail />
+      },
+      {
+        path: ':category/new',
+        element: <AdminAddProduct />
       },
       {
         path: 'orders',

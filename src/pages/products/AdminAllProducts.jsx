@@ -5,7 +5,6 @@ import AdminProductCard from '../../components/adminCard/AdminProductCard'
 import { Link, useParams } from 'react-router-dom'
 import { useAdmin } from '../../context/AdminContext'
 import Pagination from '../../components/pagination/Pagination'
-import { useEffect, useState } from 'react'
 import { BaseAdminMenu } from '../../data'
 
 const AdminAllProducts = () => {
@@ -13,15 +12,16 @@ const AdminAllProducts = () => {
     adminProducts,
     adminProductCount,
     handleNavItemClick,
-    handleProductCardClick
+    handleProductCardClick,
+    activePage,
+    setActivePage
   } = useAdmin()
-  const [activePage, setActivePage] = useState(1)
   let { category } = useParams()
   const pageCount = Math.ceil(adminProductCount / 12)
   const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
 
   const ProductPageTitle = (category) => {
-    if (!category) {
+    if (category === 'all_products') {
       return 'All Products'
     } 
     return category
@@ -37,10 +37,6 @@ const AdminAllProducts = () => {
       page: page
     })
   }
-
-   useEffect(() => {
-     setActivePage(1)
-   }, [category])
 
   return (
     <div className={styles.allProducts}>

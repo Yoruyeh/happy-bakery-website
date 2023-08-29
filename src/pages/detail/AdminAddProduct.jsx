@@ -9,6 +9,7 @@ import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminAddNewProduct } from '../../api/admin.products'
 import { Cross } from '../../assets/icons'
+import { useNavigate } from 'react-router-dom'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -29,6 +30,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 }
 
 const AdminAddProduct = () => {
+  const navigate = useNavigate()
   const [uploadImages, setUploadImages] = useState([])
   const [imageFormData, setImageFormData] = useState(null)
   const dropImageRef = useRef(null)
@@ -345,7 +347,7 @@ const AdminAddProduct = () => {
                 <Button text={'SAVE'} />
               </div>
               <div className={styles.cancel}>
-                <Button text={'CANCEL'} />
+                <Button text={'CANCEL'} onClick={() => navigate(-1)}/>
               </div>
             </div>
           </div>

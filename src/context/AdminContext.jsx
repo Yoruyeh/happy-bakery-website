@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AdminGetProducts, AdminGetProductById } from '../api/admin.products'
 import { BaseAdminMenu } from '../data'
 
@@ -21,12 +21,14 @@ export const useAdmin = () => useContext(AdminContext)
 export const AdminProvider = ({ children }) => {
   const navigate = useNavigate()
   const location = useLocation()
+  let { category } = useParams()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const { pathname } = useLocation()
   const [adminProducts, setAdminProducts] = useState([])
   const [adminProductCount, setAdminProductCount] = useState(0)
   const [adminMenu, setAdminMenu] = useState([])
   const [adminProduct, setAdminProduct] = useState({})
+  const [activePage, setActivePage] = useState(1)
 
   const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await AdminGetProducts({
@@ -47,7 +49,7 @@ export const AdminProvider = ({ children }) => {
   useEffect(() => {
     const checkTokenIsValid = async () => {
       const token = localStorage.getItem('token')
-      if(!token) {
+      if (!token) {
         setIsAuthenticated(false)
         return
       } else {
@@ -86,6 +88,9 @@ export const AdminProvider = ({ children }) => {
     loadAdminMenu()
   }, [])
 
+  useEffect(() => {
+    setActivePage(1)
+  }, [category])
 
   return (
     <AdminContext.Provider
@@ -100,7 +105,9 @@ export const AdminProvider = ({ children }) => {
         handleNavItemClick,
         adminMenu,
         handleProductCardClick,
-        adminProduct
+        adminProduct,
+        activePage,
+        setActivePage
       }}
     >
       {children}
