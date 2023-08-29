@@ -9,6 +9,7 @@ import {
 } from '../../assets/icons'
 import { NavLink } from 'react-router-dom'
 import { useAdmin } from '../../context/AdminContext'
+import { useState } from 'react'
 
 const DropDownMenu = ({ data, handleNavItemClick }) => {
 
@@ -39,6 +40,7 @@ const DropDownMenu = ({ data, handleNavItemClick }) => {
 
 const AdminNavbar = () => {
   const { handleNavItemClick, adminMenu } = useAdmin()
+  const [openDropDown, setOpenDropDown] = useState(false)
 
   return (
     <div className={styles.adminNavbar}>
@@ -98,15 +100,22 @@ const AdminNavbar = () => {
       <div className={styles.categoryWrapper}>
         <h6>
           Categories
-          <span>
-            <Down />
-            <Up />
-          </span>
+          {openDropDown ? (
+            <span onClick={() => setOpenDropDown(!openDropDown)}>
+              <Up />
+            </span>
+          ) : (
+            <span onClick={() => setOpenDropDown(!openDropDown)}>
+              <Down />
+            </span>
+          )}
         </h6>
-        <DropDownMenu
-          data={adminMenu}
-          handleNavItemClick={handleNavItemClick}
-        />
+        {openDropDown && (
+          <DropDownMenu
+            data={adminMenu}
+            handleNavItemClick={handleNavItemClick}
+          />
+        )}
       </div>
     </div>
   )
