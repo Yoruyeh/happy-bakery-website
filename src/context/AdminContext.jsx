@@ -1,7 +1,12 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { AdminGetProducts, AdminGetProductById } from '../api/admin.products'
+import {
+  AdminGetProducts,
+  AdminGetProductById,
+  AdminDeleteProduct
+} from '../api/admin.products'
 import { BaseAdminMenu } from '../data'
+import Swal from 'sweetalert2'
 
 const defaultAdminContext = {
   isAuthenticated: false,
@@ -11,7 +16,8 @@ const defaultAdminContext = {
   productCount: 0,
   handleNavItemClick: () => {},
   handleProductCardClick: () => {},
-  adminProductDetail: null
+  adminProductDetail: null,
+  handleProductDelete: () => {}
 }
 
 const AdminContext = createContext(defaultAdminContext)
@@ -44,6 +50,36 @@ export const AdminProvider = ({ children }) => {
     const { product } = await AdminGetProductById(id)
     setAdminProduct(product)
     navigate(`${location.pathname}/${id}`)
+  }
+
+  const handleProductDelete = async (id) => {
+    const SelectedItem = BaseAdminMenu.find((item) =>
+      item.link.includes(category)
+    )
+    const { status } = await AdminDeleteProduct(id)
+    if (status === 'success') {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `Successfully Deleted`,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      const { products, productCount } = await AdminGetProducts({
+        id: SelectedItem ? SelectedItem.id : '',
+        page: activePage
+      })
+      setAdminProducts(products)
+      setAdminProductCount(productCount)
+      navigate(-1)
+      return
+    }
+    Swal.fire({
+      icon: 'error',
+      title: 'Delete Failed!',
+      text: 'Please try again.',
+      showConfirmButton: true
+    })
   }
 
   useEffect(() => {
@@ -107,7 +143,8 @@ export const AdminProvider = ({ children }) => {
         handleProductCardClick,
         adminProduct,
         activePage,
-        setActivePage
+        setActivePage,
+        handleProductDelete
       }}
     >
       {children}

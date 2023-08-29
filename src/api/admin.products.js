@@ -95,3 +95,14 @@ export const AdminModifyProduct = async (id, { productInfo, productImage }) => {
     return error.response.data
   }
 }
+
+export const AdminDeleteProduct = async (id) => {
+  try {
+    const { data } = await AdminAxiosInstance.delete(`${baseUrl}/${id}`)
+
+    return data
+  } catch (error) {
+    console.error('[Admin Delete Product failed]: ', error)
+    return error.response.data
+  }
+}

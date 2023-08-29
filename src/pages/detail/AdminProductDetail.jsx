@@ -34,7 +34,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 
 const AdminProductDetail = () => {
   const navigate = useNavigate()
-  const { adminProduct } = useAdmin()
+  const { adminProduct, handleProductDelete } = useAdmin()
   const [editProductInfo, setEditProductInfo] = useState({
     name: adminProduct.name || '',
     description: adminProduct.description || '',
@@ -500,7 +500,10 @@ const AdminProductDetail = () => {
                 <Button text={'UPDATE'} onClick={() => handleUpdateClick()} />
               </div>
               <div className={styles.delete}>
-                <Button text={'DELETE'} />
+                <Button
+                  text={'DELETE'}
+                  onClick={() => handleProductDelete(adminProduct.id)}
+                />
               </div>
               <div className={styles.cancel}>
                 <Button text={'CANCEL'} onClick={() => navigate(-1)} />
