@@ -24,7 +24,7 @@ const ProductCard = ({ product }) => {
             text={'VIEW PRODCUT - '}
             price={`$ ${product.price_regular}`}
             onClick={() => {
-              handleViewProductClick(product.id)
+              handleViewProductClick(product.id, product.Category.name)
             }}
           />
       </div>
