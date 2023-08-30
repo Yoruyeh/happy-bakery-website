@@ -23,19 +23,19 @@
     justify-content: center;
     gap: 8px;
 
-    .delivered, .cancelled, .pending {
+    .delivered, .canceled, .pending {
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background-color: $salmon-pink;
+      background-color: $baby-blue;
     }
 
-    .cancelled {
+    .canceled {
       background-color: $gray;
     }
 
     .pending {
-      background-color: $baby-blue;
+      background-color: $salmon-pink;
     }
 
     p {

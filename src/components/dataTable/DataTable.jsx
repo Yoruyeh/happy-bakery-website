@@ -1,7 +1,7 @@
 import styles from './dataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
-import { VerticalDot, Edit, Bin, See } from '../../assets/icons'
-
+import { VerticalDot, Edit, See } from '../../assets/icons'
+import { Link } from 'react-router-dom'
 
 const columns = [
   {
@@ -32,22 +32,23 @@ const columns = [
   {
     field: 'status',
     headerName: 'Status',
-    type: 'boolean',
     width: 150,
     editable: true,
+    type: 'singleSelect',
+    valueOptions: ['pending', 'delivered', 'canceled'],
     renderCell: (params) => {
-      if (params.row.status === true) {
+      if (params.row.status === 'delivered') {
         return (
           <div className={styles.status}>
             <div className={styles.delivered}></div>
             <p>Delivered</p>
           </div>
         )
-      } else if (params.row.status === false) {
+      } else if (params.row.status === 'canceled') {
         return (
           <div className={styles.status}>
-            <div className={styles.cancelled}></div>
-            <p>Cancelled</p>
+            <div className={styles.canceled}></div>
+            <p>Canceled</p>
           </div>
         )
       }
@@ -81,12 +82,11 @@ const columns = [
           <div className={styles.edit}>
             <Edit />
           </div>
-          <div className={styles.delete}>
-            <Bin />
-          </div>
-          <div className={styles.see}>
-            <See />
-          </div>
+          <Link to={`${params.row.id}`}>
+            <div className={styles.see}>
+              <See />
+            </div>
+          </Link>
         </div>
       )
     }
@@ -99,6 +99,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
+    status: 'pending',
     amount: 875
   },
   {
@@ -106,6 +107,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
+    status: 'delivered',
     amount: 875
   },
   {
@@ -113,7 +115,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: false,
+    status: 'delivered',
     amount: 875
   },
   {
@@ -121,7 +123,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: true,
+    status: 'canceled',
     amount: 875
   },
   {
@@ -129,7 +131,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: false,
+    status: 'pending',
     amount: 875
   },
   {
@@ -137,7 +139,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: false,
+    status: 'pending',
     amount: 875
   },
   {
@@ -145,6 +147,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
+    status: 'canceled',
     amount: 875
   },
   {
@@ -152,7 +155,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: false,
+    status: 'delivered',
     amount: 875
   },
   {
@@ -160,7 +163,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: true,
+    status: 'delivered',
     amount: 875
   },
   {
@@ -168,6 +171,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
+    status: 'delivered',
     amount: 875
   },
   {
@@ -175,7 +179,7 @@ const rows = [
     date: '2023-08-05',
     payment: 'Credit Card',
     name: 'John Doe',
-    status: false,
+    status: 'pending',
     amount: 875
   }
 ]

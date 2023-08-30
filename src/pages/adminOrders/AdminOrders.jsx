@@ -1,7 +1,6 @@
 import styles from './adminOrders.module.scss'
 import { Calendar } from '../../assets/icons'
 import DataTable from '../../components/dataTable/DataTable'
-import SelectedButton from '../../components/button/SelectedButton'
 
 const AdminOrders = () => {
   return (
@@ -16,14 +15,6 @@ const AdminOrders = () => {
             </span>
             Feb 16,2022 - Feb 20,2022
           </p>
-        </div>
-        <div className={styles.button}>
-          <SelectedButton>
-            <option value="">Change Status</option>
-            <option value="pending">pending</option>
-            <option value="delivered">delivered</option>
-            <option value="canceled">canceled</option>
-          </SelectedButton>
         </div>
       </div>
       <div className={styles.table}>
