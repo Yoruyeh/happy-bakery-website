@@ -3,7 +3,7 @@ import AdminNavbar from '../components/navbar/AdminNavbar'
 import AdminFooter from '../components/footer/AdminFooter'
 import Header from '../components/header/Header'
 import { AdminProvider } from '../context/AdminContext'
-import { AdminProductsProvider } from '../context/AdminProductContext'
+import { AdminProductsProvider } from '../context/AdminProductsContext'
 
 const AdminLayout = () => {
   return (

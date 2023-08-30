@@ -9,7 +9,7 @@ import {
 } from '../../assets/icons'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import { useAdminProducts } from '../../context/AdminProductContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const DropDownMenu = ({ data, handleNavItemClick }) => {
   return (

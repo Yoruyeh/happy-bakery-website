@@ -8,7 +8,7 @@ import { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminModifyProduct } from '../../api/admin.products'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAdminProducts } from '../../context/AdminProductContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (

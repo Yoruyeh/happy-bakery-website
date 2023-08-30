@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminAddNewProduct, AdminGetProducts } from '../../api/admin.products'
 import { Cross } from '../../assets/icons'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAdminProducts } from '../../context/AdminProductContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (

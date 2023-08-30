@@ -3,7 +3,7 @@ import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
 import AdminProductCard from '../../components/adminCard/AdminProductCard'
 import { Link, useParams } from 'react-router-dom'
-import { useAdminProducts } from '../../context/AdminProductContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 import Pagination from '../../components/pagination/Pagination'
 import { BaseAdminMenu } from '../../data'
 
