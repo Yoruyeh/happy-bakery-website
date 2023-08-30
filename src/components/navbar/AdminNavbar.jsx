@@ -8,11 +8,10 @@ import {
   Up
 } from '../../assets/icons'
 import { NavLink } from 'react-router-dom'
-import { useAdmin } from '../../context/AdminContext'
 import { useState } from 'react'
+import { useAdminProducts } from '../../context/AdminProductContext'
 
 const DropDownMenu = ({ data, handleNavItemClick }) => {
-
   return (
     <div className={styles.dropdownMenu}>
       <ul className={styles.dropdownMenuList}>
@@ -39,7 +38,7 @@ const DropDownMenu = ({ data, handleNavItemClick }) => {
 }
 
 const AdminNavbar = () => {
-  const { handleNavItemClick, adminMenu } = useAdmin()
+  const { handleNavItemClick, adminMenu } = useAdminProducts()
   const [openDropDown, setOpenDropDown] = useState(false)
 
   return (

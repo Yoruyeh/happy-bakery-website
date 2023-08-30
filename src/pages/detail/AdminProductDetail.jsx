@@ -3,12 +3,12 @@ import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import { BaseAdminMenu } from '../../data'
 import { Image, SuccessCheck } from '../../assets/icons'
-import { useAdmin } from '../../context/AdminContext'
 import { Cross } from '../../assets/icons'
 import { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminModifyProduct } from '../../api/admin.products'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useAdminProducts } from '../../context/AdminProductContext'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -35,7 +35,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 const AdminProductDetail = () => {
   let { category } = useParams()
   const navigate = useNavigate()
-  const { adminProduct, handleProductDelete } = useAdmin()
+  const { adminProduct, handleProductDelete } = useAdminProducts()
   const [editProductInfo, setEditProductInfo] = useState({
     name: adminProduct.name || '',
     description: adminProduct.description || '',

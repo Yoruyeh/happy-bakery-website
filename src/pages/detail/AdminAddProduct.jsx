@@ -10,7 +10,7 @@ import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminAddNewProduct, AdminGetProducts } from '../../api/admin.products'
 import { Cross } from '../../assets/icons'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useAdmin } from '../../context/AdminContext'
+import { useAdminProducts } from '../../context/AdminProductContext'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -33,7 +33,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 const AdminAddProduct = () => {
   let { category } = useParams()
   const navigate = useNavigate()
-  const {setAdminProducts, setAdminProductCount, activePage} = useAdmin()
+  const {setAdminProducts, setAdminProductCount, activePage} = useAdminProducts()
   const [uploadImages, setUploadImages] = useState([])
   const [imageFormData, setImageFormData] = useState(null)
   const dropImageRef = useRef(null)

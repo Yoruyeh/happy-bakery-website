@@ -10,7 +10,7 @@ const columns = [
     width: 100
   },
   {
-    field: 'date',
+    field: 'order_date',
     headerName: 'Order Date',
     type: 'date',
     width: 150,
@@ -18,13 +18,13 @@ const columns = [
     valueGetter: (params) => new Date(params.value)
   },
   {
-    field: 'payment',
+    field: 'payment_method',
     headerName: 'Payment Method',
     width: 180,
     editable: true
   },
   {
-    field: 'name',
+    field: 'customer_name',
     headerName: 'Customer Name',
     width: 150,
     editable: true
@@ -61,7 +61,7 @@ const columns = [
     }
   },
   {
-    field: 'amount',
+    field: 'total_price',
     headerName: 'Amount',
     sortable: false,
     editable: false,
@@ -95,95 +95,22 @@ const columns = [
 
 const rows = [
   {
-    id: 1,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
+    id: 109,
+    order_date: 'Aug 21st, 2023',
+    payment_method: 'NewebPay',
+    customer_name: 'yoru2 yeh',
     status: 'pending',
-    amount: 875
+    total_price: '687.00'
   },
   {
-    id: 2,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'delivered',
-    amount: 875
-  },
-  {
-    id: 3,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'delivered',
-    amount: 875
-  },
-  {
-    id: 4,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'canceled',
-    amount: 875
-  },
-  {
-    id: 5,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
+    id: 110,
+    order_date: 'Aug 21st, 2023',
+    payment_method: 'PayPal',
+    customer_name: 'yoru2 yeh',
     status: 'pending',
-    amount: 875
-  },
-  {
-    id: 6,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'pending',
-    amount: 875
-  },
-  {
-    id: 7,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'canceled',
-    amount: 875
-  },
-  {
-    id: 8,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'delivered',
-    amount: 875
-  },
-  {
-    id: 9,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'delivered',
-    amount: 875
-  },
-  {
-    id: 10,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'delivered',
-    amount: 875
-  },
-  {
-    id: 11,
-    date: '2023-08-05',
-    payment: 'Credit Card',
-    name: 'John Doe',
-    status: 'pending',
-    amount: 875
+    total_price: '199.00'
   }
 ]
-
 
 const DataTable = () => {
  

@@ -3,7 +3,7 @@ import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
 import AdminProductCard from '../../components/adminCard/AdminProductCard'
 import { Link, useParams } from 'react-router-dom'
-import { useAdmin } from '../../context/AdminContext'
+import { useAdminProducts } from '../../context/AdminProductContext'
 import Pagination from '../../components/pagination/Pagination'
 import { BaseAdminMenu } from '../../data'
 
@@ -15,7 +15,7 @@ const AdminAllProducts = () => {
     handleProductCardClick,
     activePage,
     setActivePage
-  } = useAdmin()
+  } = useAdminProducts()
   let { category } = useParams()
   const pageCount = Math.ceil(adminProductCount / 12)
   const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
