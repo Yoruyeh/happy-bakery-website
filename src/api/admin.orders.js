@@ -35,3 +35,14 @@ export const AdminGetOrders = async ({ page, perPage, startDate, endDate }) => {
     return error.response.data
   }
 }
+
+export const AdminGetOrderById = async (id) => {
+  try {
+    const { data } = await AdminAxiosInstance.get(`${baseUrl}/${id}`)
+
+    return data
+  } catch (error) {
+    console.error('[Admin Get Order failed]: ', error)
+    return error.response.data
+  }
+}

@@ -1,7 +1,20 @@
 import styles from './adminProductCard.module.scss'
 import { Dot, ArrowUp } from '../../assets/icons'
+import Dotdotdot from 'dotdotdot-js'
+import { useEffect, useRef } from 'react';
 
 const AdminProductCard = ({ product, onClick }) => {
+  const descriptionRef = useRef(null)
+
+  useEffect(() => {
+    if (descriptionRef.current) {
+      new Dotdotdot(descriptionRef.current, {
+        truncate: 'word',
+        watch: true
+      })
+    }
+  }, [product.description])
+
   return (
     <div className={styles.adminProductCard} onClick={onClick}>
       <div className={styles.info}>
@@ -16,7 +29,7 @@ const AdminProductCard = ({ product, onClick }) => {
           <Dot />
         </div>
       </div>
-      <div className={styles.description}>
+      <div ref={descriptionRef}  className={styles.description}>
         <h6>Summary</h6>
         <p>{product.description}</p>
       </div>
