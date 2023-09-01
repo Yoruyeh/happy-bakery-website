@@ -15,6 +15,7 @@ export const useAdminOrders = () => useContext(AdminOrdersContext)
 
 export const AdminOrdersProvider = ({ children }) => {
   const [adminOrders, setAdminOrders] = useState([])
+  const [adminOrderCount, setAdminOrderCount] = useState(0)
 
   const currentDate = new Date()
   const sevenDaysAgo = new Date()
@@ -76,17 +77,25 @@ export const AdminOrdersProvider = ({ children }) => {
   }
   
   useEffect(() => {
+    const AdminGetOrderCount = async () => {
+      const { orderCount } = await AdminGetOrders({
+        page: 1
+      })
+      setAdminOrderCount(orderCount)
+    }
+    AdminGetOrderCount()
+
     const AdminGetOrdersAsync = async () => {
       const { orders } = await AdminGetOrders({
         page: 1,
+        perPage: adminOrderCount,
         startDate: dateValue.startDate,
         endDate: dateValue.endDate
       })
       setAdminOrders(orders)
     }
     AdminGetOrdersAsync()
-  }, [dateValue])
-
+  }, [dateValue, adminOrderCount])
 
   return (
     <AdminOrdersContext.Provider

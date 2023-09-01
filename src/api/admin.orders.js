@@ -2,13 +2,17 @@ import { AdminAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/admin/order'
 
-export const AdminGetOrders = async ({ page, startDate, endDate }) => {
+export const AdminGetOrders = async ({ page, perPage, startDate, endDate }) => {
   try {
     let url = baseUrl + 's'
     const queryParams = []
 
     if (page) {
       queryParams.push(`page=${page}`)
+    }
+
+    if (perPage) {
+      queryParams.push(`perPage=${perPage}`)
     }
 
     if (startDate) {

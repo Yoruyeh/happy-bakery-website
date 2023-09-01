@@ -3,6 +3,7 @@ import { DataGrid } from '@mui/x-data-grid'
 import { VerticalDot, Edit, See } from '../../assets/icons'
 import { Link } from 'react-router-dom'
 import { useAdminOrders } from '../../context/AdminOrdersContext'
+import { useEffect, useState } from 'react'
 
 const columns = [
   {
@@ -117,6 +118,11 @@ const emptyRows = [
 const DataTable = () => {
   const { adminOrders } = useAdminOrders()
   const isEmptyData = !adminOrders || !adminOrders.length > 0
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 10,
+    page: 0
+  })
+  const [gridKey, setGridKey] = useState(0)
 
   const CustomToolbar = () => {
     return (
@@ -127,20 +133,28 @@ const DataTable = () => {
     )
   }
 
+  useEffect(() => {
+    setPaginationModel({
+      pageSize: 10,
+      page: 0
+    })
+    setGridKey((prevKey) => prevKey + 1)
+  }, [adminOrders])
+
   return (
     <div className={styles.dataTable}>
       <DataGrid
+        key={gridKey}
         className={styles.dataGrid}
         editMode="row"
         rows={isEmptyData ? emptyRows : adminOrders}
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: {
-              pageSize: 10
-            }
+            paginationModel: paginationModel
           }
         }}
+        onPaginationModelChange={setPaginationModel}
         slots={{
           toolbar: CustomToolbar
         }}
