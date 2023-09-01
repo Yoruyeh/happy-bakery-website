@@ -6,7 +6,7 @@ import { Image, SuccessCheck } from '../../assets/icons'
 import { Cross } from '../../assets/icons'
 import { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
-import { AdminUploadFile, AdminModifyProduct } from '../../api/admin.products'
+import { AdminUploadFile, AdminModifyProduct, AdminGetProducts } from '../../api/admin.products'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAdminProducts } from '../../context/AdminProductsContext'
 
@@ -33,9 +33,9 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 
 
 const AdminProductDetail = () => {
-  let { category } = useParams()
+  let { params } = useParams()
   const navigate = useNavigate()
-  const { adminProduct, handleProductDelete } = useAdminProducts()
+  const { adminProduct, setAdminProducts, handleProductDelete, activePage } = useAdminProducts()
   const [editProductInfo, setEditProductInfo] = useState({
     name: adminProduct.name || '',
     description: adminProduct.description || '',
@@ -148,6 +148,10 @@ const AdminProductDetail = () => {
        priceSale
      } = editProductInfo
 
+     const SelectedItem = BaseAdminMenu.find((item) =>
+       item.link.includes(params)
+     )
+
      if (
        !name.trim() ||
        !description.trim() ||
@@ -221,6 +225,12 @@ const AdminProductDetail = () => {
               showConfirmButton: false,
               timer: 1500
             })
+            const { products } = await AdminGetProducts({
+              id: SelectedItem ? SelectedItem.id : '',
+              page: activePage
+            })
+            setAdminProducts(products)
+            navigate(-1)
             return
           }
 
@@ -276,6 +286,12 @@ const AdminProductDetail = () => {
                showConfirmButton: false,
                timer: 1500
              })
+             const { products } = await AdminGetProducts({
+               id: SelectedItem ? SelectedItem.id : '',
+               page: activePage
+             })
+             setAdminProducts(products)
+             navigate(-1)
              return
            }
 
@@ -320,6 +336,12 @@ const AdminProductDetail = () => {
               showConfirmButton: false,
               timer: 1500
             })
+            const { products } = await AdminGetProducts({
+              id: SelectedItem ? SelectedItem.id : '',
+              page: activePage
+            })
+            setAdminProducts(products)
+            navigate(-1)
             return
           }
 
@@ -347,7 +369,7 @@ const AdminProductDetail = () => {
       <div className={styles.title}>
         <h5>Product Details</h5>
         <div className={styles.text}>
-          <p>Home ＞ {ProductPageTitle(category)} ＞ Product Details</p>
+          <p>Home ＞ {ProductPageTitle(params)} ＞ Product Details</p>
         </div>
       </div>
       <div className={styles.body}>
