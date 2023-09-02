@@ -30,6 +30,7 @@ export const AdminProductsProvider = ({ children }) => {
   const [adminMenu, setAdminMenu] = useState([])
   const [adminProduct, setAdminProduct] = useState({})
   const [activePage, setActivePage] = useState(1)
+  const [selectedCategoryId, setSelectedCategoryId] = useState('')
 
   const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await AdminGetProducts({
@@ -48,9 +49,6 @@ export const AdminProductsProvider = ({ children }) => {
   }
 
   const handleProductDelete = async (id) => {
-    const SelectedItem = BaseAdminMenu.find((item) =>
-      item.link.includes(category)
-    )
     const { status } = await AdminDeleteProduct(id)
     if (status === 'success') {
       Swal.fire({
@@ -61,7 +59,7 @@ export const AdminProductsProvider = ({ children }) => {
         timer: 1500
       })
       const { products, productCount } = await AdminGetProducts({
-        id: SelectedItem ? SelectedItem.id : '',
+        id: selectedCategoryId,
         page: activePage
       })
       setAdminProducts(products)
@@ -108,6 +106,14 @@ export const AdminProductsProvider = ({ children }) => {
 
   useEffect(() => {
     setActivePage(1)
+    const SelectedItem = BaseAdminMenu.find((item) =>
+      item.link.includes(category)
+    )
+    if(!SelectedItem) {
+      setSelectedCategoryId('')
+      return
+    } 
+    setSelectedCategoryId(SelectedItem.id)
   }, [category])
 
   return (
@@ -123,7 +129,8 @@ export const AdminProductsProvider = ({ children }) => {
         setAdminProductCount,
         activePage,
         setActivePage,
-        handleProductDelete
+        handleProductDelete,
+        selectedCategoryId
       }}
     >
       {children}

@@ -35,7 +35,13 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 const AdminProductDetail = () => {
   let { params } = useParams()
   const navigate = useNavigate()
-  const { adminProduct, setAdminProducts, handleProductDelete, activePage } = useAdminProducts()
+  const {
+    adminProduct,
+    setAdminProducts,
+    handleProductDelete,
+    activePage,
+    selectedCategoryId
+  } = useAdminProducts()
   const [editProductInfo, setEditProductInfo] = useState({
     name: adminProduct.name || '',
     description: adminProduct.description || '',
@@ -148,10 +154,6 @@ const AdminProductDetail = () => {
        priceSale
      } = editProductInfo
 
-     const SelectedItem = BaseAdminMenu.find((item) =>
-       item.link.includes(params)
-     )
-
      if (
        !name.trim() ||
        !description.trim() ||
@@ -226,7 +228,7 @@ const AdminProductDetail = () => {
               timer: 1500
             })
             const { products } = await AdminGetProducts({
-              id: SelectedItem ? SelectedItem.id : '',
+              id: selectedCategoryId,
               page: activePage
             })
             setAdminProducts(products)
@@ -287,7 +289,7 @@ const AdminProductDetail = () => {
                timer: 1500
              })
              const { products } = await AdminGetProducts({
-               id: SelectedItem ? SelectedItem.id : '',
+               id: selectedCategoryId,
                page: activePage
              })
              setAdminProducts(products)
@@ -337,7 +339,7 @@ const AdminProductDetail = () => {
               timer: 1500
             })
             const { products } = await AdminGetProducts({
-              id: SelectedItem ? SelectedItem.id : '',
+              id: selectedCategoryId,
               page: activePage
             })
             setAdminProducts(products)
