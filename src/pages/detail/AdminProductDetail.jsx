@@ -33,7 +33,7 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 
 
 const AdminProductDetail = () => {
-  let { params } = useParams()
+  let { category } = useParams()
   const navigate = useNavigate()
   const {
     adminProduct,
@@ -371,7 +371,7 @@ const AdminProductDetail = () => {
       <div className={styles.title}>
         <h5>Product Details</h5>
         <div className={styles.text}>
-          <p>Home ＞ {ProductPageTitle(params)} ＞ Product Details</p>
+          <p>Home ＞ {ProductPageTitle(category)} ＞ Product Details</p>
         </div>
       </div>
       <div className={styles.body}>

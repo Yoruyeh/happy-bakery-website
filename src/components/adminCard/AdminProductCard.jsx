@@ -29,7 +29,7 @@ const AdminProductCard = ({ product, onClick }) => {
           <Dot />
         </div>
       </div>
-      <div ref={descriptionRef}  className={styles.description}>
+      <div ref={descriptionRef} className={styles.description}>
         <h6>Summary</h6>
         <p>{product.description}</p>
       </div>
@@ -38,7 +38,7 @@ const AdminProductCard = ({ product, onClick }) => {
           Sales
           <p>
             <ArrowUp />
-            {product.salesCount}
+            {product.salesCount ? product.salesCount : 0}
           </p>
         </div>
         <hr />
@@ -46,7 +46,7 @@ const AdminProductCard = ({ product, onClick }) => {
           Remaining Products
           <p>
             <span></span>
-            {product.stock_quantity}
+            {product.stock_quantity ? product.stock_quantity : 0}
           </p>
         </div>
       </div>
