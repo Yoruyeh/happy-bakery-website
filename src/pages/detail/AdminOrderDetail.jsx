@@ -2,25 +2,60 @@ import styles from './adminOrderDetail.module.scss'
 import { Calendar, Down, OutlineUser, Bag } from '../../assets/icons'
 import Button from '../../components/button/Button'
 import ProductDataTable from '../../components/dataTable/ProductDataTable'
+import { useAdminOrders } from '../../context/AdminOrdersContext'
 
-const AdminOrderCard = ({ icon }) => {
+const AdminOrderCard = ({ item }) => {
   return (
     <div className={styles.card}>
       <div className={styles.body}>
-        <div className={styles.icon}>{icon}</div>
+        <div className={styles.icon}>{item.icon}</div>
         <div className={styles.text}>
-          <h6>Customer</h6>
-          <p>Full Name: </p>
-          <p>Email: </p>
-          <p>Phone: </p>
+          <h6>{item.title}</h6>
+          {item.subtitles.map((subtitle, index) => (
+            <p key={index}>{subtitle}</p>
+          ))}
         </div>
       </div>
-      <Button text={'View Profile'}/>
+      <Button text={item.text} />
     </div>
   )
 }
 
 const AdminOrderDetail = () => {
+  const { adminOrder } = useAdminOrders()
+
+  const AdminOrderCardInfo = [
+    {
+      id: '1',
+      title: 'Customer',
+      subtitles: [
+        `Full Name: ${adminOrder.customer_name} `,
+        `Email: ${adminOrder.email}`,
+        `Phone: ${adminOrder.phone}`
+      ],
+      icon: <OutlineUser />,
+      text: 'View Profile'
+    },
+    {
+      id: '2',
+      title: 'Order Info',
+      subtitles: [
+        `Shipping: ${adminOrder.shipping_method}`,
+        `Payment Method: ${adminOrder.payment_method}`,
+        `Status: ${adminOrder.status}`
+      ],
+      icon: <Bag />,
+      text: 'Download Info'
+    },
+    {
+      id: '3',
+      title: 'Deliver to',
+      subtitles: [`Address: ${adminOrder.address}`],
+      icon: <Bag />,
+      text: 'View Profile'
+    }
+  ]
+
   return (
     <div className={styles.adminOrderDetail}>
       <div className={styles.title}>
@@ -33,14 +68,14 @@ const AdminOrderDetail = () => {
       <div className={styles.info}>
         <div className={styles.header}>
           <div className={styles.text}>
-            <h6>Orders ID: #6743</h6>
-            <div className={styles.status}>Pending</div>
+            <h6>Orders ID: #{adminOrder.id}</h6>
+            <div className={styles.status}>{adminOrder.status}</div>
           </div>
           <p>
             <span>
               <Calendar />
             </span>
-            Feb 16,2022 - Feb 20,2022
+            {adminOrder.order_date}
           </p>
           <div className={styles.btn}>
             <Button text={'Change Status'} price={<Down />} />
@@ -48,14 +83,14 @@ const AdminOrderDetail = () => {
           </div>
         </div>
         <div className={styles.body}>
-          <AdminOrderCard icon={<OutlineUser />} />
-          <AdminOrderCard icon={<Bag />} />
-          <AdminOrderCard icon={<Bag />} />
+          {AdminOrderCardInfo.map((item) => (
+            <AdminOrderCard item={item} key={item.id}/>
+          ))}
         </div>
         <div className={styles.footer}>
           <div className={styles.payment}>
             <h6>Payment Info</h6>
-            <p>Credit Card</p>
+            <p>{adminOrder.payment_method}</p>
           </div>
           <div className={styles.note}>
             <h6>Note</h6>
@@ -65,7 +100,10 @@ const AdminOrderDetail = () => {
       </div>
 
       <div className={styles.table}>
-        <ProductDataTable />
+        <ProductDataTable
+          order={adminOrder}
+          orderItems={adminOrder.OrderItems}
+        />
       </div>
     </div>
   )

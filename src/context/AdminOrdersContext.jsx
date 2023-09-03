@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { AdminGetOrders } from '../api/admin.orders'
+import { AdminGetOrderById, AdminGetOrders } from '../api/admin.orders'
 import Swal from 'sweetalert2'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const defaultAdminOrdersContext = {
   adminOrders: null,
@@ -14,8 +15,11 @@ const AdminOrdersContext = createContext(defaultAdminOrdersContext)
 export const useAdminOrders = () => useContext(AdminOrdersContext)
 
 export const AdminOrdersProvider = ({ children }) => {
+  const navigate = useNavigate()
+  const location = useLocation()
   const [adminOrders, setAdminOrders] = useState([])
   const [adminOrderCount, setAdminOrderCount] = useState(0)
+  const [adminOrder, setAdminOrder] = useState({})
 
   const currentDate = new Date()
   const sevenDaysAgo = new Date()
@@ -75,6 +79,12 @@ export const AdminOrdersProvider = ({ children }) => {
       [name]: value
     }))
   }
+
+  const handleCheckOrderClick = async (id) => {
+    const { order } = await AdminGetOrderById(id)
+    setAdminOrder(order)
+    navigate(`${location.pathname}/${id}`)
+  }
   
   useEffect(() => {
     const AdminGetOrderCount = async () => {
@@ -103,7 +113,9 @@ export const AdminOrdersProvider = ({ children }) => {
         adminOrders,
         setAdminOrders,
         dateValue,
-        handleDateChange
+        handleDateChange,
+        handleCheckOrderClick,
+        adminOrder
       }}
     >
       {children}

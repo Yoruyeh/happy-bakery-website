@@ -1,97 +1,13 @@
 import styles from './productDataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
 import { VerticalDot } from '../../assets/icons'
+import { useEffect, useState } from 'react'
 
-const columns = [
-  {
-    field: 'id',
-    headerName: 'No.',
-    width: 100
-  },
-  {
-    field: 'image',
-    headerName: 'Product Image',
-    width: 200,
-    renderCell: (params) => {
-      return (
-        <img src={params.row.image} alt="" />
-      )
-    }
-  },
-  {
-    field: 'name',
-    headerName: 'Product Name',
-    width: 200
-  },
-  {
-    field: 'size',
-    headerName: 'Product Size',
-    width: 150,
-    editable: true
-  },
-  {
-    field: 'quantity',
-    headerName: 'Quantity',
-    width: 150,
-    editable: true
-  },
-  {
-    field: 'total',
-    headerName: 'Total',
-    width: 150,
-    editable: true
-  }
-]
 
-const rows = [
-  {
-    id: 1,
-    image:
-      'https://images.unsplash.com/photo-1469533778471-92a68acc3633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
-    name: 'Blue Berry Scone',
-    size: 'F',
-    quantity: 3,
-    total: 450
-  },
-  {
-    id: 2,
-    image:
-      'https://images.unsplash.com/photo-1469533778471-92a68acc3633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
-    name: 'Blue Berry Scone',
-    size: 'F',
-    quantity: 3,
-    total: 450
-  },
-  {
-    id: 3,
-    image:
-      'https://images.unsplash.com/photo-1469533778471-92a68acc3633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
-    name: 'Blue Berry Scone',
-    size: 'F',
-    quantity: 3,
-    total: 450
-  },
-  {
-    id: 4,
-    image:
-      'https://images.unsplash.com/photo-1469533778471-92a68acc3633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
-    name: 'Blue Berry Scone',
-    size: 'F',
-    quantity: 3,
-    total: 450
-  },
-  {
-    id: 5,
-    image:
-      'https://images.unsplash.com/photo-1469533778471-92a68acc3633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1171&q=80',
-    name: 'Blue Berry Scone',
-    size: 'F',
-    quantity: 3,
-    total: 450
-  }
-]
+const ProductDataTable = ({ order, orderItems }) => {
+  const [rows, setRows] = useState([])
+  const totalSum = Number(order.total_price) + order.shipping_fee
 
-const ProductDataTable = () => {
   const CustomToolbar = () => {
     return (
       <div className={styles.toolbar}>
@@ -105,17 +21,67 @@ const ProductDataTable = () => {
     return (
       <div className={styles.footer}>
         <p>
-          Subtotal <span>$780</span>
+          Subtotal <span>${order.total_price}</span>
         </p>
         <p>
-          Discount <span>$50</span>
+          Delivery <span>${order.shipping_fee}</span>
         </p>
         <h5>
-          Total <span>$730</span>
+          Total <span>${totalSum}</span>
         </h5>
       </div>
     )
   }
+
+  const columns = [
+    {
+      field: 'id',
+      headerName: 'No.',
+      width: 100
+    },
+    {
+      field: 'image',
+      headerName: 'Product Image',
+      width: 200,
+      renderCell: (params) => {
+        return <img src={params.row.image} alt="" />
+      }
+    },
+    {
+      field: 'name',
+      headerName: 'Product Name',
+      width: 200
+    },
+    {
+      field: 'quantity',
+      headerName: 'Quantity',
+      width: 150,
+      editable: true
+    },
+    {
+      field: 'total',
+      headerName: 'Total',
+      width: 150,
+      editable: true
+    }
+  ]
+
+  useEffect(() => {
+    const getRows = () => {
+      setRows(
+        orderItems &&
+          orderItems.length > 0 &&
+          orderItems.map((item, index) => ({
+            id: index + 1,
+            image: item.Product.cover,
+            name: item.Product.name,
+            quantity: item.quantity,
+            total: item.price_each ? item.price_each : 0
+          }))
+      )
+    }
+    getRows()
+  }, [orderItems])
 
   return (
     <div className={styles.productDataTable}>

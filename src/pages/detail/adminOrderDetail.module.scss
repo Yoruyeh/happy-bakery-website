@@ -90,8 +90,8 @@
       border: 1px solid rgba(35,35,33,0.25);
       padding: 0.8rem;
       border-radius: 0.8rem;
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-rows: 1fr auto;
       gap: 0.8rem;
 
       .body {
@@ -119,6 +119,7 @@
 
           p {
             font-size: 0.8rem;
+            word-wrap: break-word;
           }
         }
       }
