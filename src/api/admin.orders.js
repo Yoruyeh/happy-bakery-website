@@ -46,3 +46,17 @@ export const AdminGetOrderById = async (id) => {
     return error.response.data
   }
 }
+
+export const AdminModifyOrder = async (id, { orderStatus, note }) => {
+  try {
+    const { data } = await AdminAxiosInstance.put(`${baseUrl}/${id}`, {
+      orderStatus,
+      note
+    })
+
+    return data
+  } catch (error) {
+    console.error('[Admin Modify Order failed]: ', error)
+    return error.response.data
+  }
+}

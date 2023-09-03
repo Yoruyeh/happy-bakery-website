@@ -79,7 +79,7 @@ export const UserOrdersProvider = ({ children }) => {
   }
 
   const handleNewOrderSubmit = async () => {
-    if (!paymentData.paymentMethod) {
+      if (!paymentData.paymentMethod) {
       Swal.fire({
         position: 'top',
         icon: 'warning',

@@ -1,8 +1,13 @@
 import styles from './adminOrderDetail.module.scss'
-import { Calendar, Down, OutlineUser, Bag } from '../../assets/icons'
+import { Calendar, OutlineUser, Bag } from '../../assets/icons'
 import Button from '../../components/button/Button'
 import ProductDataTable from '../../components/dataTable/ProductDataTable'
 import { useAdminOrders } from '../../context/AdminOrdersContext'
+import SelectedButton from '../../components/button/SelectedButton'
+import { useState } from 'react'
+import { AdminGetOrders, AdminModifyOrder } from '../../api/admin.orders'
+import Swal from 'sweetalert2'
+import { useNavigate } from 'react-router-dom'
 
 const AdminOrderCard = ({ item }) => {
   return (
@@ -22,7 +27,13 @@ const AdminOrderCard = ({ item }) => {
 }
 
 const AdminOrderDetail = () => {
-  const { adminOrder } = useAdminOrders()
+  const navigate = useNavigate()
+  const { adminOrder, setAdminOrders, adminOrderCount, dateValue } =
+    useAdminOrders()
+  const [editOrderInfo, setEditOrderInfo] = useState({
+    orderStatus: adminOrder.status,
+    note: adminOrder.note
+  })
 
   const AdminOrderCardInfo = [
     {
@@ -56,6 +67,46 @@ const AdminOrderDetail = () => {
     }
   ]
 
+  const handleEditOrderInfoChange = (event) => {
+    const { name, value } = event.target
+    setEditOrderInfo((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSaveClick = async () => {
+    const { status, message } = await AdminModifyOrder(
+      adminOrder.id,
+      editOrderInfo
+    )
+    if (status === 'success') {
+      Swal.fire({
+        position: 'top',
+        icon: 'success',
+        title: `Successfully Updated Order#${adminOrder.id}`,
+        showConfirmButton: false,
+        timer: 1500
+      })
+      const { orders } = await AdminGetOrders({
+        page: 1,
+        perPage: adminOrderCount,
+        startDate: dateValue.startDate,
+        endDate: dateValue.endDate
+      })
+      setAdminOrders(orders)
+      navigate(-1)
+      return
+    }
+    Swal.fire({
+      position: 'top',
+      icon: 'error',
+      title: `${message}`,
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   return (
     <div className={styles.adminOrderDetail}>
       <div className={styles.title}>
@@ -78,13 +129,24 @@ const AdminOrderDetail = () => {
             {adminOrder.order_date}
           </p>
           <div className={styles.btn}>
-            <Button text={'Change Status'} price={<Down />} />
-            <Button text={'Save'} />
+            <SelectedButton
+              defaultValue={editOrderInfo.orderStatus}
+              name="orderStatus"
+              onChange={(e) => handleEditOrderInfoChange(e)}
+            >
+              <option value="" disabled>
+                Change Status
+              </option>
+              <option value="pending">Pending</option>
+              <option value="delivered">Delivered</option>
+              <option value="canceled">Canceled</option>
+            </SelectedButton>
+            <Button text={'Save'} onClick={() => handleSaveClick()}/>
           </div>
         </div>
         <div className={styles.body}>
           {AdminOrderCardInfo.map((item) => (
-            <AdminOrderCard item={item} key={item.id}/>
+            <AdminOrderCard item={item} key={item.id} />
           ))}
         </div>
         <div className={styles.footer}>
@@ -94,7 +156,12 @@ const AdminOrderDetail = () => {
           </div>
           <div className={styles.note}>
             <h6>Note</h6>
-            <textarea placeholder="Type some notes"></textarea>
+            <textarea
+              placeholder="Type some notes"
+              name="note"
+              defaultValue={editOrderInfo.note}
+              onChange={(e) => handleEditOrderInfoChange(e)}
+            ></textarea>
           </div>
         </div>
       </div>

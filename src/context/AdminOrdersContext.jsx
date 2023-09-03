@@ -20,6 +20,10 @@ export const AdminOrdersProvider = ({ children }) => {
   const [adminOrders, setAdminOrders] = useState([])
   const [adminOrderCount, setAdminOrderCount] = useState(0)
   const [adminOrder, setAdminOrder] = useState({})
+  const [paginationModel, setPaginationModel] = useState({
+    pageSize: 10,
+    page: 0
+  })
 
   const currentDate = new Date()
   const sevenDaysAgo = new Date()
@@ -111,11 +115,14 @@ export const AdminOrdersProvider = ({ children }) => {
     <AdminOrdersContext.Provider
       value={{
         adminOrders,
+        adminOrderCount,
         setAdminOrders,
         dateValue,
         handleDateChange,
         handleCheckOrderClick,
-        adminOrder
+        adminOrder,
+        paginationModel,
+        setPaginationModel
       }}
     >
       {children}

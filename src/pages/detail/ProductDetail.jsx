@@ -88,7 +88,6 @@ const ProductDetail = () => {
                 ""
               )}
               <h3>{productDetail.name}</h3>
-              {/* <h6>Cream Cheese Flavor</h6> */}
               <h5>${productDetail.price_regular}</h5>
             </div>
             <div className={styles.wrapper}>
