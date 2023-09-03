@@ -24,6 +24,7 @@ export const AdminOrdersProvider = ({ children }) => {
     pageSize: 10,
     page: 0
   })
+  const [gridKey, setGridKey] = useState(0)
 
   const currentDate = new Date()
   const sevenDaysAgo = new Date()
@@ -89,7 +90,7 @@ export const AdminOrdersProvider = ({ children }) => {
     setAdminOrder(order)
     navigate(`${location.pathname}/${id}`)
   }
-  
+
   useEffect(() => {
     const AdminGetOrderCount = async () => {
       const { orderCount } = await AdminGetOrders({
@@ -111,6 +112,14 @@ export const AdminOrdersProvider = ({ children }) => {
     AdminGetOrdersAsync()
   }, [dateValue, adminOrderCount])
 
+  useEffect(() => {
+    setPaginationModel((prev) => ({
+      ...prev,
+      page: 0
+    }))
+    setGridKey((prevKey) => prevKey + 1)
+  }, [dateValue])
+
   return (
     <AdminOrdersContext.Provider
       value={{
@@ -122,7 +131,8 @@ export const AdminOrdersProvider = ({ children }) => {
         handleCheckOrderClick,
         adminOrder,
         paginationModel,
-        setPaginationModel
+        setPaginationModel,
+        gridKey
       }}
     >
       {children}

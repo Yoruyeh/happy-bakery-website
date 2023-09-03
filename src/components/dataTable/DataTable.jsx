@@ -8,14 +8,10 @@ const DataTable = () => {
     adminOrders,
     handleCheckOrderClick,
     paginationModel,
-    setPaginationModel
+    setPaginationModel,
+    gridKey
   } = useAdminOrders()
   const isEmptyData = !adminOrders || !adminOrders.length > 0
-  // const [paginationModel, setPaginationModel] = useState({
-  //   pageSize: 10,
-  //   page: 0
-  // })
-  // const [gridKey, setGridKey] = useState(0)
 
   const CustomToolbar = () => {
     return (
@@ -135,18 +131,10 @@ const DataTable = () => {
     }
   ]
 
-  // useEffect(() => {
-  //   setPaginationModel({
-  //     pageSize: 10,
-  //     page: 0
-  //   })
-  //   setGridKey((prevKey) => prevKey + 1)
-  // }, [adminOrders])
-
   return (
     <div className={styles.dataTable}>
       <DataGrid
-        // key={gridKey}
+        key={gridKey}
         className={styles.dataGrid}
         editMode="row"
         rows={isEmptyData ? emptyRows : adminOrders}
