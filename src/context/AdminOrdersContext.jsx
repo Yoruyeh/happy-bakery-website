@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { AdminGetOrderById, AdminGetOrders } from '../api/admin.orders'
 import Swal from 'sweetalert2'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const defaultAdminOrdersContext = {
   adminOrders: null,
@@ -16,7 +16,6 @@ export const useAdminOrders = () => useContext(AdminOrdersContext)
 
 export const AdminOrdersProvider = ({ children }) => {
   const navigate = useNavigate()
-  const location = useLocation()
   const [adminOrders, setAdminOrders] = useState([])
   const [adminOrderCount, setAdminOrderCount] = useState(0)
   const [adminOrder, setAdminOrder] = useState({})
@@ -88,7 +87,7 @@ export const AdminOrdersProvider = ({ children }) => {
   const handleCheckOrderClick = async (id) => {
     const { order } = await AdminGetOrderById(id)
     setAdminOrder(order)
-    navigate(`${location.pathname}/${id}`)
+    navigate(`/happy-bakery-website/admin/orders/${id}`)
   }
 
   useEffect(() => {

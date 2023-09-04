@@ -1,6 +1,6 @@
 import styles from './dataTable.module.scss'
 import { DataGrid } from '@mui/x-data-grid'
-import { VerticalDot, Edit, See } from '../../assets/icons'
+import { VerticalDot, See } from '../../assets/icons'
 import { useAdminOrders } from '../../context/AdminOrdersContext'
 
 const DataTable = () => {
@@ -51,7 +51,7 @@ const DataTable = () => {
       field: 'status',
       headerName: 'Status',
       width: 150,
-      editable: true,
+      editable: false,
       type: 'singleSelect',
       valueOptions: ['pending', 'delivered', 'canceled'],
       renderCell: (params) => {
@@ -94,24 +94,19 @@ const DataTable = () => {
       }
     },
     {
-      field: 'actions',
-      headerName: 'Actions',
+      field: 'check',
+      headerName: 'Check',
       sortable: false,
       editable: false,
       width: 125,
       renderCell: (params) => {
         if (params.row.id) {
           return (
-            <div className={styles.action}>
-              <div className={styles.edit}>
-                <Edit />
-              </div>
-              <div
-                className={styles.see}
-                onClick={() => handleCheckOrderClick(params.row.id)}
-              >
-                <See />
-              </div>
+            <div
+              className={styles.check}
+              onClick={() => handleCheckOrderClick(params.row.id)}
+            >
+              <See />
             </div>
           )
         }
