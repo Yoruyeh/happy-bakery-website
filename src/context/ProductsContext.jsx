@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { GetProducts, GetProductById, GetRecommendProducts } from '../api/products'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const defaultProductsContext = {
   products: null,
@@ -17,8 +17,6 @@ export const useProducts = () => useContext(ProductsContext)
 
 export const ProductsProvider = ({ children }) => {
   const navigate = useNavigate()
-  const location = useLocation()
-  let { category } = useParams()
   const [products, setProducts] = useState([])
   const [newProducts, setNewProducts]  = useState([])
   const [recommendProducts, setRecommendProducts]  = useState([])
@@ -38,11 +36,7 @@ export const ProductsProvider = ({ children }) => {
   const handleViewProductClick = async (id, categoryName) => {
     const { product } = await GetProductById(id)
     setProductDetail(product)
-    if (!category) {
-      navigate(`${location.pathname}/products/${categoryName}/${id}`)
-    } else {
-      navigate(`${location.pathname}/${id}`)
-    }
+    navigate(`/happy-bakery-website/products/${categoryName}/${id}`)
   }
 
   useEffect(() => {

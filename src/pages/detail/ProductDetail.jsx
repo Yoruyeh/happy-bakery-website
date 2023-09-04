@@ -9,15 +9,17 @@ import SelectedButton from '../../components/button/SelectedButton'
 import { useUserCartItems } from '../../context/CartContext'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
+import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
   const { newProducts, productDetail } = useProducts()
   const { handleAddToCart, handleBuyItNowClick } = useUserCartItems()
   const [quantity, setQuantity] = useState(1)
+  const { id } = useParams()
 
   useEffect(() => {
     window.scrollTo(0, 0)
-  }, [])
+  }, [id])
 
   return (
     <>
