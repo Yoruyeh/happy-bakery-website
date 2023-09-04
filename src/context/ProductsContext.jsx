@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { GetProducts, GetProductById } from '../api/products'
+import { GetProducts, GetProductById, GetRecommendProducts } from '../api/products'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 const defaultProductsContext = {
@@ -21,6 +21,7 @@ export const ProductsProvider = ({ children }) => {
   let { category } = useParams()
   const [products, setProducts] = useState([])
   const [newProducts, setNewProducts]  = useState([])
+  const [recommendProducts, setRecommendProducts]  = useState([])
   const [productCount, setProductCount] = useState(0)
   const [productDetail, setProductDetail] = useState({})
 
@@ -57,6 +58,14 @@ export const ProductsProvider = ({ children }) => {
     getProductsAsync()
   }, [])
 
+  useEffect(() => {
+    const getRecommendProductsAsync = async () => {
+      const { products } = await GetRecommendProducts()
+      setRecommendProducts(products)
+    }
+    getRecommendProductsAsync()
+  }, [])
+
   return (
     <ProductsContext.Provider
       value={{
@@ -65,7 +74,8 @@ export const ProductsProvider = ({ children }) => {
         productCount,
         handleNavItemClick,
         productDetail,
-        handleViewProductClick
+        handleViewProductClick,
+        recommendProducts
       }}
     >
       {children}

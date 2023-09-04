@@ -33,6 +33,7 @@ export const GetProducts = async ({ id, page, sort }) => {
     
   } catch (error) {
     console.error('[Get Products Failed]: ', error)
+    return error.response.data
   }
 }
 
@@ -44,5 +45,17 @@ export const GetProductById = async (id) => {
 
   } catch (error) {
     console.error('[Get Product Detail Failed]: ', error)
+    return error.response.data
+  }
+}
+
+export const GetRecommendProducts = async () => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/popular?top=16`)
+
+    return data
+  } catch (error) {
+    console.error('[Get Recommend Products Failed]: ', error)
+    return error.response.data
   }
 }

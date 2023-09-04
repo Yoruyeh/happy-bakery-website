@@ -19,10 +19,12 @@
         gap: 16px;
 
         button {
-          width: 40px;
-          height: 40px;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 8px;
           background-color: $dark-gray;
           padding: 0;
+          cursor: pointer;
 
           & svg {
             width: 16px;

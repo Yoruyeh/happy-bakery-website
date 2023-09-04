@@ -3,7 +3,7 @@ import 'swiper/css/pagination'
 import styles from './productDetail.module.scss'
 import { useEffect, useState } from 'react'
 import Button from '../../components/button/Button'
-// import Recommend from '../../components/recommend/Recommend'
+import Recommend from '../../components/recommend/Recommend'
 import { useProducts } from '../../context/ProductsContext'
 import SelectedButton from '../../components/button/SelectedButton'
 import { useUserCartItems } from '../../context/CartContext'
@@ -33,8 +33,8 @@ const ProductDetail = () => {
             </SwiperSlide>
             {productDetail.ProductImages &&
             productDetail.ProductImages.length > 0 ? (
-              productDetail.ProductImages.map((image, index) => (
-                <SwiperSlide key={index}>
+              productDetail.ProductImages.map((image) => (
+                <SwiperSlide key={image.image_path}>
                   <img src={image.image_path} alt="" />
                 </SwiperSlide>
               ))
@@ -59,10 +59,7 @@ const ProductDetail = () => {
             {productDetail.ProductImages &&
             productDetail.ProductImages.length > 0 ? (
               productDetail.ProductImages.map((image, index) => (
-                <div
-                  className={styles.imageWrapper}
-                  key={index}
-                >
+                <div className={styles.imageWrapper} key={index}>
                   <img src={image.image_path} alt="" />
                 </div>
               ))
@@ -85,7 +82,7 @@ const ProductDetail = () => {
               {newProducts.find((item) => item.id === productDetail.id) ? (
                 <div className={styles.tag}>New Release</div>
               ) : (
-                ""
+                ''
               )}
               <h3>{productDetail.name}</h3>
               <h5>${productDetail.price_regular}</h5>
@@ -135,7 +132,7 @@ const ProductDetail = () => {
             </div>
           </div>
         </div>
-        {/* <Recommend /> */}
+        <Recommend />
       </div>
     </>
   )
