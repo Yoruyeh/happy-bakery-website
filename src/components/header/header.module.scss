@@ -12,7 +12,6 @@
     justify-content: flex-end;
     align-items: center;
     gap: 2rem;
-    position: relative;
 
     .searchBtn, .notiBtn, .adminBtn {
       display: flex;
@@ -126,6 +125,41 @@
             stroke: $dark-gray
           }
         }
+      }
+
+      .searchItem {
+        display: flex;
+        align-items: center;
+
+        .searchItemImg {
+          width: 2rem;
+          height: 2rem;
+          border-radius: 4px;
+          overflow: hidden;
+          flex-shrink: 0;
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+
+        .searchItemName {
+          width: 100%;
+          margin-left: 0.5rem;
+          font-size: 0.8rem;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; 
+        }
+      }
+
+      p {
+        font-family: 'Rubik', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        color: $salmon-pink;
       }
     }
   }

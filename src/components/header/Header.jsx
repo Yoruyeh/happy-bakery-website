@@ -12,6 +12,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useAdmin } from '../../context/AdminContext'
+import searchImg from '../../assets/images/chocolate-cake.jpeg'
 
 const Header = () => {
   const [openDropDown, setOpenDropDown] = useState(false)
@@ -96,6 +97,28 @@ const Header = () => {
               }}
             >
               <ErrorCircle />
+            </div>
+          )}
+          {searchInputValue && (
+            <div className={styles.dropdown}>
+              <h6>Products</h6>
+              <Link>
+                <div className={styles.searchItem}>
+                  <div className={styles.searchItemImg}>
+                    <img alt="" src={searchImg} />
+                  </div>
+                  <div className={styles.searchItemName}>Cakes</div>
+                </div>
+              </Link>
+              <Link>
+                <div className={styles.searchItem}>
+                  <div className={styles.searchItemImg}>
+                    <img alt="" src={searchImg} />
+                  </div>
+                  <div className={styles.searchItemName}>Cakesfdefewfef fef efewfwegewgwe</div>
+                </div>
+              </Link>
+              <p>See all products</p>
             </div>
           )}
         </div>
