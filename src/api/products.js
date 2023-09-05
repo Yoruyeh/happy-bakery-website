@@ -59,3 +59,14 @@ export const GetRecommendProducts = async () => {
     return error.response.data
   }
 }
+
+export const GetSearchedProducts = async (keyword) => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/search?keyword=${keyword}`)
+
+    return data
+  } catch (error) {
+    console.error('[Get Searched Products Failed]: ', error)
+    return error.response.data
+  }
+}

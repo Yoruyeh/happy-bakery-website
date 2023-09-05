@@ -37,6 +37,7 @@ import { ReactComponent as Edit } from './Edit.svg'
 import { ReactComponent as Logout } from './Logout.svg'
 import { ReactComponent as See } from './see.svg'
 import { ReactComponent as Cross } from './cross-small-svgrepo-com.svg'
+import { ReactComponent as ErrorCircle } from './Error-circle.svg'
 
 export {
   Logo,
@@ -77,5 +78,6 @@ export {
   Edit,
   Logout,
   See,
-  Cross
+  Cross,
+  ErrorCircle
 }
