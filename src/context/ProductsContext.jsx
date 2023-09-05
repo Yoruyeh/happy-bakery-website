@@ -23,14 +23,17 @@ export const ProductsProvider = ({ children }) => {
   const [productCount, setProductCount] = useState(0)
   const [productDetail, setProductDetail] = useState({})
 
-  const handleNavItemClick = async ({ id, page, sort }) => {
+  const handleNavItemClick = async ({ id, page, sort, keyword }) => {
     const { products, productCount } = await GetProducts({
       id,
       page,
-      sort
+      sort,
+      keyword
     })
     setProducts(products)
-    setProductCount(productCount)
+    if(!keyword) {
+      setProductCount(productCount)
+    }
   }
 
   const handleViewProductClick = async (id, categoryName) => {
@@ -69,7 +72,9 @@ export const ProductsProvider = ({ children }) => {
         handleNavItemClick,
         productDetail,
         handleViewProductClick,
-        recommendProducts
+        recommendProducts,
+        setProductCount,
+        setProducts
       }}
     >
       {children}

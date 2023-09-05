@@ -13,6 +13,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useAdmin } from '../../context/AdminContext'
 import { GetSearchedProducts } from '../../api/products'
+import SearchDropDown from '../navbar/SearchDropDown'
 // import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const Header = () => {
@@ -127,32 +128,10 @@ const Header = () => {
             </div>
           )}
           {searchInputValue && (
-            <div className={styles.dropdown}>
-              <h6>Products</h6>
-              {showProducts &&
-                showProducts.map((product) => (
-                  <Link key={product.id}>
-                    <div className={styles.searchItem}>
-                      <div className={styles.searchItemImg}>
-                        <img alt="" src={product.cover} />
-                      </div>
-                      <div className={styles.searchItemName}>
-                        {product.name}
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              {!showProducts ? (
-                <p>Not found</p>
-              ) : (
-                <div
-                  className={styles.searchSeeAll}
-                  onClick={() => handleSeeAllClick()}
-                >
-                  <p>See all products</p>
-                </div>
-              )}
-            </div>
+            <SearchDropDown
+              products={showProducts}
+              handleSeeAllClick={handleSeeAllClick}
+            />
           )}
         </div>
         <div className={styles.notiBtn}>

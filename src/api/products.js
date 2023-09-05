@@ -2,13 +2,18 @@ import axios from 'axios'
 
 const baseUrl = 'http://localhost:3000/api/products'
 
-export const GetProducts = async ({ id, page, sort }) => {
+export const GetProducts = async ({ id, page, sort, keyword }) => {
   try {
     let url = baseUrl
     const queryParams = []
 
     if (id) {
       queryParams.push(`category=${id}`)
+    }
+
+    if (keyword) {
+      console.log(keyword)
+      queryParams.push(`keyword=${keyword}`)
     }
 
     if (sort) {
@@ -26,7 +31,7 @@ export const GetProducts = async ({ id, page, sort }) => {
     if (queryParams.length) {
       url += `?${queryParams.join('&')}`
     }
-    
+
     const { data } = await axios.get(url)
 
     return data
@@ -62,7 +67,7 @@ export const GetRecommendProducts = async () => {
 
 export const GetSearchedProducts = async (keyword) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/search?keyword=${keyword}`)
+    const { data } = await axios.get(`${baseUrl}?keyword=${keyword}`)
 
     return data
   } catch (error) {

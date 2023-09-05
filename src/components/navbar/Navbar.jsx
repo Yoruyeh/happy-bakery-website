@@ -1,21 +1,27 @@
 import styles from './navbar.module.scss'
-import { CaretDown, Logo, Search, User, MenuBar } from '../../assets/icons'
-import { Link } from 'react-router-dom'
+import { CaretDown, Logo, Search, User, MenuBar, ErrorCircle } from '../../assets/icons'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from 'react'
 import { menu, productMenu, userMenu, memberMenu } from '../../data'
-import SearchInput from '../searchInput/SearchInput'
 import { useAuth } from '../../context/AuthContext'
 import Swal from 'sweetalert2'
 import DropDownMenu from './DropDownMenu'
 import CartPeek from './CartPeek'
 import { useUserCartItems } from '../../context/CartContext'
+import { GetSearchedProducts } from '../../api/products'
+import SearchDropDown from './SearchDropDown'
+import { useProducts } from '../../context/ProductsContext'
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const [openProductDropdown, setOpenProductDropdown] = useState(false)
   const [openUserDropdown, setOpenUserDropdown] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openSearchInput, setOpenSearchInput] = useState(false)
+  const [searchInputValue, setSearchInputValue] = useState('')
+  const [searchProducts, setSearchProducts] = useState([])
   const [openCartPeek, setOpenCartPeek] = useState(false)
+  const searchRef = useRef(null)
   const productDropdownRef = useRef(null)
   const userDropdownRef = useRef(null)
   const menuRef = useRef(null)
@@ -23,7 +29,9 @@ const Navbar = () => {
   const cartPeekRef = useRef(null)
   const { isAuthenticated, logout } = useAuth()
   const { userCartItems, setUserCartItems } = useUserCartItems()
-
+  const { setProductCount, setProducts } = useProducts()
+  const showProducts =
+    searchProducts && searchProducts.length > 0 && searchProducts.slice(0, 3)
 
   const handleLogoutClick = () => {
     logout()
@@ -35,6 +43,26 @@ const Navbar = () => {
       showConfirmButton: false,
       timer: 1500
     })
+  }
+
+  const handleSearchChange = async (value) => {
+    if (value.trim().length < 2) {
+      setSearchProducts([])
+      return
+    }
+
+    const { products } = await GetSearchedProducts(value)
+    if (!products) {
+      setSearchProducts([])
+      return
+    }
+    setSearchProducts(products)
+  }
+
+  const handleSeeAllClick = () => {
+    setProducts(searchProducts)
+    setProductCount(searchProducts.length)
+    navigate(`products/all?search=${searchInputValue}`)
   }
 
   useEffect(() => {
@@ -60,6 +88,11 @@ const Navbar = () => {
 
       if (cartPeekRef.current && !cartPeekRef.current.contains(e.target)) {
         setOpenCartPeek(false)
+      }
+      
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setOpenSearchInput(false)
+        setSearchInputValue('')
       }
     }
 
@@ -107,14 +140,49 @@ const Navbar = () => {
       <div className={styles.navListWrapper}>
         <ul className={styles.navList}>
           <li
-            className={`${styles.navItem} ${styles.search}`}
-            ref={searchInputRef}
-            onClick={() => setOpenSearchInput(!openSearchInput)}
+            className={
+              openSearchInput
+                ? `${styles.search} ${styles.activeSearch}`
+                : `${styles.search}`
+            }
+            ref={searchRef}
+            onClick={() => {
+              setOpenSearchInput(!openSearchInput)
+              setSearchInputValue('')
+            }}
           >
             <Search />
+            <input
+              ref={searchInputRef}
+              type="text"
+              value={searchInputValue}
+              className={openSearchInput ? `${styles.activeInput}` : ''}
+              onClick={(e) => e.stopPropagation()}
+              onChange={(e) => {
+                setSearchInputValue(e.target.value)
+                handleSearchChange(e.target.value)
+              }}
+            />
+            {searchInputValue && (
+              <div
+                className={styles.cancelbtn}
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setSearchInputValue('')
+                }}
+              >
+                <ErrorCircle />
+              </div>
+            )}
+            {searchInputValue && (
+              <SearchDropDown
+                products={showProducts}
+                handleSeeAllClick={handleSeeAllClick}
+              />
+            )}
           </li>
           <li
-            className={`${styles.navItem} ${styles.user}`}
+            className={styles.user}
             ref={userDropdownRef}
             onClick={() => setOpenUserDropdown(!openUserDropdown)}
           >
@@ -130,7 +198,7 @@ const Navbar = () => {
             )}
           </li>
           <li
-            className={`${styles.navItem} ${styles.cartCount}`}
+            className={styles.cartCount}
             ref={cartPeekRef}
             onClick={() => setOpenCartPeek(!openCartPeek)}
           >
@@ -139,9 +207,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      {openSearchInput && (
-        <SearchInput onClick={() => setOpenSearchInput(!openSearchInput)} />
-      )}
     </div>
   )
 }

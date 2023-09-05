@@ -21,6 +21,10 @@ const DropDownMenu = ({ data, onClickLogout }) => {
                 handleNavItemClick({ id: item.id, sort: 'date_desc' })
                 return
               }
+              if (item.title === 'Shop') {
+                handleNavItemClick({ id: '' })
+                return
+              }
               handleNavItemClick({ id: item.id })
             }}
           >

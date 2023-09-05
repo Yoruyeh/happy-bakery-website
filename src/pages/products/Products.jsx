@@ -3,16 +3,24 @@ import BannerImg from '../../assets/images/cupcakes.jpeg'
 import ProductCard from '../../components/card/ProductCard'
 import Pagination from '../../components/pagination/Pagination'
 import { productMenu } from '../../data'
-import { Link, useNavigate } from 'react-router-dom'
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+  useParams
+} from 'react-router-dom'
 import { useProducts } from '../../context/ProductsContext'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import SelectedButton from '../../components/button/SelectedButton'
 
 const Products = () => {
   const { products, productCount, handleNavItemClick } =
     useProducts()
   let { category } = useParams()
+  let location = useLocation()
+  const [searchParams] = useSearchParams()
+  const searchTerm = searchParams.get('search')
   const navigate = useNavigate()
   const [selectedSortValue, setSelectedSortValue] = useState('')
   const [activePage, setActivePage] = useState(1)
@@ -20,7 +28,9 @@ const Products = () => {
   const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
 
   const ProductPageTitle = (category) => {
-    if (category === 'all') {
+    if (location.search) {
+      return `Search: ${searchTerm}`
+    } else if (category === 'all') {
       return 'All Products'
     } else if (category === 'new') {
       return 'New Drops'
@@ -44,8 +54,12 @@ const Products = () => {
     }
   }
 
-  const handleSortChange = (value) => {
+  const handleSortChange = (value, searchTerm) => {
     setSelectedSortValue(value)
+    if (searchTerm) {
+      handleNavItemClick({ keyword: searchTerm, sort: value })
+      return
+    }
     const SelectedItem = productMenu.find((item) =>
       item.link.includes(category)
     )
@@ -116,7 +130,7 @@ const Products = () => {
             <div className={styles.button}>
               <SelectedButton
                 value={selectedSortValue}
-                onChange={(e) => handleSortChange(e.target.value)}
+                onChange={(e) => handleSortChange(e.target.value, searchTerm)}
               >
                 <option value="price_asc">Price: asc</option>
                 <option value="price_desc">Price: desc</option>
