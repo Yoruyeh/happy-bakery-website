@@ -9,19 +9,25 @@ import {
 } from '../../assets/icons'
 import Button from '../button/Button'
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useAdmin } from '../../context/AdminContext'
-import searchImg from '../../assets/images/chocolate-cake.jpeg'
+import { GetSearchedProducts } from '../../api/products'
+// import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const Header = () => {
+  const navigate = useNavigate()
   const [openDropDown, setOpenDropDown] = useState(false)
   const [openSearchInput, setOpenSearchInput] = useState(false)
   const [searchInputValue, setSearchInputValue] = useState('')
+  const [searchProducts, setSearchProducts] = useState([])
   const adminRef = useRef(null)
   const searchRef = useRef(null)
   const searchInputRef = useRef(null)
   const { logout } = useAdmin()
+  // const { setAdminProducts } = useAdminProducts()
+  const showProducts =
+    searchProducts && searchProducts.length > 0 && searchProducts.slice(0, 3)
 
   const handleLogoutClick = () => {
     logout()
@@ -32,6 +38,25 @@ const Header = () => {
       showConfirmButton: false,
       timer: 1500
     })
+  }
+
+  const handleSearchChange = async (value) => {
+    if (value.trim().length < 2) {
+      setSearchProducts([])
+      return
+    }
+
+    const { products } = await GetSearchedProducts(value)
+    if (!products) {
+      setSearchProducts([])
+      return
+    }
+    setSearchProducts(products)
+  }
+
+  const handleSeeAllClick = () => {
+    // setAdminProducts(searchProducts)
+    navigate(`all_products?search=${searchInputValue}`)
   }
 
   useEffect(() => {
@@ -73,20 +98,22 @@ const Header = () => {
               ? `${styles.searchBtn} ${styles.activeSearch}`
               : `${styles.searchBtn}`
           }
+          onClick={() => {
+            setOpenSearchInput(!openSearchInput)
+            setSearchInputValue('')
+          }}
         >
-          <Search
-            onClick={() => {
-              setOpenSearchInput(!openSearchInput)
-              setSearchInputValue('')
-            }}
-          />
+          <Search />
           <input
             ref={searchInputRef}
             type="text"
             value={searchInputValue}
             className={openSearchInput ? `${styles.activeInput}` : ''}
             onClick={(e) => e.stopPropagation()}
-            onChange={(e) => setSearchInputValue(e.target.value)}
+            onChange={(e) => {
+              setSearchInputValue(e.target.value)
+              handleSearchChange(e.target.value)
+            }}
           />
           {searchInputValue && (
             <div
@@ -102,23 +129,29 @@ const Header = () => {
           {searchInputValue && (
             <div className={styles.dropdown}>
               <h6>Products</h6>
-              <Link>
-                <div className={styles.searchItem}>
-                  <div className={styles.searchItemImg}>
-                    <img alt="" src={searchImg} />
-                  </div>
-                  <div className={styles.searchItemName}>Cakes</div>
+              {showProducts &&
+                showProducts.map((product) => (
+                  <Link key={product.id}>
+                    <div className={styles.searchItem}>
+                      <div className={styles.searchItemImg}>
+                        <img alt="" src={product.cover} />
+                      </div>
+                      <div className={styles.searchItemName}>
+                        {product.name}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              {!showProducts ? (
+                <p>Not found</p>
+              ) : (
+                <div
+                  className={styles.searchSeeAll}
+                  onClick={() => handleSeeAllClick()}
+                >
+                  <p>See all products</p>
                 </div>
-              </Link>
-              <Link>
-                <div className={styles.searchItem}>
-                  <div className={styles.searchItemImg}>
-                    <img alt="" src={searchImg} />
-                  </div>
-                  <div className={styles.searchItemName}>Cakesfdefewfef fef efewfwegewgwe</div>
-                </div>
-              </Link>
-              <p>See all products</p>
+              )}
             </div>
           )}
         </div>

@@ -155,11 +155,15 @@
         }
       }
 
-      p {
-        font-family: 'Rubik', sans-serif;
-        font-size: 0.7rem;
-        font-weight: 600;
-        color: $salmon-pink;
+      .searchSeeAll {
+        cursor: pointer;
+        
+        p {
+          font-family: 'Rubik', sans-serif;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: $salmon-pink;
+        }
       }
     }
   }
