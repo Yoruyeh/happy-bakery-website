@@ -33,7 +33,12 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
 const AdminAddProduct = () => {
   let { category } = useParams()
   const navigate = useNavigate()
-  const {setAdminProducts, setAdminProductCount, activePage} = useAdminProducts()
+  const {
+    setAdminProducts,
+    setAdminProductCount,
+    activePage,
+    selectedCategoryId
+   } = useAdminProducts()
   const [uploadImages, setUploadImages] = useState([])
   const [imageFormData, setImageFormData] = useState(null)
   const dropImageRef = useRef(null)
@@ -130,10 +135,7 @@ const AdminAddProduct = () => {
       priceRegular,
       priceSale
     } = newProductInfo
-    const SelectedItem = BaseAdminMenu.find((item) =>
-      item.link.includes(category)
-    )
-
+  
     if (
       !name.trim() ||
       !description.trim() ||
@@ -209,7 +211,7 @@ const AdminAddProduct = () => {
               timer: 1500
             })
             const { products, productCount } = await AdminGetProducts({
-              id: SelectedItem ? SelectedItem.id : '',
+              id: selectedCategoryId,
               page: activePage
             })
             setAdminProducts(products)
