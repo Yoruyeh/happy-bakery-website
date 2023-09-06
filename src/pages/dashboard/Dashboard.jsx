@@ -1,11 +1,14 @@
 import styles from './dashboard.module.scss'
 import ChartBox from '../../components/chartBox/ChartBox'
-import { Calendar } from '../../assets/icons'
 import AmountCard from '../../components/adminCard/AmountCard'
 import BestSellers from '../../components/adminCard/BestSellers'
 import DataTable from '../../components/dataTable/DataTable'
+import { DateInput } from '../../components/input/Input'
+import { useAdminOrders } from '../../context/AdminOrdersContext'
 
 const Dashboard = () => {
+  const { dateValue, handleDateChange } = useAdminOrders()
+  
   const AmountCardInfo = [
     {
       id: 'card1',
@@ -30,12 +33,10 @@ const Dashboard = () => {
         <h5>Dashboard</h5>
         <div className={styles.text}>
           <p>Home ＞ Dashboard</p>
-          <p>
-            <span>
-              <Calendar />
-            </span>
-            Feb 16,2022 - Feb 20,2022
-          </p>
+          <DateInput
+            dateValue={dateValue}
+            handleDateChange={handleDateChange}
+          />
         </div>
       </div>
       <div className={styles.cards}>
