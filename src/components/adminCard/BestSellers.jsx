@@ -1,27 +1,31 @@
 import styles from './bestSellers.module.scss'
 import { VerticalDot } from '../../assets/icons'
 import Button from '../button/Button'
-import ProductImg from '../../assets/images/chocolate-cake.jpeg'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
-const CardBody = () => {
+const CardBody = ({ item }) => {
+  const amount = item.price_regular * item.salesCount
+
   return (
     <div className={styles.card}>
       <div className={styles.img}>
-        <img src={ProductImg} alt="" />
+        <img src={item.cover} alt="" />
       </div>
       <div className={styles.info}>
-        <h6>Chocolate Cake</h6>
-        <p>$125.00</p>
+        <h6>{item.name}</h6>
+        <p>${item.price_regular}</p>
       </div>
       <div className={styles.amount}>
-        <h6>$125.00</h6>
-        <p>999 sales</p>
+        <h6>${amount}</h6>
+        <p>{item.salesCount} sales</p>
       </div>
     </div>
   )
 }
 
 const BestSellers = () => {
+  const { bestSellers } = useAdminProducts()
+
   return (
     <div className={styles.bestSellers}>
       <div className={styles.head}>
@@ -29,9 +33,9 @@ const BestSellers = () => {
         <VerticalDot />
       </div>
       <div className={styles.body}>
-        <CardBody />
-        <CardBody />
-        <CardBody />
+        {bestSellers &&
+          bestSellers.length > 0 &&
+          bestSellers.map((item) => <CardBody item={item} key={item.id} />)}
       </div>
       <div className={styles.footer}>
         <Button text={'REPORT'} />

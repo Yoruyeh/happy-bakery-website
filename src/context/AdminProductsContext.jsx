@@ -7,6 +7,7 @@ import {
 } from '../api/admin.products'
 import { BaseAdminMenu } from '../data'
 import Swal from 'sweetalert2'
+import { GetBestSellers } from '../api/products'
 
 const defaultAdminProductsContext = {
   adminProducts: null,
@@ -31,6 +32,7 @@ export const AdminProductsProvider = ({ children }) => {
   const [adminProduct, setAdminProduct] = useState({})
   const [activePage, setActivePage] = useState(1)
   const [selectedCategoryId, setSelectedCategoryId] = useState('')
+  const [bestSellers, setBestSellers] = useState([])
 
   const handleNavItemClick = async ({ id, page, sort }) => {
     const { products, productCount } = await AdminGetProducts({
@@ -85,6 +87,14 @@ export const AdminProductsProvider = ({ children }) => {
   }, [])
 
   useEffect(() => {
+    const getBestSellersAsync = async () => {
+      const { products } = await GetBestSellers()
+      setBestSellers(products)
+    }
+    getBestSellersAsync()
+  }, [])
+
+  useEffect(() => {
     const initializeAdminMenu = async () => {
       const promises = BaseAdminMenu.map(async (item) => {
         const { productCount } = await AdminGetProducts({ id: item.id })
@@ -130,7 +140,8 @@ export const AdminProductsProvider = ({ children }) => {
         activePage,
         setActivePage,
         handleProductDelete,
-        selectedCategoryId
+        selectedCategoryId,
+        bestSellers
       }}
     >
       {children}

@@ -65,6 +65,17 @@ export const GetRecommendProducts = async () => {
   }
 }
 
+export const GetBestSellers = async () => {
+  try {
+    const { data } = await axios.get(`${baseUrl}/popular?top=3`)
+
+    return data
+  } catch (error) {
+    console.error('[Get Best Sellers Failed]: ', error)
+    return error.response.data
+  }
+}
+
 export const GetSearchedProducts = async (keyword) => {
   try {
     const { data } = await axios.get(`${baseUrl}?keyword=${keyword}`)
