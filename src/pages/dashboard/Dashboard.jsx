@@ -6,6 +6,24 @@ import BestSellers from '../../components/adminCard/BestSellers'
 import DataTable from '../../components/dataTable/DataTable'
 
 const Dashboard = () => {
+  const AmountCardInfo = [
+    {
+      id: 'card1',
+      title: 'Total Orders',
+      amount: '126.500'
+    },
+    {
+      id: 'card2',
+      title: 'Active Orders',
+      amount: '126.500'
+    },
+    {
+      id: 'card3',
+      title: 'Shipped Orders',
+      amount: '126.500'
+    }
+  ]
+
   return (
     <div className={styles.dashboard}>
       <div className={styles.title}>
@@ -21,24 +39,20 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.cards}>
-        <div className={styles.card1}>
-          <AmountCard />
-        </div>
-        <div className={styles.card2}>
-          <AmountCard />
-        </div>
-        <div className={styles.card3}>
-          <AmountCard />
-        </div>
+        {AmountCardInfo.map((card) => (
+          <div className={styles.card} key={card.id}>
+            <AmountCard card={card} />
+          </div>
+        ))}
         <div className={styles.card4}>
           <ChartBox />
         </div>
         <div className={styles.card5}>
           <BestSellers />
-          </div>
+        </div>
         <div className={styles.card6}>
           <DataTable />
-          </div>
+        </div>
       </div>
     </div>
   )

@@ -81,10 +81,6 @@ const OrderDetail = () => {
             <th>Payment Method</th>
             <td>{userOrderDetail.payment_method}</td>
           </tr>
-          {/* <tr>
-            <th>Payment Status</th>
-            <td>Paid</td>
-          </tr> */}
         </thead>
       </table>
     </div>

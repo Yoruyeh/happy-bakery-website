@@ -1,11 +1,11 @@
 import styles from './amountCard.module.scss'
 import { VerticalDot ,Bag, ArrowUp } from '../../assets/icons'
 
-const AmountCard = () => {
+const AmountCard = ({ card }) => {
   return (
     <div className={styles.amountCard}>
       <div className={styles.head}>
-        <h6>Total Orders</h6>
+        <h6>{card.title}</h6>
         <VerticalDot />
       </div>
       <div className={styles.body}>
@@ -13,10 +13,10 @@ const AmountCard = () => {
           <div className={styles.icon}>
             <Bag />
           </div>
-          $126.500
+          ${card.amount}
         </div>
         <div className={styles.percentage}>
-            <ArrowUp /> 34.7%
+          <ArrowUp /> 34.7%
         </div>
       </div>
       <div className={styles.footer}>
