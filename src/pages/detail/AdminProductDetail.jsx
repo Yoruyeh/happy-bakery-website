@@ -499,26 +499,6 @@ const AdminProductDetail = () => {
                 editProductInfo={editProductInfo}
                 setEditProductInfo={setEditProductInfo}
               />
-              {/* <div
-                className={styles.dropZone}
-                onClick={() => handleUploadImage()}
-              >
-                <input
-                  type="file"
-                  multiple
-                  id="drop-image"
-                  accept="image/*"
-                  style={{ display: 'none' }}
-                  name="drop-image"
-                  ref={dropImageRef}
-                  onChange={(e) => handleImageChange(e)}
-                />
-                <Image />
-                <div className={styles.text}>
-                  <p>Drop your imager here, or browse</p>
-                  <p>Jpeg, png are allowed</p>
-                </div>
-              </div> */}
               <div className={styles.cards}>
                 {editImages &&
                   editImages.length > 0 &&
