@@ -5,7 +5,7 @@ import { TextInput, CheckboxInput } from '../../components/input/Input'
 import AdminCover from '../../assets/images/admin-cover.jpg'
 import { AdminSignIn } from '../../api/admin.auth'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const AdminLogin = () => {
@@ -108,6 +108,7 @@ const AdminLogin = () => {
           <br />
           Privacy Notice and Terms & Conditions.
         </p>
+        <Link to="/happy-bakery-website">Back to happy bakery website</Link>
       </form>
     </div>
   )
