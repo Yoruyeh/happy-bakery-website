@@ -3,7 +3,7 @@ import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import ProductImg from '../../assets/images/scone.jpeg'
 import { BaseAdminMenu } from '../../data'
-import { Image, SuccessCheck } from '../../assets/icons'
+import { SuccessCheck } from '../../assets/icons'
 import { useRef } from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
@@ -11,6 +11,7 @@ import { AdminUploadFile, AdminAddNewProduct, AdminGetProducts } from '../../api
 import { Cross } from '../../assets/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAdminProducts } from '../../context/AdminProductsContext'
+import ImageDropZone from '../../components/ImageDropZone/ImageDropZone'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -53,6 +54,7 @@ const AdminAddProduct = () => {
     priceRegular: '',
     priceSale: ''
   })
+  const totalImageQty = !uploadImages ? 0 : uploadImages.length
 
   const ProductPageTitle = (category) => {
     if (category === 'all_products') {
@@ -83,7 +85,7 @@ const AdminAddProduct = () => {
 
   const handleUploadImage = () => {
     // 數量抵達四張時不能再新增
-    if (uploadImages.length === 4) {
+    if (totalImageQty >= 4) {
       Swal.fire({
         position: 'top',
         icon: 'warning',
@@ -93,15 +95,14 @@ const AdminAddProduct = () => {
       })
       return
     }
-
     dropImageRef.current.click()
   }
 
   const handleImageChange = (e) => {
     // 可上傳多張或一張
     const files = Array.from(e.target.files)
-    const totalImageQty = files.length + uploadImages.length
-    if (totalImageQty > 4) {
+    const totalUploadQty = files.length + totalImageQty
+    if (totalUploadQty > 4) {
       Swal.fire({
         position: 'top',
         icon: 'warning',
@@ -109,8 +110,8 @@ const AdminAddProduct = () => {
         showConfirmButton: false,
         timer: 1500
       })
-      const imagesToRemove = totalImageQty - 4
-      files.splice(4 - uploadImages.length, imagesToRemove)
+      const imagesToRemove = totalUploadQty - 4
+      files.splice(4 - totalImageQty, imagesToRemove)
     }
     files.forEach((file) => {
       const imageURL = URL.createObjectURL(file)
@@ -334,9 +335,20 @@ const AdminAddProduct = () => {
             </div>
             <div className={styles.upload}>
               <h6>Product Gallery</h6>
-              <div
+              <ImageDropZone
+                dropImageRef={dropImageRef}
+                handleUploadImage={handleUploadImage}
+                handleImageChange={handleImageChange}
+                uploadImages={uploadImages}
+                setUploadImages={setUploadImages}
+                formDataRef={formDataRef}
+                setImageFormData={setImageFormData}
+                totalImageQty={totalImageQty}
+              />
+              {/* <div
                 className={styles.dropZone}
                 onClick={() => handleUploadImage()}
+                onDragEnter={() => handleDragEnter()}
               >
                 <input
                   type="file"
@@ -353,7 +365,7 @@ const AdminAddProduct = () => {
                   <p>Drop your imager here, or browse</p>
                   <p>Jpeg, png are allowed</p>
                 </div>
-              </div>
+              </div> */}
               <div className={styles.cards}>
                 {uploadImages.map((image) => (
                   <UploadedCard

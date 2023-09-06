@@ -121,29 +121,29 @@
           flex-direction: column;
           gap: 0.8rem;
 
-          .dropZone {
-            border: 1px dashed $dark-gray;
-            border-radius: 0.4rem;
-            padding: 0.8rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 0.8rem;
-            cursor: pointer;
+          // .dropZone {
+          //   border: 1px dashed $dark-gray;
+          //   border-radius: 0.4rem;
+          //   padding: 0.8rem;
+          //   display: flex;
+          //   flex-direction: column;
+          //   justify-content: center;
+          //   align-items: center;
+          //   gap: 0.8rem;
+          //   cursor: pointer;
 
-            .text {
-              display: flex;
-              flex-direction: column;
-              gap: 0.4rem;
+          //   .text {
+          //     display: flex;
+          //     flex-direction: column;
+          //     gap: 0.4rem;
 
-              p {
-                text-align: center;
-                font-size: 0.8rem;
-                color: $gray;
-              }
-            }
-          }
+          //     p {
+          //       text-align: center;
+          //       font-size: 0.8rem;
+          //       color: $gray;
+          //     }
+          //   }
+          // }
 
           .cards {
             display: flex;

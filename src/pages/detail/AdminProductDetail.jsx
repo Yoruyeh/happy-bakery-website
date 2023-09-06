@@ -2,13 +2,14 @@ import styles from './adminProductDetail.module.scss'
 import Button from '../../components/button/Button'
 import { TextInput } from '../../components/input/Input'
 import { BaseAdminMenu } from '../../data'
-import { Image, SuccessCheck } from '../../assets/icons'
+import { SuccessCheck } from '../../assets/icons'
 import { Cross } from '../../assets/icons'
 import { useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminModifyProduct, AdminGetProducts } from '../../api/admin.products'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useAdminProducts } from '../../context/AdminProductsContext'
+import ImageDropZone from '../../components/ImageDropZone/ImageDropZone'
 
 const UploadedCard = ({ image, handleDeleteUpload }) => {
   return (
@@ -486,7 +487,19 @@ const AdminProductDetail = () => {
             </div>
             <div className={styles.upload}>
               <h6>Product Gallery</h6>
-              <div
+              <ImageDropZone
+                dropImageRef={dropImageRef}
+                handleUploadImage={handleUploadImage}
+                handleImageChange={handleImageChange}
+                uploadImages={uploadImages}
+                setUploadImages={setUploadImages}
+                formDataRef={formDataRef}
+                setImageFormData={setImageFormData}
+                totalImageQty={totalImageQty}
+                editProductInfo={editProductInfo}
+                setEditProductInfo={setEditProductInfo}
+              />
+              {/* <div
                 className={styles.dropZone}
                 onClick={() => handleUploadImage()}
               >
@@ -505,7 +518,7 @@ const AdminProductDetail = () => {
                   <p>Drop your imager here, or browse</p>
                   <p>Jpeg, png are allowed</p>
                 </div>
-              </div>
+              </div> */}
               <div className={styles.cards}>
                 {editImages &&
                   editImages.length > 0 &&
