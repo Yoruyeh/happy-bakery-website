@@ -5,6 +5,10 @@ import { useEffect, useRef } from 'react';
 
 const AdminProductCard = ({ product, onClick }) => {
   const descriptionRef = useRef(null)
+  const saleQty = product.salesCount ? product.salesCount : 0
+  const stockQty = product.stock_quantity ? product.stock_quantity : 0
+  const totalQty = saleQty + stockQty
+  const widthPercent = Math.floor((stockQty / totalQty) * 100) + '%'
 
   useEffect(() => {
     if (descriptionRef.current) {
@@ -45,7 +49,7 @@ const AdminProductCard = ({ product, onClick }) => {
         <div className={styles.remain}>
           Remaining Products
           <p>
-            <span></span>
+            <span style={{ '--dynamic-width': widthPercent }}></span>
             {product.stock_quantity ? product.stock_quantity : 0}
           </p>
         </div>
