@@ -3,7 +3,6 @@ import { useLocation } from "react-router-dom";
 
 const defaultAdminContext = {
   isAuthenticated: false,
-  adminInfo: null,
   logout: null,
 }
 

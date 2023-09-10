@@ -17,6 +17,7 @@ UserAxiosInstance.interceptors.request.use(
   },
   (error) => {
     console.error(error)
+    return Promise.reject(error)
   }
 )
 
@@ -34,6 +35,7 @@ AdminAxiosInstance.interceptors.request.use(
   },
   (error) => {
     console.error(error)
+    return Promise.reject(error)
   }
 )
 
