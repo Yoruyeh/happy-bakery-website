@@ -2,6 +2,8 @@
 
 ![前台](./src/assets/images/happy-bakery.gif)
 
+![前台](./src/assets/images/happy-bakery-user.gif)
+
 ![後台](./src/assets/images/happy-bakery-admin.gif)
 
 ## 功能
