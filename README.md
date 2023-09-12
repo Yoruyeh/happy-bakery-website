@@ -1,6 +1,9 @@
 # Welcome to Happy Bakery!
 
 ![前台](./src/assets/images/happy-bakery.gif)
+
+---
+
 ![後台](./src/assets/images/happy-bakery-admin.gif)
 
 ## 功能
