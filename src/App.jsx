@@ -1,11 +1,14 @@
-import { RouterProvider, BrowserRouter } from 'react-router-dom' 
+import { BrowserRouter, RouterProvider } from 'react-router-dom' 
 import router from './router/router'
+import { AdminProvider } from './context/AdminContext'
 
 function App() {
   return (
-    <RouterProvider router={router}>
-      <BrowserRouter basename={process.env.PUBLIC_URL} />
-    </RouterProvider>
+    <AdminProvider>
+      <RouterProvider router={router}>
+        <BrowserRouter basename={process.env.PUBLIC_URL} />
+      </RouterProvider>
+    </AdminProvider>
   )
 }
 

@@ -1,6 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import { AdminCheckPermission } from "../api/admin.auth";
+import { createContext, useContext, useState } from "react";
 
 const defaultAdminContext = {
   isAuthenticated: false,
@@ -13,32 +11,13 @@ export const useAdmin = () => useContext(AdminContext)
 
 export const AdminProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const { pathname } = useLocation()
-
-  useEffect(() => {
-    const checkTokenIsValid = async () => {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        setIsAuthenticated(false)
-        return
-      }
-
-      const { success } = await AdminCheckPermission(token)
-
-      if (success) {
-        setIsAuthenticated(true)
-      } else {
-        setIsAuthenticated(false)
-      }
-    }
-    checkTokenIsValid()
-  }, [pathname])
 
 
   return (
     <AdminContext.Provider
       value={{
         isAuthenticated,
+        setIsAuthenticated,
         logout: () => {
           localStorage.removeItem('token')
           setIsAuthenticated(false)

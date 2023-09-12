@@ -7,8 +7,11 @@ import { AdminSignIn } from '../../api/admin.auth'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
+import { useAdmin } from '../../context/AdminContext'
 
 const AdminLogin = () => {
+  const { setIsAuthenticated } = useAdmin()
+
   const [AdminloginInfo, setAdminLoginInfo] = useState({
     email: '',
     password: ''
@@ -41,6 +44,7 @@ const AdminLogin = () => {
     })
 
     if (success) {
+      setIsAuthenticated(true)
       localStorage.setItem('token', token)
       Swal.fire({
         position: 'top',
