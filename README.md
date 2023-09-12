@@ -1,17 +1,19 @@
 # Welcome to Happy Bakery!
 
-![首頁](./src/assets/images/happy-bakery.gif)
+![前台](./src/assets/images/happy-bakery.gif)
+![後台](./src/assets/images/happy-bakery-admin.gif)
 
 ## 功能
 
 前台
 1. 可以註冊會員、登入後開始購物
 2. 可以瀏覽全部商品、最新商品、依商品分類顯示產品；並且有排序功能下拉式選單，可以依價錢或上架日期排序商品
-3. 商品詳細頁面可以瀏覽商品照片與商品介紹，選擇商品數量後加入購物車或者立即購買直接導入結帳頁面
-4. 加入購物車後可以從右上角的數字看到購物車內商品數量，點擊後可以觀看購物車內容
-5. 點選checkout導入購物車頁面，可以在此做購物車商品的編輯：修改數量或刪除
-6. 輸入完整送貨資料與付款資料後，可以navbar上的user icon到member center觀看過往的訂單資料
-7. 可以在member center的member info裡修改會員資料和密碼
+3. 可以點選navbar的放大鏡icon輸入關鍵字搜尋產品，依照關鍵字顯示產品頁面
+4. 商品詳細頁面可以瀏覽商品照片與商品介紹，選擇商品數量後加入購物車或者立即購買直接導入結帳頁面
+5. 加入購物車後可以從右上角的數字看到購物車內商品數量，點擊後可以觀看購物車內容
+6. 點選checkout導入購物車頁面，可以在此做購物車商品的編輯：修改數量或刪除
+7. 輸入完整送貨資料與付款資料後，可以navbar上的user icon到member center觀看過往的訂單資料
+8. 可以在member center的member info裡修改會員資料和密碼
 
 後台
 1. 只有admin帳號可以登入
