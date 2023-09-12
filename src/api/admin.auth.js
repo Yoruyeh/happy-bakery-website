@@ -40,3 +40,18 @@ export const AdminEditPassword = async ({ currentPW, newPW, confirmPW }) => {
     return error.response.data
   }
 }
+
+export const AdminCheckPermission = async (token) => {
+  try {
+    const { data } = await axios.get(baseUrl, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+
+    return { success: true, ...data }
+  } catch (error) {
+    console.error('[Unauthorized]: ', error)
+    return { success: false, error: error.message }
+  }
+}

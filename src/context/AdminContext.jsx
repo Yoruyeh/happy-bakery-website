@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { AdminCheckPermission } from "../api/admin.auth";
 
 const defaultAdminContext = {
   isAuthenticated: false,
@@ -20,8 +21,14 @@ export const AdminProvider = ({ children }) => {
       if (!token) {
         setIsAuthenticated(false)
         return
-      } else {
+      }
+
+      const { success } = await AdminCheckPermission(token)
+
+      if (success) {
         setIsAuthenticated(true)
+      } else {
+        setIsAuthenticated(false)
       }
     }
     checkTokenIsValid()

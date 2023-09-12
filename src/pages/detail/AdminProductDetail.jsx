@@ -32,7 +32,6 @@ const UploadedCard = ({ image, handleDeleteUpload }) => {
   )
 }
 
-
 const AdminProductDetail = () => {
   let { category } = useParams()
   const navigate = useNavigate()
@@ -44,21 +43,23 @@ const AdminProductDetail = () => {
     selectedCategoryId
   } = useAdminProducts()
   const [editProductInfo, setEditProductInfo] = useState({
-    name: adminProduct.name || '',
-    description: adminProduct.description || '',
-    category: adminProduct.Category.name || '',
-    cover: adminProduct.cover || '',
-    sku: adminProduct.sku || '',
-    quantity: adminProduct.stock_quantity || '',
-    priceRegular: adminProduct.price_regular || '',
-    priceSale: adminProduct.price_sale || ''
+    name: adminProduct?.name || '',
+    description: adminProduct?.description || '',
+    category: adminProduct?.Category?.name || '',
+    cover: adminProduct?.cover || '',
+    sku: adminProduct?.sku || '',
+    quantity: adminProduct?.stock_quantity || '',
+    priceRegular: adminProduct?.price_regular || '',
+    priceSale: adminProduct?.price_sale || ''
   })
   const [editImages, setEditImages] = useState(adminProduct.ProductImages)
   const [uploadImages, setUploadImages] = useState([])
   const dropImageRef = useRef(null)
   const formDataRef = useRef(new FormData())
   const [imageFormData, setImageFormData] = useState(null)
-  const totalImageQty = !editProductInfo.cover ? 0 : 1 + editImages.length + uploadImages.length
+  const totalImageQty = !editProductInfo.cover
+    ? 0
+    : 1 + editImages.length + uploadImages.length
 
   const ProductPageTitle = (category) => {
     if (category === 'all_products') {
@@ -145,80 +146,83 @@ const AdminProductDetail = () => {
   }
 
   const handleUpdateClick = async () => {
-     const {
-       name,
-       description,
-       category,
-       sku,
-       quantity,
-       priceRegular,
-       priceSale
-     } = editProductInfo
+    const {
+      name,
+      description,
+      category,
+      sku,
+      quantity,
+      priceRegular,
+      priceSale
+    } = editProductInfo
 
-     if (
-       !name.trim() ||
-       !description.trim() ||
-       !category ||
-       !sku ||
-       !priceRegular ||
-       !priceSale
-     ) {
-       Swal.fire({
-         position: 'top',
-         icon: 'error',
-         title: 'Cannot be blank',
-         showConfirmButton: false,
-         timer: 1500
-       })
-       return
-     }
+    if (
+      !name.trim() ||
+      !description.trim() ||
+      !category ||
+      !sku ||
+      !priceRegular ||
+      !priceSale
+    ) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
 
-     if (!quantity && quantity !== 0) {
-       Swal.fire({
-         position: 'top',
-         icon: 'error',
-         title: 'Cannot be blank',
-         showConfirmButton: false,
-         timer: 1500
-       })
-       return
-     }
+    if (!quantity && quantity !== 0) {
+      Swal.fire({
+        position: 'top',
+        icon: 'error',
+        title: 'Cannot be blank',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
 
-     if (totalImageQty < 4) {
-       Swal.fire({
-         position: 'top',
-         icon: 'warning',
-         title: 'Please Upload 4 Images',
-         showConfirmButton: false,
-         timer: 1500
-       })
-       return
-     }
-     
-     if (!editImages.length && uploadImages.length > 0) {
+    if (totalImageQty < 4) {
+      Swal.fire({
+        position: 'top',
+        icon: 'warning',
+        title: 'Please Upload 4 Images',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      return
+    }
+
+    if (!editImages.length && uploadImages.length > 0) {
       //  顯示上傳中的提示框
-       Swal.fire({
-         title: 'Uploading Files...Please Wait...',
-         timerProgressBar: true,
-         allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
-         didOpen: () => {
-           Swal.showLoading()
-         }
-       })
+      Swal.fire({
+        title: 'Uploading Files...Please Wait...',
+        timerProgressBar: true,
+        allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      })
 
-       try {
-         const { status, image } = await AdminUploadFile(imageFormData)
+      try {
+        const { status, image } = await AdminUploadFile(imageFormData)
 
-         if (status === 'success') {
+        if (status === 'success') {
           const realImageUrlTemp = image.slice(1)
           const editProductInfoTemp = {
             ...editProductInfo,
             cover: image[0].link
           }
-          const { status: addStatus, message } = await AdminModifyProduct(adminProduct.id, {
-            productInfo: editProductInfoTemp,
-            productImage: realImageUrlTemp
-          })
+          const { status: addStatus, message } = await AdminModifyProduct(
+            adminProduct.id,
+            {
+              productInfo: editProductInfoTemp,
+              productImage: realImageUrlTemp
+            }
+          )
 
           if (addStatus === 'success') {
             Swal.fire({
@@ -244,86 +248,39 @@ const AdminProductDetail = () => {
             showConfirmButton: false,
             timer: 1500
           })
-         }
-       } catch (error) {
-         Swal.fire({
-           icon: 'error',
-           title: 'Upload Failed!',
-           text: 'Please try again.',
-           showConfirmButton: true
-         })
-       }
-     } else if (editImages.length > 0 && uploadImages.length > 0) {
-       // 顯示上傳中的提示框
-       Swal.fire({
-         title: 'Uploading Files...Please Wait...',
-         timerProgressBar: true,
-         allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
-         didOpen: () => {
-           Swal.showLoading()
-         }
-       })
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed!',
+          text: 'Please try again.',
+          showConfirmButton: true
+        })
+      }
+    } else if (editImages.length > 0 && uploadImages.length > 0) {
+      // 顯示上傳中的提示框
+      Swal.fire({
+        title: 'Uploading Files...Please Wait...',
+        timerProgressBar: true,
+        allowOutsideClick: false, // 防止用戶在上傳期間點擊外部關閉
+        didOpen: () => {
+          Swal.showLoading()
+        }
+      })
 
-       try {
-         const { status, image } = await AdminUploadFile(imageFormData)
-
-         if (status === 'success') {
-           const realImageUrlTemp = editImages
-             .map((image) => ({
-               id: String(image.id),
-               name: image.name,
-               link: image.image_path
-             }))
-             .concat(image)
-
-           const { status: addStatus, message } = await AdminModifyProduct(adminProduct.id, {
-             productInfo: editProductInfo,
-             productImage: realImageUrlTemp
-           })
-
-           if (addStatus === 'success') {
-             Swal.fire({
-               position: 'top',
-               icon: 'success',
-               title: `Successfully Updated ${editProductInfo.name}`,
-               showConfirmButton: false,
-               timer: 1500
-             })
-             const { products } = await AdminGetProducts({
-               id: selectedCategoryId,
-               page: activePage
-             })
-             setAdminProducts(products)
-             navigate(-1)
-             return
-           }
-
-           Swal.fire({
-             position: 'top',
-             icon: 'error',
-             title: `${message}`,
-             showConfirmButton: false,
-             timer: 1500
-           })
-         }
-       } catch (error) {
-         Swal.fire({
-           icon: 'error',
-           title: 'Upload Failed!',
-           text: 'Please try again.',
-           showConfirmButton: true
-         })
-       }
-     } else if (editImages.length > 0 && !uploadImages.length) {
       try {
-          const realImageUrlTemp = editImages
-          .map((image) => ({
-            id: String(image.id),
-            name: image.name,
-            link: image.image_path
-          }))
+        const { status, image } = await AdminUploadFile(imageFormData)
 
-          const { status, message } = await AdminModifyProduct(
+        if (status === 'success') {
+          const realImageUrlTemp = editImages
+            .map((image) => ({
+              id: String(image.id),
+              name: image.name,
+              link: image.image_path
+            }))
+            .concat(image)
+
+          const { status: addStatus, message } = await AdminModifyProduct(
             adminProduct.id,
             {
               productInfo: editProductInfo,
@@ -331,7 +288,7 @@ const AdminProductDetail = () => {
             }
           )
 
-          if (status === 'success') {
+          if (addStatus === 'success') {
             Swal.fire({
               position: 'top',
               icon: 'success',
@@ -355,7 +312,52 @@ const AdminProductDetail = () => {
             showConfirmButton: false,
             timer: 1500
           })
-        
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Upload Failed!',
+          text: 'Please try again.',
+          showConfirmButton: true
+        })
+      }
+    } else if (editImages.length > 0 && !uploadImages.length) {
+      try {
+        const realImageUrlTemp = editImages.map((image) => ({
+          id: String(image.id),
+          name: image.name,
+          link: image.image_path
+        }))
+
+        const { status, message } = await AdminModifyProduct(adminProduct.id, {
+          productInfo: editProductInfo,
+          productImage: realImageUrlTemp
+        })
+
+        if (status === 'success') {
+          Swal.fire({
+            position: 'top',
+            icon: 'success',
+            title: `Successfully Updated ${editProductInfo.name}`,
+            showConfirmButton: false,
+            timer: 1500
+          })
+          const { products } = await AdminGetProducts({
+            id: selectedCategoryId,
+            page: activePage
+          })
+          setAdminProducts(products)
+          navigate(-1)
+          return
+        }
+
+        Swal.fire({
+          position: 'top',
+          icon: 'error',
+          title: `${message}`,
+          showConfirmButton: false,
+          timer: 1500
+        })
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -364,7 +366,7 @@ const AdminProductDetail = () => {
           showConfirmButton: true
         })
       }
-     }
+    }
   }
 
   return (

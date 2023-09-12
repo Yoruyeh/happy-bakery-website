@@ -35,12 +35,13 @@ const AdminLogin = () => {
       })
       return
     }
-    const { success } = await AdminSignIn({
+    const { success, token } = await AdminSignIn({
       email,
       password
     })
 
     if (success) {
+      localStorage.setItem('token', token)
       Swal.fire({
         position: 'top',
         icon: 'success',
@@ -50,7 +51,7 @@ const AdminLogin = () => {
       })
       setTimeout(() => {
         navigate('/happy-bakery-website/admin/dashboard')
-      }, 1700)
+      }, 1500)
       return
     }
 
@@ -64,53 +65,53 @@ const AdminLogin = () => {
   }
 
   return (
-    <div className={styles.adminLogin}>
-      <div className={styles.adminCover}>
-        <img src={AdminCover} alt="" />
-        <AdminLogo />
+      <div className={styles.adminLogin}>
+        <div className={styles.adminCover}>
+          <img src={AdminCover} alt="" />
+          <AdminLogo />
+        </div>
+        <form className={styles.loginForm}>
+          <h3>Login</h3>
+          <a href="/">Forgot your password?</a>
+          <div className={styles.inputWrapper}>
+            <TextInput
+              type={'email'}
+              placeholder={'Email'}
+              name={'email'}
+              onChange={(e) => handleLoginInputChange(e)}
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <TextInput
+              type={'password'}
+              placeholder={'Password'}
+              name={'password'}
+              onChange={(e) => handleLoginInputChange(e)}
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <CheckboxInput
+              type={'checkbox'}
+              label={'Keep me logged in - applies to all log in options below.'}
+            />
+          </div>
+          <Button
+            text={'EMAIL LOGIN'}
+            price={<ArrowForward />}
+            onClick={(e) => {
+              e.preventDefault()
+              handleLoginClick()
+            }}
+          />
+          <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
+          <p>
+            By clicking 'Log In' you agree to our website Terms & Conditions,
+            <br />
+            Privacy Notice and Terms & Conditions.
+          </p>
+          <Link to="/happy-bakery-website">Back to happy bakery website</Link>
+        </form>
       </div>
-      <form className={styles.loginForm}>
-        <h3>Login</h3>
-        <a href="/">Forgot your password?</a>
-        <div className={styles.inputWrapper}>
-          <TextInput
-            type={'email'}
-            placeholder={'Email'}
-            name={'email'}
-            onChange={(e) => handleLoginInputChange(e)}
-          />
-        </div>
-        <div className={styles.inputWrapper}>
-          <TextInput
-            type={'password'}
-            placeholder={'Password'}
-            name={'password'}
-            onChange={(e) => handleLoginInputChange(e)}
-          />
-        </div>
-        <div className={styles.inputWrapper}>
-          <CheckboxInput
-            type={'checkbox'}
-            label={'Keep me logged in - applies to all log in options below.'}
-          />
-        </div>
-        <Button
-          text={'EMAIL LOGIN'}
-          price={<ArrowForward />}
-          onClick={(e) => {
-            e.preventDefault()
-            handleLoginClick()
-          }}
-        />
-        <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
-        <p>
-          By clicking 'Log In' you agree to our website Terms & Conditions,
-          <br />
-          Privacy Notice and Terms & Conditions.
-        </p>
-        <Link to="/happy-bakery-website">Back to happy bakery website</Link>
-      </form>
-    </div>
   )
 }
 
