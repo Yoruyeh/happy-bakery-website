@@ -4,7 +4,7 @@ import { TextInput } from '../../components/input/Input'
 import ProductImg from '../../assets/images/scone.jpeg'
 import { BaseAdminMenu } from '../../data'
 import { SuccessCheck } from '../../assets/icons'
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminAddNewProduct, AdminGetProducts } from '../../api/admin.products'
@@ -239,6 +239,11 @@ const AdminAddProduct = () => {
       }
     }
   }
+
+   useEffect(() => {
+     const container = document.querySelector('.outlet')
+     if (container) container.scrollTop = 0
+   }, [])
 
 
   return (

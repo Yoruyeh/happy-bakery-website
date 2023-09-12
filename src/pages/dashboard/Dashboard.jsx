@@ -5,6 +5,7 @@ import BestSellers from '../../components/adminCard/BestSellers'
 import DataTable from '../../components/dataTable/DataTable'
 import { DateInput } from '../../components/input/Input'
 import { useAdminOrders } from '../../context/AdminOrdersContext'
+import { useEffect } from 'react'
 
 const Dashboard = () => {
   const { dateValue, handleDateChange } = useAdminOrders()
@@ -26,6 +27,13 @@ const Dashboard = () => {
       amount: '126.500'
     }
   ]
+
+  useEffect(() => {
+    const container = document.querySelector(
+      '.outlet'
+    )
+    if (container) container.scrollTop = 0
+  }, [])
 
   return (
     <div className={styles.dashboard}>

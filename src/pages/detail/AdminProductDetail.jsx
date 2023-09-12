@@ -4,7 +4,7 @@ import { TextInput } from '../../components/input/Input'
 import { BaseAdminMenu } from '../../data'
 import { SuccessCheck } from '../../assets/icons'
 import { Cross } from '../../assets/icons'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Swal from 'sweetalert2'
 import { AdminUploadFile, AdminModifyProduct, AdminGetProducts } from '../../api/admin.products'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -368,6 +368,11 @@ const AdminProductDetail = () => {
       }
     }
   }
+
+  useEffect(() => {
+    const container = document.querySelector('.outlet')
+    if (container) container.scrollTop = 0
+  }, [])
 
   return (
     <div className={styles.adminProductDetail}>

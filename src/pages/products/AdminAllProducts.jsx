@@ -6,6 +6,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useAdminProducts } from '../../context/AdminProductsContext'
 import Pagination from '../../components/pagination/Pagination'
 import { BaseAdminMenu } from '../../data'
+import { useEffect } from 'react'
 
 const AdminAllProducts = () => {
   const {
@@ -37,6 +38,11 @@ const AdminAllProducts = () => {
       page: page
     })
   }
+
+  useEffect(() => {
+    const container = document.querySelector('.outlet')
+    if (container) container.scrollTop = 0
+  }, [activePage, category])
 
   return (
     <div className={styles.allProducts}>

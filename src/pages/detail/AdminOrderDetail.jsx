@@ -4,7 +4,7 @@ import Button from '../../components/button/Button'
 import ProductDataTable from '../../components/dataTable/ProductDataTable'
 import { useAdminOrders } from '../../context/AdminOrdersContext'
 import SelectedButton from '../../components/button/SelectedButton'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AdminGetOrders, AdminModifyOrder } from '../../api/admin.orders'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
@@ -106,6 +106,11 @@ const AdminOrderDetail = () => {
       timer: 1500
     })
   }
+
+   useEffect(() => {
+     const container = document.querySelector('.outlet')
+     if (container) container.scrollTop = 0
+   }, [])
 
   return (
     <div className={styles.adminOrderDetail}>
