@@ -22,7 +22,6 @@ export const ProductsProvider = ({ children }) => {
   const [recommendProducts, setRecommendProducts]  = useState([])
   const [productCount, setProductCount] = useState(0)
   const [productDetail, setProductDetail] = useState({})
-
   const handleNavItemClick = async ({ id, page, sort, keyword }) => {
     const { products, productCount } = await GetProducts({
       id,

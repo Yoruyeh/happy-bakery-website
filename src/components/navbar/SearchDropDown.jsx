@@ -1,8 +1,10 @@
 import styles from './searchDropDown.module.scss'
 import { useProducts } from '../../context/ProductsContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const SearchDropDown = ({ products, handleSeeAllClick }) => {
   const { handleViewProductClick } = useProducts()
+  const { handleAdminViewProductClick } = useAdminProducts()
 
   return (
     <div className={styles.dropdown}>
@@ -12,7 +14,10 @@ const SearchDropDown = ({ products, handleSeeAllClick }) => {
           <div
             className={styles.searchItem}
             key={product.id}
-            onClick={() => handleViewProductClick(product.id, product.Category.name)}
+            onClick={() =>
+              handleViewProductClick(product.id, product.Category.name) ||
+              handleAdminViewProductClick(product.id, product.Category.name)
+            }
           >
             <div className={styles.searchItemImg}>
               <img alt="" src={product.cover} />

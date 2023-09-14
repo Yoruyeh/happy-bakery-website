@@ -77,6 +77,12 @@ export const AdminProductsProvider = ({ children }) => {
     })
   }
 
+  const handleAdminViewProductClick = async (id, categoryName) => {
+    const { product } = await AdminGetProductById(id)
+    setAdminProduct(product)
+    navigate(`/happy-bakery-website/admin/${categoryName}/${id}`)
+  }
+
   useEffect(() => {
     const AdminGetProductsAsync = async () => {
       const { products, productCount } = await AdminGetProducts({ id: '' })
@@ -141,7 +147,8 @@ export const AdminProductsProvider = ({ children }) => {
         setActivePage,
         handleProductDelete,
         selectedCategoryId,
-        bestSellers
+        bestSellers,
+        handleAdminViewProductClick
       }}
     >
       {children}
