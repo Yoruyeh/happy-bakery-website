@@ -12,7 +12,6 @@ export const GetProducts = async ({ id, page, sort, keyword }) => {
     }
 
     if (keyword) {
-      console.log(keyword)
       queryParams.push(`keyword=${keyword}`)
     }
 

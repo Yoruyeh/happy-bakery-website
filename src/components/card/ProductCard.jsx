@@ -15,9 +15,9 @@ const ProductCard = ({ product }) => {
         ) : (
           ''
         )}
-        {/* {product.stock_quantity === 0 && (
+        {product.stock_quantity === 0 && (
           <div className={styles.soldout}>Sold Out</div>
-        )} */}
+        )}
       </div>
       <div className={styles.cardTitle}>
         <h5>{product.name}</h5>

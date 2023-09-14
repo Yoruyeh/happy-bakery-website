@@ -34,11 +34,12 @@ export const AdminProductsProvider = ({ children }) => {
   const [selectedCategoryId, setSelectedCategoryId] = useState('')
   const [bestSellers, setBestSellers] = useState([])
 
-  const handleNavItemClick = async ({ id, page, sort }) => {
+  const handleNavItemClick = async ({ id, page, sort, keyword }) => {
     const { products, productCount } = await AdminGetProducts({
       id,
       page,
-      sort
+      sort,
+      keyword
     })
     setAdminProducts(products)
     setAdminProductCount(productCount)

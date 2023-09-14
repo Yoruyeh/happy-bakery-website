@@ -2,13 +2,17 @@ import { AdminAxiosInstance } from './axiosInstance'
 
 const baseUrl = 'http://localhost:3000/api/admin/product'
 
-export const AdminGetProducts = async ({ id, page, sort }) => {
+export const AdminGetProducts = async ({ id, page, sort, keyword }) => {
   try {
     let url = baseUrl + 's'
     const queryParams = []
 
     if (id) {
-       queryParams.push(`category=${id}`)
+      queryParams.push(`category=${id}`)
+    }
+
+    if (keyword) {
+      queryParams.push(`keyword=${keyword}`)
     }
 
     if (sort) {

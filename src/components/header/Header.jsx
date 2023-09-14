@@ -47,17 +47,17 @@ const Header = () => {
       return
     }
 
-    const { products } = await AdminGetSearchedProducts(value)
+    const { products, productCount } = await AdminGetSearchedProducts(value)
     if (!products) {
       setSearchProducts([])
       return
     }
     setSearchProducts(products)
+    setAdminProductCount(productCount)
   }
 
   const handleSeeAllClick = () => {
     setAdminProducts(searchProducts)
-    setAdminProductCount(searchProducts.length)
     navigate(`all_products?search=${searchInputValue}`)
   }
 

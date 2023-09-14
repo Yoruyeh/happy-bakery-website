@@ -67,10 +67,17 @@ const Products = () => {
   }
 
   const handlePaginationClick = (page) => {
+    if (location.search) {
+      handleNavItemClick({
+        keyword: searchTerm,
+        sort: selectedSortValue,
+        page: page
+      })
+      return
+    }
     const SelectedItem = productMenu.find((item) =>
       item.link.includes(category)
     )
-
     handleNavItemClick({ id: SelectedItem.id, sort: selectedSortValue, page: page })
   }
 
@@ -85,7 +92,7 @@ const Products = () => {
       setSelectedSortValue('price_asc')
     }
     setActivePage(1)
-  }, [category])
+  }, [category, searchParams])
 
   return (
     <div className={styles.products}>

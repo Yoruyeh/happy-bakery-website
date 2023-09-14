@@ -51,17 +51,17 @@ const Navbar = () => {
       return
     }
 
-    const { products } = await GetSearchedProducts(value)
+    const { products, productCount } = await GetSearchedProducts(value)
     if (!products) {
       setSearchProducts([])
       return
     }
     setSearchProducts(products)
+    setProductCount(productCount)
   }
 
   const handleSeeAllClick = () => {
     setProducts(searchProducts)
-    setProductCount(searchProducts.length)
     navigate(`products/all?search=${searchInputValue}`)
   }
 

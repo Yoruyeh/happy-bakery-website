@@ -34,6 +34,14 @@ const AdminAllProducts = () => {
   }
 
   const handlePaginationClick = (page) => {
+    if (location.search) {
+      handleNavItemClick({
+        keyword: searchTerm,
+        page: page
+      })
+      return
+    }
+
     const SelectedItem = BaseAdminMenu.find((item) =>
       item.link.includes(category)
     )
@@ -47,7 +55,7 @@ const AdminAllProducts = () => {
   useEffect(() => {
     const container = document.querySelector('.outlet')
     if (container) container.scrollTop = 0
-  }, [activePage, category])
+  }, [activePage, category, searchParams])
 
   return (
     <div className={styles.allProducts}>
