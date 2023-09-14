@@ -2,7 +2,7 @@ import styles from './adminAllProducts.module.scss'
 import Button from '../../components/button/Button'
 import { AddCircle } from '../../assets/icons'
 import AdminProductCard from '../../components/adminCard/AdminProductCard'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams, useSearchParams } from 'react-router-dom'
 import { useAdminProducts } from '../../context/AdminProductsContext'
 import Pagination from '../../components/pagination/Pagination'
 import { BaseAdminMenu } from '../../data'
@@ -18,11 +18,16 @@ const AdminAllProducts = () => {
     setActivePage
   } = useAdminProducts()
   let { category } = useParams()
+  let location = useLocation()
+  const [searchParams] = useSearchParams()
+  const searchTerm = searchParams.get('search')
   const pageCount = Math.ceil(adminProductCount / 12)
   const pageArr = Array.from({ length: pageCount }, (_, index) => index + 1)
 
   const ProductPageTitle = (category) => {
-    if (category === 'all_products') {
+    if (location.search) {
+      return `Search: ${searchTerm}`
+    } else if (category === 'all_products') {
       return 'All Products'
     } 
     return category

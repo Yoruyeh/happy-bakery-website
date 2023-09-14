@@ -48,6 +48,18 @@ export const AdminGetProductById = async (id) => {
   }
 }
 
+export const AdminGetSearchedProducts = async (keyword) => {
+  try {
+    const url = baseUrl + 's'
+    const { data } = await AdminAxiosInstance.get(`${url}?keyword=${keyword}`)
+
+    return data
+  } catch (error) {
+    console.error('[Admin Get Searched Products Failed]: ', error)
+    return error.response.data
+  }
+}
+
 export const AdminUploadFile = async (formData) => {
   try {
     const { data } = await AdminAxiosInstance.post(

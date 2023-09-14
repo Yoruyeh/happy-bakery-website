@@ -12,9 +12,9 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import { useAdmin } from '../../context/AdminContext'
-import { GetSearchedProducts } from '../../api/products'
+import { AdminGetSearchedProducts } from '../../api/admin.products'
 import SearchDropDown from '../navbar/SearchDropDown'
-// import { useAdminProducts } from '../../context/AdminProductsContext'
+import { useAdminProducts } from '../../context/AdminProductsContext'
 
 const Header = () => {
   const navigate = useNavigate()
@@ -26,7 +26,7 @@ const Header = () => {
   const searchRef = useRef(null)
   const searchInputRef = useRef(null)
   const { logout } = useAdmin()
-  // const { setAdminProducts } = useAdminProducts()
+  const { setAdminProducts, setAdminProductCount } = useAdminProducts()
   const showProducts =
     searchProducts && searchProducts.length > 0 && searchProducts.slice(0, 3)
 
@@ -47,7 +47,7 @@ const Header = () => {
       return
     }
 
-    const { products } = await GetSearchedProducts(value)
+    const { products } = await AdminGetSearchedProducts(value)
     if (!products) {
       setSearchProducts([])
       return
@@ -56,7 +56,8 @@ const Header = () => {
   }
 
   const handleSeeAllClick = () => {
-    // setAdminProducts(searchProducts)
+    setAdminProducts(searchProducts)
+    setAdminProductCount(searchProducts.length)
     navigate(`all_products?search=${searchInputValue}`)
   }
 
