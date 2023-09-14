@@ -15,18 +15,21 @@ const ProductCard = ({ product }) => {
         ) : (
           ''
         )}
+        {/* {product.stock_quantity === 0 && (
+          <div className={styles.soldout}>Sold Out</div>
+        )} */}
       </div>
       <div className={styles.cardTitle}>
         <h5>{product.name}</h5>
       </div>
       <div className={styles.cardButton}>
-          <Button
-            text={'VIEW PRODCUT - '}
-            price={`$ ${product.price_regular}`}
-            onClick={() => {
-              handleViewProductClick(product.id, product.Category.name)
-            }}
-          />
+        <Button
+          text={'VIEW PRODCUT - '}
+          price={`$ ${product.price_regular}`}
+          onClick={() => {
+            handleViewProductClick(product.id, product.Category.name)
+          }}
+        />
       </div>
     </div>
   )

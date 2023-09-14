@@ -10,6 +10,7 @@ import { useUserCartItems } from '../../context/CartContext'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import { useParams } from 'react-router-dom'
+import { red } from '@mui/material/colors'
 
 const ProductDetail = () => {
   const { newProducts, productDetail } = useProducts()
@@ -89,45 +90,53 @@ const ProductDetail = () => {
               <h3>{productDetail.name}</h3>
               <h5>${productDetail.price_regular}</h5>
             </div>
-            <div className={styles.wrapper}>
-              <label htmlFor="quantity">Quantity</label>
-              <SelectedButton
-                name="quantity"
-                id="order-quantity"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-              >
-                {Array.from({ length: 10 }, (_, index) => index + 1).map(
-                  (num) => (
-                    <option key={num} value={num}>
-                      {num}
-                    </option>
-                  )
-                )}
-              </SelectedButton>
-            </div>
-            <div className={styles.buttons}>
-              <Button
-                text={'ADD TO CART'}
-                onClick={() => {
-                  handleAddToCart({
-                    id: productDetail.id,
-                    quantity: Number(quantity),
-                    price: productDetail.price_regular
-                  })
-                }}
-              />
-              <Button
-                text={'BUY IT NOW'}
-                onClick={() => {
-                  handleBuyItNowClick({
-                    id: productDetail.id,
-                    quantity: Number(quantity),
-                    price: productDetail.price_regular
-                  })
-                }}
-              />
-            </div>
+            {productDetail.stock_quantity !== 0 ? (
+              <>
+                <div className={styles.wrapper}>
+                  <label htmlFor="quantity">Quantity</label>
+                  <SelectedButton
+                    name="quantity"
+                    id="order-quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  >
+                    {Array.from({ length: 10 }, (_, index) => index + 1).map(
+                      (num) => (
+                        <option key={num} value={num}>
+                          {num}
+                        </option>
+                      )
+                    )}
+                  </SelectedButton>
+                </div>
+                <div className={styles.buttons}>
+                  <Button
+                    text={'ADD TO CART'}
+                    onClick={() => {
+                      handleAddToCart({
+                        id: productDetail.id,
+                        quantity: Number(quantity),
+                        price: productDetail.price_regular
+                      })
+                    }}
+                  />
+                  <Button
+                    text={'BUY IT NOW'}
+                    onClick={() => {
+                      handleBuyItNowClick({
+                        id: productDetail.id,
+                        quantity: Number(quantity),
+                        price: productDetail.price_regular
+                      })
+                    }}
+                  />
+                </div>
+              </>
+            ) : (
+              <div className={`${styles.buttons} ${styles.soldout}`}>
+                <Button text={'Sold Out'} />
+              </div>
+            )}
             <div className={styles.description}>
               <h6>ABOUT THE PRODUCT</h6>
               <p>{productDetail.description}</p>

@@ -101,6 +101,12 @@
         }
       }
 
+      .soldout {
+        button {
+          cursor: auto;
+        }
+      }
+
       .description {
         display: flex;
         flex-direction: column;
