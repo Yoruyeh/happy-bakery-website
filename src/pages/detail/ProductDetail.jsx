@@ -10,13 +10,14 @@ import { useUserCartItems } from '../../context/CartContext'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Pagination } from 'swiper/modules'
 import { useParams } from 'react-router-dom'
-import { red } from '@mui/material/colors'
 
 const ProductDetail = () => {
   const { newProducts, productDetail } = useProducts()
   const { handleAddToCart, handleBuyItNowClick } = useUserCartItems()
   const [quantity, setQuantity] = useState(1)
   const { id } = useParams()
+  const selectQuantity =
+    productDetail.stock_quantity > 10 ? 10 : productDetail.stock_quantity
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -100,13 +101,14 @@ const ProductDetail = () => {
                     value={quantity}
                     onChange={(e) => setQuantity(e.target.value)}
                   >
-                    {Array.from({ length: 10 }, (_, index) => index + 1).map(
-                      (num) => (
-                        <option key={num} value={num}>
-                          {num}
-                        </option>
-                      )
-                    )}
+                    {Array.from(
+                      { length: selectQuantity },
+                      (_, index) => index + 1
+                    ).map((num) => (
+                      <option key={num} value={num}>
+                        {num}
+                      </option>
+                    ))}
                   </SelectedButton>
                 </div>
                 <div className={styles.buttons}>
