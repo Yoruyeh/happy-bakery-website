@@ -10,8 +10,9 @@ const AdminContext = createContext(defaultAdminContext)
 export const useAdmin = () => useContext(AdminContext)
 
 export const AdminProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(sessionStorage.getItem('token')) || Boolean(localStorage.getItem('token'))
+    )
 
   return (
     <AdminContext.Provider
@@ -19,7 +20,8 @@ export const AdminProvider = ({ children }) => {
         isAuthenticated,
         setIsAuthenticated,
         logout: () => {
-          localStorage.removeItem('token')
+          sessionStorage?.removeItem('token')
+          localStorage?.removeItem('token')
           setIsAuthenticated(false)
         }
       }}

@@ -17,11 +17,8 @@ const AdminLayout = () => {
 
   useEffect(() => {
     const checkTokenIsValid = async () => {
-      const token = localStorage.getItem('token')
-      if (!token) {
-        setIsAuthenticated(false)
-        return
-      }
+      const token =
+        sessionStorage.getItem('token') || localStorage.getItem('token')
 
       const { success } = await AdminCheckPermission(token)
 

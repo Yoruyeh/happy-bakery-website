@@ -16,6 +16,7 @@ const AdminLogin = () => {
     email: '',
     password: ''
   })
+  const [keepLogin, setKeepLogin] = useState(false)
   const navigate = useNavigate()
 
   const handleLoginInputChange = (event) => {
@@ -26,7 +27,7 @@ const AdminLogin = () => {
     }))
   }
 
-  const handleLoginClick = async () => {
+  const handleAdminLoginClick = async () => {
     const { email, password } = AdminloginInfo 
     if (email.trim().length === 0 || password.trim().length === 0) {
       Swal.fire({
@@ -45,7 +46,6 @@ const AdminLogin = () => {
 
     if (success) {
       setIsAuthenticated(true)
-      localStorage.setItem('token', token)
       Swal.fire({
         position: 'top',
         icon: 'success',
@@ -56,6 +56,13 @@ const AdminLogin = () => {
       setTimeout(() => {
         navigate('/happy-bakery-website/admin/dashboard')
       }, 1500)
+
+      if (keepLogin) {
+        localStorage.setItem('token', token)
+      } else {
+        localStorage.removeItem('token', token)
+        sessionStorage.setItem('token', token)
+      }
       return
     }
 
@@ -69,53 +76,54 @@ const AdminLogin = () => {
   }
 
   return (
-      <div className={styles.adminLogin}>
-        <div className={styles.adminCover}>
-          <img src={AdminCover} alt="" />
-          <AdminLogo />
-        </div>
-        <form className={styles.loginForm}>
-          <h3>Login</h3>
-          <a href="/">Forgot your password?</a>
-          <div className={styles.inputWrapper}>
-            <TextInput
-              type={'email'}
-              placeholder={'Email'}
-              name={'email'}
-              onChange={(e) => handleLoginInputChange(e)}
-            />
-          </div>
-          <div className={styles.inputWrapper}>
-            <TextInput
-              type={'password'}
-              placeholder={'Password'}
-              name={'password'}
-              onChange={(e) => handleLoginInputChange(e)}
-            />
-          </div>
-          <div className={styles.inputWrapper}>
-            <CheckboxInput
-              type={'checkbox'}
-              label={'Keep me logged in - applies to all log in options below.'}
-            />
-          </div>
-          <Button
-            text={'EMAIL LOGIN'}
-            price={<ArrowForward />}
-            onClick={(e) => {
-              e.preventDefault()
-              handleLoginClick()
-            }}
-          />
-          <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
-          <p>
-            By clicking 'Log In' you agree to our website Terms & Conditions,
-            <br />
-            Privacy Notice and Terms & Conditions.
-          </p>
-          <Link to="/happy-bakery-website">Back to happy bakery website</Link>
-        </form>
+    <div className={styles.adminLogin}>
+      <div className={styles.adminCover}>
+        <img src={AdminCover} alt="" />
+        <AdminLogo />
       </div>
+      <form className={styles.loginForm}>
+        <h3>Login</h3>
+        <a href="/">Forgot your password?</a>
+        <div className={styles.inputWrapper}>
+          <TextInput
+            type={'email'}
+            placeholder={'Email'}
+            name={'email'}
+            onChange={(e) => handleLoginInputChange(e)}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <TextInput
+            type={'password'}
+            placeholder={'Password'}
+            name={'password'}
+            onChange={(e) => handleLoginInputChange(e)}
+          />
+        </div>
+        <div className={styles.inputWrapper}>
+          <CheckboxInput
+            type={'checkbox'}
+            label={'Keep me logged in - applies to all log in options below.'}
+            onChange={(checked) => setKeepLogin(checked)}
+          />
+        </div>
+        <Button
+          text={'EMAIL LOGIN'}
+          price={<ArrowForward />}
+          onClick={(e) => {
+            e.preventDefault()
+            handleAdminLoginClick()
+          }}
+        />
+        <Button text={'USE FACEBOOK TO LOGIN'} price={<FacebookColored />} />
+        <p>
+          By clicking 'Log In' you agree to our website Terms & Conditions,
+          <br />
+          Privacy Notice and Terms & Conditions.
+        </p>
+        <Link to="/happy-bakery-website">Back to happy bakery website</Link>
+      </form>
+    </div>
   )
 }
 
