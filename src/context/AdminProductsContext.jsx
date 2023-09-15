@@ -154,6 +154,7 @@ export const AdminProductsProvider = ({ children }) => {
         handleProductDelete,
         selectedCategoryId,
         bestSellers,
+        setBestSellers,
         handleAdminViewProductClick
       }}
     >
