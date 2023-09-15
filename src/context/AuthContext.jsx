@@ -15,7 +15,10 @@ const AuthContext = createContext(defaultAuthContext)
 export const useAuth = () => useContext(AuthContext)
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    Boolean(sessionStorage.getItem('token')) ||
+    Boolean(localStorage.getItem('token'))
+  )
   const [currentUser, setCurrentUser] = useState(null)
   const { pathname } = useLocation()
 
@@ -58,7 +61,11 @@ export const AuthProvider = ({ children }) => {
         })
         if (success) {
           setIsAuthenticated(true)
-          localStorage.setItem('token', token)
+          if (data.keepLogin) {
+            localStorage.setItem('token', token)
+          } else {
+            sessionStorage.setItem('token', token)
+          }
         } else {
           setIsAuthenticated(false)
           setCurrentUser(null)
@@ -84,7 +91,8 @@ export const AuthProvider = ({ children }) => {
         return success
       },
       logout: () => {
-        localStorage.removeItem('token')
+        sessionStorage?.removeItem('token')
+        localStorage?.removeItem('token')
         setCurrentUser(null)
         setIsAuthenticated(false)
       }

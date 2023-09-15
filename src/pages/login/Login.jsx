@@ -11,7 +11,8 @@ import Swal from 'sweetalert2'
 const Login = () => {
   const [loginInfo, setLoginInfo] = useState({
     email: '',
-    password: ''
+    password: '',
+    keepLogin: false
   })
 
   const { signIn } = useAuth()
@@ -26,7 +27,7 @@ const Login = () => {
   }
 
   const handleLoginClick = async () => {
-    const { email, password } = loginInfo
+    const { email, password, keepLogin } = loginInfo
     if (email.trim().length === 0 || password.trim().length === 0) {
       Swal.fire({
         position: 'top',
@@ -40,7 +41,8 @@ const Login = () => {
 
     const success = await signIn({
       email,
-      password
+      password,
+      keepLogin: keepLogin
     })
 
     if (success) {
@@ -53,7 +55,7 @@ const Login = () => {
       })
       setTimeout(() => {
         navigate('/happy-bakery-website')
-      }, 1700)
+      }, 1500)
       return
     }
 
@@ -91,6 +93,13 @@ const Login = () => {
           <CheckboxInput
             type={'checkbox'}
             label={'Keep me logged in - applies to all log in options below.'}
+            name={'keepLogin'}
+            onChange={(isChecked) => {
+              setLoginInfo((prev) => ({
+                ...prev,
+                keepLogin: isChecked
+              }))
+            }}
           />
         </div>
         <Button
