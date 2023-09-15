@@ -64,9 +64,34 @@ export const GetRecommendProducts = async () => {
   }
 }
 
-export const GetBestSellers = async () => {
+export const GetBestSellers = async ({ top, sort,  startDate, endDate }) => {
   try {
-    const { data } = await axios.get(`${baseUrl}/popular?top=3`)
+    let url = baseUrl + '/popular'
+    const queryParams = []
+
+    if (top) {
+      queryParams.push(`top=${top}`)
+    } else {
+      queryParams.push('top=3')
+    }
+
+    if (sort) {
+      queryParams.push(`sort=${sort}`)
+    }
+
+    if (startDate) {
+      queryParams.push(`startDate=${startDate}`)
+    }
+
+    if (endDate) {
+      queryParams.push(`endDate=${endDate}`)
+    }
+
+    if (queryParams.length) {
+      url += `?${queryParams.join('&')}`
+    }
+
+    const { data } = await axios.get(url)
 
     return data
   } catch (error) {

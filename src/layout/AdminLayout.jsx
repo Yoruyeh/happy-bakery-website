@@ -47,21 +47,23 @@ const AdminLayout = () => {
     }
   })
 
-  return isAuthenticated && (
-    <AdminProductsProvider>
+  return (
+    isAuthenticated && (
       <AdminOrdersProvider>
-        <div className="admin">
-          <AdminNavbar />
-          <div className="adminContainer">
-            <Header />
-            <div className="outlet">
-              <Outlet />
+        <AdminProductsProvider>
+          <div className="admin">
+            <AdminNavbar />
+            <div className="adminContainer">
+              <Header />
+              <div className="outlet">
+                <Outlet />
+              </div>
+              <AdminFooter />
             </div>
-            <AdminFooter />
           </div>
-        </div>
+        </AdminProductsProvider>
       </AdminOrdersProvider>
-    </AdminProductsProvider>
+    )
   )
 }
 

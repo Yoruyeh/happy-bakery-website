@@ -30,16 +30,27 @@ const BestSellers = () => {
     <div className={styles.bestSellers}>
       <div className={styles.head}>
         <h6>Best Sellers</h6>
-        <VerticalDot />
+        <div className={styles.dot}>
+          <VerticalDot />
+        </div>
       </div>
-      <div className={styles.body}>
-        {bestSellers &&
-          bestSellers.length > 0 &&
-          bestSellers.map((item) => <CardBody item={item} key={item.id} />)}
-      </div>
-      <div className={styles.footer}>
-        <Button text={'REPORT'} />
-      </div>
+      {bestSellers && bestSellers.length > 0 ? (
+        <>
+          <div className={styles.body}>
+            {bestSellers.map((item) => (
+              <CardBody item={item} key={item.id} />
+            ))}
+          </div>
+
+          <div className={styles.footer}>
+            <Button text={'REPORT'} />
+          </div>
+        </>
+      ) : (
+        <div className={styles.body}>
+          <p>Not Best Sellers Found</p>
+        </div>
+      )}
     </div>
   )
 }
