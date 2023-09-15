@@ -13,7 +13,6 @@ export const AdminSignIn = async ({ email, password })  => {
     const { token } = data
 
     if(token) {
-      localStorage.setItem('token', token)
       return { success: true, ...data }
     }
 

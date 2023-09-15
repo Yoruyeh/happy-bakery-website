@@ -60,7 +60,6 @@ const AdminLogin = () => {
       if (keepLogin) {
         localStorage.setItem('token', token)
       } else {
-        localStorage.removeItem('token', token)
         sessionStorage.setItem('token', token)
       }
       return
