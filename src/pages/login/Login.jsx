@@ -5,7 +5,7 @@ import Button from '../../components/button/Button'
 import { TextInput, CheckboxInput } from '../../components/input/Input'
 import { useState } from 'react'
 import { useAuth } from '../../context/AuthContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
 const Login = () => {
@@ -115,6 +115,17 @@ const Login = () => {
           By clicking 'Log In' you agree to our website Terms & Conditions,
           <br />
           Privacy Notice and Terms & Conditions.
+        </p>
+        <p>
+          Do Not Have An Account?
+          <Link
+            to="../register"
+            style={{
+              color: 'blue'
+            }}
+          >
+            Go to Register
+          </Link>
         </p>
       </form>
       <ClubInfo />
