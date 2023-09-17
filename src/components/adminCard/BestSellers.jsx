@@ -8,6 +8,7 @@ import { useAdminOrders } from '../../context/AdminOrdersContext'
 
 const CardBody = ({ item }) => {
   const amount = item.price_regular * item.salesCount
+  const count = Number(item.salesAmount) / item.price_regular
 
   return (
     <div className={styles.card}>
@@ -19,8 +20,8 @@ const CardBody = ({ item }) => {
         <p>${item.price_regular}</p>
       </div>
       <div className={styles.amount}>
-        <h6>${amount}</h6>
-        <p>{item.salesCount} sales</p>
+        <h6>${amount || Math.floor(item.salesAmount)}</h6>
+        <p>{item.salesCount || count} sales</p>
       </div>
     </div>
   )
