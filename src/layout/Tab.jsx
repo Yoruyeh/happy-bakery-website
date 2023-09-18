@@ -35,16 +35,6 @@ const Tab = () => {
         >
           <li>Coupon</li>
         </NavLink>
-        {/* <NavLink
-          to={'wishlist'}
-          className={({ isActive }) =>
-            isActive
-              ? `${styles.tabItem} ${styles.active}`
-              : `${styles.tabItem}`
-          }
-        >
-          <li>Wishlist</li>
-        </NavLink> */}
       </ul>
       <div className={styles.memberWrapper}>
         <Outlet />
