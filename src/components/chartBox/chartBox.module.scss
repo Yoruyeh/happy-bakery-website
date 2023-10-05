@@ -26,14 +26,36 @@
         font-size: 0.7rem;
         background-color: transparent;
         border: 1px solid $dark-gray;
+        border-radius: 8px;
         color: $dark-gray;
+        font-family: 'Rubik', sans-serif;
+        font-size: 0.7rem;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .active {
+        background-color: $dark-gray;
+        color: white;
       }
     }
   }
 
   .chart {
     width: 100%;
-    height: 100%;
-  }
+    height: 350px;
+    overflow-y: auto;
+    overflow-x: scroll;
 
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 4px;
+      background-color: $FA-white;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 8px;
+      background-color: $gray;
+    }
+  }
 }
