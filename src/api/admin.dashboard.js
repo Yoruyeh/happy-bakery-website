@@ -15,6 +15,10 @@ export const AdminGetStatus = async ({ startDate, endDate }) => {
       queryParams.push(`endDate=${endDate}`)
     }
 
+    if (queryParams.length) {
+      url += `?${queryParams.join('&')}`
+    }
+
     const { data } = await AdminAxiosInstance.get(url)
 
     return data

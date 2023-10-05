@@ -8,25 +8,8 @@ import { useAdminOrders } from '../../context/AdminOrdersContext'
 import { useEffect } from 'react'
 
 const Dashboard = () => {
-  const { dateValue, handleDateChange } = useAdminOrders()
+  const { dateValue, handleDateChange, amountCardInfo } = useAdminOrders()
   
-  const AmountCardInfo = [
-    {
-      id: 'card1',
-      title: 'Total Orders',
-      amount: '126.500'
-    },
-    {
-      id: 'card2',
-      title: 'Active Orders',
-      amount: '126.500'
-    },
-    {
-      id: 'card3',
-      title: 'Shipped Orders',
-      amount: '126.500'
-    }
-  ]
 
   useEffect(() => {
     const container = document.querySelector(
@@ -48,8 +31,8 @@ const Dashboard = () => {
         </div>
       </div>
       <div className={styles.cards}>
-        {AmountCardInfo.map((card) => (
-          <div className={styles.card} key={card.id}>
+        {amountCardInfo.map((card, index) => (
+          <div className={styles.card} key={index}>
             <AmountCard card={card} />
           </div>
         ))}

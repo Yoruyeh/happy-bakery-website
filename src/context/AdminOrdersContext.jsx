@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { AdminGetOrderById, AdminGetOrders } from '../api/admin.orders'
 import Swal from 'sweetalert2'
 import { useNavigate } from 'react-router-dom'
+import { AdminGetStatus } from '../api/admin.dashboard'
 
 const defaultAdminOrdersContext = {
   adminOrders: null,
@@ -24,6 +25,7 @@ export const AdminOrdersProvider = ({ children }) => {
     page: 0
   })
   const [gridKey, setGridKey] = useState(0)
+  const [amountCardInfo, setAmountCardInfo] = useState([])
 
   const currentDate = new Date()
   const sevenDaysAgo = new Date()
@@ -113,6 +115,17 @@ export const AdminOrdersProvider = ({ children }) => {
   }, [dateValue, adminOrderCount])
 
   useEffect(() => {
+    const AdminGetStatusAsync = async () => {
+      const { data } = await AdminGetStatus({
+        startDate: dateValue.startDate,
+        endDate: dateValue.endDate
+      })
+      setAmountCardInfo(data)
+    } 
+    AdminGetStatusAsync()
+  }, [dateValue])
+
+  useEffect(() => {
     setPaginationModel((prev) => ({
       ...prev,
       page: 0
@@ -132,7 +145,8 @@ export const AdminOrdersProvider = ({ children }) => {
         adminOrder,
         paginationModel,
         setPaginationModel,
-        gridKey
+        gridKey,
+        amountCardInfo
       }}
     >
       {children}
