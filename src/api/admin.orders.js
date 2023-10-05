@@ -26,6 +26,7 @@ export const AdminGetOrders = async ({ page, perPage, startDate, endDate }) => {
     if (queryParams.length) {
       url += `?${queryParams.join('&')}`
     }
+    console.log(url)
 
     const { data } = await AdminAxiosInstance.get(url)
 

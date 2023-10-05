@@ -93,7 +93,8 @@ export const AdminOrdersProvider = ({ children }) => {
   useEffect(() => {
     const AdminGetOrderCount = async () => {
       const { orderCount } = await AdminGetOrders({
-        page: 1
+        startDate: dateValue.startDate,
+        endDate: dateValue.endDate
       })
       setAdminOrderCount(orderCount)
     }
