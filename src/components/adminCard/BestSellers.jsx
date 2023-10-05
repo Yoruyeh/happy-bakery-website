@@ -127,7 +127,7 @@ const BestSellers = () => {
         </>
       ) : (
         <div className={styles.body}>
-          <p>Not Best Sellers Found</p>
+          <p>No Best Sellers Found</p>
         </div>
       )}
     </div>
